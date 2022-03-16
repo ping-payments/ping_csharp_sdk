@@ -1,6 +1,6 @@
-﻿namespace PaymentsApiSDK.Enums
+﻿namespace PaymentsApiSdk.Payments.InitiatePayment.Request
 {
-    public enum PaymentsApiMethodEnum
+    public enum MethodEnum
     {
         mobile,
         open_banking,

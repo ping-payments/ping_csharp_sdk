@@ -13,8 +13,8 @@ namespace PaymentsApiSDK.Models
             string currency,
             IEnumerable<IPaymentItem>
             items,
-            PaymentsApiMethodEnum method,
-            PaymentsApiProviderEnum provider,
+            MethodEnum method,
+            ProviderEnum provider,
             IProviderMetaData providerMetaData)
         {
             Currency = currency;
@@ -28,8 +28,8 @@ namespace PaymentsApiSDK.Models
         public Guid OrderId { get; set; }
         public decimal Amount { get; set; }
         public IEnumerable<IPaymentItem> Items { get; set; }
-        public PaymentsApiMethodEnum Method { get; set; }
-        public PaymentsApiProviderEnum Provider { get; set; }
+        public MethodEnum Method { get; set; }
+        public ProviderEnum Provider { get; set; }
         public string Currency { get; set; }
         public IProviderMetaData ProviderMetaData { get; set; }
     }

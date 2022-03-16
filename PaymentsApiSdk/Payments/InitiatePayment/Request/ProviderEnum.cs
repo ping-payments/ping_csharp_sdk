@@ -1,6 +1,5 @@
-﻿namespace PaymentsApiSDK.Enums
-{
-    public enum PaymentsApiProviderEnum
+﻿namespace PaymentsApiSdk.Payments.InitiatePayment.Request
+    public enum ProviderEnum
     {
         swish,
         open_banking,
