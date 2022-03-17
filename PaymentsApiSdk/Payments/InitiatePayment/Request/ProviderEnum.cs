@@ -2,6 +2,7 @@
 { 
     public enum ProviderEnum
     {
+        dummy,
         swish,
         open_banking,
         verifone,

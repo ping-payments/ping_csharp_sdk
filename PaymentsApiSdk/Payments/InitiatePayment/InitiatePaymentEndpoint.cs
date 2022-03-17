@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PaymentsApiSdk.Payments.InitiatePayment
@@ -22,7 +23,7 @@ namespace PaymentsApiSdk.Payments.InitiatePayment
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public static Uri GetRequestUri(Guid orderId) => new Uri($"api/v1/payment_orders/{orderId}/payments");
+        public static string GetRequestUri(Guid orderId) => $"api/v1/payment_orders/{orderId}/payments";
 
         public static T? Deserialize<T>(string responseBody)
         {
@@ -38,16 +39,18 @@ namespace PaymentsApiSdk.Payments.InitiatePayment
 
         public async Task<InitiatePaymentResponse> InitiatePayment(Guid orderId, InitiatePaymentRequest initiatePaymentRequest)
         {
-            var postBody = JsonSerializer.Serialize(initiatePaymentRequest);
-            var uri = GetRequestUri(orderId);
-            var content = new StringContent(postBody, Encoding.UTF8, "application/json");
-            using var httpRequestMessage = new HttpRequestMessage
+            var options = new JsonSerializerOptions
             {
-                Method = HttpMethod.Post,
-                RequestUri = uri,
-                Content = content
+                Converters =
+                {
+                    new JsonStringEnumConverter(),
+                    new ProviderMethodParametersJsonConvert()
+                }
             };
-            using var response = await _httpClient.SendAsync(httpRequestMessage);
+            var postBody = JsonSerializer.Serialize(initiatePaymentRequest, options);
+            var uri = GetRequestUri(orderId);
+            var content = new StringContent(postBody, Encoding.UTF8, "application/json");            
+            using var response = await _httpClient.PostAsync(uri, content);
             var statusCode = response.StatusCode;
             var responseBody = await response.Content.ReadAsStringAsync();
             var isSuccesful = statusCode == HttpStatusCode.OK;

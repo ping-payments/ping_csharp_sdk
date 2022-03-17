@@ -2,6 +2,7 @@
 {
     public enum MethodEnum
     {
+        dummy,
         mobile,
         open_banking,
         card,
