@@ -12,8 +12,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Merchants\" />
-    <Folder Include="PaymentOrders\" />
+    <Folder Include="Merchants\Get\" />
+    <Folder Include="Merchants\Create\" />
+    <Folder Include="Merchants\List\" />
+    <Folder Include="PaymentOrders\Create\" />
+    <Folder Include="PaymentOrders\List\" />
+    <Folder Include="PaymentOrders\Get\" />
+    <Folder Include="PaymentOrders\Close\" />
+    <Folder Include="PaymentOrders\Split\" />
+    <Folder Include="PaymentOrders\Settle\" />
+    <Folder Include="PaymentOrders\UpdatePaymentOrder\" />
+    <Folder Include="Payments\Get\" />
   </ItemGroup>
 
 </Project>

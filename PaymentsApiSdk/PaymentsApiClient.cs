@@ -1,5 +1,4 @@
-using PaymentsApiSdk.Payments;
-using PaymentsApiSdk.Payments.InitiatePayment;
+using PaymentsApiSdk.Payments.Initiate;
 using System;
 using System.Net.Http;
 
@@ -9,12 +8,12 @@ namespace PaymentsApiSdk
     {
         public PaymentsApiClient(Guid tenantId, HttpClient httpClient)
         {
-            Payments = new PaymentsEndpoints
+            Payments = new Payments.Payments
             (
-                new InitiatePaymentEndpoint(tenantId, httpClient)
+                new Initiate(tenantId, httpClient)
             );
         }
 
-        public PaymentsEndpoints Payments { get; }
+        public Payments.Payments Payments { get; }
     }
 }

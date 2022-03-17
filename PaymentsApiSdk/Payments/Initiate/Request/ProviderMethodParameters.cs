@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PaymentsApiSdk.Payments.InitiatePayment.Request
+namespace PaymentsApiSdk.Payments.Initiate.Request
 {
     public abstract record ProviderMethodParameters
     {

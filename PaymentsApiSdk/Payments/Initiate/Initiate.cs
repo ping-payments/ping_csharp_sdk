@@ -1,5 +1,5 @@
-﻿using PaymentsApiSdk.Payments.InitiatePayment.Request;
-using PaymentsApiSdk.Payments.InitiatePayment.Response;
+﻿using PaymentsApiSdk.Payments.Initiate.Request;
+using PaymentsApiSdk.Payments.Initiate.Response;
 using PaymentsApiSdk.Shared;
 using System;
 using System.Net;
@@ -10,13 +10,13 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.Payments.InitiatePayment
+namespace PaymentsApiSdk.Payments.Initiate
 {
-    public class InitiatePaymentEndpoint
+    public class Initiate
     {
         private readonly HttpClient _httpClient;
 
-        public InitiatePaymentEndpoint(Guid tenantId, HttpClient httpClient)
+        public Initiate(Guid tenantId, HttpClient httpClient)
         {
             _httpClient = httpClient;
             _httpClient.DefaultRequestHeaders.Add("tenant_id", tenantId.ToString());

@@ -1,5 +1,5 @@
-﻿using PaymentsApiSdk.Payments.InitiatePayment.Request;
-using PaymentsApiSdk.Payments.InitiatePayment.Response;
+﻿using PaymentsApiSdk.Payments.Initiate.Request;
+using PaymentsApiSdk.Payments.Initiate.Response;
 using PaymentsApiSdk.Shared;
 using System;
 using System.Collections.Generic;

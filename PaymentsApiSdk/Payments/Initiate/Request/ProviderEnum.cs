@@ -1,4 +1,4 @@
-﻿namespace PaymentsApiSdk.Payments.InitiatePayment.Request
+﻿namespace PaymentsApiSdk.Payments.Initiate.Request
 { 
     public enum ProviderEnum
     {

@@ -2,7 +2,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Payments.InitiatePayment.Response
+namespace PaymentsApiSdk.Payments.Initiate.Response
 {
     public record InitiatePaymentResponseBody : SuccesfulResponseBody
     {

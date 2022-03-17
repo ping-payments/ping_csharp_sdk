@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Payments.InitiatePayment.Request
+namespace PaymentsApiSdk.Payments.Initiate.Request
 {
     public record InitiatePaymentRequest
     {

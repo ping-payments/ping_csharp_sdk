@@ -1,6 +1,6 @@
 ﻿using PaymentsApiSdk.Shared;
 
-namespace PaymentsApiSdk.Payments.InitiatePayment.Response
+namespace PaymentsApiSdk.Payments.Initiate.Response
 {
     public record InitiatePaymentResponse : ApiResponseBase<InitiatePaymentResponseBody>
     {
