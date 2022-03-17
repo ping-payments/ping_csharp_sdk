@@ -1,4 +1,14 @@
-﻿namespace PaymentsApiSdk.Shared
+﻿using System.Text.Json.Serialization;
+
+namespace PaymentsApiSdk.Shared
 {
-    public record ErrorMessage(string Description, string Error, string Property);
+    public record ErrorMessage
+    {
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+        [JsonPropertyName("error")]
+        public string Error { get; set; }
+        [JsonPropertyName("property")]
+        public string Property { get; set; }
+    }
 }

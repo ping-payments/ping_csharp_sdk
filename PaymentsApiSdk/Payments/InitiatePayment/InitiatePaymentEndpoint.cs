@@ -67,7 +67,7 @@ namespace PaymentsApiSdk.Payments.InitiatePayment
                     new InitiatePaymentResponse
                     (
                         (int)statusCode,
-                        true,
+                        false,
                         Deserialize<ErrorResponseBody>(responseBody)
                     )
             };
