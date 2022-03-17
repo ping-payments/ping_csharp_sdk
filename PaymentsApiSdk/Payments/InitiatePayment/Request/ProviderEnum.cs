@@ -1,4 +1,5 @@
 ﻿namespace PaymentsApiSdk.Payments.InitiatePayment.Request
+{ 
     public enum ProviderEnum
     {
         swish,
