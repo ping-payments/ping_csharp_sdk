@@ -2,7 +2,7 @@
 
 namespace PaymentsApiSdk.Shared
 {
-    public record ErrorResponseBody()
+    public record ErrorResponseBody
     {
         [JsonPropertyName("errors")]
         public ErrorMessage[] Errors { get; set;}
