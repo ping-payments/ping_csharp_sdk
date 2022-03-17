@@ -13,7 +13,6 @@ namespace PaymentsApiSdk.Payments.InitiatePayment.Request
 
         [JsonPropertyName("amount")]
         public int Amount { get; set; }        
-
         [JsonPropertyName("name")]
         public string Name { get; set; }
         [JsonPropertyName("vat_rate")]
