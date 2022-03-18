@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Payments.Initiate.Request
+namespace PaymentsApiSdk.Payments.Shared
 {
     public record OrderItem
     {

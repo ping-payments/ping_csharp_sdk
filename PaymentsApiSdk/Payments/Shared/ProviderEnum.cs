@@ -1,5 +1,5 @@
-﻿namespace PaymentsApiSdk.Payments.Initiate.Request
-{ 
+﻿namespace PaymentsApiSdk.Payments.Shared
+{
     public enum ProviderEnum
     {
         dummy,

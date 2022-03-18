@@ -22,7 +22,6 @@
     <Folder Include="PaymentOrders\Split\" />
     <Folder Include="PaymentOrders\Settle\" />
     <Folder Include="PaymentOrders\UpdatePaymentOrder\" />
-    <Folder Include="Payments\Get\" />
   </ItemGroup>
 
 </Project>
