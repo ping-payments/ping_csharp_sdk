@@ -17,7 +17,6 @@
     <Folder Include="Merchants\List\" />
     <Folder Include="PaymentOrders\Create\" />
     <Folder Include="PaymentOrders\List\" />
-    <Folder Include="PaymentOrders\Get\" />
     <Folder Include="PaymentOrders\Close\" />
     <Folder Include="PaymentOrders\Split\" />
     <Folder Include="PaymentOrders\Settle\" />

@@ -7,7 +7,17 @@ namespace PaymentsApiSdk.Payments.Initiate.Request
 {
     public record InitiatePaymentRequest : BasePayment
     {
-        public InitiatePaymentRequest(CurrencyEnum currency, int totalAmount, IDictionary<string, dynamic> metadata, OrderItem[] orderItems, MethodEnum method, ProviderEnum provider, ProviderMethodParameters providerMethodParameters, Uri statusCallbackUrl)
+        public InitiatePaymentRequest
+        (
+            CurrencyEnum currency, 
+            int totalAmount, 
+            OrderItem[] orderItems,
+            ProviderEnum provider,
+            MethodEnum method, 
+            ProviderMethodParameters providerMethodParameters, 
+            Uri statusCallbackUrl,
+            IDictionary<string, dynamic> metadata
+        )
         {
             Currency = currency;
             TotalAmount = totalAmount;
