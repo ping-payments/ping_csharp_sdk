@@ -15,6 +15,9 @@ namespace PaymentsApiSdk.Payments.Shared
         [JsonPropertyName("order_items")]
         public OrderItem[] OrderItems { get; set; }
 
+        [JsonPropertyName("total_amount")]
+        public int TotalAmount {  get; set;}
+
         [JsonPropertyName("method")]
         public MethodEnum Method { get; set; }
 

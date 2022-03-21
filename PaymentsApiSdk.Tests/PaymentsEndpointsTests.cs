@@ -26,13 +26,13 @@ namespace PaymentsApiSdk.Tests
             var requestObject = new InitiatePaymentRequest
             (
                 CurrencyEnum.SEK,
-                new Dictionary<Guid, int> {{ Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d"), 1000 }},
+                1000,
                 new Dictionary<string, object> { { "test_data", 1337m } },
                 new OrderItem[]
                 {
-                    new OrderItem(500, "A", 0.25m),
-                    new OrderItem(500, "B", 0.12m),
-                },
+                    new OrderItem(500, "A", 0.25m, Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d")),
+                    new OrderItem(500, "B", 0.12m, Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d")),
+                },                
                 MethodEnum.dummy,
                 ProviderEnum.dummy,
                 new DummyProviderMethodParameters(),
@@ -67,12 +67,11 @@ namespace PaymentsApiSdk.Tests
             var requestObject = new InitiatePaymentRequest
             (
                 CurrencyEnum.SEK,
-                new Dictionary<Guid, int> { { Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d"), 1000 } },
+                1000,
                 new Dictionary<string, object> { { "test_data", 1337m } },
                 new OrderItem[]
                 {
-                    new OrderItem(500, "A", 0.25m),
-                    //new OrderItem(500, "B", 0.12m),
+                    new OrderItem(500, "A", 0.25m, Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d")),
                 },
                 MethodEnum.dummy,
                 ProviderEnum.dummy,
@@ -108,12 +107,12 @@ namespace PaymentsApiSdk.Tests
             var requestObject = new InitiatePaymentRequest
             (
                 CurrencyEnum.SEK,
-                new Dictionary<Guid, int> { { Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d"), 1000 } },
+               1000,
                 new Dictionary<string, object> { { "test_data", 1337m } },
                 new OrderItem[]
                 {
-                    new OrderItem(500, "A", 0.25m),
-                    new OrderItem(500, "B", 0.12m),
+                    new OrderItem(500, "A", 0.25m, Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d")),
+                    new OrderItem(500, "B", 0.12m, Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d")),
                 },
                 MethodEnum.dummy,
                 ProviderEnum.dummy,

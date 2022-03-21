@@ -7,10 +7,10 @@ namespace PaymentsApiSdk.Payments.Initiate.Request
 {
     public record InitiatePaymentRequest : BasePayment
     {
-        public InitiatePaymentRequest(CurrencyEnum currency, IDictionary<Guid, int> merchantAmounts, IDictionary<string, dynamic> metadata, OrderItem[] orderItems, MethodEnum method, ProviderEnum provider, ProviderMethodParameters providerMethodParameters, Uri statusCallbackUrl)
+        public InitiatePaymentRequest(CurrencyEnum currency, int totalAmount, IDictionary<string, dynamic> metadata, OrderItem[] orderItems, MethodEnum method, ProviderEnum provider, ProviderMethodParameters providerMethodParameters, Uri statusCallbackUrl)
         {
             Currency = currency;
-            MerchantAmounts = merchantAmounts;
+            TotalAmount = totalAmount;
             Metadata = metadata;
             OrderItems = orderItems;
             Method = method;
@@ -18,9 +18,6 @@ namespace PaymentsApiSdk.Payments.Initiate.Request
             ProviderMethodParameters = providerMethodParameters;
             StatusCallbackUrl = statusCallbackUrl;
         }
-
-        [JsonPropertyName("merchant_amounts")]
-        public IDictionary<Guid, int> MerchantAmounts { get; set; }
 
         [JsonPropertyName("provider_method_parameters")]
         public ProviderMethodParameters ProviderMethodParameters { get; set; }

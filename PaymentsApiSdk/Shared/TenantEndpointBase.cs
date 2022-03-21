@@ -7,7 +7,10 @@ namespace PaymentsApiSdk.Shared
     {
         protected TenantEndpointBase(HttpClient httpClient, Guid tenantId) : base(httpClient)
         {
-            _httpClient.DefaultRequestHeaders.Add("tenant_id", tenantId.ToString());
+            if (!_httpClient.DefaultRequestHeaders.Contains("tenant_id"))
+            {
+                _httpClient.DefaultRequestHeaders.Add("tenant_id", tenantId.ToString());
+            }            
         }
     }
 }
