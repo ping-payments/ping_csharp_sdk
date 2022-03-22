@@ -22,7 +22,7 @@ namespace PaymentsApiSdk.Tests
             Assert.Equal(200, response.StatusCode);
             Assert.False(response.IsFailure);
             Assert.True(response.IsSuccessful);
-            Assert.NotNull(response.Body);
+            Assert.NotNull(response.Body.SuccesfulResponseBody);
             Assert.Null(response.Body.ErrorResponseBody);
         }
 

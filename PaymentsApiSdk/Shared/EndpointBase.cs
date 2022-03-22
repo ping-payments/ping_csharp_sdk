@@ -31,7 +31,7 @@ namespace PaymentsApiSdk.Shared
             {
                 return JsonSerializer.Deserialize<T>(body, JsonSerializerOptions);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return default(T);
             }

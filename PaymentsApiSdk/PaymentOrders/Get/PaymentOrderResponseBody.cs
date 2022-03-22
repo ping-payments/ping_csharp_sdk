@@ -1,12 +1,12 @@
 ﻿using PaymentsApiSdk.PaymentOrders.Shared;
 using PaymentsApiSdk.Payments.Get;
-using PaymentsApiSdk.Payments.Shared;
+using PaymentsApiSdk.Shared;
 using System;
 using System.Text.Json.Serialization;
 
 namespace PaymentsApiSdk.PaymentOrders.Get
 {
-    public record PaymentOrderResponseBody : BasePayment
+    public record PaymentOrderResponseBody : SuccesfulResponseBody
     {
         [JsonPropertyName("id")]
         public Guid Id {get; set;}
@@ -19,5 +19,8 @@ namespace PaymentsApiSdk.PaymentOrders.Get
 
         [JsonPropertyName("payments")]
         public PaymentResponseBody[] Payments { get; set; }
+
+        [JsonPropertyName("split_tree_id")]
+        public Guid SplitTreeId { get; set; }
     }
 }
