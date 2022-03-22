@@ -8,22 +8,14 @@ using System.Threading.Tasks;
 
 namespace PaymentsApiSdk.PaymentOrders.Get
 {
-    public class GetPaymentOrderEndpoint : 
-        TenantEndpointBase<Guid, PaymentOrderResponse>
+    public class GetPaymentOrderEndpoint : TenantEndpointBase<Guid, PaymentOrderResponse>
     {
         public GetPaymentOrderEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
 
-        protected override JsonSerializerOptions JsonSerializerOptions => new()
-        {
-            Converters = { new JsonStringEnumConverter() }
-        };
+        protected override JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };
 
-        public override async Task<PaymentOrderResponse> Action(Guid orderId) =>
-            await Execute
-            (
-                $"api/v1/payment_orders/{orderId}",
-                RequestTypeEnum.GET
-            );
+        public override async Task<PaymentOrderResponse> Action(Guid orderId) => 
+            await Execute($"api/v1/payment_orders/{orderId}", RequestTypeEnum.GET);
 
         protected override async Task<PaymentOrderResponse> HttpResponseToResponse(HttpResponseMessage hrm)
         {

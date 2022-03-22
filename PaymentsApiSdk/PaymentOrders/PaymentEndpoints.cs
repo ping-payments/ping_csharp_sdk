@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace PaymentsApiSdk.PaymentOrders
 {
-    public class PaymentOrderEndpoint
+    public class PaymentOrderEndpoints
     {
-        public PaymentOrderEndpoint(GetPaymentOrderEndpoint getPaymentOrderEndpoint)
+        public PaymentOrderEndpoints(GetPaymentOrderEndpoint getPaymentOrderEndpoint)
         {
             _getPaymentOrderEndpoint = getPaymentOrderEndpoint;
         }
