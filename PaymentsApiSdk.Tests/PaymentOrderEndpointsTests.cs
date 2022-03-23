@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
@@ -100,6 +101,46 @@ namespace PaymentsApiSdk.Tests
             Assert.False(response.IsFailure);
             Assert.True(response.IsSuccessful);
             Assert.NotNull(response.Body.SuccesfulResponseBody);
+            Assert.Null(response.Body.ErrorResponseBody);
+        }
+
+        [Fact]
+        public async Task List_returns_200_without_filter()
+        {
+            var tenantId = Guid.Parse("be74903f-72bd-4e21-97c4-128dcf85e2f0");
+            var httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri("https://sandbox.pingpayments.com/payments/")
+            };
+            var api = new PaymentsApiClient(tenantId, httpClient);
+            var response = await api.PaymentOrder.List();
+            Assert.NotNull(response);
+            Assert.Equal(200, response.StatusCode);
+            Assert.False(response.IsFailure);
+            Assert.True(response.IsSuccessful);
+            Assert.NotNull(response.Body.SuccesfulResponseBody);
+            Assert.True(response.Body.SuccesfulResponseBody.PaymentOrders.Any());
+            Assert.Null(response.Body.ErrorResponseBody);
+        }
+
+        [Fact]
+        public async Task List_returns_200_with_filter()
+        {
+            var tenantId = Guid.Parse("be74903f-72bd-4e21-97c4-128dcf85e2f0");
+            var httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri("https://sandbox.pingpayments.com/payments/")
+            };
+            var api = new PaymentsApiClient(tenantId, httpClient);
+            var from = new DateTimeOffset(2022, 01, 01, 0, 0, 0, TimeSpan.Zero);
+            var to = from.AddMonths(6);
+            var response = await api.PaymentOrder.List((from, to));
+            Assert.NotNull(response);
+            Assert.Equal(200, response.StatusCode);
+            Assert.False(response.IsFailure);
+            Assert.True(response.IsSuccessful);
+            Assert.NotNull(response.Body.SuccesfulResponseBody);
+            Assert.True(response.Body.SuccesfulResponseBody.PaymentOrders.Any());
             Assert.Null(response.Body.ErrorResponseBody);
         }
     }

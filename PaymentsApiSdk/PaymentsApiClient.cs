@@ -1,6 +1,7 @@
 using PaymentsApiSdk.PaymentOrders;
 using PaymentsApiSdk.PaymentOrders.Create;
 using PaymentsApiSdk.PaymentOrders.Get;
+using PaymentsApiSdk.PaymentOrders.List;
 using PaymentsApiSdk.PaymentOrders.Update;
 using PaymentsApiSdk.Payments;
 using PaymentsApiSdk.Payments.Get;
@@ -23,7 +24,8 @@ namespace PaymentsApiSdk
             (
                 new GetPaymentOrderEndpoint(httpClient, tenantId),
                 new CreatePaymentOrderEndpoint(httpClient, tenantId),
-                new UpdatePaymentOrderEndpoint(httpClient, tenantId)
+                new UpdatePaymentOrderEndpoint(httpClient, tenantId),
+                new ListPaymentOrderEndpoint(httpClient, tenantId)
             );
         }
 
