@@ -7,10 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentsApiSdk", "PaymentsA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C1AA406-B67A-4C16-9291-45821A62B2FF}"
 	ProjectSection(SolutionItems) = preProject
-		Readme.MD = Readme.MD
+		CHANGELOG.MD = CHANGELOG.MD
+		LICENSE.txt = LICENSE.txt
+		README.MD = README.MD
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentsApiSdk.Tests", "PaymentsApiSdk.Tests\PaymentsApiSdk.Tests.csproj", "{6A6DE614-AF19-4872-9425-48D81D4968A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentsApiSdk.Tests", "PaymentsApiSdk.Tests\PaymentsApiSdk.Tests.csproj", "{6A6DE614-AF19-4872-9425-48D81D4968A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
