@@ -4,7 +4,6 @@ using PaymentsApiSdk.Shared;
 using System;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -30,7 +29,7 @@ namespace PaymentsApiSdk.Payments.Initiate
             (
                 $"api/v1/payment_orders/{request.orderId}/payments",
                 RequestTypeEnum.POST,
-                new StringContent(Serialize(request.initiatePaymentRequest), Encoding.UTF8, "application/json")
+                ToJson(request.initiatePaymentRequest)
             );
 
         protected override async Task<InitiatePaymentResponse> HttpResponseToResponse(HttpResponseMessage hrm)

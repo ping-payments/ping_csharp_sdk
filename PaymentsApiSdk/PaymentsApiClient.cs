@@ -1,4 +1,5 @@
 using PaymentsApiSdk.PaymentOrders;
+using PaymentsApiSdk.PaymentOrders.Create;
 using PaymentsApiSdk.PaymentOrders.Get;
 using PaymentsApiSdk.Payments;
 using PaymentsApiSdk.Payments.Get;
@@ -19,7 +20,8 @@ namespace PaymentsApiSdk
             );
             PaymentOrder = new PaymentOrderEndpoints
             (
-                new GetPaymentOrderEndpoint(httpClient, tenantId)
+                new GetPaymentOrderEndpoint(httpClient, tenantId),
+                new CreatePaymentOrderEndpoint(httpClient, tenantId)
             );
         }
 

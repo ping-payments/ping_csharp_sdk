@@ -6,11 +6,8 @@ using System.Text.Json.Serialization;
 
 namespace PaymentsApiSdk.PaymentOrders.Get
 {
-    public record PaymentOrderResponseBody : SuccesfulResponseBody
+    public record PaymentOrderResponseBody : GuidResponseBody
     {
-        [JsonPropertyName("id")]
-        public Guid Id {get; set;}
-
         [JsonPropertyName("status")]
         public PaymentOrderStatusEnum Status { get; set; }
         

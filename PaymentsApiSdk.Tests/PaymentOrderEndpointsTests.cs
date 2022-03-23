@@ -44,5 +44,41 @@ namespace PaymentsApiSdk.Tests
             Assert.Null(response.Body.SuccesfulResponseBody);
             Assert.Null(response.Body.ErrorResponseBody);
         }
+
+        [Fact]
+        public async Task Can_create_order_without_split_tree_id()
+        {
+            var tenantId = Guid.Parse("be74903f-72bd-4e21-97c4-128dcf85e2f0");
+            var httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri("https://sandbox.pingpayments.com/payments/")
+            };
+            var api = new PaymentsApiClient(tenantId, httpClient);
+            var response = await api.PaymentOrder.Create();
+            Assert.NotNull(response);
+            Assert.Equal(200, response.StatusCode);
+            Assert.False(response.IsFailure);
+            Assert.True(response.IsSuccessful);
+            Assert.NotNull(response.Body.SuccesfulResponseBody);
+            Assert.Null(response.Body.ErrorResponseBody);
+        }
+
+        [Fact]
+        public async Task Can_create_order_with_split_tree_id()
+        {
+            var tenantId = Guid.Parse("be74903f-72bd-4e21-97c4-128dcf85e2f0");
+            var httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri("https://sandbox.pingpayments.com/payments/")
+            };
+            var api = new PaymentsApiClient(tenantId, httpClient);
+            var response = await api.PaymentOrder.Create(Guid.Parse("5802e367-96dd-4cc8-b0de-b4603fb6a32d"));
+            Assert.NotNull(response);
+            Assert.Equal(200, response.StatusCode);
+            Assert.False(response.IsFailure);
+            Assert.True(response.IsSuccessful);
+            Assert.NotNull(response.Body.SuccesfulResponseBody);
+            Assert.Null(response.Body.ErrorResponseBody);
+        }
     }
 }

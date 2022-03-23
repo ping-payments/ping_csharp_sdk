@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -13,9 +14,10 @@ namespace PaymentsApiSdk.Shared
         protected EndpointBase(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            if(!_httpClient.DefaultRequestHeaders.Accept.Contains(new MediaTypeWithQualityHeaderValue("application/json")))
+            var json = new MediaTypeWithQualityHeaderValue("application/json");
+            if (!_httpClient.DefaultRequestHeaders.Accept.Contains(json))
             {
-                _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                _httpClient.DefaultRequestHeaders.Accept.Add(json);
             }
         }
 
@@ -31,17 +33,18 @@ namespace PaymentsApiSdk.Shared
             {
                 return JsonSerializer.Deserialize<T>(body, JsonSerializerOptions);
             }
-            catch (Exception e)
+            catch
             {
                 return default(T);
             }
         }
 
         protected string Serialize<T>(T model) => JsonSerializer.Serialize(model, JsonSerializerOptions);
-        
+
+        protected StringContent ToJson<T>(T bodyObject) => new(Serialize(bodyObject), Encoding.UTF8, "application/json");
+
         protected async Task<Response> Execute(string url, RequestTypeEnum requestType, HttpContent? content = null)
-        {
-            
+        {            
             using var response = requestType switch
             {
                 RequestTypeEnum.POST => await _httpClient.PostAsync(url, content),
