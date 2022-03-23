@@ -30,7 +30,7 @@ namespace PaymentsApiSdk.Tests
         {
             var response = await _api.Merchants.List(); 
             AssertHttpOK(response);
-            Merchant[] merchants = response;
+            Merchant[]? merchants = response;
             Assert.True(merchants != null && merchants.Any());
         }
 

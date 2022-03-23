@@ -63,7 +63,7 @@ namespace PaymentsApiSdk.Tests
             var to = from.AddMonths(6);
             var response = await _api.PaymentOrder.List((from, to));
             AssertHttpOK(response);
-            Assert.True(response.Body.SuccesfulResponseBody.PaymentOrders.Any());
+            Assert.True(response?.Body?.SuccesfulResponseBody?.PaymentOrders?.Any());
         }
 
         [Fact]

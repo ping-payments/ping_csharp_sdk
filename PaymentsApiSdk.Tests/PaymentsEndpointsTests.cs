@@ -34,12 +34,12 @@ namespace PaymentsApiSdk.Tests
             );
             var response = await _api.Payments.Initiate(TestData.OrderId, requestObject);
             AssertHttpOK(response);
-            InitiatePaymentResponseBody body = response.Body.SuccesfulResponseBody;
+            InitiatePaymentResponseBody? body = response.Body?.SuccesfulResponseBody;
             Assert.NotNull(body);            
-            Assert.NotEqual(Guid.Empty, body.Id);
-            Assert.Null(body.Billmate);
-            Assert.Null(body.Verifone);
-            Assert.Null(body.Swish);
+            Assert.NotEqual(Guid.Empty, body?.Id);
+            Assert.Null(body?.Billmate);
+            Assert.Null(body?.Verifone);
+            Assert.Null(body?.Swish);
         }
 
         [Fact]
