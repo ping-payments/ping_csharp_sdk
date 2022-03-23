@@ -1,3 +1,6 @@
+using PaymentsApiSdk.Merchants.Create;
+using PaymentsApiSdk.Merchants.Get;
+using PaymentsApiSdk.Merchants.List;
 using PaymentsApiSdk.PaymentOrders;
 using PaymentsApiSdk.PaymentOrders.Close;
 using PaymentsApiSdk.PaymentOrders.Create;
@@ -32,11 +35,17 @@ namespace PaymentsApiSdk
                 new SplitPaymentOrderEndpoint(httpClient, tenantId),
                 new ClosePaymentOrderEndpoint(httpClient, tenantId),
                 new SettlePaymentOrderEndpoint(httpClient, tenantId)
-
+            );
+            Merchants = new MerchantEndpoints
+            (
+                new CreateMerchantEndpoint(httpClient, tenantId),
+                new GetMerchantEndpoint(httpClient, tenantId),
+                new ListMerchantsEndpoint(httpClient, tenantId)
             );
         }
 
         public PaymentEndpoints Payments { get; }
         public PaymentOrderEndpoints PaymentOrder { get; }
+        public MerchantEndpoints Merchants { get; }
     }
 }

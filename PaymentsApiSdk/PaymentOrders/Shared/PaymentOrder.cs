@@ -4,9 +4,9 @@ using PaymentsApiSdk.Shared;
 using System;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.PaymentOrders.Get
+namespace PaymentsApiSdk.PaymentOrders.Shared
 {
-    public record PaymentOrderResponseBody : GuidResponseBody
+    public record PaymentOrder : GuidResponseBody
     {
         [JsonPropertyName("status")]
         public PaymentOrderStatusEnum Status { get; set; }

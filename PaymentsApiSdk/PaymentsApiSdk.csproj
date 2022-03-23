@@ -11,10 +11,4 @@
     <PackageReference Include="System.Text.Json" Version="6.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Merchants\Get\" />
-    <Folder Include="Merchants\Create\" />
-    <Folder Include="Merchants\List\" />
-  </ItemGroup>
-
 </Project>

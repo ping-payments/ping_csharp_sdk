@@ -1,4 +1,4 @@
-﻿using PaymentsApiSdk.PaymentOrders.Shared;
+﻿using PaymentsApiSdk.Merchants.Shared;
 using PaymentsApiSdk.Shared;
 using System;
 using System.Net;
@@ -7,31 +7,31 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.PaymentOrders.Get
+namespace PaymentsApiSdk.Merchants.Get
 {
-    public class GetPaymentOrderEndpoint : TenantEndpointBase<Guid, PaymentOrderResponse>
+    public class GetMerchantEndpoint : TenantEndpointBase<Guid, MerchantResponse>
     {
-        public GetPaymentOrderEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
+        public GetMerchantEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
 
         protected override JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };
 
-        public override async Task<PaymentOrderResponse> Action(Guid orderId) => 
-            await Execute($"api/v1/payment_orders/{orderId}", RequestTypeEnum.GET);
+        public override async Task<MerchantResponse> Action(Guid merchantId) => 
+            await Execute($"api/v1/merchants/{merchantId}", RequestTypeEnum.GET);
 
-        protected override async Task<PaymentOrderResponse> HttpResponseToResponse(HttpResponseMessage hrm)
+        protected override async Task<MerchantResponse> HttpResponseToResponse(HttpResponseMessage hrm)
         {
             var responseBody = await hrm.Content.ReadAsStringAsync();
             return hrm.StatusCode switch
             {
                 HttpStatusCode.OK =>
-                    new PaymentOrderResponse
+                    new MerchantResponse
                     (
                         (int)hrm.StatusCode,
                         true,
-                        Deserialize<PaymentOrder>(responseBody)
+                        Deserialize<Merchant>(responseBody)
                     ),
                 _ =>
-                    new PaymentOrderResponse
+                    new MerchantResponse
                     (
                         (int)hrm.StatusCode,
                         false,

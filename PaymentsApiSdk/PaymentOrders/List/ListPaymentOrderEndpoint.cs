@@ -1,4 +1,5 @@
 ﻿using PaymentsApiSdk.PaymentOrders.Get;
+using PaymentsApiSdk.PaymentOrders.Shared;
 using PaymentsApiSdk.Shared;
 using System;
 using System.Net;
@@ -34,7 +35,7 @@ namespace PaymentsApiSdk.PaymentOrders.List
                     (
                         (int)hrm.StatusCode,
                         true,
-                        new PaymentOrdersResponseBody(Deserialize<PaymentOrderResponseBody[]>(responseBody))
+                        new PaymentOrderList(Deserialize<PaymentOrder[]>(responseBody))
                     ),
                 _ =>
                     new PaymentOrdersResponse
