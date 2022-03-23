@@ -11,7 +11,6 @@ using Xunit;
 
 namespace PaymentsApiSdk.Tests
 {
-
     public class PaymentsEndpointsTests
     {
         [Fact]

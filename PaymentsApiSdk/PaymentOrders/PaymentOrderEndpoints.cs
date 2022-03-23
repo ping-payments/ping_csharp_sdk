@@ -1,6 +1,9 @@
-﻿using PaymentsApiSdk.PaymentOrders.Create;
+﻿using PaymentsApiSdk.PaymentOrders.Close;
+using PaymentsApiSdk.PaymentOrders.Create;
 using PaymentsApiSdk.PaymentOrders.Get;
 using PaymentsApiSdk.PaymentOrders.List;
+using PaymentsApiSdk.PaymentOrders.Settle;
+using PaymentsApiSdk.PaymentOrders.Split;
 using PaymentsApiSdk.PaymentOrders.Update;
 using PaymentsApiSdk.Shared;
 using System;
@@ -12,19 +15,28 @@ namespace PaymentsApiSdk.PaymentOrders
     {
         public PaymentOrderEndpoints(GetPaymentOrderEndpoint getPaymentOrderEndpoint,
                                      CreatePaymentOrderEndpoint createPaymentOrderEndpoint,
-                                     UpdatePaymentOrderEndpoint updatePaymentOrderEndpoint, 
-                                     ListPaymentOrderEndpoint listPaymentOrderEndpoint)
+                                     UpdatePaymentOrderEndpoint updatePaymentOrderEndpoint,
+                                     ListPaymentOrderEndpoint listPaymentOrderEndpoint,
+                                     SplitPaymentOrderEndpoint splitPaymentOrderEndpoint, 
+                                     ClosePaymentOrderEndpoint closePaymentOrderEndpoint, 
+                                     SettlePaymentOrderEndpoint settlePaymentOrderEndpoint)
         {
             _getPaymentOrderEndpoint = getPaymentOrderEndpoint;
             _createPaymentOrderEndpoint = createPaymentOrderEndpoint;
             _updatePaymentOrderEndpoint = updatePaymentOrderEndpoint;
             _listPaymentOrderEndpoint = listPaymentOrderEndpoint;
+            _splitPaymentOrderEndpoint = splitPaymentOrderEndpoint;
+            _closePaymentOrderEndpoint = closePaymentOrderEndpoint;
+            _settlePaymentOrderEndpoint = settlePaymentOrderEndpoint;
         }
 
         private readonly GetPaymentOrderEndpoint _getPaymentOrderEndpoint;
         private readonly CreatePaymentOrderEndpoint _createPaymentOrderEndpoint;
         private readonly UpdatePaymentOrderEndpoint _updatePaymentOrderEndpoint;
         private readonly ListPaymentOrderEndpoint _listPaymentOrderEndpoint;
+        private readonly SplitPaymentOrderEndpoint _splitPaymentOrderEndpoint;
+        private readonly ClosePaymentOrderEndpoint _closePaymentOrderEndpoint;
+        private readonly SettlePaymentOrderEndpoint _settlePaymentOrderEndpoint;
 
         public async Task<PaymentOrderResponse> Get(Guid orderId) =>
             await _getPaymentOrderEndpoint.Action(orderId);
@@ -34,5 +46,11 @@ namespace PaymentsApiSdk.PaymentOrders
             await _createPaymentOrderEndpoint.Action(splitTreeId);
         public async Task<EmptyResponse> Update((Guid OrderId, Guid SplitTreeId) updateRequest) =>
             await _updatePaymentOrderEndpoint.Action(updateRequest);
+        public async Task<EmptyResponse> Close(Guid orderId) =>
+            await _closePaymentOrderEndpoint.Action(orderId);
+        public async Task<EmptyResponse> Split(Guid orderId) =>
+            await _splitPaymentOrderEndpoint.Action(orderId);
+        public async Task<EmptyResponse> Settle(Guid orderId) =>
+            await _settlePaymentOrderEndpoint.Action(orderId);
     }
 }

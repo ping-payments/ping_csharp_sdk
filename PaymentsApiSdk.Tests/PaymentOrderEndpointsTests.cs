@@ -1,4 +1,7 @@
-﻿using System;
+﻿using PaymentsApiSdk.Payments.Initiate.Request;
+using PaymentsApiSdk.Payments.Shared;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -142,6 +145,65 @@ namespace PaymentsApiSdk.Tests
             Assert.NotNull(response.Body.SuccesfulResponseBody);
             Assert.True(response.Body.SuccesfulResponseBody.PaymentOrders.Any());
             Assert.Null(response.Body.ErrorResponseBody);
+        }
+
+        [Fact]
+        public async Task Can_close_then_split_then_settle_an_order()
+        {
+            var tenantId = Guid.Parse("be74903f-72bd-4e21-97c4-128dcf85e2f0");
+            var httpClient = new HttpClient()
+            {
+                BaseAddress = new Uri("https://sandbox.pingpayments.com/payments/")
+            };
+            var api = new PaymentsApiClient(tenantId, httpClient);
+            
+            //1. Create order
+            Guid orderId = await api.PaymentOrder.Create();
+
+            //2. Create payment
+            var requestObject = new InitiatePaymentRequest
+            (
+                CurrencyEnum.SEK,
+                1000,
+                new OrderItem[]
+                {
+                    new OrderItem(1000, "A", 0.25m, Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d")),
+                },
+                ProviderEnum.dummy,
+                MethodEnum.dummy,
+                new DummyProviderMethodParameters(),
+                new Uri("https://not.real.callback.pingpayments.com"),
+                new Dictionary<string, object> { { "test_data", 1337m } }
+
+            );
+            var _ = await api.Payments.Initiate(orderId, requestObject);
+            
+            //3. Close
+            var closeResponse = await api.PaymentOrder.Close(orderId);
+            Assert.NotNull(closeResponse);
+            Assert.Equal(204, closeResponse.StatusCode);
+            Assert.False(closeResponse.IsFailure);
+            Assert.True(closeResponse.IsSuccessful);
+            Assert.NotNull(closeResponse.Body.SuccesfulResponseBody);
+            Assert.Null(closeResponse.Body.ErrorResponseBody);
+
+            //4. Split
+            var splitResponse = await api.PaymentOrder.Split(orderId);
+            Assert.NotNull(splitResponse);
+            Assert.Equal(204, splitResponse.StatusCode);
+            Assert.False(splitResponse.IsFailure);
+            Assert.True(splitResponse.IsSuccessful);
+            Assert.NotNull(splitResponse.Body.SuccesfulResponseBody);
+            Assert.Null(splitResponse.Body.ErrorResponseBody);
+
+            //5. Settle 
+            var settleResponse = await api.PaymentOrder.Settle(orderId);
+            Assert.NotNull(settleResponse);
+            Assert.Equal(204, settleResponse.StatusCode);
+            Assert.False(settleResponse.IsFailure);
+            Assert.True(settleResponse.IsSuccessful);
+            Assert.NotNull(settleResponse.Body.SuccesfulResponseBody);
+            Assert.Null(settleResponse.Body.ErrorResponseBody);
         }
     }
 }
