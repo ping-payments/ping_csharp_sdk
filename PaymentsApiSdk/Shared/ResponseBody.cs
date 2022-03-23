@@ -1,6 +1,6 @@
 ﻿namespace PaymentsApiSdk.Shared
 {
-    public record ResponseBody<T>(ErrorResponseBody? ErrorResponseBody, T? SuccesfulResponseBody) where T : SuccesfulResponseBody
+    public record ResponseBody<T>(ErrorResponseBody? ErrorResponseBody, T? SuccesfulResponseBody) where T : EmptySuccesfulResponseBody
     {
         public static ResponseBody<T> NewError(ErrorResponseBody ErrorResponseBody) => 
             new(ErrorResponseBody, null);

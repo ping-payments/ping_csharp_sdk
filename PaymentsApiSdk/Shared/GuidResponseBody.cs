@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace PaymentsApiSdk.Shared
 {
-    public record GuidResponseBody : SuccesfulResponseBody
+    public record GuidResponseBody : EmptySuccesfulResponseBody
     {
         [JsonPropertyName("id")]
         public Guid Id { get; set; }

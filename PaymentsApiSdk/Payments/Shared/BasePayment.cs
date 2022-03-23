@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace PaymentsApiSdk.Payments.Shared
 {
-    public abstract record BasePayment : SuccesfulResponseBody
+    public abstract record BasePayment : EmptySuccesfulResponseBody
     {
         [JsonPropertyName("currency")]
         public CurrencyEnum Currency { get; set; }

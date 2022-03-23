@@ -14,12 +14,12 @@ namespace PaymentsApiSdk.PaymentOrders.Create
 
         protected override JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };
 
-        public override async Task<GuidResponse> Action(Guid? SplitTreeId = null) => 
+        public override async Task<GuidResponse> Action(Guid? splitTreeId = null) => 
             await Execute
             (
                 $"api/v1/payment_orders", 
                 RequestTypeEnum.POST,
-                SplitTreeId.HasValue ? ToJson(new { split_tree_id = SplitTreeId.Value }) : ToJson(new {})
+                splitTreeId.HasValue ? ToJson(new { split_tree_id = splitTreeId.Value }) : ToJson(new {})
             );
 
         protected override async Task<GuidResponse> HttpResponseToResponse(HttpResponseMessage hrm)
