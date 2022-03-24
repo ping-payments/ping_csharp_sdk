@@ -1,0 +1,56 @@
+﻿using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
+using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
+using PingPayments.PaymentsApi.Shared;
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+
+namespace PingPayments.PaymentsApi.Payments.Initiate.V1
+{
+    public class InitiateEndpoint : TenantEndpointBase<(Guid orderId, InitiatePaymentRequest initiatePaymentRequest), InitiatePaymentResponse>
+    {
+        public InitiateEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
+
+        protected override JsonSerializerOptions JsonSerializerOptions => new()
+        {
+            Converters = 
+            { 
+                new JsonStringEnumConverter(),
+                new ProviderMethodParametersJsonConvert()
+            }
+        };
+
+        public override async Task<InitiatePaymentResponse> Action((Guid orderId, InitiatePaymentRequest initiatePaymentRequest) request) =>
+            await Execute
+            (
+                $"api/v1/payment_orders/{request.orderId}/payments",
+                RequestTypeEnum.POST,
+                ToJson(request.initiatePaymentRequest)
+            );
+
+        protected override async Task<InitiatePaymentResponse> HttpResponseToResponse(HttpResponseMessage hrm)
+        {
+            var responseBody = await hrm.Content.ReadAsStringAsync();
+            return hrm.StatusCode switch
+            {
+                HttpStatusCode.OK =>
+                    new InitiatePaymentResponse
+                    (
+                        (int)hrm.StatusCode,
+                        true,
+                        Deserialize<InitiatePaymentResponseBody>(responseBody)
+                    ),
+                _ =>
+                    new InitiatePaymentResponse
+                    (
+                        (int)hrm.StatusCode,
+                        false,
+                        Deserialize<ErrorResponseBody>(responseBody)
+                    )
+            };
+        }
+    }
+}
