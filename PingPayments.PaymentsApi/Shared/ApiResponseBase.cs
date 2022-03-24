@@ -1,6 +1,8 @@
-﻿namespace PingPayments.PaymentsApi.Shared
+﻿using System.Net;
+
+namespace PingPayments.PaymentsApi.Shared
 {
-    public abstract record ApiResponseBase<T>(int StatusCode, bool IsSuccessful, ResponseBody<T>? Body) where T : EmptySuccesfulResponseBody
+    public abstract record ApiResponseBase<T>(HttpStatusCode StatusCode, bool IsSuccessful, ResponseBody<T>? Body) where T : EmptySuccesfulResponseBody
     {
         public bool IsFailure => !IsSuccessful;
 

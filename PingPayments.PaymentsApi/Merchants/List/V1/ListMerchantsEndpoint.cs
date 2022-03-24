@@ -1,11 +1,10 @@
 ﻿using PingPayments.PaymentsApi.Merchants.Shared.V1;
 using PingPayments.PaymentsApi.Shared;
 using System;
-using System.Net;
 using System.Net.Http;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
+using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Merchants.List.V1
 {
@@ -13,31 +12,18 @@ namespace PingPayments.PaymentsApi.Merchants.List.V1
     {
         public ListMerchantsEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
 
-        protected override JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };
+        public override async Task<MerchantsResponse> ExecuteRequest(EmptyRequest? emptyRequest = null) => 
+            await BaseExecute(GET, $"api/v1/merchants");
 
-        public override async Task<MerchantsResponse> Action(EmptyRequest? emptyRequest = null) => 
-            await Execute($"api/v1/merchants", RequestTypeEnum.GET);
-
-        protected override async Task<MerchantsResponse> HttpResponseToResponse(HttpResponseMessage hrm)
+        protected override async Task<MerchantsResponse> ParseHttpResponse(HttpResponseMessage hrm)
         {
             var responseBody = await hrm.Content.ReadAsStringAsync();
-            return hrm.StatusCode switch
+            var response = hrm.StatusCode switch
             {
-                HttpStatusCode.OK =>
-                    new MerchantsResponse
-                    (
-                        (int)hrm.StatusCode,
-                        true,
-                        new MerchantList(Deserialize<Merchant[]>(responseBody))
-                    ),
-                _ =>
-                    new MerchantsResponse
-                    (
-                        (int)hrm.StatusCode,
-                        false,
-                        Deserialize<ErrorResponseBody>(responseBody)
-                    )
+                OK => MerchantsResponse.Succesful(hrm.StatusCode, new MerchantList(Deserialize<Merchant[]>(responseBody))),
+                _ => MerchantsResponse.Failure(hrm.StatusCode, Deserialize<ErrorResponseBody>(responseBody))
             };
+            return response;
         }
     }
 }

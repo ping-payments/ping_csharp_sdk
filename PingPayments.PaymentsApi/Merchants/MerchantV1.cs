@@ -24,12 +24,12 @@ namespace PingPayments.PaymentsApi.PaymentOrders
         private readonly Lazy<ListMerchantsEndpoint> _listMerchantEndpoint;
 
         public async Task<MerchantResponse> Get(Guid merchantId) =>
-            await _getMerchantEndpoint.Value.Action(merchantId);
+            await _getMerchantEndpoint.Value.ExecuteRequest(merchantId);
 
         public async Task<MerchantsResponse> List() =>
-            await _listMerchantEndpoint.Value.Action(null);
+            await _listMerchantEndpoint.Value.ExecuteRequest(null);
 
         public async Task<GuidResponse> Create(CreateMerchantRequest createMerchantRequest) =>
-            await _createMerchantEndpoint.Value.Action(createMerchantRequest);
+            await _createMerchantEndpoint.Value.ExecuteRequest(createMerchantRequest);
     }
 }

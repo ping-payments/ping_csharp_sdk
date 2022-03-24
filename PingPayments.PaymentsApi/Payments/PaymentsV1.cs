@@ -19,9 +19,9 @@ namespace PingPayments.PaymentsApi.Payments
         private readonly Lazy<GetEndpoint> _getEndpoint;
 
         public async Task<InitiatePaymentResponse> Initiate(Guid orderId, InitiatePaymentRequest initiatePaymentRequest) =>
-            await _initiateEndpoint.Value.Action((orderId, initiatePaymentRequest));
+            await _initiateEndpoint.Value.ExecuteRequest((orderId, initiatePaymentRequest));
 
         public async Task<PaymentResponse> Get(Guid orderId, Guid paymentId) =>
-            await _getEndpoint.Value.Action((orderId, paymentId));
+            await _getEndpoint.Value.ExecuteRequest((orderId, paymentId));
     }
 }

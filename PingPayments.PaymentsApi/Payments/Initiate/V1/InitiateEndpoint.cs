@@ -2,11 +2,12 @@
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using PingPayments.PaymentsApi.Shared;
 using System;
-using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
+using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Payments.Initiate.V1
 {
@@ -23,34 +24,23 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
             }
         };
 
-        public override async Task<InitiatePaymentResponse> Action((Guid orderId, InitiatePaymentRequest initiatePaymentRequest) request) =>
-            await Execute
+        public override async Task<InitiatePaymentResponse> ExecuteRequest((Guid orderId, InitiatePaymentRequest initiatePaymentRequest) request) =>
+            await BaseExecute
             (
+                POST,
                 $"api/v1/payment_orders/{request.orderId}/payments",
-                RequestTypeEnum.POST,
                 ToJson(request.initiatePaymentRequest)
             );
 
-        protected override async Task<InitiatePaymentResponse> HttpResponseToResponse(HttpResponseMessage hrm)
+        protected override async Task<InitiatePaymentResponse> ParseHttpResponse(HttpResponseMessage hrm)
         {
             var responseBody = await hrm.Content.ReadAsStringAsync();
-            return hrm.StatusCode switch
+            var parsedResponse = hrm.StatusCode switch
             {
-                HttpStatusCode.OK =>
-                    new InitiatePaymentResponse
-                    (
-                        (int)hrm.StatusCode,
-                        true,
-                        Deserialize<InitiatePaymentResponseBody>(responseBody)
-                    ),
-                _ =>
-                    new InitiatePaymentResponse
-                    (
-                        (int)hrm.StatusCode,
-                        false,
-                        Deserialize<ErrorResponseBody>(responseBody)
-                    )
+                OK => InitiatePaymentResponse.Succesful(hrm.StatusCode, Deserialize<InitiatePaymentResponseBody>(responseBody)),
+                _ => InitiatePaymentResponse.Failure(hrm.StatusCode, Deserialize<ErrorResponseBody>(responseBody))
             };
+            return parsedResponse;
         }
     }
 }

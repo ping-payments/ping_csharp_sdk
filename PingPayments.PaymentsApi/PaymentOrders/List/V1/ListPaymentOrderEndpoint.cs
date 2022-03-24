@@ -1,11 +1,10 @@
 ﻿using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
 using PingPayments.PaymentsApi.Shared;
 using System;
-using System.Net;
 using System.Net.Http;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
+using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
 {
@@ -13,37 +12,24 @@ namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
     {
         public ListPaymentOrderEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
 
-        protected override JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };
-
-        public override async Task<PaymentOrdersResponse> Action((DateTimeOffset from, DateTimeOffset to)? dateFilters) => 
-            await Execute
+        public override async Task<PaymentOrdersResponse> ExecuteRequest((DateTimeOffset from, DateTimeOffset to)? dateFilters) => 
+            await BaseExecute
             (
-                dateFilters.HasValue ? 
-                    $"api/v1/payment_orders?from={dateFilters.Value.from:O}&to={dateFilters.Value.to:O}" : 
-                    $"api/v1/payment_orders", 
-                RequestTypeEnum.GET
+                GET,
+                dateFilters.HasValue ?
+                    $"api/v1/payment_orders?from={dateFilters.Value.from:O}&to={dateFilters.Value.to:O}" :
+                    $"api/v1/payment_orders"
             );
 
-        protected override async Task<PaymentOrdersResponse> HttpResponseToResponse(HttpResponseMessage hrm)
+        protected override async Task<PaymentOrdersResponse> ParseHttpResponse(HttpResponseMessage hrm)
         {
             var responseBody = await hrm.Content.ReadAsStringAsync();
-            return hrm.StatusCode switch
+            var response = hrm.StatusCode switch
             {
-                HttpStatusCode.OK =>
-                    new PaymentOrdersResponse
-                    (
-                        (int)hrm.StatusCode,
-                        true,
-                        new PaymentOrderList(Deserialize<PaymentOrder[]>(responseBody))
-                    ),
-                _ =>
-                    new PaymentOrdersResponse
-                    (
-                        (int)hrm.StatusCode,
-                        false,
-                        Deserialize<ErrorResponseBody>(responseBody)
-                    )
+                OK => PaymentOrdersResponse.Succesful(hrm.StatusCode, new PaymentOrderList(Deserialize<PaymentOrder[]>(responseBody))),
+                _ => PaymentOrdersResponse.Failure(hrm.StatusCode, Deserialize<ErrorResponseBody>(responseBody))
             };
+            return response;
         }
     }
 }

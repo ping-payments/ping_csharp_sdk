@@ -3,9 +3,9 @@ using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net;
 using System.Net.Http;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
+using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Get.V1
 {
@@ -13,31 +13,18 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Get.V1
     {
         public GetPaymentOrderEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
 
-        protected override JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };
+        public override async Task<PaymentOrderResponse> ExecuteRequest(Guid orderId) => 
+            await BaseExecute(GET, $"api/v1/payment_orders/{orderId}");
 
-        public override async Task<PaymentOrderResponse> Action(Guid orderId) => 
-            await Execute($"api/v1/payment_orders/{orderId}", RequestTypeEnum.GET);
-
-        protected override async Task<PaymentOrderResponse> HttpResponseToResponse(HttpResponseMessage hrm)
+        protected override async Task<PaymentOrderResponse> ParseHttpResponse(HttpResponseMessage hrm)
         {
             var responseBody = await hrm.Content.ReadAsStringAsync();
-            return hrm.StatusCode switch
+            var response = hrm.StatusCode switch
             {
-                HttpStatusCode.OK =>
-                    new PaymentOrderResponse
-                    (
-                        (int)hrm.StatusCode,
-                        true,
-                        Deserialize<PaymentOrder>(responseBody)
-                    ),
-                _ =>
-                    new PaymentOrderResponse
-                    (
-                        (int)hrm.StatusCode,
-                        false,
-                        Deserialize<ErrorResponseBody>(responseBody)
-                    )
+                OK => PaymentOrderResponse.Succesful(hrm.StatusCode, Deserialize<PaymentOrder>(responseBody)),
+                _ => PaymentOrderResponse.Failure(hrm.StatusCode, Deserialize<ErrorResponseBody>(responseBody))
             };
+            return response;
         }
     }
 }

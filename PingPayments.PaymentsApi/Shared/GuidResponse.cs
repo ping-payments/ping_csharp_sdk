@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Net;
 
 namespace PingPayments.PaymentsApi.Shared
 {
     public record GuidResponse : ApiResponseBase<GuidResponseBody>
     {
-        public GuidResponse(int StatusCode, bool IsSuccessful, ResponseBody<GuidResponseBody>? Body) : base(StatusCode, IsSuccessful, Body)
+        public GuidResponse(HttpStatusCode StatusCode, bool IsSuccessful, ResponseBody<GuidResponseBody>? Body) : base(StatusCode, IsSuccessful, Body)
         {
         }
 
@@ -13,5 +14,8 @@ namespace PingPayments.PaymentsApi.Shared
             guidResponse?.Body?.SuccesfulResponseBody != null ? 
                 guidResponse.Body.SuccesfulResponseBody.Id : 
                 Guid.Empty;
+
+        public static GuidResponse Succesful(HttpStatusCode statusCode, GuidResponseBody? b) => new(statusCode, true, b);
+        public static GuidResponse Failure(HttpStatusCode statusCode, ErrorResponseBody? e) => new(statusCode, false, e);
     }
 }

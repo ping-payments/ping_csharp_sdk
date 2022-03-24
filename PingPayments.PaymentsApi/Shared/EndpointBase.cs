@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PingPayments.PaymentsApi.Shared
@@ -21,11 +22,11 @@ namespace PingPayments.PaymentsApi.Shared
             }
         }
 
-        protected abstract JsonSerializerOptions JsonSerializerOptions { get; }
+        protected virtual JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };
 
-        protected abstract Task<Response> HttpResponseToResponse(HttpResponseMessage response);
+        protected abstract Task<Response> ParseHttpResponse(HttpResponseMessage response);
 
-        public abstract Task<Response> Action(Request request);
+        public abstract Task<Response> ExecuteRequest(Request request);
 
         protected T? Deserialize<T>(string body)
         {
@@ -35,7 +36,7 @@ namespace PingPayments.PaymentsApi.Shared
             }
             catch
             {
-                return default(T);
+                return default;
             }
         }
 
@@ -43,7 +44,7 @@ namespace PingPayments.PaymentsApi.Shared
 
         protected StringContent ToJson<T>(T bodyObject) => new(Serialize(bodyObject), Encoding.UTF8, "application/json");
 
-        protected async Task<Response> Execute(string url, RequestTypeEnum requestType, HttpContent? content = null)
+        protected async Task<Response> BaseExecute(RequestTypeEnum requestType, string url, HttpContent? content = null)
         {            
             using var response = requestType switch
             {
@@ -52,7 +53,7 @@ namespace PingPayments.PaymentsApi.Shared
                 RequestTypeEnum.GET => await _httpClient.GetAsync(url),
                 _ => throw new NotImplementedException()
             };
-            return await HttpResponseToResponse(response);
+            return await ParseHttpResponse(response);
         }
     }
 }

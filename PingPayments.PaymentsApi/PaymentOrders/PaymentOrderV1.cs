@@ -39,18 +39,18 @@ namespace PingPayments.PaymentsApi.PaymentOrders
         private readonly Lazy<SettlePaymentOrderEndpoint> _settlePaymentOrderEndpoint;
 
         public async Task<PaymentOrderResponse> Get(Guid orderId) =>
-            await _getPaymentOrderEndpoint.Value.Action(orderId);
+            await _getPaymentOrderEndpoint.Value.ExecuteRequest(orderId);
         public async Task<PaymentOrdersResponse> List((DateTimeOffset from, DateTimeOffset to)? dateFilter = null) =>
-            await _listPaymentOrderEndpoint.Value.Action(dateFilter);
+            await _listPaymentOrderEndpoint.Value.ExecuteRequest(dateFilter);
         public async Task<GuidResponse> Create(Guid? splitTreeId = null) =>
-            await _createPaymentOrderEndpoint.Value.Action(splitTreeId);
+            await _createPaymentOrderEndpoint.Value.ExecuteRequest(splitTreeId);
         public async Task<EmptyResponse> Update((Guid OrderId, Guid SplitTreeId) updateRequest) =>
-            await _updatePaymentOrderEndpoint.Value.Action(updateRequest);
+            await _updatePaymentOrderEndpoint.Value.ExecuteRequest(updateRequest);
         public async Task<EmptyResponse> Close(Guid orderId) =>
-            await _closePaymentOrderEndpoint.Value.Action(orderId);
+            await _closePaymentOrderEndpoint.Value.ExecuteRequest(orderId);
         public async Task<EmptyResponse> Split(Guid orderId) =>
-            await _splitPaymentOrderEndpoint.Value.Action(orderId);
+            await _splitPaymentOrderEndpoint.Value.ExecuteRequest(orderId);
         public async Task<EmptyResponse> Settle(Guid orderId) =>
-            await _settlePaymentOrderEndpoint.Value.Action(orderId);
+            await _settlePaymentOrderEndpoint.Value.ExecuteRequest(orderId);
     }
 }

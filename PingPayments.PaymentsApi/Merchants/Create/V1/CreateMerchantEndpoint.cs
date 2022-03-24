@@ -1,10 +1,11 @@
 ﻿using PingPayments.PaymentsApi.Shared;
 using System;
-using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
+using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Merchants.Create.V1
 {
@@ -18,34 +19,23 @@ namespace PingPayments.PaymentsApi.Merchants.Create.V1
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        public override async Task<GuidResponse> Action(CreateMerchantRequest createMerchantRequest) => 
-            await Execute
+        public override async Task<GuidResponse> ExecuteRequest(CreateMerchantRequest createMerchantRequest) => 
+            await BaseExecute
             (
-                $"api/v1/merchants", 
-                RequestTypeEnum.POST,
+                POST,
+                $"api/v1/merchants",
                 ToJson(createMerchantRequest)
             );
 
-        protected override async Task<GuidResponse> HttpResponseToResponse(HttpResponseMessage hrm)
+        protected override async Task<GuidResponse> ParseHttpResponse(HttpResponseMessage hrm)
         {
             var responseBody = await hrm.Content.ReadAsStringAsync();
-            return hrm.StatusCode switch
+            var response = hrm.StatusCode switch
             {
-                HttpStatusCode.OK =>
-                    new GuidResponse
-                    (
-                        (int)hrm.StatusCode,
-                        true,
-                        Deserialize<GuidResponseBody>(responseBody)
-                    ),
-                _ =>
-                    new GuidResponse
-                    (
-                        (int)hrm.StatusCode,
-                        false,
-                        Deserialize<ErrorResponseBody>(responseBody)
-                    )
+                OK => GuidResponse.Succesful(hrm.StatusCode, Deserialize<GuidResponseBody>(responseBody)),
+                _ => GuidResponse.Failure(hrm.StatusCode, Deserialize<ErrorResponseBody>(responseBody))
             };
+            return response;
         }
     }
 }
