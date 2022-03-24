@@ -2,6 +2,7 @@ name: Publish Payments API SDK Nuget
 on:
   release:
     types: [released]
+  workflow_dispatch:
 jobs:
   matrix-testing:
     runs-on: windows-latest
