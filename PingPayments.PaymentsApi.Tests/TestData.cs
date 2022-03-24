@@ -1,14 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 
 namespace PingPayments.PaymentsApi.Tests
 {
     public static class TestData
     {
+        private static Dictionary<string, Guid>? Settings { get; set; } = null;
+        private static Dictionary<string, Guid> GetSettings()
+        {
+            if(Settings != null)
+            {
+                return Settings;
+            }
+            var testSetupJson = JsonDocument.Parse(File.ReadAllText("TestSetup.json"));
+            Guid GetGuidValue(string key) => Guid.Parse
+            (
+                Environment.GetEnvironmentVariable(key) ?? 
+                testSetupJson.RootElement.GetProperty(key).GetString() ??
+                throw new Exception($"Missing setting {key}")
+            );
+            Settings = new Dictionary<string, Guid>()
+            {
+                {"TenantId",  GetGuidValue("TenantId")},
+                {"MerchantId",  GetGuidValue("MerchantId")},
+                {"OrderId",  GetGuidValue("OrderId")},
+                {"SplitTreeId",  GetGuidValue("SplitTreeId")},
+                {"PaymentId",  GetGuidValue("PaymentId")}
+            };
+            return Settings;
+        }
         public static string SandboxUri => "https://sandbox.pingpayments.com/payments/";
-        public static Guid TenantId => Guid.Parse("be74903f-72bd-4e21-97c4-128dcf85e2f0");
-        public static Guid MerchantId => Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d");
-        public static Guid OrderId => Guid.Parse("fb27904a-f274-4c9a-b14d-085583fbaad4");
-        public static Guid SplitTreeId => Guid.Parse("5802e367-96dd-4cc8-b0de-b4603fb6a32d");
-        public static Guid PaymentId => Guid.Parse("cfc45f5f-2ec5-478c-8ec4-71410da43be1");
+        public static Guid TenantId => GetSettings()["TenantId"];
+        public static Guid MerchantId => GetSettings()["MerchantId "];
+        public static Guid OrderId => GetSettings()["OrderId "];
+        public static Guid SplitTreeId => GetSettings()["SplitTreeId"];
+        public static Guid PaymentId => GetSettings()["PaymentId"];
     }
 }
