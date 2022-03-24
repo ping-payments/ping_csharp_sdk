@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PaymentsApiSdk\PingPayments.PaymentsApi.csproj" />
+    <ProjectReference Include="..\PingPayments.PaymentsApi\PingPayments.PaymentsApi.csproj" />
   </ItemGroup>
 
 </Project>
