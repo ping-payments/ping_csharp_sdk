@@ -1,4 +1,4 @@
-﻿namespace PaymentsApiSdk.Merchants.Shared
+﻿namespace PingPayments.PaymentsApi.Merchants.Shared
 {
     public enum MerchantStatus
     {

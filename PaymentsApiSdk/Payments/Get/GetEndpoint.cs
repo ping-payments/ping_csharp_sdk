@@ -1,4 +1,4 @@
-﻿using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.Payments.Get
+namespace PingPayments.PaymentsApi.Payments.Get
 {
     public class GetEndpoint : 
         TenantEndpointBase<(Guid orderId, Guid paymentId), PaymentResponse>

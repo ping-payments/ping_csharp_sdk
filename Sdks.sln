@@ -3,16 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentsApiSdk", "PaymentsApiSdk\PaymentsApiSdk.csproj", "{F5A28537-202B-45D7-A1C6-F467C31AD102}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.PaymentsApi", "PaymentsApiSdk\PingPayments.PaymentsApi.csproj", "{F5A28537-202B-45D7-A1C6-F467C31AD102}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C1AA406-B67A-4C16-9291-45821A62B2FF}"
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOG.MD = CHANGELOG.MD
 		LICENSE.txt = LICENSE.txt
+		.github\workflows\publish.yaml = .github\workflows\publish.yaml
 		README.MD = README.MD
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentsApiSdk.Tests", "PaymentsApiSdk.Tests\PaymentsApiSdk.Tests.csproj", "{6A6DE614-AF19-4872-9425-48D81D4968A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.PaymentsApi.Tests", "PaymentsApiSdk.Tests\PingPayments.PaymentsApi.Tests.csproj", "{6A6DE614-AF19-4872-9425-48D81D4968A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

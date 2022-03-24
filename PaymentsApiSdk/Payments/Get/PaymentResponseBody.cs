@@ -1,8 +1,8 @@
-﻿using PaymentsApiSdk.Payments.Shared;
+﻿using PingPayments.PaymentsApi.Payments.Shared;
 using System;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Payments.Get
+namespace PingPayments.PaymentsApi.Payments.Get
 {
     public record PaymentResponseBody : BasePayment
     {

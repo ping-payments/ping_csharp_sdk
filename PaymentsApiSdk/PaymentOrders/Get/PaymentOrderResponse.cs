@@ -1,7 +1,7 @@
-﻿using PaymentsApiSdk.PaymentOrders.Shared;
-using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Shared;
+using PingPayments.PaymentsApi.Shared;
 
-namespace PaymentsApiSdk.PaymentOrders.Get
+namespace PingPayments.PaymentsApi.PaymentOrders.Get
 {
     public record PaymentOrderResponse : ApiResponseBase<PaymentOrder>
     {

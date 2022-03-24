@@ -1,9 +1,9 @@
-﻿using PaymentsApiSdk.Payments.Shared;
+﻿using PingPayments.PaymentsApi.Payments.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Payments.Initiate.Request
+namespace PingPayments.PaymentsApi.Payments.Initiate.Request
 {
     public record InitiatePaymentRequest : BasePayment
     {

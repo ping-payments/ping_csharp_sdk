@@ -1,21 +1,21 @@
-using PaymentsApiSdk.Merchants.Create;
-using PaymentsApiSdk.Merchants.Get;
-using PaymentsApiSdk.Merchants.List;
-using PaymentsApiSdk.PaymentOrders;
-using PaymentsApiSdk.PaymentOrders.Close;
-using PaymentsApiSdk.PaymentOrders.Create;
-using PaymentsApiSdk.PaymentOrders.Get;
-using PaymentsApiSdk.PaymentOrders.List;
-using PaymentsApiSdk.PaymentOrders.Settle;
-using PaymentsApiSdk.PaymentOrders.Split;
-using PaymentsApiSdk.PaymentOrders.Update;
-using PaymentsApiSdk.Payments;
-using PaymentsApiSdk.Payments.Get;
-using PaymentsApiSdk.Payments.Initiate;
+using PingPayments.PaymentsApi.Merchants.Create;
+using PingPayments.PaymentsApi.Merchants.Get;
+using PingPayments.PaymentsApi.Merchants.List;
+using PingPayments.PaymentsApi.PaymentOrders;
+using PingPayments.PaymentsApi.PaymentOrders.Close;
+using PingPayments.PaymentsApi.PaymentOrders.Create;
+using PingPayments.PaymentsApi.PaymentOrders.Get;
+using PingPayments.PaymentsApi.PaymentOrders.List;
+using PingPayments.PaymentsApi.PaymentOrders.Settle;
+using PingPayments.PaymentsApi.PaymentOrders.Split;
+using PingPayments.PaymentsApi.PaymentOrders.Update;
+using PingPayments.PaymentsApi.Payments;
+using PingPayments.PaymentsApi.Payments.Get;
+using PingPayments.PaymentsApi.Payments.Initiate;
 using System;
 using System.Net.Http;
 
-namespace PaymentsApiSdk
+namespace PingPayments.PaymentsApi
 {
     public class PaymentsApiClient
     {

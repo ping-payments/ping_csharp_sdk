@@ -1,15 +1,15 @@
-﻿using PaymentsApiSdk.PaymentOrders.Close;
-using PaymentsApiSdk.PaymentOrders.Create;
-using PaymentsApiSdk.PaymentOrders.Get;
-using PaymentsApiSdk.PaymentOrders.List;
-using PaymentsApiSdk.PaymentOrders.Settle;
-using PaymentsApiSdk.PaymentOrders.Split;
-using PaymentsApiSdk.PaymentOrders.Update;
-using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Close;
+using PingPayments.PaymentsApi.PaymentOrders.Create;
+using PingPayments.PaymentsApi.PaymentOrders.Get;
+using PingPayments.PaymentsApi.PaymentOrders.List;
+using PingPayments.PaymentsApi.PaymentOrders.Settle;
+using PingPayments.PaymentsApi.PaymentOrders.Split;
+using PingPayments.PaymentsApi.PaymentOrders.Update;
+using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.PaymentOrders
+namespace PingPayments.PaymentsApi.PaymentOrders
 {
     public class PaymentOrderEndpoints
     {

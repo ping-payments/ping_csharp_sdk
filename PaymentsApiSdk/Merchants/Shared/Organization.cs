@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Merchants.Shared
+namespace PingPayments.PaymentsApi.Merchants.Shared
 {
     public record Organization
     {

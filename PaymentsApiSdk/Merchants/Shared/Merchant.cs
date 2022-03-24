@@ -1,7 +1,7 @@
-﻿using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Merchants.Shared
+namespace PingPayments.PaymentsApi.Merchants.Shared
 {
     public record Merchant : GuidResponseBody
     {

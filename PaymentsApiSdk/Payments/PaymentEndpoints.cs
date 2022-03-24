@@ -1,11 +1,11 @@
-﻿using PaymentsApiSdk.Payments.Get;
-using PaymentsApiSdk.Payments.Initiate;
-using PaymentsApiSdk.Payments.Initiate.Request;
-using PaymentsApiSdk.Payments.Initiate.Response;
+﻿using PingPayments.PaymentsApi.Payments.Get;
+using PingPayments.PaymentsApi.Payments.Initiate;
+using PingPayments.PaymentsApi.Payments.Initiate.Request;
+using PingPayments.PaymentsApi.Payments.Initiate.Response;
 using System;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.Payments
+namespace PingPayments.PaymentsApi.Payments
 {
     public class PaymentEndpoints
     {

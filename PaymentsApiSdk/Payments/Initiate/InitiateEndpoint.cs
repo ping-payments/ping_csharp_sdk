@@ -1,6 +1,6 @@
-﻿using PaymentsApiSdk.Payments.Initiate.Request;
-using PaymentsApiSdk.Payments.Initiate.Response;
-using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Payments.Initiate.Request;
+using PingPayments.PaymentsApi.Payments.Initiate.Response;
+using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.Payments.Initiate
+namespace PingPayments.PaymentsApi.Payments.Initiate
 {
     public class InitiateEndpoint : 
         TenantEndpointBase<(Guid orderId, InitiatePaymentRequest initiatePaymentRequest), InitiatePaymentResponse>

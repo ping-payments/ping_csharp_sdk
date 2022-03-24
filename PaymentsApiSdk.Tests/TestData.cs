@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PaymentsApiSdk.Tests
+namespace PingPayments.PaymentsApi.Tests
 {
     public static class TestData
     {

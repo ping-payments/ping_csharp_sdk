@@ -1,7 +1,7 @@
-﻿using PaymentsApiSdk.Payments.Initiate.Request;
-using PaymentsApiSdk.Payments.Initiate.Response;
-using PaymentsApiSdk.Payments.Shared;
-using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Payments.Initiate.Request;
+using PingPayments.PaymentsApi.Payments.Initiate.Response;
+using PingPayments.PaymentsApi.Payments.Shared;
+using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PaymentsApiSdk.Tests
+namespace PingPayments.PaymentsApi.Tests
 {
     public class PaymentsEndpointsTests : BaseEndpointsTests
     {

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Payments.Initiate.Response
+namespace PingPayments.PaymentsApi.Payments.Initiate.Response
 {
     public record Billmate
     {

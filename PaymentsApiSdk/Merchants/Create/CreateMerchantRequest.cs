@@ -1,7 +1,7 @@
-﻿using PaymentsApiSdk.Merchants.Shared;
+﻿using PingPayments.PaymentsApi.Merchants.Shared;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Merchants.Create
+namespace PingPayments.PaymentsApi.Merchants.Create
 {
     public record CreateMerchantRequest
     {

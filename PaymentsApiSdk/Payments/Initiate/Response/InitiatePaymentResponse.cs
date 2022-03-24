@@ -1,6 +1,6 @@
-﻿using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 
-namespace PaymentsApiSdk.Payments.Initiate.Response
+namespace PingPayments.PaymentsApi.Payments.Initiate.Response
 {
     public record InitiatePaymentResponse : ApiResponseBase<InitiatePaymentResponseBody>
     {

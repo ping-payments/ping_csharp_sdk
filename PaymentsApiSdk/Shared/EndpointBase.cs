@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.Shared
+namespace PingPayments.PaymentsApi.Shared
 {
     public abstract class EndpointBase<Request, Response>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Payments.Shared
+namespace PingPayments.PaymentsApi.Payments.Shared
 {
     public record OrderItem
     {

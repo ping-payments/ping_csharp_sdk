@@ -1,7 +1,7 @@
-﻿using PaymentsApiSdk.Payments.Shared;
+﻿using PingPayments.PaymentsApi.Payments.Shared;
 using System.Collections.Generic;
 
-namespace PaymentsApiSdk.Payments.Initiate.Request
+namespace PingPayments.PaymentsApi.Payments.Initiate.Request
 {
     public record DummyProviderMethodParameters(PaymentStatusEnum DesiredPaymentStatus = PaymentStatusEnum.COMPLETED) : ProviderMethodParameters
     {

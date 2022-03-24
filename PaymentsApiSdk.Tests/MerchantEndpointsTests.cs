@@ -1,12 +1,12 @@
 ﻿using Bogus;
-using PaymentsApiSdk.Merchants.Create;
-using PaymentsApiSdk.Merchants.Shared;
+using PingPayments.PaymentsApi.Merchants.Create;
+using PingPayments.PaymentsApi.Merchants.Shared;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PaymentsApiSdk.Tests
+namespace PingPayments.PaymentsApi.Tests
 {
 
     public class MerchantEndpointsTests : BaseEndpointsTests

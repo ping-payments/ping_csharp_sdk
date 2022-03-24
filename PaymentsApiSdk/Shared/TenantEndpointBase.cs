@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace PaymentsApiSdk.Shared
+namespace PingPayments.PaymentsApi.Shared
 {
     public abstract class TenantEndpointBase<Request, Response> : EndpointBase<Request, Response>
     {

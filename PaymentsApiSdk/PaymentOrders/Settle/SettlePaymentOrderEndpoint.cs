@@ -1,4 +1,4 @@
-﻿using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.PaymentOrders.Settle
+namespace PingPayments.PaymentsApi.PaymentOrders.Settle
 {
     public class SettlePaymentOrderEndpoint : TenantEndpointBase<Guid, EmptyResponse>
     {

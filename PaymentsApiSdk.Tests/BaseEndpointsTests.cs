@@ -1,9 +1,9 @@
-﻿using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net.Http;
 using Xunit;
 
-namespace PaymentsApiSdk.Tests
+namespace PingPayments.PaymentsApi.Tests
 {
     public class BaseEndpointsTests
     {

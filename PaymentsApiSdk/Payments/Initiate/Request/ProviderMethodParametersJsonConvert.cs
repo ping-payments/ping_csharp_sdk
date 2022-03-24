@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Payments.Initiate.Request
+namespace PingPayments.PaymentsApi.Payments.Initiate.Request
 {
     public class ProviderMethodParametersJsonConvert : JsonConverter<ProviderMethodParameters>
     {

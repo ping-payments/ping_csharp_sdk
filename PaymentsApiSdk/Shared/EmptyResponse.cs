@@ -1,4 +1,4 @@
-﻿namespace PaymentsApiSdk.Shared
+﻿namespace PingPayments.PaymentsApi.Shared
 {
     public record EmptyResponse : ApiResponseBase<EmptySuccesfulResponseBody>
     {

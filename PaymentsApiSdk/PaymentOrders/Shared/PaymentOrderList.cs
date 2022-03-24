@@ -1,6 +1,6 @@
-﻿using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 
-namespace PaymentsApiSdk.PaymentOrders.Shared
+namespace PingPayments.PaymentsApi.PaymentOrders.Shared
 {
     public record PaymentOrderList(PaymentOrder[] PaymentOrders) : EmptySuccesfulResponseBody;
 }

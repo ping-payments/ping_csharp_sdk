@@ -1,8 +1,8 @@
-﻿using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.Payments.Shared
+namespace PingPayments.PaymentsApi.Payments.Shared
 {
     public abstract record BasePayment : EmptySuccesfulResponseBody
     {

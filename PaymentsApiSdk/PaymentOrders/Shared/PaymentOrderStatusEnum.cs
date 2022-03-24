@@ -1,4 +1,4 @@
-﻿namespace PaymentsApiSdk.PaymentOrders.Shared
+﻿namespace PingPayments.PaymentsApi.PaymentOrders.Shared
 {
     public enum PaymentOrderStatusEnum
     {

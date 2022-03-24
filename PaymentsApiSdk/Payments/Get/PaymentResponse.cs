@@ -1,6 +1,6 @@
-﻿using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 
-namespace PaymentsApiSdk.Payments.Get
+namespace PingPayments.PaymentsApi.Payments.Get
 {
 
     public record PaymentResponse : ApiResponseBase<PaymentResponseBody>

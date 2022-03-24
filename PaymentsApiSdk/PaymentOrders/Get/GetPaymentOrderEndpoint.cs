@@ -1,5 +1,5 @@
-﻿using PaymentsApiSdk.PaymentOrders.Shared;
-using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Shared;
+using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.PaymentOrders.Get
+namespace PingPayments.PaymentsApi.PaymentOrders.Get
 {
     public class GetPaymentOrderEndpoint : TenantEndpointBase<Guid, PaymentOrderResponse>
     {

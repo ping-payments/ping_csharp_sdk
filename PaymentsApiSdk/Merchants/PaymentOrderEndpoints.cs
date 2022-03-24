@@ -1,12 +1,12 @@
-﻿using PaymentsApiSdk.Merchants.Create;
-using PaymentsApiSdk.Merchants.Get;
-using PaymentsApiSdk.Merchants.List;
-using PaymentsApiSdk.Merchants.Shared;
-using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Merchants.Create;
+using PingPayments.PaymentsApi.Merchants.Get;
+using PingPayments.PaymentsApi.Merchants.List;
+using PingPayments.PaymentsApi.Merchants.Shared;
+using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.PaymentOrders
+namespace PingPayments.PaymentsApi.PaymentOrders
 {
     public class MerchantEndpoints
     {        

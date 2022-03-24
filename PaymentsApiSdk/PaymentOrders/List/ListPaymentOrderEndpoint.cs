@@ -1,6 +1,6 @@
-﻿using PaymentsApiSdk.PaymentOrders.Get;
-using PaymentsApiSdk.PaymentOrders.Shared;
-using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Get;
+using PingPayments.PaymentsApi.PaymentOrders.Shared;
+using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -8,7 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace PaymentsApiSdk.PaymentOrders.List
+namespace PingPayments.PaymentsApi.PaymentOrders.List
 {
     public class ListPaymentOrderEndpoint : TenantEndpointBase<(DateTimeOffset from, DateTimeOffset to)?, PaymentOrdersResponse>
     {

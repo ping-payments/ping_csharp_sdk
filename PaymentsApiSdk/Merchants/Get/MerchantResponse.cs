@@ -1,6 +1,6 @@
-﻿using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 
-namespace PaymentsApiSdk.Merchants.Shared
+namespace PingPayments.PaymentsApi.Merchants.Shared
 {
     public record MerchantResponse : ApiResponseBase<Merchant>
     {

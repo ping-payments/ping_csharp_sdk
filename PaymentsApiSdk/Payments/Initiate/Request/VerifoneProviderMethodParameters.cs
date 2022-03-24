@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PaymentsApiSdk.Payments.Initiate.Request
+namespace PingPayments.PaymentsApi.Payments.Initiate.Request
 {
     public record VerifoneProviderMethodParameters
     (

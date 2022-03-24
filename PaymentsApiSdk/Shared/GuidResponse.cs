@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PaymentsApiSdk.Shared
+namespace PingPayments.PaymentsApi.Shared
 {
     public record GuidResponse : ApiResponseBase<GuidResponseBody>
     {

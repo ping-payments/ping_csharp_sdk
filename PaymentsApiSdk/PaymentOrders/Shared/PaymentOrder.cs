@@ -1,10 +1,10 @@
-﻿using PaymentsApiSdk.PaymentOrders.Shared;
-using PaymentsApiSdk.Payments.Get;
-using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Shared;
+using PingPayments.PaymentsApi.Payments.Get;
+using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Text.Json.Serialization;
 
-namespace PaymentsApiSdk.PaymentOrders.Shared
+namespace PingPayments.PaymentsApi.PaymentOrders.Shared
 {
     public record PaymentOrder : GuidResponseBody
     {

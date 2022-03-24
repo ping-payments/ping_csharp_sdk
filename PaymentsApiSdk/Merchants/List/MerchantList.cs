@@ -1,7 +1,7 @@
-﻿using PaymentsApiSdk.Merchants.Shared;
-using PaymentsApiSdk.Shared;
+﻿using PingPayments.PaymentsApi.Merchants.Shared;
+using PingPayments.PaymentsApi.Shared;
 
-namespace PaymentsApiSdk.Merchants.List
+namespace PingPayments.PaymentsApi.Merchants.List
 {
     public record MerchantList(Merchant[] Merchants) : EmptySuccesfulResponseBody;
 }

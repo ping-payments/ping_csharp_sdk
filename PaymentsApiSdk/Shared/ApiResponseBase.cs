@@ -1,4 +1,4 @@
-﻿namespace PaymentsApiSdk.Shared
+﻿namespace PingPayments.PaymentsApi.Shared
 {
     public abstract record ApiResponseBase<T>(int StatusCode, bool IsSuccessful, ResponseBody<T>? Body) where T : EmptySuccesfulResponseBody
     {
