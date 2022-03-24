@@ -33,8 +33,8 @@ namespace PingPayments.PaymentsApi.Tests
         }
         public static string SandboxUri => "https://sandbox.pingpayments.com/payments/";
         public static Guid TenantId => GetSettings()["TenantId"];
-        public static Guid MerchantId => GetSettings()["MerchantId "];
-        public static Guid OrderId => GetSettings()["OrderId "];
+        public static Guid MerchantId => GetSettings()["MerchantId"];
+        public static Guid OrderId => GetSettings()["OrderId"];
         public static Guid SplitTreeId => GetSettings()["SplitTreeId"];
         public static Guid PaymentId => GetSettings()["PaymentId"];
     }
