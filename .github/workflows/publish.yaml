@@ -1,0 +1,48 @@
+name: Publish Payments API SDK Nuget
+on:
+  release:
+    types: [created]
+jobs:
+  matrix-testing:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        dotnet: ["3.1.x", "5.0.x", "6.0.x"]
+    name: Dotnet ${{ matrix.dotnet }} sample
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+      - run: dotnet build PingPayments.PaymentsApi/PingPayments.PaymentsApi.csproj
+
+  run-tests-and-publish:
+    runs-on: windows-latest
+    needs: matrix-testing
+    name: Run Tests and publish
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core SDK 6.0.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+          source-url: https://api.nuget.org/v3/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.NUGET_AUTH_TOKEN}}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
+      - name: Upload dotnet test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: dotnet-results-6.0.x
+          path: TestResults-6.0.x
+        if: always()
+      - name: Build
+        run: dotnet pack --configuration Release PingPayments.PaymentsApi/PingPayments.PaymentsApi.csproj
+      - name: Publish the package to Nuget Registry
+        run: dotnet nuget push PingPayments.PaymentsApi/PingPayments.PaymentsApi/bin/Release/*.nupkg
