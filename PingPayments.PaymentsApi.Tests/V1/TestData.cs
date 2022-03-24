@@ -23,11 +23,11 @@ namespace PingPayments.PaymentsApi.Tests.V1
             );
             Settings = new Dictionary<string, Guid>()
             {
-                {"TenantId",  GetGuidValue("TenantId")},
-                {"MerchantId",  GetGuidValue("MerchantId")},
-                {"OrderId",  GetGuidValue("OrderId")},
-                {"SplitTreeId",  GetGuidValue("SplitTreeId")},
-                {"PaymentId",  GetGuidValue("PaymentId")}
+                {"TenantId",  GetGuidValue("TENANTID")},
+                {"MerchantId",  GetGuidValue("MERCHANTID")},
+                {"OrderId",  GetGuidValue("ORDERID")},
+                {"SplitTreeId",  GetGuidValue("SPLITTREEID")},
+                {"PaymentId",  GetGuidValue("PAYMENTID")}
             };
             return Settings;
         }

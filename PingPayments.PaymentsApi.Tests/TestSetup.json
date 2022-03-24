@@ -1,7 +1,7 @@
 {
-  "TenantId": "",
-  "MerchantId": "",
-  "OrderId": "",
-  "SplitTreeId": "",
-  "PaymentId": ""
+  "TENANTID": "",
+  "MERCHANTID": "",
+  "ORDERID": "",
+  "SPLITTREEID": "",
+  "PAYMENTID": ""
 }
