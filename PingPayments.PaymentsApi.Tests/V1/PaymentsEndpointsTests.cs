@@ -1,6 +1,7 @@
 ﻿using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using PingPayments.PaymentsApi.Payments.Shared.V1;
+using PingPayments.PaymentsApi.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,30 +14,23 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Initiate_payment_200()
         {
-            var requestObject = new InitiatePaymentRequest
+            var requestObject = InitiatePaymentHelpers.NewDummy
             (
                 CurrencyEnum.SEK,
-                1000,
+                10.ToMinorCurrency(),
                 new OrderItem[]
                 {
-                    new OrderItem(500, "A", 0.25m, TestData.MerchantId),
-                    new OrderItem(500, "B", 0.12m, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrency(), "A", 0.25m, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrency(), "B", 0.12m, TestData.MerchantId),
                 },
-                ProviderEnum.dummy,
-                MethodEnum.dummy,
-                new DummyProviderMethodParameters(),
-                new Uri("https://not.real.callback.pingpayments.com"),
-                new Dictionary<string, object> { { "test_data", 1337m } }
-
+                TestData.FakeCallback
             );
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
             AssertHttpOK(response);
-            InitiatePaymentResponseBody? body = response.Body?.SuccesfulResponseBody;
+            Assert.NotNull(response?.Body?.SuccesfulResponseBody);
+            DummyResponse? body = response;
             Assert.NotNull(body);            
             Assert.NotEqual(Guid.Empty, body?.Id);
-            Assert.Null(body?.Billmate);
-            Assert.Null(body?.Verifone);
-            Assert.Null(body?.Swish);
         }
 
         [Fact]
@@ -53,7 +47,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 ProviderEnum.dummy,
                 MethodEnum.dummy,
                 new DummyProviderMethodParameters(),
-                new Uri("https://not.real.callback.pingpayments.com"),
+                TestData.FakeCallback,
                 new Dictionary<string, object> { { "test_data", 1337m } }
             );
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
@@ -77,7 +71,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 ProviderEnum.dummy,
                 MethodEnum.dummy,
                 new DummyProviderMethodParameters(),
-                new Uri("https://not.real.callback.pingpayments.com"),
+                TestData.FakeCallback,
                 new Dictionary<string, object> { { "test_data", 1337m } }
             );
             var response = await _api.Payments.V1.Initiate(orderId, requestObject);

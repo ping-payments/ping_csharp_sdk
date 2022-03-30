@@ -1,0 +1,91 @@
+﻿using PingPayments.PaymentsApi.Payments.Initiate.V1;
+using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
+using System.Threading.Tasks;
+using PingPayments.PaymentsApi.Payments.Shared.V1;
+using Xunit;
+using System.Text.Json.Serialization;
+using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
+
+namespace PingPayments.PaymentsApi.Tests.V1
+{
+    public class ProviderMethodResponseTests
+    {
+        [Fact]
+        public async Task Can_parse_dummy() => 
+            Assert.True
+            (
+                await InitiateEndpoint.GetResponseBody
+                (
+                    ProviderEnum.dummy, 
+                    MethodEnum.dummy,
+                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{}}",
+                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                ) is DummyResponse
+            );        
+        
+        [Fact]
+        public async Task Can_parse_swish() => 
+            Assert.True
+            (
+                await InitiateEndpoint.GetResponseBody
+                (
+                    ProviderEnum.swish, 
+                    MethodEnum.mobile,
+                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"swish_url\":\"swish://paymentrequest?token=c28a4061470f4af48973bd2a4642b4fa&callbackurl=merchant%253A%252F%252F\"}}",
+                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                ) is SwishMobileResponse
+            );    
+        
+        [Fact]
+        public async Task Can_parse_verifone() => 
+            Assert.True
+            (
+                await InitiateEndpoint.GetResponseBody
+                (
+                    ProviderEnum.verifone, 
+                    MethodEnum.card,
+                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"redirect_url\":\"https://verifone.com/pay/whatever\"}}",
+                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                ) is VerifoneResponse
+            );
+        
+        [Fact]
+        public async Task Can_parse_billmate() => 
+            Assert.True
+            (
+                await InitiateEndpoint.GetResponseBody
+                (
+                    ProviderEnum.billmate, 
+                    MethodEnum.invoice,
+                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"invoice_url\":\"https://billmate.com/invoice\"}}",
+                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                ) is BillmateResponse
+            );
+        
+        [Fact]
+        public async Task Can_parse_paymentiq_card() => 
+            Assert.True
+            (
+                await InitiateEndpoint.GetResponseBody
+                (
+                    ProviderEnum.payment_iq, 
+                    MethodEnum.card,
+                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"pay_url\":\"https://payment-iq.com/pay\"}}",
+                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                ) is PaymentIqResponse
+            );
+
+        [Fact]
+        public async Task Can_parse_paymentiq_vipps() => 
+            Assert.True
+            (
+                await InitiateEndpoint.GetResponseBody
+                (
+                    ProviderEnum.payment_iq, 
+                    MethodEnum.vipps,
+                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"pay_url\":\"https://payment-iq.com/pay\"}}",
+                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                ) is PaymentIqResponse
+            );
+    }
+}

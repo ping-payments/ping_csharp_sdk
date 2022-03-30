@@ -37,5 +37,6 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public static Guid OrderId => GetSettings()["OrderId"];
         public static Guid SplitTreeId => GetSettings()["SplitTreeId"];
         public static Guid PaymentId => GetSettings()["PaymentId"];
+        public static Uri FakeCallback => new("https://not.real.callback.pingpayments.com");
     }
 }

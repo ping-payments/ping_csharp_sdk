@@ -1,10 +1,13 @@
-﻿using System;
+﻿using PingPayments.PaymentsApi.Helpers;
+using System;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
 
 namespace PingPayments.PaymentsApi.Shared
 {
@@ -24,15 +27,18 @@ namespace PingPayments.PaymentsApi.Shared
 
         protected virtual JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };
 
-        protected abstract Task<Response> ParseHttpResponse(HttpResponseMessage response);
+        protected abstract Task<Response> ParseHttpResponse(HttpResponseMessage response, Request request);
 
         public abstract Task<Response> ExecuteRequest(Request request);
 
-        protected T? Deserialize<T>(string body)
+        protected async Task<T?> Deserialize<T>(string body) => await Deserialize<T>(body, JsonSerializerOptions);
+
+        protected static async Task<T?> Deserialize<T>(string body, JsonSerializerOptions jsonSerializerOptions)
         {
             try
             {
-                return JsonSerializer.Deserialize<T>(body, JsonSerializerOptions);
+                using var ms = new MemoryStream(Encoding.UTF8.GetBytes(body));
+                return await JsonSerializer.DeserializeAsync<T>(ms, jsonSerializerOptions);
             }
             catch
             {
@@ -40,20 +46,36 @@ namespace PingPayments.PaymentsApi.Shared
             }
         }
 
-        protected string Serialize<T>(T model) => JsonSerializer.Serialize(model, JsonSerializerOptions);
+        protected static async Task<string> Serialize<T>(T model, JsonSerializerOptions jsonSerializerOptions)
+        {
+            using var ms = new MemoryStream();
+            await JsonSerializer.SerializeAsync(ms, model, jsonSerializerOptions);
+            ms.Position = 0;
+            using var reader = new StreamReader(ms);
+            var json = await reader.ReadToEndAsync();
+            return json;
+        }
 
-        protected StringContent ToJson<T>(T bodyObject) => new(Serialize(bodyObject), Encoding.UTF8, "application/json");
+        protected async Task<StringContent> ToJson<T>(T bodyObject) => new(await Serialize(bodyObject, JsonSerializerOptions), Encoding.UTF8, "application/json");
 
-        protected async Task<Response> BaseExecute(RequestTypeEnum requestType, string url, HttpContent? content = null)
+        protected async Task<Response> BaseExecute(RequestTypeEnum requestType, string url, Request request, HttpContent? content = null)
         {            
             using var response = requestType switch
             {
-                RequestTypeEnum.POST => await _httpClient.PostAsync(url, content),
-                RequestTypeEnum.PUT => await _httpClient.PutAsync(url, content),
-                RequestTypeEnum.GET => await _httpClient.GetAsync(url),
+                POST => await _httpClient.PostAsync(url, content),
+                PUT => await _httpClient.PutAsync(url, content),
+                GET => await _httpClient.GetAsync(url),
                 _ => throw new NotImplementedException()
             };
-            return await ParseHttpResponse(response);
+            return await ParseHttpResponse(response, request);
         }
+
+        protected async Task<EmptyResponse> ToEmptyError(HttpResponseMessage hrm) =>
+            EmptyResponse.Failure
+            (
+                hrm.StatusCode,
+                await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
+                await hrm.Content.ReadAsStringAsyncMemoized()
+            );
     }
 }

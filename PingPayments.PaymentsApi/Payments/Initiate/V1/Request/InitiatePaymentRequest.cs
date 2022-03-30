@@ -11,17 +11,17 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         (
             CurrencyEnum currency, 
             int totalAmount, 
-            OrderItem[] orderItems,
+            IEnumerable<OrderItem> orderItems,
             ProviderEnum provider,
             MethodEnum method, 
             ProviderMethodParameters providerMethodParameters, 
             Uri statusCallbackUrl,
-            IDictionary<string, dynamic> metadata
+            IDictionary<string, dynamic>? metadata = null
         )
         {
             Currency = currency;
             TotalAmount = totalAmount;
-            Metadata = metadata;
+            Metadata = metadata ?? new Dictionary<string, dynamic>();
             OrderItems = orderItems;
             Method = method;
             Provider = provider;
@@ -29,9 +29,15 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             StatusCallbackUrl = statusCallbackUrl;
         }
 
+        /// <summary>
+        /// Extra parameters for the combination of <see cref="ProviderEnum"/> and <see cref="MethodEnum"/>
+        /// </summary>
         [JsonPropertyName("provider_method_parameters")]
         public ProviderMethodParameters ProviderMethodParameters { get; set; }
 
+        /// <summary>
+        /// Callback where the Tenant will get payment updates through HTTP
+        /// </summary>
         [JsonPropertyName("status_callback_url")]
         public Uri StatusCallbackUrl { get; set;}        
     }

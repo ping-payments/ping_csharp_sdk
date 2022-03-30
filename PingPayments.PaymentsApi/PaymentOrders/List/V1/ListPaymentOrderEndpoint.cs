@@ -1,6 +1,8 @@
-﻿using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
+﻿using PingPayments.PaymentsApi.Helpers;
+using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
 using PingPayments.PaymentsApi.Shared;
 using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
@@ -12,24 +14,36 @@ namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
     {
         public ListPaymentOrderEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
 
-        public override async Task<PaymentOrdersResponse> ExecuteRequest((DateTimeOffset from, DateTimeOffset to)? dateFilters) => 
+        public override async Task<PaymentOrdersResponse> ExecuteRequest((DateTimeOffset from, DateTimeOffset to)? df) => 
             await BaseExecute
             (
                 GET,
-                dateFilters.HasValue ?
-                    $"api/v1/payment_orders?from={dateFilters.Value.from:O}&to={dateFilters.Value.to:O}" :
-                    $"api/v1/payment_orders"
+                df.HasValue ?
+                    ($"api/v1/payment_orders?" + 
+                        $"from={WebUtility.UrlEncode(df.Value.from.ToString("o"))}&" + 
+                        $"to={WebUtility.UrlEncode(df.Value.to.ToString("o"))}")
+                :
+                    $"api/v1/payment_orders",
+                df
             );
 
-        protected override async Task<PaymentOrdersResponse> ParseHttpResponse(HttpResponseMessage hrm)
+        protected override async Task<PaymentOrdersResponse> ParseHttpResponse(HttpResponseMessage hrm, (DateTimeOffset from, DateTimeOffset to)? _)
         {
-            var responseBody = await hrm.Content.ReadAsStringAsync();
+            var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => PaymentOrdersResponse.Succesful(hrm.StatusCode, new PaymentOrderList(Deserialize<PaymentOrder[]>(responseBody))),
-                _ => PaymentOrdersResponse.Failure(hrm.StatusCode, Deserialize<ErrorResponseBody>(responseBody))
+                OK => await GetSuccesful(),
+                _ => PaymentOrdersResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
+
+            async Task<PaymentOrdersResponse> GetSuccesful()
+            {
+                var paymentOrders = await Deserialize<PaymentOrder[]?>(responseBody);
+                var paymentOrderList = paymentOrders != null ? new PaymentOrderList(paymentOrders) : null;
+                var response = PaymentOrdersResponse.Succesful(hrm.StatusCode, paymentOrderList, responseBody);
+                return response;
+            }
         }
     }
 }

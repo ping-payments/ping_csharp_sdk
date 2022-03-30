@@ -17,6 +17,6 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Shared.V1
         public PaymentResponseBody[] Payments { get; set; } = Array.Empty<PaymentResponseBody>();
 
         [JsonPropertyName("split_tree_id")]
-        public Guid SplitTreeId { get; set; }
+        public Guid? SplitTreeId { get; set; }
     }
 }

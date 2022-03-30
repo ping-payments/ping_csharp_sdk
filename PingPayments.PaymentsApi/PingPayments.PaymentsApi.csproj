@@ -5,9 +5,9 @@
     <Nullable>enable</Nullable>
     <LangVersion>9.0</LangVersion>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <PackageId>$(AssemblyName)</PackageId>
-    <Version>0.1.0-alpha</Version>
-    <Authors>pingpayments</Authors>
+    <PackageId>PingPayments</PackageId>
+    <Version>0.2.0-alpha</Version>
+    <Authors>pingpaymentsab</Authors>
     <Company>Ping Payments AB</Company>
     <Owners>Ping Payments</Owners>
     <Product>Ping Payments Payments API</Product>

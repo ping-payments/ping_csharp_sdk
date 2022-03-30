@@ -2,11 +2,6 @@
 {
     public enum ProviderEnum
     {
-        dummy,
-        swish,
-        open_banking,
-        verifone,
-        billmate,
-        bankgirot
+        swish, open_payments, verifone, billmate, bankgirot, payment_iq, dummy
     }
 }

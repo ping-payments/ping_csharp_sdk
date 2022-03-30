@@ -1,10 +1,12 @@
 ﻿using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.Shared.V1;
 using System;
-using System.Collections.Generic;
+using PingPayments.PaymentsApi.Helpers;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
+using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
+using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
@@ -63,8 +65,11 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var to = from.AddMonths(6);
             var response = await _api.PaymentOrder.V1.List((from, to));
             AssertHttpOK(response);
-            Assert.True(response?.Body?.SuccesfulResponseBody?.PaymentOrders?.Any());
+            PaymentOrder[] orders = response;
+            Assert.True(orders.Any());
         }
+
+        #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
 
         [Fact]
         public async Task Can_close_then_split_then_settle_an_order()
@@ -73,34 +78,26 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Guid orderId = await _api.PaymentOrder.V1.Create();
 
             //2. Create payment
-            var requestObject = new InitiatePaymentRequest
+            var requestObject = InitiatePaymentHelpers.NewDummy
             (
                 CurrencyEnum.SEK,
-                1000,
-                new OrderItem[]
-                {
-                    new OrderItem(1000, "A", 0.25m, Guid.Parse("04476abd-4bd4-45bb-b6ea-dcda41aded4d")),
-                },
-                ProviderEnum.dummy,
-                MethodEnum.dummy,
-                new DummyProviderMethodParameters(),
-                new Uri("https://not.real.callback.pingpayments.com"),
-                new Dictionary<string, object> { { "test_data", 1337m } }
-
+                10.ToMinorCurrency(),
+                new OrderItem(10.ToMinorCurrency(), "A", SwedishVat.Vat25, TestData.MerchantId).ToOrderList(),
+                TestData.FakeCallback
             );
-            var _ = await _api.Payments.V1.Initiate(orderId, requestObject);
-            
+
+            DummyResponse _ = await _api.Payments.V1.Initiate(orderId, requestObject);
+
             //3. Close
-            var closeResponse = await _api.PaymentOrder.V1.Close(orderId);
-            AssertHttpNoContent(closeResponse);
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Close(orderId));
 
             //4. Split
-            var splitResponse = await _api.PaymentOrder.V1.Split(orderId);
-            AssertHttpNoContent(splitResponse);
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Split(orderId));
 
             //5. Settle 
-            var settleResponse = await _api.PaymentOrder.V1.Settle(orderId);
-            AssertHttpNoContent(settleResponse);
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Settle(orderId));
         }
+
+        #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
     }
 }

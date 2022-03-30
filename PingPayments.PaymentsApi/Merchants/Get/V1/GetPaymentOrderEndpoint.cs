@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentsApi.Merchants.Shared.V1;
+﻿using PingPayments.PaymentsApi.Helpers;
+using PingPayments.PaymentsApi.Merchants.Shared.V1;
 using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net.Http;
@@ -13,15 +14,15 @@ namespace PingPayments.PaymentsApi.Merchants.Get.V1
         public GetMerchantEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
 
         public override async Task<MerchantResponse> ExecuteRequest(Guid merchantId) => 
-            await BaseExecute(GET, $"api/v1/merchants/{merchantId}");
+            await BaseExecute(GET, $"api/v1/merchants/{merchantId}", merchantId);
 
-        protected override async Task<MerchantResponse> ParseHttpResponse(HttpResponseMessage hrm)
+        protected override async Task<MerchantResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _)
         {
-            var responseBody = await hrm.Content.ReadAsStringAsync();
+            var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => MerchantResponse.Succesful(hrm.StatusCode, Deserialize<Merchant>(responseBody)),
-                _ => MerchantResponse.Failure(hrm.StatusCode, Deserialize<ErrorResponseBody>(responseBody))
+                OK => MerchantResponse.Succesful(hrm.StatusCode, await Deserialize<Merchant>(responseBody), responseBody),
+                _ => MerchantResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
         }

@@ -5,7 +5,7 @@ namespace PingPayments.PaymentsApi.Shared
 {
     public record GuidResponse : ApiResponseBase<GuidResponseBody>
     {
-        public GuidResponse(HttpStatusCode StatusCode, bool IsSuccessful, ResponseBody<GuidResponseBody>? Body) : base(StatusCode, IsSuccessful, Body)
+        public GuidResponse(HttpStatusCode StatusCode, bool IsSuccessful, ResponseBody<GuidResponseBody>? Body, string RawBody) : base(StatusCode, IsSuccessful, Body, RawBody)
         {
         }
 
@@ -15,7 +15,7 @@ namespace PingPayments.PaymentsApi.Shared
                 guidResponse.Body.SuccesfulResponseBody.Id : 
                 Guid.Empty;
 
-        public static GuidResponse Succesful(HttpStatusCode statusCode, GuidResponseBody? b) => new(statusCode, true, b);
-        public static GuidResponse Failure(HttpStatusCode statusCode, ErrorResponseBody? e) => new(statusCode, false, e);
+        public static GuidResponse Succesful(HttpStatusCode statusCode, GuidResponseBody? b, string rb) => new(statusCode, true, b, rb);
+        public static GuidResponse Failure(HttpStatusCode statusCode, ErrorResponseBody? e, string rb) => new(statusCode, false, e, rb);
     }
 }

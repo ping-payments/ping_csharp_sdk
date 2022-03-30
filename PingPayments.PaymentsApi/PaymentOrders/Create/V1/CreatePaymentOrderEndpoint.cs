@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentsApi.Shared;
+﻿using PingPayments.PaymentsApi.Helpers;
+using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -16,16 +17,17 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Create.V1
             (
                 POST,
                 $"api/v1/payment_orders",
-                splitTreeId.HasValue ? ToJson(new { split_tree_id = splitTreeId.Value }) : ToJson(new { })
+                splitTreeId,
+                splitTreeId.HasValue ? await ToJson(new { split_tree_id = splitTreeId.Value }) : await ToJson(new { })
             );
 
-        protected override async Task<GuidResponse> ParseHttpResponse(HttpResponseMessage hrm)
+        protected override async Task<GuidResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid? _)
         {
-            var responseBody = await hrm.Content.ReadAsStringAsync();
+            var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => GuidResponse.Succesful(hrm.StatusCode, Deserialize<GuidResponseBody>(responseBody)),
-                _ => GuidResponse.Failure(hrm.StatusCode, Deserialize<ErrorResponseBody>(responseBody))
+                OK => GuidResponse.Succesful(hrm.StatusCode, await Deserialize<GuidResponseBody>(responseBody), responseBody),
+                _ => GuidResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
         }

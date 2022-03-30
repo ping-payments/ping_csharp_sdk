@@ -2,11 +2,6 @@
 { 
     public enum MethodEnum
     {
-        dummy,
-        mobile,
-        open_banking,
-        card,
-        invoice,
-        autogiro
+        mobile, pis, card, invoice, autogiro, vipps, dummy
     }
 }

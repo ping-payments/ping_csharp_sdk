@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentsApi.Shared;
+﻿using PingPayments.PaymentsApi.Helpers;
+using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net.Http;
 using System.Text.Json;
@@ -24,16 +25,17 @@ namespace PingPayments.PaymentsApi.Merchants.Create.V1
             (
                 POST,
                 $"api/v1/merchants",
-                ToJson(createMerchantRequest)
+                createMerchantRequest,
+                await ToJson(createMerchantRequest)
             );
 
-        protected override async Task<GuidResponse> ParseHttpResponse(HttpResponseMessage hrm)
+        protected override async Task<GuidResponse> ParseHttpResponse(HttpResponseMessage hrm, CreateMerchantRequest _)
         {
-            var responseBody = await hrm.Content.ReadAsStringAsync();
+            var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => GuidResponse.Succesful(hrm.StatusCode, Deserialize<GuidResponseBody>(responseBody)),
-                _ => GuidResponse.Failure(hrm.StatusCode, Deserialize<ErrorResponseBody>(responseBody))
+                OK => GuidResponse.Succesful(hrm.StatusCode, await Deserialize<GuidResponseBody>(responseBody), responseBody),
+                _ => GuidResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
         }

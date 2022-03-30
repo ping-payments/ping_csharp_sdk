@@ -1,13 +1,17 @@
-﻿using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
+﻿using PingPayments.PaymentsApi.Helpers;
+using PingPayments.PaymentsApi.Payments.Shared.V1;
+using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
+[assembly: InternalsVisibleTo("PingPayments.PaymentsApi.Tests")]
 
 namespace PingPayments.PaymentsApi.Payments.Initiate.V1
 {
@@ -29,18 +33,45 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
             (
                 POST,
                 $"api/v1/payment_orders/{request.orderId}/payments",
-                ToJson(request.initiatePaymentRequest)
+                request,
+                await ToJson(request.initiatePaymentRequest)
             );
 
-        protected override async Task<InitiatePaymentResponse> ParseHttpResponse(HttpResponseMessage hrm)
+        protected internal static async Task<ProviderMethodResponseBody?> GetResponseBody(ProviderEnum provider, MethodEnum method, string raw, JsonSerializerOptions jsonOpts) =>
+            (provider, method) switch
+            {
+                (ProviderEnum.swish, MethodEnum.mobile) => await Deserialize<SwishMobileResponse>(raw, jsonOpts),
+                (ProviderEnum.billmate, MethodEnum.invoice) => await Deserialize<BillmateResponse>(raw, jsonOpts),
+                (ProviderEnum.verifone, MethodEnum.card) => await Deserialize<VerifoneResponse>(raw, jsonOpts),
+                (ProviderEnum.payment_iq, MethodEnum.vipps) => await Deserialize<PaymentIqResponse>(raw, jsonOpts),
+                (ProviderEnum.payment_iq, MethodEnum.card) => await Deserialize<PaymentIqResponse>(raw, jsonOpts), 
+                (ProviderEnum.dummy, MethodEnum.dummy) => await Deserialize<DummyResponse>(raw, jsonOpts),
+                _ => throw new NotImplementedException(),
+            };
+
+        protected override async Task<InitiatePaymentResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid orderId, InitiatePaymentRequest initiatePaymentRequest) request)
         {
-            var responseBody = await hrm.Content.ReadAsStringAsync();
+            var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var parsedResponse = hrm.StatusCode switch
             {
-                OK => InitiatePaymentResponse.Succesful(hrm.StatusCode, Deserialize<InitiatePaymentResponseBody>(responseBody)),
-                _ => InitiatePaymentResponse.Failure(hrm.StatusCode, Deserialize<ErrorResponseBody>(responseBody))
+                OK => await GetSuccesful(),
+                _ => await GetFailure()
             };
             return parsedResponse;
+
+            async Task<InitiatePaymentResponse> GetSuccesful()
+            {
+                var body = await GetResponseBody(request.initiatePaymentRequest.Provider, request.initiatePaymentRequest.Method, responseBody, JsonSerializerOptions);
+                var response = InitiatePaymentResponse.Succesful(hrm.StatusCode, body, responseBody);
+                return response;
+            }
+
+            async Task<InitiatePaymentResponse> GetFailure()
+            {
+                var errorBody = await Deserialize<ErrorResponseBody>(responseBody);
+                var response = InitiatePaymentResponse.Failure(hrm.StatusCode, errorBody, responseBody);
+                return response;
+            }
         }
     }
 }
