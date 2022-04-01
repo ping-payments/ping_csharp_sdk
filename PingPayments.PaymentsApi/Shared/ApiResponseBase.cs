@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace PingPayments.PaymentsApi.Shared
 {
@@ -16,5 +18,29 @@ namespace PingPayments.PaymentsApi.Shared
             apiResponseBase.Body?.ErrorResponseBody != null ?
                 apiResponseBase.Body.ErrorResponseBody :
                 null;
+
+        public void Match(Action<T> OnSuccess, Action<ErrorResponseBody> OnFailure)
+        {
+            if(IsSuccessful)  
+            {
+                OnSuccess.Invoke(Body?.SuccesfulResponseBody);
+            } 
+            else 
+            {
+                OnFailure.Invoke(Body?.ErrorResponseBody);
+            }
+        }
+
+        public async Task MatchAsync(Func<T, Task> OnSuccess, Func<ErrorResponseBody, Task> OnFailure)
+        {
+            if (IsSuccessful)
+            {
+                await OnSuccess(Body?.SuccesfulResponseBody);
+            }
+            else
+            {
+                await OnFailure(Body?.ErrorResponseBody);
+            }
+        }
     }
 }

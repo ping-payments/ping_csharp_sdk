@@ -126,6 +126,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 
         public static InitiatePaymentRequest NewPaymentIqCard
         (
+            CurrencyEnum currency,
             int totalAmountInMinorCurrency,
             IEnumerable<OrderItem> orderItems,
             Uri successUrl,
@@ -134,7 +135,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             IDictionary<string, dynamic>? metadata = null
         ) => new
             (
-                CurrencyEnum.SEK,
+                currency,
                 totalAmountInMinorCurrency,
                 orderItems,
                 ProviderEnum.payment_iq,
@@ -158,7 +159,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             IDictionary<string, dynamic>? metadata = null
         ) => new
             (
-                CurrencyEnum.SEK,
+                CurrencyEnum.NOK,
                 totalAmountInMinorCurrency,
                 orderItems,
                 ProviderEnum.payment_iq,
