@@ -60,7 +60,7 @@ Guid merchantId = await api.Merchants.V1.Create(merchant);
 //2. Create order
 Guid orderId = await api.PaymentOrder.V1.Create();
 
-//3. Create payment reqeust object
+//3. Create payment request object
 var orderItems = new OrderItem
 (
     10.ToMinorCurrency(), 
