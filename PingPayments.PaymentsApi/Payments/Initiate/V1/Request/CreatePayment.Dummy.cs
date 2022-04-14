@@ -11,7 +11,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             public static InitiatePaymentRequest New
             (
                 CurrencyEnum currency,
-                int totalAmountInMinorCurrency,
                 IEnumerable<OrderItem> orderItems,
                 Uri statusCallbackUrl,
                 PaymentStatusEnum desiredPaymentStatus = PaymentStatusEnum.COMPLETED,
@@ -19,7 +18,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             ) => new
                 (
                     currency,
-                    totalAmountInMinorCurrency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
                     orderItems,
                     ProviderEnum.dummy,
                     MethodEnum.dummy,

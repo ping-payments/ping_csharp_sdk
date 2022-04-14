@@ -10,7 +10,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         {
             public static InitiatePaymentRequest Card
             (
-                int totalAmountInMinorCurrency,
                 IEnumerable<OrderItem> orderItems,
                 string firstName,
                 string lastName,
@@ -22,7 +21,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             ) => new
                 (
                     CurrencyEnum.SEK,
-                    totalAmountInMinorCurrency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
                     orderItems,
                     ProviderEnum.verifone,
                     MethodEnum.card,

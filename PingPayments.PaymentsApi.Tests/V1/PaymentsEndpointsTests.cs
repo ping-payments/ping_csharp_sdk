@@ -17,11 +17,10 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var requestObject = CreatePayment.Dummy.New
             (
                 CurrencyEnum.SEK,
-                10.ToMinorCurrency(),
                 new OrderItem[]
                 {
-                    new OrderItem(5.ToMinorCurrency(), "A", SwedishVat.Vat25, TestData.MerchantId),
-                    new OrderItem(5.ToMinorCurrency(), "B", SwedishVat.Vat12, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
                 },
                 TestData.FakeCallback
             );
@@ -65,8 +64,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
                1000,
                 new OrderItem[]
                 {
-                    new OrderItem(5.ToMinorCurrency(), "A", SwedishVat.Vat25, TestData.MerchantId),
-                    new OrderItem(5.ToMinorCurrency(), "B", SwedishVat.Vat12, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
                 },
                 ProviderEnum.dummy,
                 MethodEnum.dummy,

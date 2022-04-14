@@ -63,14 +63,13 @@ Guid orderId = await api.PaymentOrder.V1.Create();
 //3. Create payment request object
 var orderItems = new OrderItem
 (
-    10.ToMinorCurrency(), 
+    10.ToMinorCurrencyUnit(), 
     "A test article", 
     SwedishVat.Vat25, 
     merchantId
-).ToOrderList();
+).InList();
 var request = CreatePayment.Swish.Ecommerce
 (
-    orderItems.TotalAmountMinorCurrency(), 
     orderItems,
     "07012345678",
     "Thanks for your Swish Payment!",

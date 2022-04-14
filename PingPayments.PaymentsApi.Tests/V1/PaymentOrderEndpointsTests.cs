@@ -81,8 +81,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var requestObject = CreatePayment.Dummy.New
             (
                 CurrencyEnum.SEK,
-                10.ToMinorCurrency(),
-                new OrderItem(10.ToMinorCurrency(), "A", SwedishVat.Vat25, TestData.MerchantId).ToOrderList(),
+                new OrderItem(10.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId).InList(),
                 TestData.FakeCallback
             );
 

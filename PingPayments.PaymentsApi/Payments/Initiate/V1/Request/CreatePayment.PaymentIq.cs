@@ -11,7 +11,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             public static InitiatePaymentRequest Card
             (
                 CurrencyEnum currency,
-                int totalAmountInMinorCurrency,
                 IEnumerable<OrderItem> orderItems,
                 Uri successUrl,
                 Uri cancelUrl,
@@ -20,7 +19,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             ) => new
                 (
                     currency,
-                    totalAmountInMinorCurrency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
                     orderItems,
                     ProviderEnum.payment_iq,
                     MethodEnum.card,
@@ -35,7 +34,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 
             public static InitiatePaymentRequest Vipps
             (
-                int totalAmountInMinorCurrency,
                 IEnumerable<OrderItem> orderItems,
                 Uri successUrl,
                 Uri cancelUrl,
@@ -44,7 +42,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             ) => new
                 (
                     CurrencyEnum.NOK,
-                    totalAmountInMinorCurrency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
                     orderItems,
                     ProviderEnum.payment_iq,
                     MethodEnum.vipps,

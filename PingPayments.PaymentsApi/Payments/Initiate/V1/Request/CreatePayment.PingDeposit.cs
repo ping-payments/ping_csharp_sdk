@@ -10,7 +10,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         {
             public static InitiatePaymentRequest Ocr
         (
-            int totalAmountInMinorCurrency,
             IEnumerable<OrderItem> orderItems,
             PingDepositReferenceTypesEnum referenceType,
             Uri statusCallbackUrl,
@@ -18,7 +17,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         ) => new
             (
                 CurrencyEnum.SEK,
-                totalAmountInMinorCurrency,
+                orderItems.TotalAmountMinorCurrencyUnit(),
                 orderItems,
                 ProviderEnum.ping,
                 MethodEnum.deposit,
@@ -29,7 +28,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 
             public static InitiatePaymentRequest Kid
             (
-                int totalAmountInMinorCurrency,
                 IEnumerable<OrderItem> orderItems,
                 PingDepositReferenceTypesEnum referenceType,
                 Uri statusCallbackUrl,
@@ -37,7 +35,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             ) => new
                 (
                     CurrencyEnum.NOK,
-                    totalAmountInMinorCurrency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,

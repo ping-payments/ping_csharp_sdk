@@ -13,7 +13,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             /// </summary>
             public static InitiatePaymentRequest Ecommerce
             (
-                int totalAmountInMinorCurrency,
                 IEnumerable<OrderItem> orderItems,
                 string phoneNumber,
                 string message,
@@ -22,7 +21,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             ) => new
                 (
                     CurrencyEnum.SEK,
-                    totalAmountInMinorCurrency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
                     orderItems,
                     ProviderEnum.swish,
                     MethodEnum.e_commerce,
@@ -38,7 +37,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             /// </summary>
             public static InitiatePaymentRequest Mcommerce
             (
-                int totalAmountInMinorCurrency,
                 IEnumerable<OrderItem> orderItems,
                 string message,
                 Uri statusCallbackUrl,
@@ -47,7 +45,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             ) => new
                 (
                     CurrencyEnum.SEK,
-                    totalAmountInMinorCurrency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
                     orderItems,
                     ProviderEnum.swish,
                     MethodEnum.m_commerce,
