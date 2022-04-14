@@ -78,7 +78,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Guid orderId = await _api.PaymentOrder.V1.Create();
 
             //2. Create payment
-            var requestObject = InitiatePaymentHelpers.NewDummy
+            var requestObject = CreatePayment.Dummy.New
             (
                 CurrencyEnum.SEK,
                 10.ToMinorCurrency(),
