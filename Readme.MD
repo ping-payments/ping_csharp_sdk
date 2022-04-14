@@ -54,7 +54,7 @@ var merchant = new CreateMerchantRequest {
         Country = "SE",
         SeOrganizationNumber = "123456-7890"
     }
-}
+};
 Guid merchantId = await api.Merchants.V1.Create(merchant);
 
 //2. Create order
