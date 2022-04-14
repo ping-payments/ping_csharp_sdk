@@ -20,8 +20,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 10.ToMinorCurrency(),
                 new OrderItem[]
                 {
-                    new OrderItem(5.ToMinorCurrency(), "A", 0.25m, TestData.MerchantId),
-                    new OrderItem(5.ToMinorCurrency(), "B", 0.12m, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrency(), "A", 25m, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrency(), "B", 12m, TestData.MerchantId),
                 },
                 TestData.FakeCallback
             );

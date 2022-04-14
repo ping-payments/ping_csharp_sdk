@@ -1,9 +1,12 @@
 ﻿using PingPayments.PaymentsApi.Helpers;
 using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
+using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
@@ -13,6 +16,15 @@ namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
     public class ListPaymentOrderEndpoint : TenantEndpointBase<(DateTimeOffset from, DateTimeOffset to)?, PaymentOrdersResponse>
     {
         public ListPaymentOrderEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
+
+        protected override JsonSerializerOptions JsonSerializerOptions => new()
+        {
+            Converters =
+            {
+                new MethodEnumJsonConvert(),
+                new JsonStringEnumConverter(),
+            }
+        };
 
         public override async Task<PaymentOrdersResponse> ExecuteRequest((DateTimeOffset from, DateTimeOffset to)? df) => 
             await BaseExecute

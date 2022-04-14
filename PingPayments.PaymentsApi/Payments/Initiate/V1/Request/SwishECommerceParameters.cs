@@ -2,7 +2,7 @@
 
 namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 {
-    public record SwishProviderMethodParameters
+    public record SwishECommerceParameters
     (
         string Message,
         string PhoneNumber

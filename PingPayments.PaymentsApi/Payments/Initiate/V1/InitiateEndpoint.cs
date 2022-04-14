@@ -22,9 +22,10 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {
             Converters = 
-            { 
+            {
+                new MethodEnumJsonConvert(),
                 new JsonStringEnumConverter(),
-                new ProviderMethodParametersJsonConvert()
+                new ProviderMethodParametersJsonConvert(),
             }
         };
 
@@ -40,7 +41,8 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
         protected internal static async Task<ProviderMethodResponseBody?> GetResponseBody(ProviderEnum provider, MethodEnum method, string raw, JsonSerializerOptions jsonOpts) =>
             (provider, method) switch
             {
-                (ProviderEnum.swish, MethodEnum.mobile) => await Deserialize<SwishMobileResponse>(raw, jsonOpts),
+                (ProviderEnum.swish, MethodEnum.e_commerce) => await Deserialize<SwishECommerceResponse>(raw, jsonOpts),
+                (ProviderEnum.swish, MethodEnum.m_commerce) => await Deserialize<SwishMCommerceResponse>(raw, jsonOpts),
                 (ProviderEnum.billmate, MethodEnum.invoice) => await Deserialize<BillmateResponse>(raw, jsonOpts),
                 (ProviderEnum.verifone, MethodEnum.card) => await Deserialize<VerifoneResponse>(raw, jsonOpts),
                 (ProviderEnum.payment_iq, MethodEnum.vipps) => await Deserialize<PaymentIqResponse>(raw, jsonOpts),

@@ -19,23 +19,49 @@ namespace PingPayments.PaymentsApi.Tests.V1
                     ProviderEnum.dummy, 
                     MethodEnum.dummy,
                     "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{}}",
-                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                    new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
                 ) is DummyResponse
             );        
         
         [Fact]
-        public async Task Can_parse_swish() => 
+        public async Task Can_parse_swish_ecommerce() => 
             Assert.True
             (
                 await InitiateEndpoint.GetResponseBody
                 (
                     ProviderEnum.swish, 
-                    MethodEnum.mobile,
-                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"swish_url\":\"swish://paymentrequest?token=c28a4061470f4af48973bd2a4642b4fa&callbackurl=merchant%253A%252F%252F\"}}",
-                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
-                ) is SwishMobileResponse
-            );    
+                    MethodEnum.e_commerce,
+                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{}}",
+                    new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                ) is SwishECommerceResponse
+            );        
         
+        [Fact]
+        public async Task Can_parse_swish_mcommerce_without_qr() => 
+            Assert.True
+            (
+                await InitiateEndpoint.GetResponseBody
+                (
+                    ProviderEnum.swish, 
+                    MethodEnum.m_commerce,
+                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"url\":\"swish://paymentrequest?token=c28a4061470f4af48973bd2a4642b4fa&callbackurl=merchant%253A%252F%252F\"}}",
+                    new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                ) is SwishMCommerceResponse
+            );
+
+        [Fact]
+        public async Task Can_parse_swish_mcommerce_with_qr() =>
+            Assert.True
+            (
+                await InitiateEndpoint.GetResponseBody
+                (
+                    ProviderEnum.swish,
+                    MethodEnum.m_commerce,
+                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"url\":\"swish://paymentrequest?token=c28a4061470f4af48973bd2a4642b4fa&callbackurl=merchant%253A%252F%252F\",\"qr_code\":\"<svg>foo</svg>\"}}",
+                    new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() } }
+                ) is SwishMCommerceResponse
+            );
+
         [Fact]
         public async Task Can_parse_verifone() => 
             Assert.True
@@ -45,7 +71,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                     ProviderEnum.verifone, 
                     MethodEnum.card,
                     "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"redirect_url\":\"https://verifone.com/pay/whatever\"}}",
-                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                    new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
                 ) is VerifoneResponse
             );
         
@@ -58,7 +84,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                     ProviderEnum.billmate, 
                     MethodEnum.invoice,
                     "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"invoice_url\":\"https://billmate.com/invoice\"}}",
-                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                    new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
                 ) is BillmateResponse
             );
         
@@ -71,7 +97,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                     ProviderEnum.payment_iq, 
                     MethodEnum.card,
                     "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"pay_url\":\"https://payment-iq.com/pay\"}}",
-                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                    new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
                 ) is PaymentIqResponse
             );
 
@@ -84,7 +110,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                     ProviderEnum.payment_iq, 
                     MethodEnum.vipps,
                     "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"pay_url\":\"https://payment-iq.com/pay\"}}",
-                    new() { Converters = { new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
+                    new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
                 ) is PaymentIqResponse
             );
     }

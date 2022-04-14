@@ -35,8 +35,10 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 metadata
             );
 
-
-        public static InitiatePaymentRequest NewSwishMobile
+        /// <summary>
+        /// A swish payment with a designated phone number. The old e-commerce way.
+        /// </summary>
+        public static InitiatePaymentRequest NewSwishEcommerce
         (
             int totalAmountInMinorCurrency,
             IEnumerable<OrderItem> orderItems,
@@ -50,8 +52,33 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 totalAmountInMinorCurrency,
                 orderItems,
                 ProviderEnum.swish,
-                MethodEnum.mobile,
-                new SwishProviderMethodParameters(phoneNumber, message),
+                MethodEnum.e_commerce,
+                new SwishECommerceParameters(phoneNumber, message),
+                statusCallbackUrl,
+                metadata
+            );
+
+        /// <summary>
+        /// A swish payment without a designated phone number. 
+        /// The payer needs to either be redirected to the swish app using the swish url or scan a swish qr code inside the swish app.
+        /// The QR Code is optional, because in an native app scenario the qr code is most likely unnccessary.
+        /// </summary>
+        public static InitiatePaymentRequest NewSwishMcommerce
+        (
+            int totalAmountInMinorCurrency,
+            IEnumerable<OrderItem> orderItems,
+            string message,            
+            Uri statusCallbackUrl,
+            SwishQrCode? swishQrCode = null,
+            IDictionary<string, dynamic>? metadata = null
+        ) => new
+            (
+                CurrencyEnum.SEK,
+                totalAmountInMinorCurrency,
+                orderItems,
+                ProviderEnum.swish,
+                MethodEnum.m_commerce,
+                new SwishMCommerceParameters(message, swishQrCode),
                 statusCallbackUrl,
                 metadata
             );
