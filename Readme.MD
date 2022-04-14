@@ -61,7 +61,13 @@ Guid merchantId = await api.Merchants.V1.Create(merchant);
 Guid orderId = await api.PaymentOrder.V1.Create();
 
 //3. Create payment reqeust object
-var orderItems = new OrderItem(10.ToMinorCurrency(), "A test article", SwedishVat.Vat25, merchantId).ToOrderList();
+var orderItems = new OrderItem
+(
+    10.ToMinorCurrency(), 
+    "A test article", 
+    SwedishVat.Vat25, 
+    merchantId
+).ToOrderList();
 var request = CreatePayment.Swish.Ecommerce
 (
     orderItems.TotalAmountMinorCurrency(), 
