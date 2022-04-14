@@ -48,6 +48,7 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
                 (ProviderEnum.payment_iq, MethodEnum.vipps) => await Deserialize<PaymentIqResponse>(raw, jsonOpts),
                 (ProviderEnum.payment_iq, MethodEnum.card) => await Deserialize<PaymentIqResponse>(raw, jsonOpts), 
                 (ProviderEnum.dummy, MethodEnum.dummy) => await Deserialize<DummyResponse>(raw, jsonOpts),
+                (ProviderEnum.ping, MethodEnum.deposit) => await Deserialize<PingDepositResponse>(raw, jsonOpts),
                 _ => throw new NotImplementedException(),
             };
 

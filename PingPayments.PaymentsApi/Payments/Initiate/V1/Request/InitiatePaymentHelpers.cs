@@ -198,6 +198,44 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 ),
                 statusCallbackUrl,
                 metadata
+            );  
+        
+        public static InitiatePaymentRequest NewPingDepositOCR
+        (
+            int totalAmountInMinorCurrency,
+            IEnumerable<OrderItem> orderItems,
+            PingDepositReferenceTypesEnum referenceType,
+            Uri statusCallbackUrl,
+            IDictionary<string, dynamic>? metadata = null
+        ) => new
+            (
+                CurrencyEnum.SEK,
+                totalAmountInMinorCurrency,
+                orderItems,
+                ProviderEnum.ping,
+                MethodEnum.deposit,
+                new PingDepositParameters(referenceType),
+                statusCallbackUrl,
+                metadata
+            );
+
+        public static InitiatePaymentRequest NewPingDepositKID
+        (
+            int totalAmountInMinorCurrency,
+            IEnumerable<OrderItem> orderItems,
+            PingDepositReferenceTypesEnum referenceType,
+            Uri statusCallbackUrl,
+            IDictionary<string, dynamic>? metadata = null
+        ) => new
+            (
+                CurrencyEnum.NOK,
+                totalAmountInMinorCurrency,
+                orderItems,
+                ProviderEnum.ping,
+                MethodEnum.deposit,
+                new PingDepositParameters(referenceType),
+                statusCallbackUrl,
+                metadata
             );
     }
 }
