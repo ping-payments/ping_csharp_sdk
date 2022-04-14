@@ -37,11 +37,13 @@ nuget install PingPayments
 
 ## Usage
 
+
+
 ### Swish e-commerce example
 
 ```c#
 //Setup api, we recommend dependency injection for this
-var tenantId = Guid.Parse("3E641FC3-641C-4A13-B1B6-3C4D9BC82D90");
+var tenantId = TestData.TenantId;
 var httpClient = new HttpClient{BaseAddress = new Uri(TestData.SandboxUri)};
 var api = new PaymentsApiClient(tenantId, httpClient);
 
@@ -63,10 +65,10 @@ var orderItems = new OrderItem(10.ToMinorCurrency(), "A test article", SwedishVa
 var request = CreatePayment.Swish.Ecommerce
 (
     orderItems.TotalAmountMinorCurrency(), 
-	orderItems,
+    orderItems,
     "07012345678",
     "Thanks for your Swish Payment!"
-    "https://my-callback.my-api.com"
+	new Uri("https://my-callback.my-api.com")
 );
 
 //4. Create a new swish payment for the order through the API
@@ -80,9 +82,13 @@ await response.MatchAsync
 );
 ```
 
+
+
 ## Tests
 
 Download the repository and update TestSetup.json with your TenantId and additional testdata.
+
+
 
 ## SDK Reference
 
