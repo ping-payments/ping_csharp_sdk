@@ -74,7 +74,7 @@ var request = CreatePayment.Swish.Ecommerce
     orderItems,
     "07012345678",
     "Thanks for your Swish Payment!",
-	new Uri("https://my-callback.my-api.com")
+    new Uri("https://my-callback.my-api.com")
 );
 
 //4. Create a new swish payment for the order through the API
