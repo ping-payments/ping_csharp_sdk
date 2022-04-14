@@ -83,8 +83,8 @@ var response = await api.Payments.V1.Initiate(orderId, request);
 //5. Pattern match on response
 await response.MatchAsync
 (
-OnSuccess: async (SwishECommerceResponse ipr) => await ShowDialog("Open Swish on your device..."),
-OnFailure: async (ErrorResponseBody error) => await ShowError(error)
+    OnSuccess: async (SwishECommerceResponse ipr) => await ShowDialog("Open Swish on your device..."),
+    OnFailure: async (ErrorResponseBody error) => await ShowError(error)
 );
 ```
 
