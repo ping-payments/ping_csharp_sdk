@@ -73,7 +73,7 @@ var request = CreatePayment.Swish.Ecommerce
     orderItems.TotalAmountMinorCurrency(), 
     orderItems,
     "07012345678",
-    "Thanks for your Swish Payment!"
+    "Thanks for your Swish Payment!",
 	new Uri("https://my-callback.my-api.com")
 );
 
@@ -83,8 +83,8 @@ var response = await api.Payments.V1.Initiate(orderId, request);
 //5. Pattern match on response
 await response.MatchAsync
 (
-	OnSuccess: async (SwishECommerceResponse ipr) => await ShowDialog("Open Swish on your device..."),
-	OnFailure: async (ErrorResponseBody error) => await ShowError(error)
+OnSuccess: async (SwishECommerceResponse ipr) => await ShowDialog("Open Swish on your device..."),
+OnFailure: async (ErrorResponseBody error) => await ShowError(error)
 );
 ```
 
