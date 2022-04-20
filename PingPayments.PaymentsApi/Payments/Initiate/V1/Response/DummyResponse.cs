@@ -1,4 +1,4 @@
 ﻿namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Response
 {
-    public record DummyResponse : ProviderMethodResponseBody;
+    public record DummyResponseBody : ProviderMethodResponseBody;
 }

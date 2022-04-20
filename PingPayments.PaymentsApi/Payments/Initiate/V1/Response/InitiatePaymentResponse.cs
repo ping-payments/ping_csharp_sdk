@@ -9,12 +9,12 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Response
         public static InitiatePaymentResponse Succesful(HttpStatusCode statusCode, ProviderMethodResponseBody? b, string rb) => new(statusCode, true, b, rb);
         public static InitiatePaymentResponse Failure(HttpStatusCode statusCode, ErrorResponseBody? e, string rb) => new(statusCode, false, e, rb);
 
-        public static implicit operator DummyResponse?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as DummyResponse;
-        public static implicit operator SwishECommerceResponse?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as SwishECommerceResponse;
-        public static implicit operator SwishMCommerceResponse?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as SwishMCommerceResponse;
-        public static implicit operator VerifoneResponse?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as VerifoneResponse;
-        public static implicit operator PaymentIqResponse?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as PaymentIqResponse;
-        public static implicit operator BillmateResponse?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as BillmateResponse;
-        public static implicit operator PingDepositResponse?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as PingDepositResponse;
+        public static implicit operator DummyResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as DummyResponseBody;
+        public static implicit operator SwishECommerceResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as SwishECommerceResponseBody;
+        public static implicit operator SwishMCommerceResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as SwishMCommerceResponseBody;
+        public static implicit operator VerifoneResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as VerifoneResponseBody;
+        public static implicit operator PaymentIqResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as PaymentIqResponseBody;
+        public static implicit operator BillmateResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as BillmateResponseBody;
+        public static implicit operator PingDepositResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as PingDepositResponseBody;
     }
 }

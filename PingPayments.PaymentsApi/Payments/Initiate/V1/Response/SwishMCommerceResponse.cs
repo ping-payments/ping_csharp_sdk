@@ -2,14 +2,9 @@
 
 namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Response
 {
-    public record SwishMCommerceResponse : ProviderMethodResponseBody
-    {
-        public SwishMCommerceResponse(string swishUrl, string? qrCode = null) 
-        {
-            SwishUrl = swishUrl;
-            QrCode = qrCode;
-        }
 
+    public record SwishMCommerceResponse
+    {
         /// <summary>
         /// Used for opening Swish in Mobile Phone by redirect. Does not contain callbackUrl.
         /// </summary>

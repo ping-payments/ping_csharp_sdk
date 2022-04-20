@@ -41,14 +41,14 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
         protected internal static async Task<ProviderMethodResponseBody?> GetResponseBody(ProviderEnum provider, MethodEnum method, string raw, JsonSerializerOptions jsonOpts) =>
             (provider, method) switch
             {
-                (ProviderEnum.swish, MethodEnum.e_commerce) => await Deserialize<SwishECommerceResponse>(raw, jsonOpts),
-                (ProviderEnum.swish, MethodEnum.m_commerce) => await Deserialize<SwishMCommerceResponse>(raw, jsonOpts),
-                (ProviderEnum.billmate, MethodEnum.invoice) => await Deserialize<BillmateResponse>(raw, jsonOpts),
-                (ProviderEnum.verifone, MethodEnum.card) => await Deserialize<VerifoneResponse>(raw, jsonOpts),
-                (ProviderEnum.payment_iq, MethodEnum.vipps) => await Deserialize<PaymentIqResponse>(raw, jsonOpts),
-                (ProviderEnum.payment_iq, MethodEnum.card) => await Deserialize<PaymentIqResponse>(raw, jsonOpts), 
-                (ProviderEnum.dummy, MethodEnum.dummy) => await Deserialize<DummyResponse>(raw, jsonOpts),
-                (ProviderEnum.ping, MethodEnum.deposit) => await Deserialize<PingDepositResponse>(raw, jsonOpts),
+                (ProviderEnum.swish, MethodEnum.e_commerce) => await Deserialize<SwishECommerceResponseBody>(raw, jsonOpts),
+                (ProviderEnum.swish, MethodEnum.m_commerce) => await Deserialize<SwishMCommerceResponseBody>(raw, jsonOpts),
+                (ProviderEnum.billmate, MethodEnum.invoice) => await Deserialize<BillmateResponseBody>(raw, jsonOpts),
+                (ProviderEnum.verifone, MethodEnum.card) => await Deserialize<VerifoneResponseBody>(raw, jsonOpts),
+                (ProviderEnum.payment_iq, MethodEnum.vipps) => await Deserialize<PaymentIqResponseBody>(raw, jsonOpts),
+                (ProviderEnum.payment_iq, MethodEnum.card) => await Deserialize<PaymentIqResponseBody>(raw, jsonOpts), 
+                (ProviderEnum.dummy, MethodEnum.dummy) => await Deserialize<DummyResponseBody>(raw, jsonOpts),
+                (ProviderEnum.ping, MethodEnum.deposit) => await Deserialize<PingDepositResponseBody>(raw, jsonOpts),
                 _ => throw new NotImplementedException(),
             };
 

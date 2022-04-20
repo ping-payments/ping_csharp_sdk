@@ -20,7 +20,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                     MethodEnum.dummy,
                     "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{}}",
                     new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
-                ) is DummyResponse
+                ) is DummyResponseBody
             );        
         
         [Fact]
@@ -33,7 +33,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                     MethodEnum.e_commerce,
                     "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{}}",
                     new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() }}
-                ) is SwishECommerceResponse
+                ) is SwishECommerceResponseBody
             );        
         
         [Fact]

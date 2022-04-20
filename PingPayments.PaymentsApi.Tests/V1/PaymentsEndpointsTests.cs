@@ -27,7 +27,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
             AssertHttpOK(response);
             Assert.NotNull(response?.Body?.SuccesfulResponseBody);
-            DummyResponse? body = response;
+            DummyResponseBody? body = response;
             Assert.NotNull(body);            
             Assert.NotEqual(Guid.Empty, body?.Id);
         }

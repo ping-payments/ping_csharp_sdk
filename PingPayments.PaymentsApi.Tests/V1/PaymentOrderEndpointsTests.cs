@@ -85,7 +85,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 TestData.FakeCallback
             );
 
-            DummyResponse _ = await _api.Payments.V1.Initiate(orderId, requestObject);
+            DummyResponseBody _ = await _api.Payments.V1.Initiate(orderId, requestObject);
 
             //3. Close
             AssertHttpNoContent(await _api.PaymentOrder.V1.Close(orderId));
