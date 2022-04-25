@@ -1,7 +1,7 @@
 
 # Ping Payments C# SDK
 
-[![Publish Payments API SDK Nuget](https://github.com/youcal/ping_csharp_sdk/actions/workflows/publish.yaml/badge.svg)](https://github.com/youcal/ping_csharp_sdk/actions/workflows/publish.yaml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Use this C# nuget library to manage Ping Payments resources regarding payments.
 
