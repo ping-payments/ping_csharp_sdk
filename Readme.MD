@@ -55,7 +55,7 @@ services.AddHttpClient<IPingPaymentsApiClient, PingPaymentsApiClient>(client =>
 {
     var apiUrl = Configuration["PingPayments:ApiUrl"];
     var tenantId = Guid.Parse(Configuration["PingPayments:TenantId"]);
-    client.ConfigurePingPaymentsClient(apiUrl);
+    client.ConfigurePingPaymentsClient(apiUrl, tenantId);
 });
 ```
 
