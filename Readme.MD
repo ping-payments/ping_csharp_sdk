@@ -46,7 +46,7 @@ nuget install PingPayments
 var apiUrl = Configuration["PingPayments:ApiUrl"];
 var tenantId = Configuration["PingPayments:TenantId"];
 var httpClient = new HttpClient().ConfigurePingPaymentsClient(apiUrl, tenantId);
-var api = new PaymentsApiClient(httpClient);
+var api = new PingPaymentsApiClient(httpClient);
 ```
 
 #### 1.b Dependency injection
