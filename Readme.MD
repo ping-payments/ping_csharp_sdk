@@ -41,21 +41,21 @@ nuget install PingPayments
 
 ### Swish e-commerce example
 
-#### 1. Create a client
+#### 1.a Create a client
 ```c#
 var apiUrl = Configuration["PingPayments:ApiUrl"];
 var tenantId = Configuration["PingPayments:TenantId"];
 var httpClient = new HttpClient().ConfigurePingPaymentsClient(apiUrl, tenantId);
-var api = new PaymentsApiClient(httpClient);
+var api = new PingPaymentsApiClient(httpClient);
 ```
 
-### 1.b Dependency injection
+#### 1.b Dependency injection
 ```c#
-services.AddHttpClient<IPingPaymentsApiClient, PingPaymentsApiClient>(client =>
+services.AddHttpClient<IPingPaymentsApiClient>(client =>
 {
-    var apiUrl = Configuration["PingPayments:ApiUrl"];
-    var tenantId = Guid.Parse(Configuration["PingPayments:TenantId"]);
-    client.ConfigurePingPaymentsClient(apiUrl);
+    var apiUrl = AppSettings.GetValue("PingPayments:ApiUrl");
+    var tenantId = Guid.Parse(AppSettings.GetValue("PingPayments:TenantId"));
+    client.ConfigurePingPaymentsClient(apiUrl, tenantId);
 });
 ```
 
