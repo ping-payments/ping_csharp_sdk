@@ -1,5 +1,4 @@
 ﻿using PingPayments.PaymentsApi.Shared;
-using System;
 using System.Net.Http;
 using Xunit;
 
@@ -7,16 +6,13 @@ namespace PingPayments.PaymentsApi.Tests.V1
 {
     public class BaseEndpointsTests
     {
-        protected readonly PaymentsApiClient _api;
+        protected readonly PingPaymentsApiClient _api;
         private readonly HttpClient _httpClient;
 
         public BaseEndpointsTests()
         {
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri(TestData.SandboxUri)
-            };
-            _api = new PaymentsApiClient(TestData.TenantId, _httpClient);
+            _httpClient = new HttpClient().ConfigurePingPaymentsClient(TestData.SandboxUri, TestData.TenantId);
+            _api = new PingPaymentsApiClient(_httpClient);
         }
 
         protected static void AssertHttpOK<T>(ApiResponseBase<T> response) where T : EmptySuccesfulResponseBody

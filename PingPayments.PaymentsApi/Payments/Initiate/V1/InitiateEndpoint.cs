@@ -15,9 +15,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Payments.Initiate.V1
 {
-    public class InitiateEndpoint : TenantEndpointBase<(Guid orderId, InitiatePaymentRequest initiatePaymentRequest), InitiatePaymentResponse>
+    public class InitiateEndpoint : EndpointBase<(Guid orderId, InitiatePaymentRequest initiatePaymentRequest), InitiatePaymentResponse>
     {
-        public InitiateEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
+        public InitiateEndpoint(HttpClient httpClient) : base(httpClient) { }
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {

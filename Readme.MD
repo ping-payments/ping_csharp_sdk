@@ -43,9 +43,20 @@ nuget install PingPayments
 
 #### 1. Create a client
 ```c#
-var tenantId = TestData.TenantId;
-var httpClient = new HttpClient{BaseAddress = new Uri(TestData.SandboxUri)};
-var api = new PaymentsApiClient(tenantId, httpClient);
+var apiUrl = Configuration["PingPayments:ApiUrl"];
+var tenantId = Configuration["PingPayments:TenantId"];
+var httpClient = new HttpClient().ConfigurePingPaymentsClient(apiUrl, tenantId);
+var api = new PaymentsApiClient(httpClient);
+```
+
+### 1.b Dependency injection
+```c#
+services.AddHttpClient<IPingPaymentsApiClient, PingPaymentsApiClient>(client =>
+{
+    var apiUrl = Configuration["PingPayments:ApiUrl"];
+    var tenantId = Guid.Parse(Configuration["PingPayments:TenantId"]);
+    client.ConfigurePingPaymentsClient(apiUrl);
+});
 ```
 
 #### 2. Create a merchant 

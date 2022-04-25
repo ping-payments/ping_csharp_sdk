@@ -10,9 +10,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Merchants.Create.V1
 {
-    public class CreateMerchantEndpoint : TenantEndpointBase<CreateMerchantRequest, GuidResponse>
+    public class CreateMerchantEndpoint : EndpointBase<CreateMerchantRequest, GuidResponse>
     {
-        public CreateMerchantEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
+        public CreateMerchantEndpoint(HttpClient httpClient) : base(httpClient) { }
 
         protected override JsonSerializerOptions JsonSerializerOptions => new() 
         { 

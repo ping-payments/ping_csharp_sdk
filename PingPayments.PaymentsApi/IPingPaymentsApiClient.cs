@@ -3,7 +3,7 @@ using PingPayments.PaymentsApi.Payments;
 
 namespace PingPayments.PaymentsApi
 {
-    public interface IPaymentsApiClient
+    public interface IPingPaymentsApiClient
     {
         IMerchantEndpoints Merchants { get; }
         IPaymentOrderEndpoints PaymentOrder { get; }

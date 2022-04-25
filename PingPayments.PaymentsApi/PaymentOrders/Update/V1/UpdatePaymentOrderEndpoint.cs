@@ -8,9 +8,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Update.V1
 {
-    public class UpdatePaymentOrderEndpoint : TenantEndpointBase<(Guid OrderId, Guid SplitTreeId), EmptyResponse>
+    public class UpdatePaymentOrderEndpoint : EndpointBase<(Guid OrderId, Guid SplitTreeId), EmptyResponse>
     {
-        public UpdatePaymentOrderEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
+        public UpdatePaymentOrderEndpoint(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<EmptyResponse> ExecuteRequest((Guid OrderId, Guid SplitTreeId) updateRequest) => 
             await BaseExecute

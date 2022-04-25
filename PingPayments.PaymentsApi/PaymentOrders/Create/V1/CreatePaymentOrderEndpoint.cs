@@ -8,9 +8,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Create.V1
 {
-    public class CreatePaymentOrderEndpoint : TenantEndpointBase<Guid?, GuidResponse>
+    public class CreatePaymentOrderEndpoint : EndpointBase<Guid?, GuidResponse>
     {
-        public CreatePaymentOrderEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
+        public CreatePaymentOrderEndpoint(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<GuidResponse> ExecuteRequest(Guid? splitTreeId = null) => 
             await BaseExecute

@@ -13,9 +13,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
 {
-    public class ListPaymentOrderEndpoint : TenantEndpointBase<(DateTimeOffset from, DateTimeOffset to)?, PaymentOrdersResponse>
+    public class ListPaymentOrderEndpoint : EndpointBase<(DateTimeOffset from, DateTimeOffset to)?, PaymentOrdersResponse>
     {
-        public ListPaymentOrderEndpoint(HttpClient httpClient, Guid tenantId) : base(httpClient, tenantId) { }
+        public ListPaymentOrderEndpoint(HttpClient httpClient) : base(httpClient) { }
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {
