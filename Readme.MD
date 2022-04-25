@@ -51,7 +51,7 @@ var api = new PingPaymentsApiClient(httpClient);
 
 #### 1.b Dependency injection
 ```c#
-services.AddHttpClient<IPingPaymentsApiClient>(client =>
+services.AddHttpClient<IPingPaymentsApiClient, PingPaymentsApiClient>(client =>
 {
     var apiUrl = Configuration["PingPayments:ApiUrl"];
     var tenantId = Configuration["PingPayments:TenantId"];
