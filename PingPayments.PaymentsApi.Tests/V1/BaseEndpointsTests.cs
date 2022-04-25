@@ -6,7 +6,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
 {
     public class BaseEndpointsTests
     {
-        protected readonly PingPaymentsApiClient _api;
+        protected readonly IPingPaymentsApiClient _api;
         private readonly HttpClient _httpClient;
 
         public BaseEndpointsTests()
