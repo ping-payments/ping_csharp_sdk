@@ -20,7 +20,7 @@ namespace PingPayments.PaymentsApi
     /// <summary>
     /// Client for the Payments API
     /// </summary>
-    public class PingPaymentsApiClient
+    public class PingPaymentsApiClient : IPingPaymentsApiClient
     {
         public PingPaymentsApiClient(HttpClient httpClient)
         {
