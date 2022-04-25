@@ -53,8 +53,8 @@ var api = new PingPaymentsApiClient(httpClient);
 ```c#
 services.AddHttpClient<IPingPaymentsApiClient>(client =>
 {
-    var apiUrl = AppSettings.GetValue("PingPayments:ApiUrl");
-    var tenantId = Guid.Parse(AppSettings.GetValue("PingPayments:TenantId"));
+    var apiUrl = Configuration["PingPayments:ApiUrl"];
+    var tenantId = Configuration["PingPayments:TenantId"];
     client.ConfigurePingPaymentsClient(apiUrl, tenantId);
 });
 ```
