@@ -32,5 +32,12 @@ namespace PingPayments.PaymentsApi.Tests
         [InlineData( 100, 1)]
         [InlineData(0, 0)]
         public void FromMinorCurrency_tests(int input, decimal expected) => Assert.Equal(expected, input.FromMinorCurrencyUnit());
+
+        [Fact]
+        public void HttpClientExtensions_Test()
+        {
+            Assert.Equal("https://sandbox.pingpayments.com/payments/", HttpClientExtensions.EnsureCorrectUrl("https://sandbox.pingpayments.com/payments/"));
+            Assert.Equal("https://sandbox.pingpayments.com/payments/", HttpClientExtensions.EnsureCorrectUrl("https://sandbox.pingpayments.com/payments"));
+        }
     }
 }

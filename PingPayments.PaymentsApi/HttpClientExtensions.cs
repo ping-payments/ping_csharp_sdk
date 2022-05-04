@@ -5,6 +5,10 @@ namespace PingPayments.PaymentsApi
 {
     public static class HttpClientExtensions
     {
+        internal static string EnsureCorrectUrl(string url) =>
+            url.EndsWith("/") ? 
+                url : 
+                $"{url}/";
         public static HttpClient ConfigurePingPaymentsClient(this HttpClient httpClient, Uri uri, Guid tenantId)
         {
             var headers = httpClient.DefaultRequestHeaders;
@@ -14,6 +18,6 @@ namespace PingPayments.PaymentsApi
         }
 
         public static HttpClient ConfigurePingPaymentsClient(this HttpClient httpClient, string uri, Guid tenantId) =>
-            ConfigurePingPaymentsClient(httpClient, new Uri(uri), tenantId);
+            ConfigurePingPaymentsClient(httpClient, new Uri(EnsureCorrectUrl(uri)), tenantId);
     }
 }
