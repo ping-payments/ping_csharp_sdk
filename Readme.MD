@@ -39,7 +39,7 @@ nuget install PingPayments
 
 
 
-### Swish e-commerce example
+### Swish ecommerce example
 
 #### 1.a Create a client
 ```c#
