@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xunit;
 using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
+using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
@@ -29,14 +30,16 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Can_create_order_without_split_tree_id()
         {
-            var response = await _api.PaymentOrder.V1.Create();
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+            var response = await _api.PaymentOrder.V1.Create(request);
             AssertHttpOK(response);
         }
 
         [Fact]
         public async Task Can_create_order_with_split_tree_id()
         {
-            var response = await _api.PaymentOrder.V1.Create(TestData.SplitTreeId);
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, TestData.SplitTreeId);
+            var response = await _api.PaymentOrder.V1.Create(request);
             AssertHttpOK(response);
         }
 
@@ -74,8 +77,10 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Can_close_then_split_then_settle_an_order()
         {
+
             //1. Create order
-            Guid orderId = await _api.PaymentOrder.V1.Create();
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+            Guid orderId = await _api.PaymentOrder.V1.Create(request);
 
             //2. Create payment
             var requestObject = CreatePayment.Dummy.New

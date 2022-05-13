@@ -43,7 +43,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 .RuleFor(x => x.Country, country)
                 .RuleFor(x => x.SeOrganizationNumber, (f, o) =>
                    country == "SE" ?
-                        new Randomizer().Replace("######-####") :
+                        new Randomizer().Replace("##########") :
                         null)
                 .RuleFor(x => x.NoOrganizationNumber, (f, o) =>
                     country == "NO" ?
