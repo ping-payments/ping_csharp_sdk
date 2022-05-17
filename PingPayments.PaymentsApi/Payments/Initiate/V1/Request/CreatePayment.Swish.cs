@@ -9,7 +9,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         public static class Swish
         {
             /// <summary>
-            /// A swish payment with a designated phone number. The old e-commerce way.
+            /// A swish payment with a designated phone number. The old ecommerce way.
             /// </summary>
             public static InitiatePaymentRequest Ecommerce
             (

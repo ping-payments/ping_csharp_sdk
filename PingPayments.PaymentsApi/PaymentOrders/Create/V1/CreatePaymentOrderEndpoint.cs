@@ -8,20 +8,20 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Create.V1
 {
-    public class CreatePaymentOrderEndpoint : EndpointBase<Guid?, GuidResponse>
+    public class CreatePaymentOrderEndpoint : EndpointBase<CreatePaymentOrderRequest, GuidResponse>
     {
         public CreatePaymentOrderEndpoint(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<GuidResponse> ExecuteRequest(Guid? splitTreeId = null) => 
+        public override async Task<GuidResponse> ExecuteRequest(CreatePaymentOrderRequest createPaymentOrderRequest) => 
             await BaseExecute
             (
                 POST,
                 $"api/v1/payment_orders",
-                splitTreeId,
-                splitTreeId.HasValue ? await ToJson(new { split_tree_id = splitTreeId.Value }) : await ToJson(new { })
+                createPaymentOrderRequest,
+                await ToJson(createPaymentOrderRequest)
             );
 
-        protected override async Task<GuidResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid? _)
+        protected override async Task<GuidResponse> ParseHttpResponse(HttpResponseMessage hrm, CreatePaymentOrderRequest _)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch

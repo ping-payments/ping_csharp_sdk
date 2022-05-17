@@ -42,8 +42,8 @@ namespace PingPayments.PaymentsApi.PaymentOrders
             await _getPaymentOrderEndpoint.Value.ExecuteRequest(orderId);
         public async Task<PaymentOrdersResponse> List((DateTimeOffset from, DateTimeOffset to)? dateFilter = null) =>
             await _listPaymentOrderEndpoint.Value.ExecuteRequest(dateFilter);
-        public async Task<GuidResponse> Create(Guid? splitTreeId = null) =>
-            await _createPaymentOrderEndpoint.Value.ExecuteRequest(splitTreeId);
+        public async Task<GuidResponse> Create(CreatePaymentOrderRequest createPaymentOrderRequest) =>
+            await _createPaymentOrderEndpoint.Value.ExecuteRequest(createPaymentOrderRequest);
         public async Task<EmptyResponse> Update((Guid OrderId, Guid SplitTreeId) updateRequest) =>
             await _updatePaymentOrderEndpoint.Value.ExecuteRequest(updateRequest);
         public async Task<EmptyResponse> Close(Guid orderId) =>

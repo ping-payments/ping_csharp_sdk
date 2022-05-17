@@ -2,7 +2,7 @@
 
 namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 {
-    public record SwishQrCode(SwishQrCodeFormat Format = SwishQrCodeFormat.transparent_svg, int Border = 0, int Size = 300)
+    public record SwishQrCode(SwishQrCodeFormat Format = SwishQrCodeFormat.transparent_svg, int Border = 1, int Size = 300)
     {
         public Dictionary<string, dynamic> ToDictionary() => new()
         {

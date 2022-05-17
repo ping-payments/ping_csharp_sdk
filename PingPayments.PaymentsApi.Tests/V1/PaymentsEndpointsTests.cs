@@ -104,5 +104,70 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var response = await _api.Payments.V1.Get(Guid.NewGuid(), TestData.PaymentId);
             AssertHttpNotFound(response);
         }
+
+
+        [Fact]
+        public async Task Initiate_ecommerce_swish_payment_200()
+        {
+            var request = CreatePayment.Swish.Ecommerce(
+                new OrderItem[]
+                {
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
+                },
+                "0000000000",
+                "message",
+                TestData.FakeCallback,
+                new Dictionary<string, object> { });
+
+
+            var response = await _api.Payments.V1.Initiate(TestData.OrderId, request);
+            AssertHttpOK(response);
+        }
+
+        [Fact]
+        public async Task Initiate_mcommerce_swish_payment_with_qr_200()
+        {
+            var request = CreatePayment.Swish.Mcommerce(
+                new OrderItem[]
+                {
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
+                },
+                "message",
+                TestData.FakeCallback,
+                new SwishQrCode(),
+                new Dictionary<string, object> { });
+
+
+            var response = await _api.Payments.V1.Initiate(TestData.OrderId, request);
+            
+            AssertHttpOK(response);
+
+            var mcommerceResponse = response?.Body?.SuccesfulResponseBody as SwishMCommerceResponseBody;
+            Assert.False(string.IsNullOrEmpty(mcommerceResponse?.ProviderMethodResponse.QrCode));
+
+
+
+        }
+
+        [Fact]
+        public async Task Initiate_mcommerce_swish_payment_without_qr_200()
+        {
+            var request = CreatePayment.Swish.Mcommerce(
+                new OrderItem[]
+                {
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
+                },
+                "message",
+                TestData.FakeCallback,
+                null,
+                new Dictionary<string, object> { });
+
+
+            var response = await _api.Payments.V1.Initiate(TestData.OrderId, request);
+            AssertHttpOK(response);
+        }
     }
 }

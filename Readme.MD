@@ -39,7 +39,7 @@ nuget install PingPayments
 
 
 
-### Swish e-commerce example
+### Swish ecommerce example
 
 #### 1.a Create a client
 ```c#
@@ -65,7 +65,7 @@ var merchant = new CreateMerchantRequest {
     Name = "test merchant AB",
     Organization = new Organization {
         Country = "SE",
-        SeOrganizationNumber = "123456-7890"
+        SeOrganizationNumber = "1234567890"
     }
 };
 Guid merchantId = await api.Merchants.V1.Create(merchant);
