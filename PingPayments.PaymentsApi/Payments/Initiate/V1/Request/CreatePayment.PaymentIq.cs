@@ -1,4 +1,5 @@
 ﻿using PingPayments.PaymentsApi.Payments.Shared.V1;
+using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Collections.Generic;
 
@@ -15,6 +16,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 Uri successUrl,
                 Uri cancelUrl,
                 Uri statusCallbackUrl,
+                string locale = "en-US",
                 IDictionary<string, dynamic>? metadata = null
             ) => new
                 (
@@ -26,7 +28,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     new PaymentIqProviderMethodParameters
                     (
                         successUrl,
-                        cancelUrl
+                        cancelUrl,
+                        locale
                     ),
                     statusCallbackUrl,
                     metadata
@@ -38,6 +41,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 Uri successUrl,
                 Uri cancelUrl,
                 Uri statusCallbackUrl,
+                string locale = "en-US",
                 IDictionary<string, dynamic>? metadata = null
             ) => new
                 (
@@ -49,7 +53,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     new PaymentIqProviderMethodParameters
                     (
                         successUrl,
-                        cancelUrl
+                        cancelUrl,
+                        locale
                     ),
                     statusCallbackUrl,
                     metadata
