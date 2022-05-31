@@ -25,7 +25,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.swish,
                     MethodEnum.e_commerce,
-                    new SwishECommerceParameters(phoneNumber, message),
+                    new SwishECommerceParameters(message, phoneNumber),
                     statusCallbackUrl,
                     metadata
                 );

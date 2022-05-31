@@ -115,7 +115,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                     new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
                     new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
                 },
-                "0000000000",
+                "0701234567",
                 "message",
                 TestData.FakeCallback,
                 new Dictionary<string, object> { });
