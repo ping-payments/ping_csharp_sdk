@@ -8,5 +8,7 @@ namespace PingPayments.PaymentsApi
         IMerchantResource Merchants { get; }
         IPaymentOrderResource PaymentOrder { get; }
         IPaymentResource Payments { get; }
+        IPingResource Ping { get; }
+
     }
 }

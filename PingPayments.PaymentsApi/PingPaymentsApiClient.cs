@@ -12,6 +12,7 @@ using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
 using PingPayments.PaymentsApi.Payments;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1;
+using PingPayments.PaymentsApi.Ping.V1;
 using System;
 using System.Net.Http;
 
@@ -50,6 +51,8 @@ namespace PingPayments.PaymentsApi
                 new Lazy<ListMerchantsOperation>(() => new ListMerchantsOperation(httpClient))
             );
             _merchants = new Lazy<IMerchantResource>(() => new MerchantResource(merchantV1));
+
+            _ping = new Lazy<IPingResource>(() => new PingResource(new PingV1(new Lazy<PingOperation>(new PingOperation(httpClient)))));
         }
 
         private readonly Lazy<IPaymentResource> _payments;
@@ -60,5 +63,8 @@ namespace PingPayments.PaymentsApi
 
         private readonly Lazy<IMerchantResource> _merchants;
         public IMerchantResource Merchants => _merchants.Value;
+
+        private readonly Lazy<IPingResource> _ping;
+        public IPingResource Ping => _ping.Value;
     }
 }
