@@ -5,8 +5,8 @@ namespace PingPayments.PaymentsApi
 {
     public interface IPingPaymentsApiClient
     {
-        IMerchantEndpoints Merchants { get; }
-        IPaymentOrderEndpoints PaymentOrder { get; }
-        IPaymentEndpoints Payments { get; }
+        IMerchantResource Merchants { get; }
+        IPaymentOrderResource PaymentOrder { get; }
+        IPaymentResource Payments { get; }
     }
 }

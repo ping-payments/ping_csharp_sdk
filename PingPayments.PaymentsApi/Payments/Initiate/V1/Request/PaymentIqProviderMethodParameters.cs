@@ -1,5 +1,4 @@
-﻿using PingPayments.PaymentsApi.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request

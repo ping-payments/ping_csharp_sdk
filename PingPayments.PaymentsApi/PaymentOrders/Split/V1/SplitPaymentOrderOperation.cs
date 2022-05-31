@@ -1,5 +1,4 @@
-﻿using PingPayments.PaymentsApi.Helpers;
-using PingPayments.PaymentsApi.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -8,9 +7,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Split.V1
 {
-    public class SplitPaymentOrderEndpoint : EndpointBase<Guid, EmptyResponse>
+    public class SplitPaymentOrderOperation : OperationBase<Guid, EmptyResponse>
     {
-        public SplitPaymentOrderEndpoint(HttpClient httpClient) : base(httpClient) { }
+        public SplitPaymentOrderOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<EmptyResponse> ExecuteRequest(Guid orderId) =>
             await BaseExecute

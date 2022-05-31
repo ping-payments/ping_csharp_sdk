@@ -9,7 +9,7 @@ using Xunit;
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
-    public class PaymentsEndpointsTests : BaseEndpointsTests
+    public class PaymentsResourceTests : BaseResourceTests
     {
         [Fact]
         public async Task Initiate_payment_200()

@@ -8,9 +8,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Close.V1
 {
-    public class ClosePaymentOrderEndpoint : EndpointBase<Guid, EmptyResponse>
+    public class ClosePaymentOrderOperation : OperationBase<Guid, EmptyResponse>
     {
-        public ClosePaymentOrderEndpoint(HttpClient httpClient) : base(httpClient) { }
+        public ClosePaymentOrderOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<EmptyResponse> ExecuteRequest(Guid orderId) => 
             await BaseExecute

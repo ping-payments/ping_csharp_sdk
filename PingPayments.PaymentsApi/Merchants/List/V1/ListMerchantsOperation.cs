@@ -1,7 +1,6 @@
 ﻿using PingPayments.PaymentsApi.Helpers;
 using PingPayments.PaymentsApi.Merchants.Shared.V1;
 using PingPayments.PaymentsApi.Shared;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
@@ -9,9 +8,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Merchants.List.V1
 {
-    public class ListMerchantsEndpoint : EndpointBase<EmptyRequest?, MerchantsResponse>
+    public class ListMerchantsOperation : OperationBase<EmptyRequest?, MerchantsResponse>
     {
-        public ListMerchantsEndpoint(HttpClient httpClient) : base(httpClient) { }
+        public ListMerchantsOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<MerchantsResponse> ExecuteRequest(EmptyRequest? emptyRequest = null) => 
             await BaseExecute(GET, $"api/v1/merchants", emptyRequest);

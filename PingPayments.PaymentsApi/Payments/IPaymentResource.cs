@@ -1,6 +1,6 @@
 ﻿namespace PingPayments.PaymentsApi.Payments
 {
-    public interface IPaymentEndpoints
+    public interface IPaymentResource
     {
         IPaymentsV1 V1 { get; }
     }

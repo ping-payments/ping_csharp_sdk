@@ -12,9 +12,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Get.V1
 {
-    public class GetPaymentOrderEndpoint : EndpointBase<Guid, PaymentOrderResponse>
+    public class GetPaymentOrderOperation : OperationBase<Guid, PaymentOrderResponse>
     {
-        public GetPaymentOrderEndpoint(HttpClient httpClient) : base(httpClient) { }
+        public GetPaymentOrderOperation(HttpClient httpClient) : base(httpClient) { }
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {

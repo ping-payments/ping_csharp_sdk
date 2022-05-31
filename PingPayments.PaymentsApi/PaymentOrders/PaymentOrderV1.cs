@@ -13,44 +13,44 @@ namespace PingPayments.PaymentsApi.PaymentOrders
 {
     public class PaymentOrderV1 : IPaymentOrderV1
     {
-        public PaymentOrderV1(Lazy<GetPaymentOrderEndpoint> getPaymentOrderEndpoint,
-                              Lazy<CreatePaymentOrderEndpoint> createPaymentOrderEndpoint,
-                              Lazy<UpdatePaymentOrderEndpoint> updatePaymentOrderEndpoint,
-                              Lazy<ListPaymentOrderEndpoint> listPaymentOrderEndpoint,
-                              Lazy<SplitPaymentOrderEndpoint> splitPaymentOrderEndpoint,
-                              Lazy<ClosePaymentOrderEndpoint> closePaymentOrderEndpoint,
-                              Lazy<SettlePaymentOrderEndpoint> settlePaymentOrderEndpoint)
+        public PaymentOrderV1(Lazy<GetPaymentOrderOperation> getPaymentOrderOperation,
+                              Lazy<CreatePaymentOrderOperation> createPaymentOrderOperation,
+                              Lazy<UpdatePaymentOrderOperation> updatePaymentOrderOperation,
+                              Lazy<ListPaymentOrderOperation> listPaymentOrderOperation,
+                              Lazy<SplitPaymentOrderOperation> splitPaymentOrderOperation,
+                              Lazy<ClosePaymentOrderOperation> closePaymentOrderOperation,
+                              Lazy<SettlePaymentOrderOperation> settlePaymentOrderOperation)
         {
-            _getPaymentOrderEndpoint = getPaymentOrderEndpoint;
-            _createPaymentOrderEndpoint = createPaymentOrderEndpoint;
-            _updatePaymentOrderEndpoint = updatePaymentOrderEndpoint;
-            _listPaymentOrderEndpoint = listPaymentOrderEndpoint;
-            _splitPaymentOrderEndpoint = splitPaymentOrderEndpoint;
-            _closePaymentOrderEndpoint = closePaymentOrderEndpoint;
-            _settlePaymentOrderEndpoint = settlePaymentOrderEndpoint;
+            _getPaymentOrderOperation = getPaymentOrderOperation;
+            _createPaymentOrderOperation = createPaymentOrderOperation;
+            _updatePaymentOrderOperation = updatePaymentOrderOperation;
+            _listPaymentOrderOperation = listPaymentOrderOperation;
+            _splitPaymentOrderOperation = splitPaymentOrderOperation;
+            _closePaymentOrderOperation = closePaymentOrderOperation;
+            _settlePaymentOrderOperation = settlePaymentOrderOperation;
         }
 
-        private readonly Lazy<GetPaymentOrderEndpoint> _getPaymentOrderEndpoint;
-        private readonly Lazy<CreatePaymentOrderEndpoint> _createPaymentOrderEndpoint;
-        private readonly Lazy<UpdatePaymentOrderEndpoint> _updatePaymentOrderEndpoint;
-        private readonly Lazy<ListPaymentOrderEndpoint> _listPaymentOrderEndpoint;
-        private readonly Lazy<SplitPaymentOrderEndpoint> _splitPaymentOrderEndpoint;
-        private readonly Lazy<ClosePaymentOrderEndpoint> _closePaymentOrderEndpoint;
-        private readonly Lazy<SettlePaymentOrderEndpoint> _settlePaymentOrderEndpoint;
+        private readonly Lazy<GetPaymentOrderOperation> _getPaymentOrderOperation;
+        private readonly Lazy<CreatePaymentOrderOperation> _createPaymentOrderOperation;
+        private readonly Lazy<UpdatePaymentOrderOperation> _updatePaymentOrderOperation;
+        private readonly Lazy<ListPaymentOrderOperation> _listPaymentOrderOperation;
+        private readonly Lazy<SplitPaymentOrderOperation> _splitPaymentOrderOperation;
+        private readonly Lazy<ClosePaymentOrderOperation> _closePaymentOrderOperation;
+        private readonly Lazy<SettlePaymentOrderOperation> _settlePaymentOrderOperation;
 
         public async Task<PaymentOrderResponse> Get(Guid orderId) =>
-            await _getPaymentOrderEndpoint.Value.ExecuteRequest(orderId);
+            await _getPaymentOrderOperation.Value.ExecuteRequest(orderId);
         public async Task<PaymentOrdersResponse> List((DateTimeOffset from, DateTimeOffset to)? dateFilter = null) =>
-            await _listPaymentOrderEndpoint.Value.ExecuteRequest(dateFilter);
+            await _listPaymentOrderOperation.Value.ExecuteRequest(dateFilter);
         public async Task<GuidResponse> Create(CreatePaymentOrderRequest createPaymentOrderRequest) =>
-            await _createPaymentOrderEndpoint.Value.ExecuteRequest(createPaymentOrderRequest);
+            await _createPaymentOrderOperation.Value.ExecuteRequest(createPaymentOrderRequest);
         public async Task<EmptyResponse> Update((Guid OrderId, Guid SplitTreeId) updateRequest) =>
-            await _updatePaymentOrderEndpoint.Value.ExecuteRequest(updateRequest);
+            await _updatePaymentOrderOperation.Value.ExecuteRequest(updateRequest);
         public async Task<EmptyResponse> Close(Guid orderId) =>
-            await _closePaymentOrderEndpoint.Value.ExecuteRequest(orderId);
+            await _closePaymentOrderOperation.Value.ExecuteRequest(orderId);
         public async Task<EmptyResponse> Split(Guid orderId) =>
-            await _splitPaymentOrderEndpoint.Value.ExecuteRequest(orderId);
+            await _splitPaymentOrderOperation.Value.ExecuteRequest(orderId);
         public async Task<EmptyResponse> Settle(Guid orderId) =>
-            await _settlePaymentOrderEndpoint.Value.ExecuteRequest(orderId);
+            await _settlePaymentOrderOperation.Value.ExecuteRequest(orderId);
     }
 }

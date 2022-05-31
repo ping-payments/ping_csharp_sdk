@@ -26,39 +26,39 @@ namespace PingPayments.PaymentsApi
         {
             var paymentsV1 = new PaymentsV1
             (
-                new Lazy<InitiateEndpoint>(() => new InitiateEndpoint(httpClient)),
-                new Lazy<GetEndpoint>(() => new GetEndpoint(httpClient))
+                new Lazy<InitiateOperation>(() => new InitiateOperation(httpClient)),
+                new Lazy<GetOperation>(() => new GetOperation(httpClient))
             );
-            _payments = new Lazy<IPaymentEndpoints>(() => new PaymentEndpoints(paymentsV1));
+            _payments = new Lazy<IPaymentResource>(() => new PaymentResource(paymentsV1));
 
             var paymentOrderV1 = new PaymentOrderV1
             (
-                 new Lazy<GetPaymentOrderEndpoint>(() => new GetPaymentOrderEndpoint(httpClient)),
-                 new Lazy<CreatePaymentOrderEndpoint>(() => new CreatePaymentOrderEndpoint(httpClient)),
-                 new Lazy<UpdatePaymentOrderEndpoint>(() => new UpdatePaymentOrderEndpoint(httpClient)),
-                 new Lazy<ListPaymentOrderEndpoint>(() => new ListPaymentOrderEndpoint(httpClient)),
-                 new Lazy<SplitPaymentOrderEndpoint>(() => new SplitPaymentOrderEndpoint(httpClient)),
-                 new Lazy<ClosePaymentOrderEndpoint>(() => new ClosePaymentOrderEndpoint(httpClient)),
-                 new Lazy<SettlePaymentOrderEndpoint>(() => new SettlePaymentOrderEndpoint(httpClient))
+                 new Lazy<GetPaymentOrderOperation>(() => new GetPaymentOrderOperation(httpClient)),
+                 new Lazy<CreatePaymentOrderOperation>(() => new CreatePaymentOrderOperation(httpClient)),
+                 new Lazy<UpdatePaymentOrderOperation>(() => new UpdatePaymentOrderOperation(httpClient)),
+                 new Lazy<ListPaymentOrderOperation>(() => new ListPaymentOrderOperation(httpClient)),
+                 new Lazy<SplitPaymentOrderOperation>(() => new SplitPaymentOrderOperation(httpClient)),
+                 new Lazy<ClosePaymentOrderOperation>(() => new ClosePaymentOrderOperation(httpClient)),
+                 new Lazy<SettlePaymentOrderOperation>(() => new SettlePaymentOrderOperation(httpClient))
             );
-            _paymentOrderEndpoints = new Lazy<IPaymentOrderEndpoints>(() => new PaymentOrderEndpoints(paymentOrderV1));
+            _paymentOrderResource = new Lazy<IPaymentOrderResource>(() => new PaymentOrderResource(paymentOrderV1));
 
             var merchantV1 = new MerchantV1
             (
-                new Lazy<CreateMerchantEndpoint>(() => new CreateMerchantEndpoint(httpClient)),
-                new Lazy<GetMerchantEndpoint>(() => new GetMerchantEndpoint(httpClient)),
-                new Lazy<ListMerchantsEndpoint>(() => new ListMerchantsEndpoint(httpClient))
+                new Lazy<CreateMerchantOperation>(() => new CreateMerchantOperation(httpClient)),
+                new Lazy<GetMerchantOperation>(() => new GetMerchantOperation(httpClient)),
+                new Lazy<ListMerchantsOperation>(() => new ListMerchantsOperation(httpClient))
             );
-            _merchants = new Lazy<IMerchantEndpoints>(() => new MerchantEndpoints(merchantV1));
+            _merchants = new Lazy<IMerchantResource>(() => new MerchantResource(merchantV1));
         }
 
-        private readonly Lazy<IPaymentEndpoints> _payments;
-        public IPaymentEndpoints Payments => _payments.Value;
+        private readonly Lazy<IPaymentResource> _payments;
+        public IPaymentResource Payments => _payments.Value;
 
-        private readonly Lazy<IPaymentOrderEndpoints> _paymentOrderEndpoints;
-        public IPaymentOrderEndpoints PaymentOrder => _paymentOrderEndpoints.Value;
+        private readonly Lazy<IPaymentOrderResource> _paymentOrderResource;
+        public IPaymentOrderResource PaymentOrder => _paymentOrderResource.Value;
 
-        private readonly Lazy<IMerchantEndpoints> _merchants;
-        public IMerchantEndpoints Merchants => _merchants.Value;
+        private readonly Lazy<IMerchantResource> _merchants;
+        public IMerchantResource Merchants => _merchants.Value;
     }
 }

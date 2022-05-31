@@ -1,6 +1,5 @@
 ﻿using PingPayments.PaymentsApi.Helpers;
 using PingPayments.PaymentsApi.Shared;
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
@@ -8,9 +7,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Create.V1
 {
-    public class CreatePaymentOrderEndpoint : EndpointBase<CreatePaymentOrderRequest, GuidResponse>
+    public class CreatePaymentOrderOperation : OperationBase<CreatePaymentOrderRequest, GuidResponse>
     {
-        public CreatePaymentOrderEndpoint(HttpClient httpClient) : base(httpClient) { }
+        public CreatePaymentOrderOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<GuidResponse> ExecuteRequest(CreatePaymentOrderRequest createPaymentOrderRequest) => 
             await BaseExecute

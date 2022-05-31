@@ -1,6 +1,6 @@
 ﻿namespace PingPayments.PaymentsApi.PaymentOrders
 {
-    public interface IMerchantEndpoints
+    public interface IMerchantResource
     {
         IMerchantV1 V1 { get; }
     }

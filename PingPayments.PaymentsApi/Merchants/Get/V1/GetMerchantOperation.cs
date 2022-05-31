@@ -9,9 +9,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Merchants.Get.V1
 {
-    public class GetMerchantEndpoint : EndpointBase<Guid, MerchantResponse>
+    public class GetMerchantOperation : OperationBase<Guid, MerchantResponse>
     {
-        public GetMerchantEndpoint(HttpClient httpClient) : base(httpClient) { }
+        public GetMerchantOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<MerchantResponse> ExecuteRequest(Guid merchantId) => 
             await BaseExecute(GET, $"api/v1/merchants/{merchantId}", merchantId);

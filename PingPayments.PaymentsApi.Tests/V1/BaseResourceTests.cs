@@ -4,12 +4,12 @@ using Xunit;
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
-    public class BaseEndpointsTests
+    public class BaseResourceTests
     {
         protected readonly IPingPaymentsApiClient _api;
         private readonly HttpClient _httpClient;
 
-        public BaseEndpointsTests()
+        public BaseResourceTests()
         {
             _httpClient = new HttpClient().ConfigurePingPaymentsClient(TestData.SandboxUri, TestData.TenantId);
             _api = new PingPaymentsApiClient(_httpClient);

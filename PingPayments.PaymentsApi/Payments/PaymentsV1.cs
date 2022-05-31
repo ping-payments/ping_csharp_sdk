@@ -9,19 +9,19 @@ namespace PingPayments.PaymentsApi.Payments
 {
     public class PaymentsV1 : IPaymentsV1
     {
-        public PaymentsV1(Lazy<InitiateEndpoint> initiateEndpoint, Lazy<GetEndpoint> getEndpoint)
+        public PaymentsV1(Lazy<InitiateOperation> initiateOperation, Lazy<GetOperation> getOperation)
         {
-            _initiateEndpoint = initiateEndpoint;
-            _getEndpoint = getEndpoint;
+            _initiateOperation = initiateOperation;
+            _getOperation = getOperation;
         }
 
-        private readonly Lazy<InitiateEndpoint> _initiateEndpoint;
-        private readonly Lazy<GetEndpoint> _getEndpoint;
+        private readonly Lazy<InitiateOperation> _initiateOperation;
+        private readonly Lazy<GetOperation> _getOperation;
 
         public async Task<InitiatePaymentResponse> Initiate(Guid orderId, InitiatePaymentRequest initiatePaymentRequest) =>
-            await _initiateEndpoint.Value.ExecuteRequest((orderId, initiatePaymentRequest));
+            await _initiateOperation.Value.ExecuteRequest((orderId, initiatePaymentRequest));
 
         public async Task<PaymentResponse> Get(Guid orderId, Guid paymentId) =>
-            await _getEndpoint.Value.ExecuteRequest((orderId, paymentId));
+            await _getOperation.Value.ExecuteRequest((orderId, paymentId));
     }
 }

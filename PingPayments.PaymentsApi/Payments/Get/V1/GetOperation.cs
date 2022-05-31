@@ -11,9 +11,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Payments.Get.V1
 {
-    public class GetEndpoint : EndpointBase<(Guid orderId, Guid paymentId), PaymentResponse>
+    public class GetOperation : OperationBase<(Guid orderId, Guid paymentId), PaymentResponse>
     {
-        public GetEndpoint(HttpClient httpClient) : base(httpClient) { }
+        public GetOperation(HttpClient httpClient) : base(httpClient) { }
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {

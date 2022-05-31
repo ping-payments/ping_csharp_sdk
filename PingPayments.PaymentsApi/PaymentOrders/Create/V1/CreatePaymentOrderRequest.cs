@@ -1,7 +1,5 @@
 ﻿using PingPayments.PaymentsApi.Payments.Shared.V1;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Create.V1

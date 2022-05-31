@@ -8,9 +8,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Settle.V1
 {
-    public class SettlePaymentOrderEndpoint : EndpointBase<Guid, EmptyResponse>
+    public class SettlePaymentOrderOperation : OperationBase<Guid, EmptyResponse>
     {
-        public SettlePaymentOrderEndpoint(HttpClient httpClient) : base(httpClient) { }
+        public SettlePaymentOrderOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<EmptyResponse> ExecuteRequest(Guid orderId) => 
             await BaseExecute

@@ -1,6 +1,5 @@
 ﻿using PingPayments.PaymentsApi.Helpers;
 using PingPayments.PaymentsApi.Shared;
-using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -10,9 +9,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Merchants.Create.V1
 {
-    public class CreateMerchantEndpoint : EndpointBase<CreateMerchantRequest, GuidResponse>
+    public class CreateMerchantOperation : OperationBase<CreateMerchantRequest, GuidResponse>
     {
-        public CreateMerchantEndpoint(HttpClient httpClient) : base(httpClient) { }
+        public CreateMerchantOperation(HttpClient httpClient) : base(httpClient) { }
 
         protected override JsonSerializerOptions JsonSerializerOptions => new() 
         { 

@@ -11,11 +11,11 @@ using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
 
 namespace PingPayments.PaymentsApi.Shared
 {
-    public abstract class EndpointBase<Request, Response>
+    public abstract class OperationBase<Request, Response>
     {
         protected readonly HttpClient _httpClient;
 
-        protected EndpointBase(HttpClient httpClient)
+        protected OperationBase(HttpClient httpClient)
         {
             _httpClient = httpClient;
             var json = new MediaTypeWithQualityHeaderValue("application/json");

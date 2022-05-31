@@ -11,7 +11,7 @@ using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
-    public class PaymentOrderEndpointsTests : BaseEndpointsTests
+    public class PaymentOrderResourceTests : BaseResourceTests
     {
         [Fact]
         public async Task Get_returns_200()

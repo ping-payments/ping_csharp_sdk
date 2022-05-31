@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PingPayments.PaymentsApi.Payments.Initiate.V1.Request
+﻿namespace PingPayments.PaymentsApi.Payments.Initiate.V1.Request
 {
     public static class SupportedLocales
     {

@@ -10,26 +10,26 @@ namespace PingPayments.PaymentsApi.PaymentOrders
 {
     public class MerchantV1 : IMerchantV1
     {
-        public MerchantV1(Lazy<CreateMerchantEndpoint> createMerchantEndpoint,
-                          Lazy<GetMerchantEndpoint> getMerchantEndpoint,
-                          Lazy<ListMerchantsEndpoint> listMerchantEndpoint)
+        public MerchantV1(Lazy<CreateMerchantOperation> createMerchantOperation,
+                          Lazy<GetMerchantOperation> getMerchantOperation,
+                          Lazy<ListMerchantsOperation> listMerchantOperation)
         {
-            _createMerchantEndpoint = createMerchantEndpoint;
-            _getMerchantEndpoint = getMerchantEndpoint;
-            _listMerchantEndpoint = listMerchantEndpoint;
+            _createMerchantOperation = createMerchantOperation;
+            _getMerchantOperation = getMerchantOperation;
+            _listMerchantOperation = listMerchantOperation;
         }
 
-        private readonly Lazy<CreateMerchantEndpoint> _createMerchantEndpoint;
-        private readonly Lazy<GetMerchantEndpoint> _getMerchantEndpoint;
-        private readonly Lazy<ListMerchantsEndpoint> _listMerchantEndpoint;
+        private readonly Lazy<CreateMerchantOperation> _createMerchantOperation;
+        private readonly Lazy<GetMerchantOperation> _getMerchantOperation;
+        private readonly Lazy<ListMerchantsOperation> _listMerchantOperation;
 
         public async Task<MerchantResponse> Get(Guid merchantId) =>
-            await _getMerchantEndpoint.Value.ExecuteRequest(merchantId);
+            await _getMerchantOperation.Value.ExecuteRequest(merchantId);
 
         public async Task<MerchantsResponse> List() =>
-            await _listMerchantEndpoint.Value.ExecuteRequest(null);
+            await _listMerchantOperation.Value.ExecuteRequest(null);
 
         public async Task<GuidResponse> Create(CreateMerchantRequest createMerchantRequest) =>
-            await _createMerchantEndpoint.Value.ExecuteRequest(createMerchantRequest);
+            await _createMerchantOperation.Value.ExecuteRequest(createMerchantRequest);
     }
 }

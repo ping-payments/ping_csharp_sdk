@@ -1,5 +1,4 @@
-﻿using PingPayments.PaymentsApi.Helpers;
-using PingPayments.PaymentsApi.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -8,9 +7,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Update.V1
 {
-    public class UpdatePaymentOrderEndpoint : EndpointBase<(Guid OrderId, Guid SplitTreeId), EmptyResponse>
+    public class UpdatePaymentOrderOperation : OperationBase<(Guid OrderId, Guid SplitTreeId), EmptyResponse>
     {
-        public UpdatePaymentOrderEndpoint(HttpClient httpClient) : base(httpClient) { }
+        public UpdatePaymentOrderOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<EmptyResponse> ExecuteRequest((Guid OrderId, Guid SplitTreeId) updateRequest) => 
             await BaseExecute

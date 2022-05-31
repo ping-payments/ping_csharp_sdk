@@ -14,7 +14,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Can_parse_dummy() => 
             Assert.True
             (
-                await InitiateEndpoint.GetResponseBody
+                await InitiateOperation.GetResponseBody
                 (
                     ProviderEnum.dummy, 
                     MethodEnum.dummy,
@@ -27,7 +27,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Can_parse_swish_ecommerce() => 
             Assert.True
             (
-                await InitiateEndpoint.GetResponseBody
+                await InitiateOperation.GetResponseBody
                 (
                     ProviderEnum.swish, 
                     MethodEnum.e_commerce,
@@ -40,7 +40,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Can_parse_swish_mcommerce_without_qr() => 
             Assert.True
             (
-                await InitiateEndpoint.GetResponseBody
+                await InitiateOperation.GetResponseBody
                 (
                     ProviderEnum.swish, 
                     MethodEnum.m_commerce,
@@ -54,7 +54,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Can_parse_swish_mcommerce_with_qr() =>
             Assert.True
             (
-                await InitiateEndpoint.GetResponseBody
+                await InitiateOperation.GetResponseBody
                 (
                     ProviderEnum.swish,
                     MethodEnum.m_commerce,
@@ -69,7 +69,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Can_parse_verifone() => 
             Assert.True
             (
-                await InitiateEndpoint.GetResponseBody
+                await InitiateOperation.GetResponseBody
                 (
                     ProviderEnum.verifone, 
                     MethodEnum.card,
@@ -83,7 +83,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Can_parse_billmate() => 
             Assert.True
             (
-                await InitiateEndpoint.GetResponseBody
+                await InitiateOperation.GetResponseBody
                 (
                     ProviderEnum.billmate, 
                     MethodEnum.invoice,
@@ -97,7 +97,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Can_parse_paymentiq_card() => 
             Assert.True
             (
-                await InitiateEndpoint.GetResponseBody
+                await InitiateOperation.GetResponseBody
                 (
                     ProviderEnum.payment_iq, 
                     MethodEnum.card,
@@ -111,7 +111,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Can_parse_paymentiq_vipps() => 
             Assert.True
             (
-                await InitiateEndpoint.GetResponseBody
+                await InitiateOperation.GetResponseBody
                 (
                     ProviderEnum.payment_iq, 
                     MethodEnum.vipps,
@@ -125,7 +125,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Can_parse_ping_deposit() =>
             Assert.True
             (
-                await InitiateEndpoint.GetResponseBody
+                await InitiateOperation.GetResponseBody
                 (
                     ProviderEnum.ping,
                     MethodEnum.deposit,
