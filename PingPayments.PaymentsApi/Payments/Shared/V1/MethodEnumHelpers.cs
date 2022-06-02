@@ -17,7 +17,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
             {
                 "e_commerce" => MethodEnum.e_commerce,
                 "m_commerce" => MethodEnum.m_commerce,
-                _ => Enum.Parse<MethodEnum>(methodEnumValue)
+                _ => (MethodEnum)Enum.Parse(typeof(MethodEnum), methodEnumValue)
             };
     }
 }
