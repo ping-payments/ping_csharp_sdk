@@ -52,7 +52,7 @@ namespace PingPayments.PaymentsApi
             );
             _merchants = new Lazy<IMerchantResource>(() => new MerchantResource(merchantV1));
 
-            _ping = new Lazy<IPingResource>(() => new PingResource(new PingV1(new Lazy<PingOperation>(new PingOperation(httpClient)))));
+            _ping = new Lazy<IPingResource>(() => new PingResource(new PingV1(new Lazy<PingOperation>(() => new PingOperation(httpClient)))));
         }
 
         private readonly Lazy<IPaymentResource> _payments;
