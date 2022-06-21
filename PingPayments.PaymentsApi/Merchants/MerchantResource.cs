@@ -1,4 +1,4 @@
-﻿namespace PingPayments.PaymentsApi.PaymentOrders
+﻿namespace PingPayments.PaymentsApi.Merchants
 {
     public class MerchantResource : IMerchantResource
     {
