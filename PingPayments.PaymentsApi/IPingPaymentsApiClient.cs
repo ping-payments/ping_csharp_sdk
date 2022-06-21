@@ -1,5 +1,6 @@
 ﻿using PingPayments.PaymentsApi.PaymentOrders;
 using PingPayments.PaymentsApi.Payments;
+using PingPayments.PaymentsApi.Payout;
 
 namespace PingPayments.PaymentsApi
 {
@@ -9,6 +10,6 @@ namespace PingPayments.PaymentsApi
         IPaymentOrderResource PaymentOrder { get; }
         IPaymentResource Payments { get; }
         IPingResource Ping { get; }
-
+        IPayoutResource Payouts { get; }
     }
 }
