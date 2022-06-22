@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace PingPayments.PaymentsApi
+namespace PingPayments.PaymentLinksApi
 {
     public static class HttpClientExtensions
     {

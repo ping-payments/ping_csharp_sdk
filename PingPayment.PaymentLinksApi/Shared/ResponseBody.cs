@@ -1,4 +1,4 @@
-﻿namespace PingPayments.PaymentsApi.Shared
+﻿namespace PingPayments.PaymentLinksApi.Shared
 {
     public record ResponseBody<T>(ErrorResponseBody? ErrorResponseBody, T? SuccesfulResponseBody) where T : EmptySuccesfulResponseBody
     {

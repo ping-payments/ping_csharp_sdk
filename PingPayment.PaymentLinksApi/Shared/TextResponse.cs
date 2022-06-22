@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace PingPayments.PaymentsApi.Shared
+namespace PingPayments.PaymentLinksApi.Shared
 {
     public record TextResponse : ApiResponseBase<TextResponseBody>
     {

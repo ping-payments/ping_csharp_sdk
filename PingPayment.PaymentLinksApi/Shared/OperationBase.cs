@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
 
-namespace PingPayments.PaymentsApi.Shared
+namespace PingPayments.PaymentLinksApi.Shared
 {
     public abstract class OperationBase<Request, Response>
     {

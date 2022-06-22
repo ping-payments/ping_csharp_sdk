@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PingPayments.PaymentsApi.Shared
+namespace PingPayments.PaymentLinksApi.Shared
 {
     public record ErrorResponseBody
     {

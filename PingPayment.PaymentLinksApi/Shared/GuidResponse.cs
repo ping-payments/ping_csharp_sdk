@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace PingPayments.PaymentsApi.Shared
+namespace PingPayments.PaymentLinksApi.Shared
 {
     public record GuidResponse : ApiResponseBase<GuidResponseBody>
     {
