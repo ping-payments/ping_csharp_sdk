@@ -1,4 +1,4 @@
-﻿using PingPayments.PaymentsApi.Helpers;
+﻿using PingPayments.PaymentLinksApi.Helpers;
 using System;
 using System.IO;
 using System.Net.Http;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
+using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 
 namespace PingPayments.PaymentLinksApi.Shared
 {

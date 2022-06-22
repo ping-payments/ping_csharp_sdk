@@ -15,9 +15,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.PaymentsApi.Tests", "PingPayments.PaymentsApi.Tests\PingPayments.PaymentsApi.Tests.csproj", "{6A6DE614-AF19-4872-9425-48D81D4968A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingPayments.PaymentLinksApi", "PingPayment.PaymentLinksApi\PingPayments.PaymentLinksApi.csproj", "{79AD9F87-B9C5-463E-A00A-DBACCD8E0990}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.PaymentLinksApi", "PingPayment.PaymentLinksApi\PingPayments.PaymentLinksApi.csproj", "{79AD9F87-B9C5-463E-A00A-DBACCD8E0990}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingPayments.PaymentLinksApi.Tests", "PingPayments.PaymentLinksApi.Tests\PingPayments.PaymentLinksApi.Tests.csproj", "{97582909-C3A6-4694-9E25-F2F3CBE4104E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.PaymentLinksApi.Tests", "PingPayments.PaymentLinksApi.Tests\PingPayments.PaymentLinksApi.Tests.csproj", "{97582909-C3A6-4694-9E25-F2F3CBE4104E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_links", "test_links\test_links.csproj", "{A0D23D89-35C3-45AC-8C50-A266E10221F5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{79AD9F87-B9C5-463E-A00A-DBACCD8E0990} = {79AD9F87-B9C5-463E-A00A-DBACCD8E0990}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +46,10 @@ Global
 		{97582909-C3A6-4694-9E25-F2F3CBE4104E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97582909-C3A6-4694-9E25-F2F3CBE4104E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97582909-C3A6-4694-9E25-F2F3CBE4104E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0D23D89-35C3-45AC-8C50-A266E10221F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0D23D89-35C3-45AC-8C50-A266E10221F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0D23D89-35C3-45AC-8C50-A266E10221F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0D23D89-35C3-45AC-8C50-A266E10221F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

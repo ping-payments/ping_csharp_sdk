@@ -19,7 +19,7 @@ namespace PingPayments.PaymentLinksApi.Ping.V1
 
         public override async Task<TextResponse> ExecuteRequest(EmptyRequest _)
         {
-            var response = await BaseExecute(GET, "/api/v1/ping", _);
+            var response = await BaseExecute(GET, $"api/v1/ping", _);
             return response;
         }
 
