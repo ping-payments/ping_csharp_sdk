@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks
 {
-    internal class IPaymentLinkV1
+    internal class PaymentLinksV1
     {
     }
 }
