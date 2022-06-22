@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Files\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Ping\" />
+    <Folder Include="PaymentLinks\" />
+  </ItemGroup>
+
 </Project>
