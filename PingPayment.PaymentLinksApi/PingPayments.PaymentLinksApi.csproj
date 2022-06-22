@@ -8,9 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Files\" />
-    <Folder Include="Shared\" />
+    <Folder Include="Helpers\" />
     <Folder Include="Ping\" />
-    <Folder Include="PaymentLinks\" />
   </ItemGroup>
 
 </Project>
