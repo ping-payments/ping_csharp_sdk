@@ -5,7 +5,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public record Customer
     {
-        public Customer(string email, string firstName, string lastName, string phone, string refrence)
+        public Customer(string? email, string firstName, string lastName, string? phone, string? refrence)
         {
             Email = email;
             FirstName = firstName;
@@ -15,27 +15,35 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 
         }
 
+        /// <summary>
+        /// The email of the Customer intended to pay the PaymentLink
+        /// </summary>
         [JsonPropertyName("email")]
         public string Email { get; set; }
 
+        /// <summary>
+        /// The first name of the Customer intended to pay the PaymentLink
+        /// </summary>
         [JsonPropertyName("first_name")]
         public string FirstName { get; set; }
 
+        /// <summary>
+        /// The last name of the Customer intended to pay the PaymentLink
+        /// </summary>
         [JsonPropertyName("last_name")]
         public string LastName { get; set; }
 
+        /// <summary>
+        /// The phone number of the Customer intended to pay the PaymentLink
+        /// </summary>
         [JsonPropertyName("phone")]
         public string Phone { get; set; }
 
+        /// <summary>
+        /// A reference Customer intended to pay the PaymentLink
+        /// </summary>
         [JsonPropertyName("reference")]
         public string Refrence { get; set; }
 
-        df
-
-
-        /// <summary>
-        /// Simplifies creation of customer array
-        /// </summary>
-        public static implicit operator Customer[](Customer customer) => new[] {customer}; 
     }
 }
