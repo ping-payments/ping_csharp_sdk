@@ -1,7 +1,7 @@
 ﻿using PingPayments.PaymentLinksApi.Helpers;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.V1.Create.Request;
 using PingPayments.PaymentLinksApi.Shared;
+using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using System;
 using System.Net.Http;
 using System.Text.Json;

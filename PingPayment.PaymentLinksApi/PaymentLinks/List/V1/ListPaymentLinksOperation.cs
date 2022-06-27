@@ -13,9 +13,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.List.V1
 {
     public class ListPaymentLinksOperation : OperationBase<EmptyRequest, PaymentLinksResponse>
     {
-        public ListPaymentLinksOperation(HttpClient httpClient) : base(httpClient)
-        {
-        }
+        public ListPaymentLinksOperation(HttpClient httpClient) : base(httpClient){}
 
         public override async Task<PaymentLinksResponse> ExecuteRequest(EmptyRequest? emptyRequest = null)
         {
