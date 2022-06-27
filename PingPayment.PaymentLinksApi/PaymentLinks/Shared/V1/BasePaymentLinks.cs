@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
-    public abstract record BasePaymentLinks : EmptySuccesfulResponseBody
+    public record BasePaymentLinks : EmptySuccesfulResponseBody
     {
         /// <summary>
         /// Checkout url for paymentLink 
@@ -61,69 +61,69 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         [JsonPropertyName("locale")]
         public string? Local { get; set; }
 
-        /// <summary>
-        ///Image of Logo wich is visible on the PaymenLink  
-        /// </summary>
+        ///// <summary>
+        /////Image of Logo wich is visible on the PaymenLink  
+        ///// </summary>
         [JsonPropertyName("logo_image_link")]
         public string? LogoImageLink { get; set; }
 
-        /// <summary>
-        /// Custom metadata for payment link 
-        /// </summary>
+        ///// <summary>
+        ///// Custom metadata for payment link 
+        ///// </summary>
         [JsonPropertyName("metadata")]
         public IDictionary<string, dynamic>? Metadata { get; set; }
 
-        /// <summary>
-        /// Payment id  
-        /// </summary>
+        ///// <summary>
+        ///// Payment id  
+        ///// </summary>
         [JsonPropertyName("payment_id")]
         public Guid? PaymentId { get; set; }
 
-        /// <summary>
-        /// Payment Link id  
-        /// </summary>
+        ///// <summary>
+        ///// Payment Link id  
+        ///// </summary>
         [JsonPropertyName("payment_link_id")]
         public Guid PaymentLinkId { get; set; }
 
-        /// <summary>
-        /// Callback url for checking the status of a PaymentLink  
-        /// </summary>
+        ///// <summary>
+        ///// Callback url for checking the status of a PaymentLink  
+        ///// </summary>
         [JsonPropertyName("payment_link_status_callback_url")]
-        public Guid? PaymentLinkStatusCallbackUrl { get; set; }
+        public string? PaymentLinkStatusCallbackUrl { get; set; }
 
-        /// <summary>
-        /// Payment order id   
-        /// </summary>
+        ///// <summary>
+        ///// Payment order id   
+        ///// </summary>
         [JsonPropertyName("payment_order_id")]
         public Guid? PaymentOrderId { get; set; }
 
-        /// <summary>
-        /// Payment order id   
-        /// </summary>
+        ///// <summary>
+        ///// Payment order id   
+        ///// </summary>
         [JsonPropertyName("payment_provider_methods")]
-        public PaymentProviderMethods? PaymentProviderMethods { get; set; }
+        public IEnumerable<PaymentProviderMethods>? PaymentProviderMethods { get; set; }
 
-        /// <summary>
-        /// Status for SMS 
-        /// </summary>
+        ///// <summary>
+        ///// Status for SMS 
+        ///// </summary>
         [JsonPropertyName("sms_status")]
         public SmsStatus? SmsStatus { get; set; }
 
-        /// <summary>
-        /// Status for PaymentLink 
-        /// </summary>
+        ///// <summary>
+        ///// Status for PaymentLink 
+        ///// </summary>
         [JsonPropertyName("status")]
         public Status? Status { get; set; }
 
-        /// <summary>
-        /// Tenant id 
-        /// </summary>
+        ///// <summary>
+        ///// Tenant id 
+        ///// </summary>
         [JsonPropertyName("tenant_id")]
         public Guid? Tenant_id { get; set; }
 
-        /// <summary>
-        /// Total amount in the smallest denomination  
-        /// </summary>
+        ///// <summary>
+        ///// Total amount in the smallest denomination  
+        ///// </summary>
         [JsonPropertyName("total_amount")]
         public int TotalAmount { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentLinksApi.Ping;
+﻿using PingPayments.PaymentLinksApi.PaymentLinks;
+using PingPayments.PaymentLinksApi.Ping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace PingPayments.PaymentLinksApi
 {
     public interface IPingPaymentLinksApiClient
     {
-        IPingResource Ping { get; } 
+        IPingResource Ping { get; }
+
+        IPaymentLinksResource PaymentLinks { get;  }
     }
 }

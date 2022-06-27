@@ -1,7 +1,8 @@
 ﻿namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
-    public enum Status
+    public enum CurrencyEnum
     {
-        CREATED, COMPLETED, EXPIRED, CANCELLED 
+        SEK,
+        NOK
     }
 }

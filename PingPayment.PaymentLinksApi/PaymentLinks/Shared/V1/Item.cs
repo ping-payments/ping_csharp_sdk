@@ -4,19 +4,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public record Item
     {
-        public Item(string description, string? itemNumber, Guid merchantId, int price, int quantity, string? unit, int vat)
-        {
-
-            Description = description;
-            ItemNumber = itemNumber;
-            MerchantId = merchantId;
-            Price = price;
-            Quantity = quantity;
-            Unit = unit;
-            Vat = vat;
-
-        }
-
         /// <summary>
         /// The description of the Item
         /// </summary>
