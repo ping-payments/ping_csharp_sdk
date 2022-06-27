@@ -18,5 +18,11 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             Assert.True(paymentLinks != null);
 
         }
+
+        [Fact]
+        public async Task cancel_paymentLink_returns_200()
+        {
+            AssertHttpNoContent(await _api.PaymentLinks.V1.Cancel(TestData.PaymentLinkId));
+        }
     }
 }
