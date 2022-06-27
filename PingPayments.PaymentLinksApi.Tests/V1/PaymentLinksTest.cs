@@ -20,9 +20,37 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         }
 
         [Fact]
-        public async Task cancel_paymentLink_returns_200()
+        public async Task GetPaymentLinkReturns200()
+        {
+            var response = await _api.PaymentLinks.V1.Get(TestData.PaymentLinkId);
+            AssertHttpOK(response);
+        }
+
+        [Fact]
+        public async Task Get_paymentLink_Id_Not_Found_Returns_404()
+        {
+            var response = await _api.PaymentLinks.V1.Get(new Guid());
+            AssertHttpNotFound(response);
+        }
+
+        [Fact]
+        public async Task Cancel_paymentLink_returns_204()
+        {
+            /// Create paymentlink here and use that id in this test
+            AssertHttpNoContent(await _api.PaymentLinks.V1.Cancel(TestData.PaymentLinkId));
+        }
+
+        [Fact]
+        public async Task Cancel_paymentLink_Id_Not_Found_returns_404()
+        {
+            AssertHttpNoContent(await _api.PaymentLinks.V1.Cancel(new Guid()));
+        }
+
+        [Fact]
+        public async Task PaymentLink_Already_Canceled_returns_403()
         {
             AssertHttpNoContent(await _api.PaymentLinks.V1.Cancel(TestData.PaymentLinkId));
         }
+
     }
 }
