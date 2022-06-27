@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Files\" />
+    <Folder Include="PaymentLinks\Create\V1\Response\" />
   </ItemGroup>
 
 </Project>
