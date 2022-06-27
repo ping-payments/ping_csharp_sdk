@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentLinksApi.PaymentLinks.Get.V1;
+﻿using PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Get.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.List.V1;
 using PingPayments.PaymentLinksApi.Shared;
 using System;
@@ -11,15 +12,17 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks
 {
     public class PaymentLinksV1 : IPaymentLinksV1
     {
-        public PaymentLinksV1(Lazy<ListPaymentLinksOperation> listPaymentLinksOperation, Lazy<GetPaymentLinkOperation> getPaymentLinkOperation)
+        public PaymentLinksV1(Lazy<ListPaymentLinksOperation> listPaymentLinksOperation, Lazy<GetPaymentLinkOperation> getPaymentLinkOperation, Lazy<CancelPaymentLinkOperation> cancelPaymentLinkOperation)
         {
             _listPaymentLinksOperation = listPaymentLinksOperation;
             _getPaymentLinkOperation = getPaymentLinkOperation;
+            _cancelPaymentLinkOperation = cancelPaymentLinkOperation;
 
         }
 
         private readonly Lazy<ListPaymentLinksOperation> _listPaymentLinksOperation;
         private readonly Lazy<GetPaymentLinkOperation> _getPaymentLinkOperation;
+        private readonly Lazy<CancelPaymentLinkOperation> _cancelPaymentLinkOperation;
 
         public async Task<PaymentLinksResponse> List()
         {
@@ -32,6 +35,9 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks
             var response = await _getPaymentLinkOperation.Value.ExecuteRequest(paymentLinkID);
             return response;
         }
+
+        public async Task<EmptyResponse> Cancel(Guid paymentLinkID) =>
+            await _cancelPaymentLinkOperation.Value.ExecuteRequest(paymentLinkID);
     }
 }
 
