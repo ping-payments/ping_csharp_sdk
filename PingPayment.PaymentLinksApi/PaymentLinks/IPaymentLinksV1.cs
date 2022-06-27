@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PingPayments.PaymentLinksApi.PaymentLinks.List.V1;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks
 {
-    internal class IPaymentLinksV1
+    public interface IPaymentLinksV1
     {
+        Task<PaymentLinksResponse> List();
     }
 }
