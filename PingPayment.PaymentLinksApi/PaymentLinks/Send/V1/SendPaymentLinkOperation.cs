@@ -1,14 +1,10 @@
 ﻿using PingPayments.PaymentLinksApi.Helpers;
+using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
 using PingPayments.PaymentLinksApi.Shared;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
-using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
 {
@@ -26,7 +22,8 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {
-            Converters = {  new JsonStringEnumConverter()   }
+            Converters = {  new JsonStringEnumConverter()   },
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) _) =>

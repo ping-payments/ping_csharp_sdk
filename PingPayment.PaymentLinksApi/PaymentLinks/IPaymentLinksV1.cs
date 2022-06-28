@@ -1,6 +1,6 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Get.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.List.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
 using PingPayments.PaymentLinksApi.Shared;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks
