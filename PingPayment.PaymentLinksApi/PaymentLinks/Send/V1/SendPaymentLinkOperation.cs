@@ -33,7 +33,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
             }
         };
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid _, SendPaymentLinkRequestBody __) request) =>
+        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) _) =>
             hrm.StatusCode switch
             {
                 NoContent => EmptyResponse.Succesful(hrm.StatusCode),

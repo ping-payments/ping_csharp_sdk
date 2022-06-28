@@ -6,13 +6,8 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
 {
     public record SendPaymentLinkRequestBody
     {
-        public SendPaymentLinkRequestBody(string? email, string? phone, DistributeMethodEnum methods)
-        {
-            Email = email;
-            Phone = phone;
-            Methods = methods;
 
-        }
+        
 
         /// <summary>
         /// The email of the Customer intended to pay the PaymentLink
