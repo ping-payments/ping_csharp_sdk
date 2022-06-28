@@ -1,6 +1,7 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Get.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.List.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1;
 using PingPayments.PaymentLinksApi.Shared;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,20 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks
 {
     public class PaymentLinksV1 : IPaymentLinksV1
     {
-        public PaymentLinksV1(Lazy<ListPaymentLinksOperation> listPaymentLinksOperation, Lazy<GetPaymentLinkOperation> getPaymentLinkOperation, Lazy<CancelPaymentLinkOperation> cancelPaymentLinkOperation)
+        public PaymentLinksV1(Lazy<ListPaymentLinksOperation> listPaymentLinksOperation, Lazy<GetPaymentLinkOperation> getPaymentLinkOperation, Lazy<CancelPaymentLinkOperation> cancelPaymentLinkOperation, Lazy<SendPaymentLinkOperation> sendPaymentLinkOperation)
         {
             _listPaymentLinksOperation = listPaymentLinksOperation;
             _getPaymentLinkOperation = getPaymentLinkOperation;
             _cancelPaymentLinkOperation = cancelPaymentLinkOperation;
+            _sendPaymentLinkOperation = sendPaymentLinkOperation;
 
         }
 
         private readonly Lazy<ListPaymentLinksOperation> _listPaymentLinksOperation;
         private readonly Lazy<GetPaymentLinkOperation> _getPaymentLinkOperation;
         private readonly Lazy<CancelPaymentLinkOperation> _cancelPaymentLinkOperation;
+        private readonly Lazy<SendPaymentLinkOperation> _sendPaymentLinkOperation;
+
 
         public async Task<PaymentLinksResponse> List()
         {
@@ -38,6 +42,9 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks
 
         public async Task<EmptyResponse> Cancel(Guid paymentLinkID) =>
             await _cancelPaymentLinkOperation.Value.ExecuteRequest(paymentLinkID);
+
+        public async Task<EmptyResponse> Send(Guid paymentLinkID) =>
+            await _sendPaymentLinkOperation.Value.ExecuteRequest(paymentLinkID);
     }
 }
 

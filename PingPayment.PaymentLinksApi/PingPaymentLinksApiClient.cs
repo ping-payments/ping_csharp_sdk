@@ -4,6 +4,7 @@ using PingPayments.PaymentLinksApi.PaymentLinks;
 using PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Get.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.List.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1;
 using PingPayments.PaymentLinksApi.Ping;
 using PingPayments.PaymentLinksApi.Ping.V1; 
 
@@ -24,7 +25,8 @@ namespace PingPayments.PaymentLinksApi
             (
                 new Lazy<ListPaymentLinksOperation>(() => new ListPaymentLinksOperation(httpClient)),
                 new Lazy<GetPaymentLinkOperation>(()=> new GetPaymentLinkOperation(httpClient)),
-                new Lazy<CancelPaymentLinkOperation>(()=> new CancelPaymentLinkOperation(httpClient))
+                new Lazy<CancelPaymentLinkOperation>(()=> new CancelPaymentLinkOperation(httpClient)),
+                new Lazy<SendPaymentLinkOperation>(()=> new SendPaymentLinkOperation(httpClient))
             );
             _paymentLinks = new Lazy<IPaymentLinksResource>(() => new PaymentLinksResource(paymentLinksV1));
         }

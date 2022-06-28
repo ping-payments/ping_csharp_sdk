@@ -9,6 +9,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks
         Task<PaymentLinkResponse> Get(Guid paymentLinkID);
         Task<PaymentLinksResponse> List();
         Task<EmptyResponse> Cancel(Guid paymentLinkID);
+        Task<EmptyResponse> Send(Guid paymentLinkID);
 
     }
 }
