@@ -43,8 +43,8 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks
         public async Task<EmptyResponse> Cancel(Guid paymentLinkID) =>
             await _cancelPaymentLinkOperation.Value.ExecuteRequest(paymentLinkID);
 
-        public async Task<EmptyResponse> Send(Guid paymentLinkID) =>
-            await _sendPaymentLinkOperation.Value.ExecuteRequest(paymentLinkID);
+        public async Task<EmptyResponse> Send(Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) =>
+            await _sendPaymentLinkOperation.Value.ExecuteRequest((paymentLinkID, sendPaymentLinkRequestBody));
     }
 }
 

@@ -3,24 +3,37 @@ using PingPayments.PaymentLinksApi.Shared;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
 {
-    public class SendPaymentLinkOperation : OperationBase<Guid, EmptyResponse>
+    public class SendPaymentLinkOperation : OperationBase<(Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody), EmptyResponse>
     {
         public SendPaymentLinkOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<EmptyResponse> ExecuteRequest(Guid paymentLinkId) =>
+        public override async Task<EmptyResponse> ExecuteRequest((Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) request) =>
             await BaseExecute
             (
                 PUT,
-                $"api/v1/payment_links/{paymentLinkId}/distribute", paymentLinkId,
-                await ToJson(new { })
+                $"api/v1/payment_links/{request.paymentLinkID}/distribute", request,
+                await ToJson(request.sendPaymentLinkRequestBody)
             );
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _) =>
+        protected override JsonSerializerOptions JsonSerializerOptions => new()
+        {
+            Converters =
+            {
+                //new MethodEnumJsonConvert(),
+                new JsonStringEnumConverter()
+                //new ProviderMethodParametersJsonConvert(),
+            }
+        };
+
+        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid _, SendPaymentLinkRequestBody __) request) =>
             hrm.StatusCode switch
             {
                 NoContent => EmptyResponse.Succesful(hrm.StatusCode),
