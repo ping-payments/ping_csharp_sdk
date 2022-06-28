@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
+using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
 {
@@ -25,12 +26,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {
-            Converters =
-            {
-                //new MethodEnumJsonConvert(),
-                new JsonStringEnumConverter()
-                //new ProviderMethodParametersJsonConvert(),
-            }
+            Converters = {  new JsonStringEnumConverter()   }
         };
 
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) _) =>

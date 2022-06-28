@@ -25,7 +25,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
         /// The last name of the Customer intended to pay the PaymentLink
         /// </summary>
         [JsonPropertyName("methods")]
-        public DistributeMethodEnum Methods { get; set; }
+        public IEnumerable<DistributeMethodEnum> Methods { get; set; }
 
 
     }

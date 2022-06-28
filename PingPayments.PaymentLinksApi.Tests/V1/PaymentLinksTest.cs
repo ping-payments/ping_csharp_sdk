@@ -56,12 +56,13 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task Send_paymentLink_returns_204()
         {
+            var methodsArray = new DistributeMethodEnum[] {DistributeMethodEnum.email };
             var requestObject = new SendPaymentLinkRequestBody()
             {
-                Methods = DistributeMethodEnum.email,
-                Email = "johannes@pingpayment.com"
+                Methods = methodsArray,
+                Email = "johannes.N@pingpayments.com",
+                Phone = "0701231212"
             };
-
 
             var response = await _api.PaymentLinks.V1.Send(new Guid("498989e0-2cd3-4687-83b1-f6d728ad8f06"), requestObject);
             AssertHttpNoContent(response);
