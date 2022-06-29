@@ -2,13 +2,19 @@
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
-    public class Supplier
+    public record Supplier
     {
+        public Supplier(string city, string name, string organizationNumber, string website, string zip)
+        {
+            City = city;
+            Name = name;
+            OrganizationNumber = organizationNumber;
+            Website = website;
+            Zip = zip;
+
+        }
         [JsonPropertyName("city")]
         public string City { get; set; }
-
-        [JsonPropertyName("email")]
-        public string Email { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -16,14 +22,8 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         [JsonPropertyName("organization_number")]
         public string OrganizationNumber { get; set; }
 
-        [JsonPropertyName("phone_number")]
-        public string PhoneNumber { get; set; }
-
-        [JsonPropertyName("street")]
-        public string Street { get; set; }
-
         [JsonPropertyName("website")]
-        public Uri Website { get; set; }
+        public string Website { get; set; }
 
         [JsonPropertyName("zip")]
         public string Zip { get; set; }

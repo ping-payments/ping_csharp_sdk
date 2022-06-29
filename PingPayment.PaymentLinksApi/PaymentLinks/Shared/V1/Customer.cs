@@ -19,7 +19,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         /// The email of the Customer intended to pay the PaymentLink
         /// </summary>
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// The first name of the Customer intended to pay the PaymentLink
@@ -37,13 +37,13 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         /// The phone number of the Customer intended to pay the PaymentLink
         /// </summary>
         [JsonPropertyName("phone")]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
         /// <summary>
         /// A reference Customer intended to pay the PaymentLink
         /// </summary>
         [JsonPropertyName("reference")]
-        public string Refrence { get; set; }
+        public string? Refrence { get; set; }
 
     }
 }
