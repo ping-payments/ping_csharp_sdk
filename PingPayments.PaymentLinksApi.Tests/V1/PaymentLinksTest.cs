@@ -15,7 +15,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         {
             var response = await _api.PaymentLinks.V1.List();
             AssertHttpOK(response);
-            BasePaymentLinks[]? paymentLinks = response;
+            PaymentLink[]? paymentLinks = response;
             Assert.True(paymentLinks != null);
 
         }
