@@ -14,7 +14,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.List.V1
     {
         public PaymentLinksResponse(HttpStatusCode StatusCode, bool IsSuccessful, ResponseBody<PaymentLinkList>? Body, string RawBody) : base(StatusCode, IsSuccessful, Body, RawBody) { }
 
-        public static implicit operator BasePaymentLinks[]?(PaymentLinksResponse paymentLinksResponse) =>
+        public static implicit operator PaymentLink[]?(PaymentLinksResponse paymentLinksResponse) =>
             paymentLinksResponse.IsSuccessful &&
             paymentLinksResponse.Body?.SuccesfulResponseBody != null ?
                 paymentLinksResponse.Body.SuccesfulResponseBody.PaymentLinks:

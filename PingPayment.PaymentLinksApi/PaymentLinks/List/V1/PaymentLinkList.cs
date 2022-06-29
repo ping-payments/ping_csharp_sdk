@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.List.V1
 {
-    public record PaymentLinkList(BasePaymentLinks[]? PaymentLinks) : EmptySuccesfulResponseBody;
+    public record PaymentLinkList(PaymentLink[]? PaymentLinks) : EmptySuccesfulResponseBody;
 }
 

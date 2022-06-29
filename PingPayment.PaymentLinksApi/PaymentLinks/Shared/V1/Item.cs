@@ -4,6 +4,17 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public record Item
     {
+        public Item(string description, string? itemNumber, Guid merchantId, int price, int quantity, string? unit, decimal vat)
+        {
+            Description = description;
+            ItemNumber = itemNumber ?? null;
+            MerchantId = merchantId;
+            Price = price;
+            Quantity = quantity;
+            Unit = unit ?? null;
+            Vat = vat;
+
+        }
         /// <summary>
         /// The description of the Item
         /// </summary>
@@ -14,7 +25,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         /// Item identifier
         /// </summary>
         [JsonPropertyName("item_number")]
-        public string ItemNumber { get; set; }
+        public string? ItemNumber { get; set; }
 
         /// <summary>
         /// Merchant Id
@@ -38,7 +49,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         /// The unit of the Item, deafult "st"
         /// </summary>
         [JsonPropertyName("unit")]
-        public string Unit { get; set; }
+        public string? Unit { get; set; }
 
         /// <summary>
         /// The vat percentage

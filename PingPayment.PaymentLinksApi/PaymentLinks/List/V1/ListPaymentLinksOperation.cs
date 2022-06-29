@@ -26,7 +26,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.List.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => PaymentLinksResponse.Succesful(hrm.StatusCode, new PaymentLinkList(await Deserialize<BasePaymentLinks[]>(responseBody)), responseBody),
+                OK => PaymentLinksResponse.Succesful(hrm.StatusCode, new PaymentLinkList(await Deserialize<PaymentLink[]>(responseBody)), responseBody),
                 _ => PaymentLinksResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
