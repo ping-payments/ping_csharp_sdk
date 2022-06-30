@@ -23,15 +23,13 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task GetPaymentLinkReturns200()
         {
-            var response = await _api.PaymentLinks.V1.Get(TestData.PaymentLinkId);
-            AssertHttpOK(response);
+            AssertHttpOK(await _api.PaymentLinks.V1.Get(TestData.PaymentLinkId));
         }
 
         [Fact]
         public async Task Get_paymentLink_Id_Not_Found_Returns_404()
         {
-            var response = await _api.PaymentLinks.V1.Get(new Guid());
-            AssertHttpNotFound(response);
+            AssertHttpNotFound(await _api.PaymentLinks.V1.Get(new Guid()));
         }
 
         [Fact]
