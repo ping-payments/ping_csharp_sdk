@@ -23,15 +23,13 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task GetPaymentLinkReturns200()
         {
-            var response = await _api.PaymentLinks.V1.Get(TestData.PaymentLinkId);
-            AssertHttpOK(response);
+            AssertHttpOK(await _api.PaymentLinks.V1.Get(TestData.PaymentLinkId));
         }
 
         [Fact]
         public async Task Get_paymentLink_Id_Not_Found_Returns_404()
         {
-            var response = await _api.PaymentLinks.V1.Get(new Guid());
-            AssertHttpNotFound(response);
+            AssertHttpNotFound(await _api.PaymentLinks.V1.Get(new Guid()));
         }
 
         [Fact]
@@ -60,7 +58,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
                     "0731231212",
                     "some.mail@mail.com"
                 );
-            var response = await _api.PaymentLinks.V1.Send(new Guid("498989e0-2cd3-4687-83b1-f6d728ad8f06"), requestObject);
+            var response = await _api.PaymentLinks.V1.Send(TestData.PaymentLinkId, requestObject);
             AssertHttpNoContent(response);
         }
 
@@ -70,7 +68,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             var requestObject = DistributeMethod.Sms.New(
                     "0731231212"
                 );
-            var response = await _api.PaymentLinks.V1.Send(new Guid("498989e0-2cd3-4687-83b1-f6d728ad8f06"), requestObject);
+            var response = await _api.PaymentLinks.V1.Send(TestData.PaymentLinkId, requestObject);
             AssertHttpNoContent(response);
         }
 
@@ -80,8 +78,26 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             var requestObject = DistributeMethod.Email.New(
                     "some.mail@mail.com"
                 );
-            var response = await _api.PaymentLinks.V1.Send(new Guid("498989e0-2cd3-4687-83b1-f6d728ad8f06"), requestObject);
+            var response = await _api.PaymentLinks.V1.Send(TestData.PaymentLinkId, requestObject);
             AssertHttpNoContent(response);
+        }
+
+
+        [Fact]
+        public async Task Send_paymentLink_Id_Not_Found_returns_404()
+        {
+            var requestObject = DistributeMethod.SmsAndEmail.New(
+                    "0731231212",
+                    "some.mail@mail.com"
+                );
+            var response = await _api.PaymentLinks.V1.Send(new Guid(), requestObject);
+            AssertHttpNotFound(response);
+        }
+
+        [Fact]
+        public async Task Send_paymentLink_incorrect_body_returns_422()
+        {
+            AssertHttpUnprocessableEntity(await _api.PaymentLinks.V1.Send(TestData.PaymentLinkId, null));
         }
 
     }
