@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentLinksApi.PaymentLinks;
+﻿using PingPayments.PaymentLinksApi.Files.Invoice;
+using PingPayments.PaymentLinksApi.PaymentLinks;
 using PingPayments.PaymentLinksApi.Ping;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,6 @@ namespace PingPayments.PaymentLinksApi
     {
         IPingResource Ping { get; }
 
-        IPaymentLinksResource PaymentLinks { get;  }
+        IFilesResource PaymentLinks { get;  }
     }
 }

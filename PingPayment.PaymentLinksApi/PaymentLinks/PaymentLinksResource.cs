@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks
 {
-    public class PaymentLinksResource : IPaymentLinksResource
+    public class PaymentLinkResource : IPaymentLinkResource
     {
-        public PaymentLinksResource(IPaymentLinksV1 v1)
+        public PaymentLinkResource(IPaymentLinksV1 v1)
         {
             V1 = v1;
         }
