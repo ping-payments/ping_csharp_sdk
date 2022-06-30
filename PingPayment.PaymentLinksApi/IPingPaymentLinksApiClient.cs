@@ -13,6 +13,6 @@ namespace PingPayments.PaymentLinksApi
     {
         IPingResource Ping { get; }
 
-        IFilesResource PaymentLinks { get;  }
+        IPaymentLinksResource PaymentLinks { get;  }
     }
 }
