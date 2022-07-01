@@ -35,6 +35,6 @@ namespace PingPayments.PaymentLinksApi
         public IPingResource Ping => _ping.Value;
 
         private readonly Lazy<IPaymentLinksResource> _paymentLinks;
-        public IPaymentLinksV1 PaymentLinks => _paymentLinks.Value;
+        public IPaymentLinksResource PaymentLinks => _paymentLinks.Value;
     }
 }
