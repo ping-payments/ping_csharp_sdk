@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentLinksApi.Shared;
+﻿using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
+using PingPayments.PaymentLinksApi.Shared;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
@@ -98,7 +99,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         /// The payment provider methods available in the checkout   
         /// </summary>
         [JsonPropertyName("payment_provider_methods")]
-        public IEnumerable<PaymentProviderMethods> PaymentProviderMethods { get; set; }
+        public IEnumerable<PaymentProviderMethod> PaymentProviderMethods { get; set; }
 
 
         /// <summary>

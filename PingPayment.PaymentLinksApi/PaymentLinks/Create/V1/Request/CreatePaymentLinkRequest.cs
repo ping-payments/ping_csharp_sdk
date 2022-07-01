@@ -19,8 +19,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             string local,
             IEnumerable<Item> items,
             Supplier supplier,
-            int totalAmount,
-            IEnumerable<PaymentProviderMethods> paymentProviderMethods,
+            IEnumerable<PaymentProviderMethod> paymentProviderMethods,
             string? checkoutCancelUrl = null,
             string? checkoutSuccessUrl = null,
             string? checkoutUrl = null,
@@ -38,7 +37,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             Local = local;
             Items = items;
             Supplier = supplier;
-            TotalAmount = totalAmount;
+            TotalAmount = items.TotalAmountMinorCurrencyUnit();
             PaymentProviderMethods = paymentProviderMethods;
             CheckoutCancelUrl = checkoutCancelUrl;
             CheckoutSuccessUrl = checkoutSuccessUrl;
