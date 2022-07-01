@@ -4,6 +4,6 @@ namespace PingPayments.PaymentLinksApi.Files.Receipt
 {
     public interface IReceiptV1
     {
-        Task<InvoiceResponse> Get(Guid paymentLinkID);
+        Task<ReceiptResponse> Get(Guid paymentLinkID);
     }
 }

@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace PingPayments.PaymentLinksApi.Files.Invoice.Create.V1
 {
 
-    public record CreateInvoiceRequest(string? DokumentName, ReferenceTypeEnum ReferenceType)
+    public record CreateInvoiceRequest(ReferenceTypeEnum ReferenceType, string? DokumentName = null)
     {
         /// <summary>
         /// Name of the document

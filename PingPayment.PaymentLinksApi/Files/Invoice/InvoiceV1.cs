@@ -16,11 +16,10 @@ namespace PingPayments.PaymentLinksApi.Files.Invoice
         private readonly Lazy<CreateInvoiceOperation> _createInvoiceOperation;
         private readonly Lazy<GetInvoiceOperation> _getInvoiceOperation;
 
-        public async Task<EmptyResponse> Create(CreateInvoiceRequest createInvoiceRequest) =>
-            await _createInvoiceOperation.Value.ExecuteRequest(createInvoiceRequest);
+        public async Task<EmptyResponse> Create(Guid paymentLinkID, CreateInvoiceRequest createInvoiceRequest) =>
+            await _createInvoiceOperation.Value.ExecuteRequest((paymentLinkID,  createInvoiceRequest));
 
         public async Task<InvoiceResponse> Get(Guid paymentLinkID) =>
             await _getInvoiceOperation.Value.ExecuteRequest(paymentLinkID);
-    }
+    } 
 }
-

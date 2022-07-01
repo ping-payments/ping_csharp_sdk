@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentLinksApi.Helpers;
+﻿using PingPayments.PaymentLinksApi.Files.Shared;
+using PingPayments.PaymentLinksApi.Helpers;
 using PingPayments.PaymentLinksApi.Shared;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -13,14 +14,14 @@ namespace PingPayments.PaymentLinksApi.Files.Invoice.Get.V1
         public GetInvoiceOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<InvoiceResponse> ExecuteRequest(Guid paymentLinkId) =>
-            await BaseExecute(GET, $"api/v1/payment_links/{paymentLinkId}", paymentLinkId);
+            await BaseExecute(GET, $"api/v1/payment_links/{paymentLinkId}/invoice", paymentLinkId);
 
         protected override async Task<InvoiceResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => InvoiceResponse.Succesful(hrm.StatusCode, await Deserialize<InvoiceResponseBody>(responseBody), responseBody),
+                OK => InvoiceResponse.Succesful(hrm.StatusCode, await Deserialize<UrlResponseBody>(responseBody), responseBody),
                 _ => await ToError(hrm)
             };
             return response;

@@ -13,7 +13,7 @@ namespace PingPayments.PaymentLinksApi.Files.Receipt
 
         private readonly Lazy<GetReceiptOperation> _getReceiptOperation;
 
-        public async Task<InvoiceResponse> Get(Guid paymentLinkID) =>
+        public async Task<ReceiptResponse> Get(Guid paymentLinkID) =>
             await _getReceiptOperation.Value.ExecuteRequest(paymentLinkID);
 
     }
