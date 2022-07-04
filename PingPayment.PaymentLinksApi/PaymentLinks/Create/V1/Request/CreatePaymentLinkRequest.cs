@@ -9,7 +9,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
     public record CreatePaymentLinkRequest : PaymentLink
     {
-
         public CreatePaymentLinkRequest
         (
             Guid paymentOrderId,
@@ -47,8 +46,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             LogoImageLink = logoImageLink;
             PaymentLinkStatusCallbackUrl = paymentLinkStatusCallbackUrl;
             Metadata = metadata ?? new Dictionary<string, dynamic>();
-
         }
-
     }
 }

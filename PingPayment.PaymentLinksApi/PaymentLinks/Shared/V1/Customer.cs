@@ -5,7 +5,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public record Customer
     {
-        public Customer(string? email, string firstName, string lastName, string? phone, string? refrence)
+        public Customer(string firstName, string lastName, string? email = null, string? phone = null, string? refrence = null)
         {
             Email = email;
             FirstName = firstName;

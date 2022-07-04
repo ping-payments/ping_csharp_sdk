@@ -12,39 +12,17 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
         public static class PaymentIq
         {
             public static PaymentProviderMethod Card
-                (
-                    string successUrl,
-                    string errorUrl,
-                    string? locale = null
-
-                ) => new
+                () => new
                     (
                         MethodEnum.card,
-                        ProviderEnum.payment_iq,
-                        new PaymentIqParameters
-                            (
-                                successUrl,
-                                errorUrl,
-                                locale
-                            )
+                        ProviderEnum.payment_iq
                     );
 
             public static PaymentProviderMethod Vipps
-                 (
-                    string successUrl,
-                    string errorUrl,
-                    string? locale = null
-
-                ) => new
+                 () => new
                     (
                         MethodEnum.vipps,
-                        ProviderEnum.payment_iq,
-                        new PaymentIqParameters
-                            (
-                                successUrl,
-                                errorUrl,
-                                locale
-                            )
+                        ProviderEnum.payment_iq
                     );
         }
     }

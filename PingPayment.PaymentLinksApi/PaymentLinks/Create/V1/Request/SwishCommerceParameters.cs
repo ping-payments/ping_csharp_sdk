@@ -1,7 +1,7 @@
 ﻿
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
-    public record SwishECommerceParameters (string Message) : ProviderMethodParameters
+    public record SwishCommerceParameters (string Message) : ProviderMethodParameters
     {
         public override Dictionary<string, dynamic> ToDictionary() => new()
         {

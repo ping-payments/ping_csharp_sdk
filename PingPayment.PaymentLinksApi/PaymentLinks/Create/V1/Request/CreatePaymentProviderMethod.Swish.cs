@@ -6,8 +6,9 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
     public static partial class CreatePaymentProviderMethod
     {
-        public static class Swish 
+        public static class Swish
         {
+
             public static PaymentProviderMethod Ecommerce
                 (
                     string message
@@ -15,20 +16,20 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
                     (
                         MethodEnum.e_commerce,
                         ProviderEnum.swish,
-                        new SwishECommerceParameters(message)
+                        new SwishCommerceParameters(message)
                     );
 
             public static PaymentProviderMethod Mcommerce
                    (
-                       string message,
-                       SwishQrCode? swishQrCode = null
+                       string message
                    ) => new
                        (
                            MethodEnum.m_commerce,
                            ProviderEnum.swish,
-                           new SwishMCommerceParameters(message, swishQrCode)
+                           new SwishCommerceParameters(message)
                        );
         }
     }
 }
+
 

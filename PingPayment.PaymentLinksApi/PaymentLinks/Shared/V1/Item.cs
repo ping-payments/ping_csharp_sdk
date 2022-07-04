@@ -4,14 +4,14 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public record Item
     {
-        public Item(string description, string? itemNumber, Guid merchantId, int price, int quantity, string? unit, decimal vat)
+        public Item(string description, Guid merchantId, int price, int quantity, decimal vat, string? itemNumber = null, string? unit = null)
         {
             Description = description;
-            ItemNumber = itemNumber ?? null;
+            ItemNumber = itemNumber;
             MerchantId = merchantId;
             Price = price;
             Quantity = quantity;
-            Unit = unit ?? null;
+            Unit = unit;
             Vat = vat;
 
         }
