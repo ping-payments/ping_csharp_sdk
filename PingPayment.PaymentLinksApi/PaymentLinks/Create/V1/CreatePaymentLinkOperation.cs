@@ -21,7 +21,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1
             {
                 new MethodEnumJsonConvert(),
                 new JsonStringEnumConverter(),
-                new ProviderMethodParametersJsonConvert(),
             },
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };

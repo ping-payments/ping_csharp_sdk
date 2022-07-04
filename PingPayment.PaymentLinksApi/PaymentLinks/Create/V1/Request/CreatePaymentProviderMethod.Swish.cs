@@ -1,6 +1,5 @@
-﻿
+﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 
-using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
@@ -16,17 +15,17 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
                     (
                         MethodEnum.e_commerce,
                         ProviderEnum.swish,
-                        new SwishCommerceParameters(message)
+                        AddParameters.Swish.Ecomerce(message)
                     );
 
             public static PaymentProviderMethod Mcommerce
                    (
-                       string message
+                        string message
                    ) => new
                        (
                            MethodEnum.m_commerce,
                            ProviderEnum.swish,
-                           new SwishCommerceParameters(message)
+                           AddParameters.Swish.Mcomerce(message)
                        );
         }
     }

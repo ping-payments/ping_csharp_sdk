@@ -15,6 +15,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
             Vat = vat;
 
         }
+
         /// <summary>
         /// The description of the Item
         /// </summary>

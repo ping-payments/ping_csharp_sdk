@@ -15,8 +15,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             ) => new
                 (
                     MethodEnum.dummy,
-                    ProviderEnum.dummy,
-                    new DummyParameters(desiredPaymentStatus)
+                    ProviderEnum.dummy
                 );
         }
     }

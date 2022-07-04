@@ -6,7 +6,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
     public record PaymentProviderMethod
     {
-        public PaymentProviderMethod(MethodEnum method, ProviderEnum provider, ProviderMethodParameters? parameters = null)
+        public PaymentProviderMethod(MethodEnum method, ProviderEnum provider, Dictionary<string, dynamic>? parameters = null)
         {
             Method = method;
             Provider = provider;
@@ -29,6 +29,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
         /// TODO Fyll i rätt besrkivning  
         /// </summary>
         [JsonPropertyName("parameters")]
-        public ProviderMethodParameters? Parameters { get; set; }
+        public Dictionary<string, dynamic>? Parameters { get; set; }
     }
 }
