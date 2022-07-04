@@ -1,6 +1,4 @@
-﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
-using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.Files.Invoice.Create.V1
 {

@@ -1,9 +1,6 @@
 ﻿using PingPayments.PaymentLinksApi.Files.Shared;
 using PingPayments.PaymentLinksApi.Helpers;
 using PingPayments.PaymentLinksApi.Shared;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
 using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
 

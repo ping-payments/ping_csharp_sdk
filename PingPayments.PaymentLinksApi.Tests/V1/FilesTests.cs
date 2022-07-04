@@ -13,7 +13,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         //[Fact] - not wokring atm
         public async Task Create_Invoice_returns_204()
         {
-            CreateInvoiceRequest requestBody = new CreateInvoiceRequest(ReferenceTypeEnum.KID);
+            CreateInvoiceRequest requestBody = new(ReferenceTypeEnum.KID);
 
             var response = await _api.Invoice.V1.Create(TestData.PaymentLinkId, requestBody);
             AssertHttpNoContent(response);
@@ -28,7 +28,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task Create_Invoice_paymentLink_not_found_returns_404()
         {
-            CreateInvoiceRequest requestBody = new CreateInvoiceRequest(ReferenceTypeEnum.KID);
+            CreateInvoiceRequest requestBody = new(ReferenceTypeEnum.KID);
             AssertHttpNotFound(await _api.Invoice.V1.Create(new Guid(), requestBody));
         }
 
@@ -51,7 +51,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         }
 
 
-        //[Fact] - not wokring atm
+        //[Fact] - not working atm
         public async Task Get_receipt_returns_200()
         {
             AssertHttpOK(await _api.Receipt.V1.Get(TestData.PaymentLinkId));
