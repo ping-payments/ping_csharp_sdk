@@ -1,9 +1,9 @@
-﻿using PingPayments.PaymentLinksApi.Files.Receipt.Get.V1;
+﻿using PingPayments.PaymentLinksApi.Files.Shared.V1;
 
 namespace PingPayments.PaymentLinksApi.Files.Receipt
 {
     public interface IReceiptV1
     {
-        Task<ReceiptResponse> Get(Guid paymentLinkID);
+        Task<UrlResponse> Get(Guid paymentLinkID);
     }
 }

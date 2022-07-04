@@ -1,5 +1,6 @@
 ﻿using PingPayments.PaymentLinksApi.Shared;
 using PingPayments.PaymentLinksApi.Files.Invoice.Get.V1;
+using PingPayments.PaymentLinksApi.Files.Shared.V1;
 using PingPayments.PaymentLinksApi.Files.Invoice.Create.V1;
 
 
@@ -19,7 +20,7 @@ namespace PingPayments.PaymentLinksApi.Files.Invoice
         public async Task<EmptyResponse> Create(Guid paymentLinkID, CreateInvoiceRequest createInvoiceRequest) =>
             await _createInvoiceOperation.Value.ExecuteRequest((paymentLinkID,  createInvoiceRequest));
 
-        public async Task<InvoiceResponse> Get(Guid paymentLinkID) =>
+        public async Task<UrlResponse> Get(Guid paymentLinkID) =>
             await _getInvoiceOperation.Value.ExecuteRequest(paymentLinkID);
     } 
 }

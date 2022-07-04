@@ -1,5 +1,5 @@
-﻿
-using PingPayments.PaymentLinksApi.Files.Receipt.Get.V1;
+﻿using PingPayments.PaymentLinksApi.Files.Receipt.Get.V1;
+using PingPayments.PaymentLinksApi.Files.Shared.V1;
 
 namespace PingPayments.PaymentLinksApi.Files.Receipt
 {
@@ -13,7 +13,7 @@ namespace PingPayments.PaymentLinksApi.Files.Receipt
 
         private readonly Lazy<GetReceiptOperation> _getReceiptOperation;
 
-        public async Task<ReceiptResponse> Get(Guid paymentLinkID) =>
+        public async Task<UrlResponse> Get(Guid paymentLinkID) =>
             await _getReceiptOperation.Value.ExecuteRequest(paymentLinkID);
 
     }

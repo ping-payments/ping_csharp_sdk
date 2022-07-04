@@ -2,7 +2,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace PingPayments.PaymentLinksApi.Files.Shared
+namespace PingPayments.PaymentLinksApi.Files.Shared.V1
 {
     public record UrlResponseBody : EmptySuccesfulResponseBody
     {
