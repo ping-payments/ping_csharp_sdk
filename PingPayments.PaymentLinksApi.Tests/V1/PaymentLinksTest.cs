@@ -1,10 +1,7 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
+using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
 
 namespace PingPayments.PaymentLinksApi.Tests.V1
 {
@@ -17,7 +14,6 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             AssertHttpOK(response);
             PaymentLink[]? paymentLinks = response;
             Assert.True(paymentLinks != null);
-
         }
 
         [Fact]
@@ -35,8 +31,8 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task Cancel_paymentLink_returns_204()
         {
-            /// Create paymentlink here and use that id in this test
-            AssertHttpNoContent(await _api.PaymentLinks.V1.Cancel(TestData.PaymentLinkId));
+            var paymentlink = await Create_paymentLink_returns_200();
+            AssertHttpNoContent(await _api.PaymentLinks.V1.Cancel(new Guid(paymentlink.Body?.SuccesfulResponseBody?.Id.ToString())));
         }
 
         [Fact]
@@ -100,5 +96,111 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             AssertHttpUnprocessableEntity(await _api.PaymentLinks.V1.Send(TestData.PaymentLinkId, null));
         }
 
+        [Fact]
+        public async Task<CreatePaymentLinkResponse> Create_paymentLink_returns_200()
+        {
+            var customer = new Customer("FrstName", "LastName");
+            var items = new Item[]
+            {
+                new Item("Hawaii Pizza", TestData.MerchantId, 7000, 2, SwedishVat.Vat12)
+            };
+            var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            var suppler = new Supplier("Supllier name");
+            
+            var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
+            var Verifone = CreatePaymentProviderMethod.Verifone.Card();
+            var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
+
+            var paymentLinkRequest = new CreatePaymentLinkRequest
+                (
+                    TestData.OrderId,
+                    CurrencyEnum.SEK,
+                    customer,
+                    dueDate,
+                    Locale.Swedish,
+                    items,
+                    suppler,
+                    new PaymentProviderMethod[]
+                    {
+                        swishMcommmerce,
+                        Verifone,
+                        billmate,
+                    }
+                );
+
+            var response = await _api.PaymentLinks.V1.Create(paymentLinkRequest);
+            AssertHttpOK(response);
+
+            return response;
+        }
+
+        [Fact]
+        public async Task Create_paymentLink_with_wrong_currency_returns_422()
+        {
+            var customer = new Customer("FrstName", "LastName");
+            var items = new Item[]
+            {
+                new Item("Hawaii Pizza", TestData.MerchantId, 7000, 2, SwedishVat.Vat12)
+            };
+            var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            var suppler = new Supplier("Supllier name");
+
+            var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
+            var Verifone = CreatePaymentProviderMethod.Verifone.Card();
+            var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
+
+            var paymentLinkRequest = new CreatePaymentLinkRequest
+                (
+                    TestData.OrderId,
+                    CurrencyEnum.NOK,
+                    customer,
+                    dueDate,
+                    Locale.Swedish,
+                    items,
+                    suppler,
+                    new PaymentProviderMethod[]
+                    {
+                        swishMcommmerce,
+                        Verifone,
+                        billmate,
+                    }
+                );
+
+            var response = await _api.PaymentLinks.V1.Create(paymentLinkRequest);
+            AssertHttpUnprocessableEntity(response);
+        }
+
+        [Fact]
+        public async Task Create_paymentLink_without_paymentProvider_returns_403()
+        {
+            var customer = new Customer("FrstName", "LastName");
+            var items = new Item[]
+            {
+                new Item("Hawaii Pizza", TestData.MerchantId, 7000, 2, SwedishVat.Vat12)
+            };
+            var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            var suppler = new Supplier("Supllier name");
+
+            var _swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
+            var _Verifone = CreatePaymentProviderMethod.Verifone.Card();
+            var _billmate = CreatePaymentProviderMethod.Billmate.Invoice();
+
+            var paymentLinkRequest = new CreatePaymentLinkRequest
+                (
+                    TestData.OrderId,
+                    CurrencyEnum.SEK,
+                    customer,
+                    dueDate,
+                    Locale.Swedish,
+                    items,
+                    suppler,
+                    new PaymentProviderMethod[]
+                    {
+                    }
+                );
+
+            var response = await _api.PaymentLinks.V1.Create(paymentLinkRequest);
+            AssertHttpApiError(response);
+        }
     }
 }

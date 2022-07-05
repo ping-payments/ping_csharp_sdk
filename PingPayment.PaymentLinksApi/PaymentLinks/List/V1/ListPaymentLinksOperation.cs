@@ -1,11 +1,6 @@
 ﻿using PingPayments.PaymentLinksApi.Shared;
 using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 using PingPayments.PaymentLinksApi.Helpers;
 
@@ -13,13 +8,15 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.List.V1
 {
     public class ListPaymentLinksOperation : OperationBase<EmptyRequest, PaymentLinksResponse>
     {
-        public ListPaymentLinksOperation(HttpClient httpClient) : base(httpClient){}
+        public ListPaymentLinksOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<PaymentLinksResponse> ExecuteRequest(EmptyRequest? emptyRequest = null)
-        {
-            var request = await BaseExecute(GET, $"api/v1/payment_links", emptyRequest);
-            return request; 
-        }
+        public override async Task<PaymentLinksResponse> ExecuteRequest(EmptyRequest? emptyRequest) =>
+        await BaseExecute
+            (
+                GET,
+                $"api/v1/payment_links",
+                emptyRequest
+            );   
 
         protected override async Task<PaymentLinksResponse> ParseHttpResponse(HttpResponseMessage hrm, EmptyRequest? _)
         {

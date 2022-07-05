@@ -11,7 +11,12 @@ namespace PingPayments.PaymentLinksApi.Files.Invoice.Get.V1
         public GetInvoiceOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<UrlResponse> ExecuteRequest(Guid paymentLinkId) =>
-            await BaseExecute(GET, $"api/v1/payment_links/{paymentLinkId}/invoice", paymentLinkId);
+            await BaseExecute
+            (
+                GET, 
+                $"api/v1/payment_links/{paymentLinkId}/invoice", 
+                paymentLinkId
+            );
 
         protected override async Task<UrlResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _)
         {

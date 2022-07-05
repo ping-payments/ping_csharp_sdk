@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
     public class MethodEnumJsonConvert : JsonConverter<MethodEnum>

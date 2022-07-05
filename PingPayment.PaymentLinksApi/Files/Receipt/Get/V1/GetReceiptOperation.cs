@@ -1,10 +1,9 @@
 ﻿using PingPayments.PaymentLinksApi.Files.Shared.V1;
 using PingPayments.PaymentLinksApi.Helpers;
 using PingPayments.PaymentLinksApi.Shared;
-
-
 using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
+
 
 namespace PingPayments.PaymentLinksApi.Files.Receipt.Get.V1
 {
@@ -13,7 +12,12 @@ namespace PingPayments.PaymentLinksApi.Files.Receipt.Get.V1
         public GetReceiptOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<UrlResponse> ExecuteRequest(Guid paymentLinkId) =>
-            await BaseExecute(GET, $"api/v1/payment_links/{paymentLinkId}/receipt", paymentLinkId);
+            await BaseExecute
+            (
+                GET, 
+                $"api/v1/payment_links/{paymentLinkId}/receipt", 
+                paymentLinkId
+            );
 
         protected override async Task<UrlResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _)
         {

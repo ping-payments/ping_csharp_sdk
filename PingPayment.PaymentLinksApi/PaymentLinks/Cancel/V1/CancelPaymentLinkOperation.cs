@@ -1,10 +1,8 @@
 ﻿using PingPayments.PaymentLinksApi.Helpers;
 using PingPayments.PaymentLinksApi.Shared;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
+
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1
 {
@@ -16,7 +14,8 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1
             await BaseExecute
             (
                 PUT,
-                $"api/v1/payment_links/{paymentLinkId}/cancel", paymentLinkId,
+                $"api/v1/payment_links/{paymentLinkId}/cancel", 
+                paymentLinkId,
                 await ToJson(new { })
             );
 

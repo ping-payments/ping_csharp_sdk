@@ -14,19 +14,19 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
         }
 
         /// <summary>
-        /// TODO Fyll i rätt besrkivning   
+        /// Payment method   
         /// </summary>
         [JsonPropertyName("method")]
         public MethodEnum Method { get; set; }
 
         /// <summary>
-        /// TODO Fyll i rätt besrkivning   
+        /// Payment method provider  
         /// </summary>
         [JsonPropertyName("provider")]
         public ProviderEnum Provider { get; set; }
 
         /// <summary>
-        /// TODO Fyll i rätt besrkivning  
+        /// Parameters for making a payment 
         /// </summary>
         [JsonPropertyName("parameters")]
         public Dictionary<string, dynamic>? Parameters { get; set; }

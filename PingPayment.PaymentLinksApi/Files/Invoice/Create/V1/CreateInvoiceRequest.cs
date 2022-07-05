@@ -2,7 +2,6 @@
 
 namespace PingPayments.PaymentLinksApi.Files.Invoice.Create.V1
 {
-
     public record CreateInvoiceRequest(ReferenceTypeEnum ReferenceType, string? DokumentName = null)
     {
         /// <summary>

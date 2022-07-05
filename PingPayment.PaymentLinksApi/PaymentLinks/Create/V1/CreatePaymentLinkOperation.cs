@@ -1,10 +1,10 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
-using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using PingPayments.PaymentLinksApi.Shared;
 using PingPayments.PaymentLinksApi.Helpers;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
 
 
@@ -26,7 +26,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        public override async  Task<CreatePaymentLinkResponse> ExecuteRequest(CreatePaymentLinkRequest request) => 
+        public override async Task<CreatePaymentLinkResponse> ExecuteRequest(CreatePaymentLinkRequest request) => 
         await BaseExecute
             (
                 POST,
