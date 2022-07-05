@@ -1,9 +1,4 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
@@ -15,10 +10,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             {
                 { "desired_payment_status", desiredPaymentStatus }
             };
-
-
         }
-
-
     }
 }

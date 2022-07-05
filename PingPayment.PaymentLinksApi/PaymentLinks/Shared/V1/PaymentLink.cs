@@ -1,7 +1,5 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.PaymentLinksApi.Shared;
-using System;
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
@@ -114,6 +112,5 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         /// </summary>
         [JsonPropertyName("total_amount")]
         public int TotalAmount { get; set; }
-
     }
 }

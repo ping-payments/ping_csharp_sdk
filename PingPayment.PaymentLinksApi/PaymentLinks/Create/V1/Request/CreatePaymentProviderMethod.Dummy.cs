@@ -1,7 +1,4 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
-using System;
-using System.Collections.Generic;
-
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
