@@ -1,5 +1,6 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 
+
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
     public record CreatePaymentLinkRequest : PaymentLink

@@ -1,5 +1,4 @@
-﻿using PingPayments.PaymentLinksApi.Files.Shared;
-using PingPayments.PaymentLinksApi.Shared;
+﻿using PingPayments.PaymentLinksApi.Shared;
 using System.Net;
 
 namespace PingPayments.PaymentLinksApi.Files.Shared.V1

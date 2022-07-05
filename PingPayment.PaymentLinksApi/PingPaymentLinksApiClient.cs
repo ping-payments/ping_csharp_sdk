@@ -12,6 +12,7 @@ using PingPayments.PaymentLinksApi.Files.Invoice.Get.V1;
 using PingPayments.PaymentLinksApi.Files.Receipt;
 using PingPayments.PaymentLinksApi.Files.Receipt.Get.V1;
 
+
 namespace PingPayments.PaymentLinksApi
 {
     public class PingPaymentLinksApiClient : IPingPaymentLinksApiClient

@@ -9,7 +9,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
             City = city;
             StreetAdress = streetAdress;
             Zip = zip;
-
         }
 
         [JsonPropertyName("city")]
@@ -20,6 +19,5 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 
         [JsonPropertyName("zip")]
         public string Zip { get; set; }
-
     }
 }

@@ -1,18 +1,23 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public record Customer
     {
-        public Customer(string firstName, string lastName, string? email = null, string? phone = null, string? refrence = null)
+        public Customer
+            (
+                string firstName, 
+                string lastName, 
+                string? email = null, 
+                string? phone = null, 
+                string? refrence = null
+            )
         {
             Email = email;
             FirstName = firstName;
             LastName = lastName;
             Phone = phone;
             Refrence = refrence;
-
         }
 
         /// <summary>

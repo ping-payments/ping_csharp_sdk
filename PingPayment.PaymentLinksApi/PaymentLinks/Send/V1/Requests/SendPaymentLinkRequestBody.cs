@@ -16,6 +16,7 @@ public record SendPaymentLinkRequestBody
         Phone = phone;
         Methods = method;
     }
+
     /// <summary>
     /// Email of the Customer intended to pay the PaymentLink
     /// </summary>
@@ -33,6 +34,4 @@ public record SendPaymentLinkRequestBody
     /// </summary>
     [JsonPropertyName("methods")]
     public IEnumerable<DistributeMethodEnum> Methods { get; set; }
-
-
 }

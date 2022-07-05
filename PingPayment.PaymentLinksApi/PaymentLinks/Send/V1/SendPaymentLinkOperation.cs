@@ -16,7 +16,8 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
             await BaseExecute
             (
                 PUT,
-                $"api/v1/payment_links/{request.paymentLinkID}/distribute", request,
+                $"api/v1/payment_links/{request.paymentLinkID}/distribute", 
+                request,
                 await ToJson(request.sendPaymentLinkRequestBody)
             );
 

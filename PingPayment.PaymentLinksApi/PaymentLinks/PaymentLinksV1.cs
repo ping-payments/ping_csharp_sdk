@@ -11,7 +11,14 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks
 {
     public class PaymentLinksV1 : IPaymentLinksV1
     {
-        public PaymentLinksV1(Lazy<ListPaymentLinksOperation> listPaymentLinksOperation, Lazy<CreatePaymentLinkOperation> createPaymentLinkOperation, Lazy<GetPaymentLinkOperation> getPaymentLinkOperation, Lazy<CancelPaymentLinkOperation> cancelPaymentLinkOperation, Lazy<SendPaymentLinkOperation> sendPaymentLinkOperation)
+        public PaymentLinksV1
+            (
+                Lazy<ListPaymentLinksOperation> listPaymentLinksOperation, 
+                Lazy<CreatePaymentLinkOperation> createPaymentLinkOperation, 
+                Lazy<GetPaymentLinkOperation> getPaymentLinkOperation, 
+                Lazy<CancelPaymentLinkOperation> cancelPaymentLinkOperation,
+                Lazy<SendPaymentLinkOperation> sendPaymentLinkOperation
+            )
         {
             _listPaymentLinksOperation = listPaymentLinksOperation;
             _createPaymentLinkOperation = createPaymentLinkOperation;

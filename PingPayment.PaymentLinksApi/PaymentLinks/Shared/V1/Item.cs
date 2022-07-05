@@ -4,16 +4,15 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public record Item
     {
-        public Item(string description, Guid merchantId, int price, int quantity, decimal vat, string? itemNumber = null, string? unit = null)
+        public Item(string description, Guid merchantId, int price, int quantity, decimal vat, string? itemNumber = null, string? unit = "st")
         {
             Description = description;
-            ItemNumber = itemNumber;
             MerchantId = merchantId;
             Price = price;
             Quantity = quantity;
-            Unit = unit;
             Vat = vat;
-
+            ItemNumber = itemNumber;
+            Unit = unit;
         }
 
         /// <summary>
@@ -21,12 +20,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         /// </summary>
         [JsonPropertyName("description")]
         public string Description { get; set; }
-
-        /// <summary>
-        /// Item identifier
-        /// </summary>
-        [JsonPropertyName("item_number")]
-        public string? ItemNumber { get; set; }
 
         /// <summary>
         /// Merchant Id
@@ -47,17 +40,22 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         public int Quantity { get; set; }
 
         /// <summary>
-        /// The unit of the Item, deafult "st"
-        /// </summary>
-        [JsonPropertyName("unit")]
-        public string? Unit { get; set; }
-
-        /// <summary>
         /// The vat percentage
         /// </summary>
         [JsonPropertyName("vat")]
         public decimal Vat { get; set; }
 
+        /// <summary>
+        /// Item identifier
+        /// </summary>
+        [JsonPropertyName("item_number")]
+        public string? ItemNumber { get; set; }
+
+        /// <summary>
+        /// The unit of the Item, deafult "st"
+        /// </summary>
+        [JsonPropertyName("unit")]
+        public string? Unit { get; set; }
 
         /// <summary>
         /// Simplifies creation of  items array
