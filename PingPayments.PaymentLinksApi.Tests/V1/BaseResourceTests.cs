@@ -1,7 +1,6 @@
 ﻿using PingPayments.PaymentLinksApi.Helpers;
 using PingPayments.PaymentLinksApi.Shared;
-using System.Net.Http;
-using Xunit;
+
 
 namespace PingPayments.PaymentLinksApi.Tests.V1
 {

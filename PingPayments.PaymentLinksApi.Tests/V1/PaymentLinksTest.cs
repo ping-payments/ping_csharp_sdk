@@ -129,8 +129,8 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
                 );
 
             var response = await _api.PaymentLinks.V1.Create(paymentLinkRequest);
-            AssertHttpOK(response);
 
+            AssertHttpOK(response);
             return response;
         }
 
