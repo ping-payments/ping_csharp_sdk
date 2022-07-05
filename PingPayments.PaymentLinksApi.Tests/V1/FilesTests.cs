@@ -10,7 +10,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
 {
     public class FilesTests : BaseResourceTests
     {
-        //[Fact] - not wokring atm
+        //[Fact] - not working atm
         public async Task Create_Invoice_returns_204()
         {
             CreateInvoiceRequest requestBody = new(ReferenceTypeEnum.KID);
