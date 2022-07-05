@@ -1,4 +1,4 @@
-﻿using PingPayments.PaymentLinksApi.Helpers;
+using PingPayments.PaymentLinksApi.Helpers;
 using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 using PingPayments.PaymentLinksApi.Shared;
@@ -6,7 +6,7 @@ using System;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+
 using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
 
@@ -15,15 +15,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Get.V1
     public class GetPaymentLinkOperation : OperationBase<Guid, PaymentLinkResponse>
     {
         public GetPaymentLinkOperation(HttpClient httpClient) : base(httpClient) { }
-
-        protected override JsonSerializerOptions JsonSerializerOptions => new()
-        {
-            Converters =
-            {
-                new MethodEnumJsonConvert(),
-                new JsonStringEnumConverter(),
-            }
-        };
 
         public override async Task<PaymentLinkResponse> ExecuteRequest(Guid paymentLinkId) =>
             await BaseExecute(GET, $"api/v1/payment_links/{paymentLinkId}", paymentLinkId);
