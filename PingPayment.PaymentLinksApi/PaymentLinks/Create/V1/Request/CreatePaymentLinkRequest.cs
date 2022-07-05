@@ -1,15 +1,9 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
     public record CreatePaymentLinkRequest : PaymentLink
     {
-
         public CreatePaymentLinkRequest
         (
             Guid paymentOrderId,
@@ -19,8 +13,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             string local,
             IEnumerable<Item> items,
             Supplier supplier,
-            int totalAmount,
-            IEnumerable<PaymentProviderMethods> paymentProviderMethods,
+            IEnumerable<PaymentProviderMethod> paymentProviderMethods,
             string? checkoutCancelUrl = null,
             string? checkoutSuccessUrl = null,
             string? checkoutUrl = null,
@@ -38,7 +31,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             Local = local;
             Items = items;
             Supplier = supplier;
-            TotalAmount = totalAmount;
+            TotalAmount = items.TotalAmountMinorCurrencyUnit();
             PaymentProviderMethods = paymentProviderMethods;
             CheckoutCancelUrl = checkoutCancelUrl;
             CheckoutSuccessUrl = checkoutSuccessUrl;
@@ -48,8 +41,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             LogoImageLink = logoImageLink;
             PaymentLinkStatusCallbackUrl = paymentLinkStatusCallbackUrl;
             Metadata = metadata ?? new Dictionary<string, dynamic>();
-
         }
-
     }
 }

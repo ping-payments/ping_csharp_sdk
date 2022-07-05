@@ -1,9 +1,8 @@
-﻿using PingPayments.PaymentLinksApi.Payments.Shared.V1;
-using System;
+﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
+namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
     public class MethodEnumJsonConvert : JsonConverter<MethodEnum>
     {

@@ -10,7 +10,6 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1
         {
         }
 
-
         public static CreatePaymentLinkResponse Succesful(HttpStatusCode statusCode, CreatePaymentLinkResponseBody? b, string rb) => new(statusCode, true, b, rb);
         public static CreatePaymentLinkResponse Failure(HttpStatusCode statusCode, ErrorResponseBody? e, string rb) => new(statusCode, false, e, rb);
     }

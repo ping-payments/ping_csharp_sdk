@@ -1,7 +1,7 @@
-﻿namespace PingPayments.PaymentLinksApi.Payments.Shared.V1
+﻿namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public enum MethodEnum
     {
-        e_commerce, m_commerce, pis, card, invoice, autogiro, vipps, deposit, dummy
+        e_commerce, m_commerce, card, invoice, vipps, dummy
     }
 }
