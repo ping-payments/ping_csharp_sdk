@@ -5,7 +5,7 @@ using PingPayments.PaymentsApi.Shared;
 using System;
 using System.Threading.Tasks;
 
-namespace PingPayments.PaymentsApi.PaymentOrders
+namespace PingPayments.PaymentsApi.Merchants
 {
     public interface IMerchantV1
     {
