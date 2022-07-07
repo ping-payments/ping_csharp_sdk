@@ -41,6 +41,16 @@ Install the latest SDK using NuGet.exe
 nuget install PingPayments
 ```
 
+From within Visual Studio:
+
+1. Open the Solution Explorer.
+2. Right-click on a project within your solution.
+3. Click on *Manage NuGet Packages...*
+4. Click on the *Browse* tab and search for "PingPayments".
+5. Click on the PingPayments package, select the appropriate version in the
+   right-tab and click *Install*.
+
+
 ## Documentation
 For a more comprehensive documentation check out the [API documentation](https://docs.pingpayments.com/docs/the-ping-payments-c-sdk). 
 
