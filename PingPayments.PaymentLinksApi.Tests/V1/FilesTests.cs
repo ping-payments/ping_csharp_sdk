@@ -4,16 +4,8 @@ namespace PingPayments.PaymentLinksApi.Tests.V1;
 
 public class FilesTests : BaseResourceTests
 {
-    [Fact] 
-    public async Task Create_Invoice_with_reference_KID_returns_204()
-    {
-        CreateInvoiceRequest requestBody = new(ReferenceTypeEnum.KID);
-        var response = await _api.Invoice.V1.Create(TestData.PaymentLinkId, requestBody);
-        AssertHttpNoContent(response);
-    }
-
     [Fact]
-    public async Task Create_Invoice_with_reference_OCR_returns_204()
+    public async Task Create_Invoice_with_reference_returns_204()
     {
         CreateInvoiceRequest requestBody = new(ReferenceTypeEnum.OCR);
         var response = await _api.Invoice.V1.Create(TestData.PaymentLinkId, requestBody);
@@ -41,7 +33,7 @@ public class FilesTests : BaseResourceTests
     [Fact]
     public async Task Get_invoice_from_paymentLink_with_no_invoice_returns_403()
     {
-        AssertHttpApiError(await _api.Invoice.V1.Get(TestData.PaymentLinkId));
+        AssertHttpApiError(await _api.Invoice.V1.Get(TestData.PaymentLinkIdNoInvoice));
     }
 
     [Fact]
