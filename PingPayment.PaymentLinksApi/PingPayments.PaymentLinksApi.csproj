@@ -1,9 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	  <TargetFramework>net6.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <LangVersion>9.0</LangVersion>
+	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	  <PackageId>PingPayments.PaymentLinks</PackageId>
+	  <Version>0.1.0-alpha</Version>
+	  <Authors>pingpaymentsab</Authors>
+	  <Company>Ping Payments AB</Company>
+	  <Owners>Ping Payments</Owners>
+	  <Product>Ping Payments Payment Links API</Product>
+	  <Copyright>Copyright ©  2022</Copyright>
+	  <Description>.NET client library for the Ping Payments Payment Links API</Description>
   </PropertyGroup>
 
 </Project>
