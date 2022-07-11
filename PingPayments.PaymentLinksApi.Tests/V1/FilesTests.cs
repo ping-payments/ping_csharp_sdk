@@ -4,7 +4,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1;
 
 public class FilesTests : BaseResourceTests
 {
-    //[Fact] - "No matching deposit account was found"
+    [Fact] 
     public async Task Create_Invoice_with_reference_KID_returns_204()
     {
         CreateInvoiceRequest requestBody = new(ReferenceTypeEnum.KID);
@@ -12,6 +12,7 @@ public class FilesTests : BaseResourceTests
         AssertHttpNoContent(response);
     }
 
+    [Fact]
     public async Task Create_Invoice_with_reference_OCR_returns_204()
     {
         CreateInvoiceRequest requestBody = new(ReferenceTypeEnum.OCR);
@@ -19,7 +20,7 @@ public class FilesTests : BaseResourceTests
         AssertHttpNoContent(response);
     }
 
-    //[Fact]- "No matching deposit account was found"
+    [Fact]
     public async Task Create_Invoice_empty_body_returns_422()
     {
         AssertHttpUnprocessableEntity(await _api.Invoice.V1.Create(TestData.PaymentLinkId, null));
@@ -32,10 +33,9 @@ public class FilesTests : BaseResourceTests
         AssertHttpNotFound(await _api.Invoice.V1.Create(new Guid(), requestBody));
     }
 
-    //[Fact] - No invoice to fetch yet.
+    [Fact] 
     public async Task Get_invoice_returns_200()
     {
-        // add a paymentlink with an invoice
         AssertHttpOK(await _api.Invoice.V1.Get(TestData.PaymentLinkId));
     }
     [Fact]
@@ -50,8 +50,7 @@ public class FilesTests : BaseResourceTests
         AssertHttpNotFound(await _api.Invoice.V1.Get(new Guid()));
     }
 
-
-    //[Fact] - not receipt to fetch yet
+    [Fact]
     public async Task Get_receipt_returns_200()
     {
         AssertHttpOK(await _api.Receipt.V1.Get(TestData.PaymentLinkId));
