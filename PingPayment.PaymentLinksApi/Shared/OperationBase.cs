@@ -1,4 +1,4 @@
-﻿using PingPayments.PaymentLinksApi.Helpers;
+﻿using PingPayments.Shared.Helpers;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;

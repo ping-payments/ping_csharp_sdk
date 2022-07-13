@@ -1,9 +1,10 @@
-﻿using PingPayments.PaymentsApi.Helpers;
-using PingPayments.PaymentsApi.Shared;
+﻿using PingPayments.PaymentsApi.Shared;
+using PingPayments.Shared.Helpers;
 using System.Net.Http;
 using System.Threading.Tasks;
-using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
+using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
+
 
 namespace PingPayments.PaymentsApi.Ping.V1
 {

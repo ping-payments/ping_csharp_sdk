@@ -1,6 +1,6 @@
 ﻿namespace PingPayments.Shared.Enums
 {
-    public enum RequestTypeEnum
+    public enum HttpRequestTypeEnum
     {
         POST,
         PUT,

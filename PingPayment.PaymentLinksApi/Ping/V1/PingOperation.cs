@@ -1,7 +1,8 @@
 ﻿using PingPayments.PaymentLinksApi.Shared;
+using PingPayments.Shared.Helpers;
 using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
-using PingPayments.PaymentLinksApi.Helpers;
+
 
 namespace PingPayments.PaymentLinksApi.Ping.V1
 {

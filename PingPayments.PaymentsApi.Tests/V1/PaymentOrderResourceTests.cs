@@ -8,6 +8,7 @@ using Xunit;
 using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+using PingPayments.Shared.Helpers;
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {

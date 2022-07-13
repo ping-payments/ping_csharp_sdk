@@ -1,13 +1,14 @@
-﻿using PingPayments.PaymentsApi.Helpers;
+﻿using PingPayments.Shared.Enums;
+using PingPayments.Shared.Helpers;
 using System;
 using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
+using System.Net.Http;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
+using System.Net.Http.Headers;
+using System.Text.Json.Serialization;
+using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 
 namespace PingPayments.PaymentsApi.Shared
 {
@@ -58,7 +59,7 @@ namespace PingPayments.PaymentsApi.Shared
 
         protected async Task<StringContent> ToJson<T>(T bodyObject) => new(await Serialize(bodyObject, JsonSerializerOptions), Encoding.UTF8, "application/json");
 
-        protected async Task<Response> BaseExecute(RequestTypeEnum requestType, string url, Request request, HttpContent? content = null)
+        protected async Task<Response> BaseExecute(HttpRequestTypeEnum requestType, string url, Request request, HttpContent? content = null)
         {            
             using var response = requestType switch
             {

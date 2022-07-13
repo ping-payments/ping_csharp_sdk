@@ -1,5 +1,6 @@
 ﻿using PingPayments.PaymentsApi.Helpers;
 using PingPayments.PaymentsApi.Shared;
+using PingPayments.Shared;
 using System.Net.Http;
 using Xunit;
 

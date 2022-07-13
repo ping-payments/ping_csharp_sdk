@@ -9,6 +9,10 @@
     <Import_RootNamespace>PingPayments.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Enums\RequestTypeEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\HttpRequestTypeEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AmountHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\GenericHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\HttpClientHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpClientExtensions.cs" />
   </ItemGroup>
 </Project>

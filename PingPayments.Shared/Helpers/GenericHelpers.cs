@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
+using System;
 
-namespace PingPayments.PaymentsApi.Helpers
+namespace PingPayments.Shared.Helpers
 {
     internal static class GenericHelpers
     {

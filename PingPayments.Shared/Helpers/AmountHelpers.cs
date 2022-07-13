@@ -1,4 +1,6 @@
-﻿namespace PingPayments.PaymentLinksApi.Helpers
+﻿using System;
+
+namespace PingPayments.Shared.Helpers
 {
     public static class AmountHelpers
     {

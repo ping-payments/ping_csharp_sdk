@@ -1,4 +1,4 @@
-﻿using PingPayments.PaymentsApi.Helpers;
+﻿using PingPayments.Shared.Helpers;
 using PingPayments.PaymentsApi.Payments.Shared.V1;
 using System.Collections.Generic;
 using System.Linq;

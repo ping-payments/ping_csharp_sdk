@@ -1,12 +1,11 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.PaymentLinksApi.Shared;
-using PingPayments.PaymentLinksApi.Helpers;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using static PingPayments.PaymentLinksApi.Shared.RequestTypeEnum;
 using static System.Net.HttpStatusCode;
-
+using PingPayments.Shared.Helpers;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1
 {

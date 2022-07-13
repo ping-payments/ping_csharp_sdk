@@ -1,8 +1,8 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using System.Net.Http;
-using System.Threading.Tasks;
+using System;
 
-namespace PingPayments.PaymentsApi.Helpers
+namespace PingPayments.Shared.Helpers
 {
     internal static class HttpClientHelpers
     {
