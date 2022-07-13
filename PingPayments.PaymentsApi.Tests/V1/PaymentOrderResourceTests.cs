@@ -49,7 +49,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Can_create_order_with_split_tree_id_and_split_paramters()
         {
-            var splitParamters = new Dictionary<string, object> { { "tenant_fee", 20.ToMinorCurrencyUnit() } };
+            dynamic splitParamters = new { fee = "tenant_fee", amount = 20.ToMinorCurrencyUnit() };
             var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, splitParamters, TestData.SplitTreeId);
             var response = await _api.PaymentOrder.V1.Create(request);
             AssertHttpOK(response);

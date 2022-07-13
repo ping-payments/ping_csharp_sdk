@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace PingPayments.PaymentsApi.PaymentOrders.Create.V1
 {
 
-    public record CreatePaymentOrderRequest(CurrencyEnum Currency, IDictionary<string, dynamic>? SplitParamters = null, Guid ? SplitTreeId = null) 
+    public record CreatePaymentOrderRequest(CurrencyEnum Currency, dynamic? SplitParamters = null, Guid ? SplitTreeId = null) 
     {
         /// <summary>
         /// The currencu which will be used in the payment order
@@ -18,7 +18,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Create.V1
         /// Parameters used to control parts of the split tree
         /// </summary>
         [JsonPropertyName("split_parameters")]
-        public IDictionary<string, dynamic>? SplitParamters { get; set; } = SplitParamters ?? new Dictionary<string, dynamic>();
+        public dynamic? SplitParamters { get; set; } = SplitParamters ?? new Dictionary<string, dynamic>();
 
         /// <summary>
         /// The split tree used for the payment order
