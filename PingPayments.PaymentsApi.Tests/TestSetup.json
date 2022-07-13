@@ -1,7 +1,7 @@
 {
-  "TENANTID": "a2a4f648-a50b-42fb-bda8-00c6e2f295ea",
-  "MERCHANTID": "70166bfa-2b5f-42f8-abe1-a614e32ad1b2",
-  "ORDERID": "2c771525-a198-4aeb-9e93-4a4222f03443",
-  "SPLITTREEID": "4f3a07d4-ef83-4040-bcc4-0a6e6bfab6ab",
-  "PAYMENTID": "82dddcd6-89a6-435f-93a2-a62016c2a771"
+  "TENANTID": "",
+  "MERCHANTID": "",
+  "ORDERID": "",
+  "SPLITTREEID": "",
+  "PAYMENTID": ""
 }
