@@ -8,6 +8,7 @@ using Xunit;
 using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+using System.Collections.Generic;
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
@@ -27,10 +28,12 @@ namespace PingPayments.PaymentsApi.Tests.V1
             AssertHttpNotFound(response);
         }
 
+
         [Fact]
-        public async Task Can_create_order_without_split_tree_id()
+        public async Task Can_create_order_with_split_parameters()
         {
-            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+            var splitParamters = new Dictionary<string, object> { { "tenant_fee", 20.ToMinorCurrencyUnit() } }; 
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, SplitParamters: splitParamters);
             var response = await _api.PaymentOrder.V1.Create(request);
             AssertHttpOK(response);
         }
@@ -38,7 +41,24 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Can_create_order_with_split_tree_id()
         {
-            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, TestData.SplitTreeId);
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, SplitTreeId: TestData.SplitTreeId);
+            var response = await _api.PaymentOrder.V1.Create(request);
+            AssertHttpOK(response);
+        }
+
+        [Fact]
+        public async Task Can_create_order_with_split_tree_id_and_split_paramters()
+        {
+            dynamic splitParamters = new { tenant_fee = 20.ToMinorCurrencyUnit() };
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, splitParamters, TestData.SplitTreeId);
+            var response = await _api.PaymentOrder.V1.Create(request);
+            AssertHttpOK(response);
+        }
+
+        [Fact]
+        public async Task Can_create_order_without_split_tree_id_and_split_paramters()
+        {
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
             var response = await _api.PaymentOrder.V1.Create(request);
             AssertHttpOK(response);
         }
