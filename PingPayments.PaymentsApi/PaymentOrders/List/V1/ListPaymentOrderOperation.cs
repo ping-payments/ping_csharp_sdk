@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using static System.Net.HttpStatusCode;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
 {

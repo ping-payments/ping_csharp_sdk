@@ -1,6 +1,7 @@
 ﻿using PingPayments.PaymentsApi.Merchants.Shared.V1;
 using PingPayments.PaymentsApi.Shared;
 using PingPayments.Shared.Helpers;
+using PingPayments.Shared;
 using System.Net.Http;
 using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;

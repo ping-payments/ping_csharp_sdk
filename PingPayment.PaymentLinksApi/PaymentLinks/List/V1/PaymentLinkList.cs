@@ -1,5 +1,5 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
-using PingPayments.PaymentLinksApi.Shared;
+using PingPayments.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;

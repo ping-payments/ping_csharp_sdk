@@ -1,4 +1,4 @@
-﻿namespace PingPayments.PaymentsApi.Shared
+﻿namespace PingPayments.Shared
 {
     public record EmptySuccesfulResponseBody()
     {

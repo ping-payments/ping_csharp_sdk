@@ -6,6 +6,7 @@ using PingPayments.PaymentsApi.PaymentOrders.Settle.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Split.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
 using PingPayments.PaymentsApi.Shared;
+using PingPayments.Shared;
 using System;
 using System.Threading.Tasks;
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Text.Json.Serialization;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentsApi.Shared
 {

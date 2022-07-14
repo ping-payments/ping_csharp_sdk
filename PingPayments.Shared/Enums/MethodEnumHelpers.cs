@@ -1,4 +1,6 @@
-﻿namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
+﻿using System;
+
+namespace PingPayments.Shared.Enums
 {
     public static class MethodEnumHelpers
     {

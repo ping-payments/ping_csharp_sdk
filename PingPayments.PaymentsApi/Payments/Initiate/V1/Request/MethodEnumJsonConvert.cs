@@ -1,4 +1,4 @@
-﻿using PingPayments.PaymentsApi.Payments.Shared.V1;
+﻿using PingPayments.Shared.Enums;
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;

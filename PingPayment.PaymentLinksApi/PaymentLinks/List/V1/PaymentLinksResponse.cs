@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.List.V1
 {

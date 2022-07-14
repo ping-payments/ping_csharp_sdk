@@ -1,5 +1,5 @@
 ﻿using PingPayments.PaymentsApi.Payments.Get.V1;
-using PingPayments.PaymentsApi.Shared;
+using PingPayments.Shared;
 using System;
 using System.Text.Json.Serialization;
 

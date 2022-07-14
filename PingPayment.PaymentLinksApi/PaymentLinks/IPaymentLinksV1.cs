@@ -4,6 +4,7 @@ using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.PaymentLinksApi.PaymentLinks.Get.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks
 {

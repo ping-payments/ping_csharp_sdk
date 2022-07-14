@@ -1,16 +1,16 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PingPayments.PaymentLinksApi.Shared
+namespace PingPayments.Shared
 {
-    public record ErrorResponseBody
+    public record ErrorMessage
     {
-        [JsonPropertyName("errors")]
-        public ErrorMessage[]? Errors { get; set;}
-
         [JsonPropertyName("description")]
         public string? Description { get; set; }
 
         [JsonPropertyName("error")]
         public string? Error { get; set; }
+
+        [JsonPropertyName("property")]
+        public string? Property { get; set; }
     }
 }

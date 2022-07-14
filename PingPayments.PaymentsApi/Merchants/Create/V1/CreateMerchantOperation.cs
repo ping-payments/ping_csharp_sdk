@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text.Json;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentsApi.Merchants.Create.V1
 {

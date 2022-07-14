@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Settle.V1
 {

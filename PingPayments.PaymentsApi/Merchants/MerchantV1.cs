@@ -3,6 +3,7 @@ using PingPayments.PaymentsApi.Merchants.Get.V1;
 using PingPayments.PaymentsApi.Merchants.List.V1;
 using PingPayments.PaymentsApi.Merchants.Shared.V1;
 using PingPayments.PaymentsApi.Shared;
+using PingPayments.Shared;
 using System;
 using System.Threading.Tasks;
 

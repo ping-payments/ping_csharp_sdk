@@ -9,10 +9,28 @@
     <Import_RootNamespace>PingPayments.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ApiResponseBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EmptyRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EmptyResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EmptySuccesfulResponseBody.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\CurrencyEnum.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\HttpRequestTypeEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\MethodEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\MethodEnumHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\PaymentStatusEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ProviderEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ErrorMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ErrorResponseBody.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuidResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuidResponseBody.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AmountHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GenericHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\HttpClientHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HttpClientExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NorwegianVat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResponseBody.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SwedishVat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TextResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TextResponseBody.cs" />
   </ItemGroup>
 </Project>

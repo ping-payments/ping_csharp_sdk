@@ -1,4 +1,4 @@
-﻿namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
+﻿namespace PingPayments.Shared.Enums
 {
     public enum CurrencyEnum
     {

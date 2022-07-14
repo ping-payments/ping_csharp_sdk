@@ -1,4 +1,4 @@
-﻿namespace PingPayments.PaymentsApi.Payments.Shared.V1
+﻿namespace PingPayments.Shared.Enums
 {
     public enum ProviderEnum
     {

@@ -1,6 +1,7 @@
-﻿using System.Net;
+﻿using PingPayments.Shared;
+using System.Net;
 
-namespace PingPayments.PaymentsApi.Shared
+namespace PingPayments.Shared
 {
     public record EmptyResponse : ApiResponseBase<EmptySuccesfulResponseBody>
     {
