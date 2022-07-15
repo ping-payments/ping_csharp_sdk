@@ -60,7 +60,7 @@ namespace PingPayments.Shared
         protected async Task<StringContent> ToJson<T>(T bodyObject) => new(await Serialize(bodyObject, JsonSerializerOptions), Encoding.UTF8, "application/json");
 
         protected async Task<Response> BaseExecute(HttpRequestTypeEnum requestType, string url, Request request, HttpContent? content = null)
-        {            
+        {
             using var response = requestType switch
             {
                 POST => await _httpClient.PostAsync(url, content),

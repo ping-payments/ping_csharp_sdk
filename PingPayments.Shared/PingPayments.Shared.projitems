@@ -29,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)HttpClientExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MethodEnumJsonConvert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NorwegianVat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OperationBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponseBody.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SwedishVat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TextResponse.cs" />
