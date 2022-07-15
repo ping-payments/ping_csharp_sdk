@@ -1,5 +1,4 @@
 ﻿using PingPayments.PaymentsApi.Merchants.Shared.V1;
-using PingPayments.PaymentsApi.Shared;
 using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using System;

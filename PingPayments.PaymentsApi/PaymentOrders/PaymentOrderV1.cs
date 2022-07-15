@@ -1,11 +1,10 @@
-﻿using PingPayments.PaymentsApi.PaymentOrders.Close.V1;
-using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
-using PingPayments.PaymentsApi.PaymentOrders.Get.V1;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Get.V1;
 using PingPayments.PaymentsApi.PaymentOrders.List.V1;
-using PingPayments.PaymentsApi.PaymentOrders.Settle.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Split.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Close.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Settle.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
-using PingPayments.PaymentsApi.Shared;
 using PingPayments.Shared;
 using System;
 using System.Threading.Tasks;

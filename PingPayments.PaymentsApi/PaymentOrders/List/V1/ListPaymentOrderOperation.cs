@@ -1,7 +1,6 @@
-﻿using PingPayments.Shared.Helpers;
-using PingPayments.PaymentsApi.Shared;
-using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
-using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
+using PingPayments.Shared;
+using PingPayments.Shared.Helpers;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using static System.Net.HttpStatusCode;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
-using PingPayments.Shared;
+
 
 namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
 {

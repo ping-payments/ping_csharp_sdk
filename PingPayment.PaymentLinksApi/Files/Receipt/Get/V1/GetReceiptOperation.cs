@@ -1,5 +1,4 @@
 ﻿using PingPayments.PaymentLinksApi.Files.Shared.V1;
-using PingPayments.PaymentLinksApi.Shared;
 using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;

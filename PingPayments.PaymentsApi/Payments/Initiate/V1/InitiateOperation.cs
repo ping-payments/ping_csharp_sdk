@@ -1,6 +1,6 @@
 ﻿using PingPayments.Shared.Helpers;
 using PingPayments.Shared.Enums;
-using PingPayments.PaymentsApi.Shared;
+using PingPayments.Shared;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using System;
@@ -11,7 +11,7 @@ using System.Text.Json.Serialization;
 using System.Runtime.CompilerServices;
 using static System.Net.HttpStatusCode;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
-using PingPayments.Shared;
+
 
 [assembly: InternalsVisibleTo("PingPayments.PaymentsApi.Tests")]
 

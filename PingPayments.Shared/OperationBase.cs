@@ -1,14 +1,16 @@
-﻿using PingPayments.Shared;
-using PingPayments.Shared.Enums;
+﻿using PingPayments.Shared.Enums;
 using PingPayments.Shared.Helpers;
-using System.Net.Http.Headers;
+using System;
+using System.IO;
 using System.Text;
+using System.Net.Http;
 using System.Text.Json;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
 using System.Text.Json.Serialization;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 
-
-namespace PingPayments.PaymentLinksApi.Shared
+namespace PingPayments.Shared
 {
     public abstract class OperationBase<Request, Response>
     {

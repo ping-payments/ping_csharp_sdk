@@ -1,13 +1,6 @@
-﻿using PingPayments.PaymentLinksApi.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PingPayments.Shared;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.Shared;
-using PingPayments.Shared;
+using System.Net;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.List.V1
 {
