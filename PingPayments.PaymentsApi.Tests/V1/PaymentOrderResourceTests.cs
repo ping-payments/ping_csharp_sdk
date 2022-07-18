@@ -1,14 +1,14 @@
-﻿using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
+﻿using PingPayments.PaymentsApi.Helpers;
+using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
+using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Shared.V1;
+using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
+using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using System;
-using PingPayments.PaymentsApi.Helpers;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
-using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
-using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
-using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
-using PingPayments.PaymentsApi.Payments.Get.V1;
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
@@ -73,7 +73,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.True(orders.Any());
         }
 
-        #pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
         [Fact]
         public async Task Can_close_then_split_then_settle_an_order()
         {
@@ -93,14 +93,13 @@ namespace PingPayments.PaymentsApi.Tests.V1
 
             InitiatePaymentResponse paymentId = await _api.Payments.V1.Initiate(orderId, requestObject);
 
-            bool isCompleted = false;
-            while (!isCompleted)
+            bool isStatusCompleted = false;
+            while (!isStatusCompleted)
             {
-                PaymentResponse paymentStatus = await _api.Payments.V1.Get(orderId, paymentId.Body.SuccesfulResponseBody.Id);
-                if (paymentStatus.Body.SuccesfulResponseBody.Status == PaymentStatusEnum.COMPLETED) 
-                {
-                    isCompleted = true;
-                }
+                PaymentResponse payment = await _api.Payments.V1.Get(orderId, paymentId.Body.SuccesfulResponseBody.Id);
+                var paymentStatus = payment.Body.SuccesfulResponseBody.Status;
+
+                if (paymentStatus == PaymentStatusEnum.COMPLETED) isStatusCompleted = true;
             }
 
             //3. Close
@@ -112,6 +111,6 @@ namespace PingPayments.PaymentsApi.Tests.V1
             //5. Settle 
             AssertHttpNoContent(await _api.PaymentOrder.V1.Settle(orderId));
         }
-        #pragma warning restore CS8602 // Dereference of a possibly null reference.
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
     }
 }
