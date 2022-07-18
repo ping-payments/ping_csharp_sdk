@@ -6,6 +6,7 @@ using PingPayments.PaymentsApi.Payments.Shared.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -33,7 +34,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Can_create_order_with_split_parameters()
         {
-            var splitParamters = new Dictionary<string, object> { { "tenant_fee", 20.ToMinorCurrencyUnit() } }; 
+            var splitParamters = new Dictionary<string, object> { { "tenant_fee", 20.ToMinorCurrencyUnit() } };
             var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, SplitParamters: splitParamters);
             var response = await _api.PaymentOrder.V1.Create(request);
             AssertHttpOK(response);
