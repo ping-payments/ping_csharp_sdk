@@ -1,4 +1,4 @@
-﻿using PingPayments.PaymentLinksApi.Helpers;
+﻿using PingPayments.Shared.Helpers;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
