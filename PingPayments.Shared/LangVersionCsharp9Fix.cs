@@ -8,7 +8,7 @@ namespace System.Runtime.CompilerServices
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     internal static class IsExternalInit
-    { 
+    {
         public record VerifyThisWorks(string UnusedParameter);
     }
 }
