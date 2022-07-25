@@ -1,10 +1,11 @@
 ﻿using PingPayments.PaymentsApi.Payments.Initiate.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using System.Threading.Tasks;
-using PingPayments.PaymentsApi.Payments.Shared.V1;
+using PingPayments.Shared.Enums;
 using Xunit;
 using System.Text.Json.Serialization;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {

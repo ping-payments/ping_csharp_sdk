@@ -1,5 +1,5 @@
-﻿using PingPayments.PaymentLinksApi.Ping.V1;
-using PingPayments.PaymentLinksApi.Shared;
+﻿using PingPayments.Shared;
+using PingPayments.PaymentLinksApi.Ping.V1;
 
 namespace PingPayments.PaymentLinksApi.Ping
 {

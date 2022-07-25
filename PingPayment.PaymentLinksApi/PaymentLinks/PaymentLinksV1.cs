@@ -1,11 +1,12 @@
-﻿using PingPayments.PaymentLinksApi.Shared;
-using PingPayments.PaymentLinksApi.PaymentLinks.List.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
+﻿using PingPayments.Shared;
 using PingPayments.PaymentLinksApi.PaymentLinks.Get.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.List.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
+using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
+using PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1;
+
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks
 {

@@ -1,8 +1,8 @@
-﻿using PingPayments.PaymentsApi.Shared;
+﻿using PingPayments.Shared;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
+using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Split.V1

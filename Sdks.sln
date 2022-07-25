@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.PaymentLinksAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.PaymentLinksApi.Tests", "PingPayments.PaymentLinksApi.Tests\PingPayments.PaymentLinksApi.Tests.csproj", "{97582909-C3A6-4694-9E25-F2F3CBE4104E}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PingPayments.Shared", "PingPayments.Shared\PingPayments.Shared.shproj", "{44CC5A4E-B77B-4D5F-AD00-F0E5BC1127C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,5 +49,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AE6C4DFE-A092-41AD-8EB8-DF1E8FC9526B}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		PingPayments.Shared\PingPayments.Shared.projitems*{44cc5a4e-b77b-4d5f-ad00-f0e5bc1127c6}*SharedItemsImports = 13
+		PingPayments.Shared\PingPayments.Shared.projitems*{79ad9f87-b9c5-463e-a00a-dbaccd8e0990}*SharedItemsImports = 5
+		PingPayments.Shared\PingPayments.Shared.projitems*{f5a28537-202b-45d7-a1c6-f467c31ad102}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

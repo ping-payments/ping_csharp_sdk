@@ -1,7 +1,10 @@
-﻿using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
+using PingPayments.Shared;
+using PingPayments.Shared.Enums;
+
 
 namespace PingPayments.PaymentLinksApi.Tests.V1
 {

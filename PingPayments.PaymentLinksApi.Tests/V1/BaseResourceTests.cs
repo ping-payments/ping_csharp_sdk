@@ -1,6 +1,5 @@
-﻿using PingPayments.PaymentLinksApi.Helpers;
-using PingPayments.PaymentLinksApi.Shared;
-
+﻿using PingPayments.Shared;
+using PingPayments.PaymentLinksApi.Helpers;
 
 namespace PingPayments.PaymentLinksApi.Tests.V1
 {

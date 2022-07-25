@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentsApi.Helpers;
+﻿using PingPayments.Shared.Helpers;
+using PingPayments.Shared;
 using Xunit;
 
 namespace PingPayments.PaymentsApi.Tests
