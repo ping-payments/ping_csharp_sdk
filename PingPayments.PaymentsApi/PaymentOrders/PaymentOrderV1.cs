@@ -1,9 +1,9 @@
-﻿using PingPayments.PaymentsApi.PaymentOrders.Get.V1;
-using PingPayments.PaymentsApi.PaymentOrders.List.V1;
-using PingPayments.PaymentsApi.PaymentOrders.Split.V1;
-using PingPayments.PaymentsApi.PaymentOrders.Close.V1;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Close.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Get.V1;
+using PingPayments.PaymentsApi.PaymentOrders.List.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Settle.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Split.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
 using PingPayments.Shared;
 using System;
@@ -48,9 +48,9 @@ namespace PingPayments.PaymentsApi.PaymentOrders
             await _updatePaymentOrderOperation.Value.ExecuteRequest(updateRequest);
         public async Task<EmptyResponse> Close(Guid orderId) =>
             await _closePaymentOrderOperation.Value.ExecuteRequest(orderId);
-        public async Task<EmptyResponse> Split(Guid orderId) =>
-            await _splitPaymentOrderOperation.Value.ExecuteRequest(orderId);
-        public async Task<EmptyResponse> Settle(Guid orderId) =>
-            await _settlePaymentOrderOperation.Value.ExecuteRequest(orderId);
+        public async Task<EmptyResponse> Split(Guid orderId, bool fastForward = false) =>
+            await _splitPaymentOrderOperation.Value.ExecuteRequest((orderId, fastForward));
+        public async Task<EmptyResponse> Settle(Guid orderId, bool fastForward = false) =>
+            await _settlePaymentOrderOperation.Value.ExecuteRequest((orderId, fastForward));
     }
 }

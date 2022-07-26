@@ -134,6 +134,115 @@ namespace PingPayments.PaymentsApi.Tests.V1
             //5. Settle 
             AssertHttpNoContent(await _api.PaymentOrder.V1.Settle(orderId));
         }
+
+        [Fact]
+        public async Task Can_not_split_before_close_403()
+        {
+            // Split an open order
+            AssertHttpApiError(await _api.PaymentOrder.V1.Split(TestData.OpenOrderId));
+        }
+
+        [Fact]
+        public async Task Can_not_settle_before_close_403()
+        {
+            // Settle an open order
+            AssertHttpApiError(await _api.PaymentOrder.V1.Settle(TestData.OpenOrderId));
+        }
+
+        [Fact]
+        public async Task Can_not_settle_before_split_403()
+        {
+            //1. Create order
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+            Guid orderId = await _api.PaymentOrder.V1.Create(request);
+
+            //2. Create payment
+            var requestObject = CreatePayment.Dummy.New
+            (
+                CurrencyEnum.SEK,
+                new OrderItem(10.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId).InList(),
+                TestData.FakeCallback
+            );
+
+            InitiatePaymentResponse paymentId = await _api.Payments.V1.Initiate(orderId, requestObject);
+
+            bool isStatusCompleted = false;
+            while (!isStatusCompleted)
+            {
+                PaymentResponse payment = await _api.Payments.V1.Get(orderId, paymentId.Body.SuccesfulResponseBody.Id);
+                var paymentStatus = payment.Body.SuccesfulResponseBody.Status;
+
+                if (paymentStatus == PaymentStatusEnum.COMPLETED) isStatusCompleted = true;
+            }
+
+            //3. Close
+            await _api.PaymentOrder.V1.Close(orderId);
+            //4. Settle without split
+            AssertHttpApiError(await _api.PaymentOrder.V1.Settle(orderId));
+        }
+
+        [Fact]
+        public async Task Can_fast_forward_to_settle()
+        {
+            //1. Create order
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+            Guid orderId = await _api.PaymentOrder.V1.Create(request);
+
+            //2. Create payment
+            var requestObject = CreatePayment.Dummy.New
+            (
+                CurrencyEnum.SEK,
+                new OrderItem(10.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId).InList(),
+                TestData.FakeCallback
+            );
+
+            InitiatePaymentResponse paymentId = await _api.Payments.V1.Initiate(orderId, requestObject);
+
+            // Await status
+            bool isStatusCompleted = false;
+            while (!isStatusCompleted)
+            {
+                PaymentResponse payment = await _api.Payments.V1.Get(orderId, paymentId.Body.SuccesfulResponseBody.Id);
+                var paymentStatus = payment.Body.SuccesfulResponseBody.Status;
+
+                if (paymentStatus == PaymentStatusEnum.COMPLETED) isStatusCompleted = true;
+            }
+
+            //3. fast forward to settle
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Settle(orderId, true));
+        }
+
+        [Fact]
+        public async Task Can_fast_forward_to_split()
+        {
+            //1. Create order
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+            Guid orderId = await _api.PaymentOrder.V1.Create(request);
+
+            //2. Create payment
+            var requestObject = CreatePayment.Dummy.New
+            (
+                CurrencyEnum.SEK,
+                new OrderItem(10.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId).InList(),
+                TestData.FakeCallback
+            );
+
+            InitiatePaymentResponse paymentId = await _api.Payments.V1.Initiate(orderId, requestObject);
+
+            // Await status
+            bool isStatusCompleted = false;
+            while (!isStatusCompleted)
+            {
+                PaymentResponse payment = await _api.Payments.V1.Get(orderId, paymentId.Body.SuccesfulResponseBody.Id);
+                var paymentStatus = payment.Body.SuccesfulResponseBody.Status;
+
+                if (paymentStatus == PaymentStatusEnum.COMPLETED) isStatusCompleted = true;
+            }
+
+            //3. fast forward to split
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Split(orderId, true));
+        }
+
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
     }
 }
