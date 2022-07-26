@@ -1,7 +1,8 @@
 # Ping Payments C# SDK
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Nuget](https://img.shields.io/nuget/v/PingPayments)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\
+![Nuget](https://img.shields.io/nuget/v/PingPayments.Payments?label=PingPayments.Payments)\
+![Nuget](https://img.shields.io/nuget/v/PingPayments.PaymentLinks?label=PingPayments.PaymentLinks)
 
 Use this C# nuget library to manage Ping Payments resources regarding payments and payment links.
 
@@ -19,8 +20,6 @@ Use this C# nuget library to manage Ping Payments resources regarding payments a
 
 * [Tests](#tests)
 
-* [SDK Reference](#sdk-reference)
-
 
 ## Requirements
 
@@ -28,17 +27,24 @@ Use of the Ping Payments .NET SDK requires:
 NET Standard 2.1 or higher. 
 
 ## Installation
+Select an installation method and a desired package.
 
 Install the latest SDK using dotnet CLI:
 
 ```sh
-dotnet add package PingPayments
+dotnet add package PingPayments.Payments
+```
+```sh
+dotnet add package PingPayments.PaymentLinks
 ```
 
 Install the latest SDK using NuGet.exe
 
 ```sh
-nuget install PingPayments
+nuget install PingPayments.Payments
+```
+```sh
+nuget install PingPayments.PaymentLinks
 ```
 
 From within Visual Studio:
@@ -47,12 +53,12 @@ From within Visual Studio:
 2. Right-click on a project within your solution.
 3. Click on *Manage NuGet Packages...*
 4. Click on the *Browse* tab and search for "PingPayments".
-5. Click on the PingPayments package, select the appropriate version in the
+5. Click on a desired package, select the appropriate version in the
    right-tab and click *Install*.
 
 
 ## Documentation
-For a more comprehensive documentation check out the [API documentation](https://docs.pingpayments.com/docs/the-ping-payments-c-sdk). 
+For a more comprehensive documentation check out the [SDK documentation](https://docs.pingpayments.com/docs/the-ping-payments-c-sdk). 
 
 
 ## Payment API 
@@ -213,6 +219,3 @@ else
 ## Tests
 
 Download the repository and update TestSetup.json with your TenantId and additional testdata.
-
-
-## SDK Reference
