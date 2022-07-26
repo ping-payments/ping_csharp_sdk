@@ -1,5 +1,5 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
-using PingPayments.Shared.Enums; 
+using PingPayments.Shared.Enums;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
@@ -42,6 +42,50 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             LogoImageLink = logoImageLink;
             PaymentLinkStatusCallbackUrl = paymentLinkStatusCallbackUrl;
             Metadata = metadata ?? new Dictionary<string, dynamic>();
+        }
+
+        public CreatePaymentLinkRequest AndCheckoutCancelUrl(string checkoutCancelUrl)
+        {
+            CheckoutCancelUrl = checkoutCancelUrl;
+            return this;
+        }
+        public CreatePaymentLinkRequest AndCheckoutSuccessUrl(string checkoutSuccessUrl)
+        {
+            CheckoutSuccessUrl = checkoutSuccessUrl;
+            return this;
+        }
+        public CreatePaymentLinkRequest AddCheckoutUrl(string checkoutUrl)
+        {
+            CheckoutUrl = checkoutUrl;
+            return this;
+        }
+
+        public CreatePaymentLinkRequest AddDeliveryAdress(string city, string streetAdress, string zip)
+        {
+            Adress _adress = new(city, streetAdress, zip);
+            DeliveryAdress = _adress;
+            return this;
+        }
+        public CreatePaymentLinkRequest AddInvoiceAdress(string city, string streetAdress, string zip)
+        {
+            Adress _adress = new(city, streetAdress, zip);
+            InvoiceAdress = _adress;
+            return this;
+        }
+        public CreatePaymentLinkRequest AddLogoImageLink(string logoImageLink)
+        {
+            LogoImageLink = logoImageLink;
+            return this;
+        }
+        public CreatePaymentLinkRequest AddPaymentLinkStatusCallbackUrl(string paymentLinkStatusCallbackUrl)
+        {
+            PaymentLinkStatusCallbackUrl = paymentLinkStatusCallbackUrl;
+            return this;
+        }
+        public CreatePaymentLinkRequest AddMetadata(Dictionary<string, dynamic> metadata)
+        {
+            Metadata = metadata;
+            return this;
         }
     }
 }

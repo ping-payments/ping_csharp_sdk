@@ -129,7 +129,56 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
                         Verifone,
                         billmate,
                     }
+
                 );
+
+            var response = await _api.PaymentLinks.V1.Create(paymentLinkRequest);
+
+            AssertHttpOK(response);
+            return response;
+        }
+
+        [Fact]
+        public async Task<CreatePaymentLinkResponse> Create_paymentLink_with_help_methods_returns_200()
+        {
+            var customer = new Customer("FrstName", "LastName");
+            var items = new Item[]
+            {
+                new Item("Hawaii Pizza", TestData.MerchantId, 70, 2, SwedishVat.Vat12)
+            };
+            var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            var suppler = new Supplier("Supllier name");
+
+            var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
+            var Verifone = CreatePaymentProviderMethod.Verifone.Card();
+            var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
+            Dictionary<string, dynamic> metadata = new Dictionary<string, dynamic>();
+            metadata.Add("data", "123");
+            var paymentLinkRequest = new CreatePaymentLinkRequest
+                (
+                    TestData.OrderId,
+                    CurrencyEnum.SEK,
+                    customer,
+                    dueDate,
+                    Locale.Swedish,
+                    items,
+                    suppler,
+                    new PaymentProviderMethod[]
+                    {
+                        swishMcommmerce,
+                        Verifone,
+                        billmate,
+                    }
+                )
+                .AddCheckoutUrl("http://www.best-site.com/")
+                .AndCheckoutCancelUrl("http://www.best-site.com/")
+                .AndCheckoutSuccessUrl("http://www.best-site.com/")
+                .AddDeliveryAdress("Örebro", "Bondegatan", "70000")
+                .AddInvoiceAdress("Örebro", "Bondegatan", "70000")
+                .AddLogoImageLink("/logo.png")
+                .AddPaymentLinkStatusCallbackUrl("http://www.best-site.com/")
+                .AddMetadata(metadata);
+
 
             var response = await _api.PaymentLinks.V1.Create(paymentLinkRequest);
 
