@@ -1,5 +1,5 @@
-﻿using PingPayments.Shared;
-using PingPayments.PaymentsApi.Helpers;
+﻿using PingPayments.PaymentsApi.Helpers;
+using PingPayments.Shared;
 using System.Net.Http;
 using Xunit;
 
@@ -45,6 +45,16 @@ namespace PingPayments.PaymentsApi.Tests.V1
         {
             Assert.NotNull(response);
             Assert.Equal(404, (int)response.StatusCode);
+            Assert.True(response.IsFailure);
+            Assert.False(response.ParsingError);
+            Assert.False(response.IsSuccessful);
+            Assert.Null(response?.Body?.SuccesfulResponseBody);
+        }
+
+        protected static void AssertHttpApiError<T>(ApiResponseBase<T> response) where T : EmptySuccesfulResponseBody
+        {
+            Assert.NotNull(response);
+            Assert.Equal(403, (int)response.StatusCode);
             Assert.True(response.IsFailure);
             Assert.False(response.ParsingError);
             Assert.False(response.IsSuccessful);
