@@ -7,8 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.PaymentsApi", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C1AA406-B67A-4C16-9291-45821A62B2FF}"
 	ProjectSection(SolutionItems) = preProject
-		CHANGELOG.MD = CHANGELOG.MD
 		LICENSE.txt = LICENSE.txt
+		CHANGELOG_PaymentsApi.MD = CHANGELOG_PaymentsApi.MD
+		CHANGELOG_PaymentLinksApi.MD = CHANGELOG_PaymentLinksApi.MD
 		.github\workflows\publish.yaml = .github\workflows\publish.yaml
 		README.MD = README.MD
 	EndProjectSection
