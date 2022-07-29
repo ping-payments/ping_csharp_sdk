@@ -7,7 +7,7 @@
 	  <LangVersion>10</LangVersion>
 	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	  <PackageId>PingPayments.PaymentLinks</PackageId>
-	  <Version>0.2.0-alpha</Version>
+	  <Version>0.2.1-alpha</Version>
 	  <Authors>pingpaymentsab</Authors>
 	  <Company>Ping Payments AB</Company>
 	  <Owners>Ping Payments</Owners>

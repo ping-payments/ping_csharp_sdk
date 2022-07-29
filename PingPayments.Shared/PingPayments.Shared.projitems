@@ -27,7 +27,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\GenericHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\HttpClientHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HttpClientExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LangVersionCsharp9Fix.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MethodEnumJsonConvert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NorwegianVat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OperationBase.cs" />
