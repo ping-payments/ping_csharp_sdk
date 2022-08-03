@@ -25,6 +25,8 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
 		<PackageReference Include="System.Text.Json" Version="6.0.2" />
 	</ItemGroup>
-	<Import Project="..\PingPayments.Shared\PingPayments.Shared.projitems" Label="Shared" />
+	<ItemGroup>
+	  <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" />
+	</ItemGroup>
 
 </Project>

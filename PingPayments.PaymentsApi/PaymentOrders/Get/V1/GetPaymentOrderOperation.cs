@@ -1,13 +1,13 @@
-﻿using PingPayments.Shared.Helpers;
-using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
+using PingPayments.Shared;
+using PingPayments.Shared.Helpers;
 using System;
 using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Text.Json.Serialization;
-using static System.Net.HttpStatusCode;
+using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
-using PingPayments.Shared;
+using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Get.V1
 {
@@ -24,7 +24,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Get.V1
             }
         };
 
-        public override async Task<PaymentOrderResponse> ExecuteRequest(Guid orderId) => 
+        public override async Task<PaymentOrderResponse> ExecuteRequest(Guid orderId) =>
             await BaseExecute(GET, $"api/v1/payment_orders/{orderId}", orderId);
 
         protected override async Task<PaymentOrderResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _)

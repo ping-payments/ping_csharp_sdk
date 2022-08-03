@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>9.0</LangVersion>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
@@ -24,6 +24,8 @@
     <Folder Include="Shared\" />
   </ItemGroup>
 
-  <Import Project="..\PingPayments.Shared\PingPayments.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" />
+  </ItemGroup>
 
 </Project>
