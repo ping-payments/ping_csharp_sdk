@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" />
+    <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" Version="0.1.0-alpha" />
   </ItemGroup>
 
 </Project>

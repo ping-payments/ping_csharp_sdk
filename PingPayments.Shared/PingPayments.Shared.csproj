@@ -1,9 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<PackageId>PingPayments.Common</PackageId>
+	<Version>0.1.0-alpha</Version>
+	<Authors>pingpaymentsab</Authors>
+	<Company>Ping Payments AB</Company>
+	<Owners>Ping Payments</Owners>
+	<Product>Ping Payments Common</Product>
+	<Copyright>Copyright ©  2022</Copyright>
+	<Description>Common functionality for Ping payments C# SDks. Do not install this package manually, it will be added as a prerequisite by other packages that require it.</Description>
   </PropertyGroup>
 
 </Project>
