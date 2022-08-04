@@ -1,24 +1,26 @@
-﻿using PingPayments.PaymentLinksApi.Ping;
-using PingPayments.PaymentLinksApi.Ping.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks;
-using PingPayments.PaymentLinksApi.PaymentLinks.List.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.Get.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1;
-using PingPayments.PaymentLinksApi.Files.Invoice;
+﻿using PingPayments.PaymentLinksApi.Files.Invoice;
 using PingPayments.PaymentLinksApi.Files.Invoice.Create.V1;
 using PingPayments.PaymentLinksApi.Files.Invoice.Get.V1;
 using PingPayments.PaymentLinksApi.Files.Receipt;
 using PingPayments.PaymentLinksApi.Files.Receipt.Get.V1;
-
+using PingPayments.PaymentLinksApi.PaymentLinks;
+using PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Get.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.List.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1;
+using PingPayments.PaymentLinksApi.Ping;
+using PingPayments.PaymentLinksApi.Ping.V1;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentLinksApi
 {
     public class PingPaymentLinksApiClient : IPingPaymentLinksApiClient
     {
-        public PingPaymentLinksApiClient(HttpClient httpClient)
+        public PingPaymentLinksApiClient(string uri, Guid tenantId)
         {
+            HttpClient httpClient = new HttpClient().ConfigurePingPaymentsClient(uri, tenantId);
+
             var pingV1 = new PingV1
             (
                 new Lazy<PingOperation>(() => new PingOperation(httpClient))
@@ -30,9 +32,9 @@ namespace PingPayments.PaymentLinksApi
             (
                 new Lazy<ListPaymentLinksOperation>(() => new ListPaymentLinksOperation(httpClient)),
                 new Lazy<CreatePaymentLinkOperation>(() => new CreatePaymentLinkOperation(httpClient)),
-                new Lazy<GetPaymentLinkOperation>(()=> new GetPaymentLinkOperation(httpClient)),
-                new Lazy<CancelPaymentLinkOperation>(()=> new CancelPaymentLinkOperation(httpClient)),
-                new Lazy<SendPaymentLinkOperation>(()=> new SendPaymentLinkOperation(httpClient))
+                new Lazy<GetPaymentLinkOperation>(() => new GetPaymentLinkOperation(httpClient)),
+                new Lazy<CancelPaymentLinkOperation>(() => new CancelPaymentLinkOperation(httpClient)),
+                new Lazy<SendPaymentLinkOperation>(() => new SendPaymentLinkOperation(httpClient))
             );
             _paymentLinks = new Lazy<IPaymentLinksResource>(() => new PaymentLinkResource(paymentLinksV1));
 

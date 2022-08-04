@@ -15,6 +15,7 @@ using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1;
 using PingPayments.PaymentsApi.Ping;
 using PingPayments.PaymentsApi.Ping.V1;
+using PingPayments.Shared;
 using System;
 using System.Net.Http;
 
@@ -25,8 +26,10 @@ namespace PingPayments.PaymentsApi
     /// </summary>
     public class PingPaymentsApiClient : IPingPaymentsApiClient
     {
-        public PingPaymentsApiClient(HttpClient httpClient)
+        public PingPaymentsApiClient(string uri, Guid tenantId)
         {
+            HttpClient httpClient = new HttpClient().ConfigurePingPaymentsClient(uri, tenantId);
+
             var paymentsV1 = new PaymentsV1
             (
                 new Lazy<InitiateOperation>(() => new InitiateOperation(httpClient)),
