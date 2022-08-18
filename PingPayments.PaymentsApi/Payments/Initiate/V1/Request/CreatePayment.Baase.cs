@@ -12,8 +12,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             public static InitiatePaymentRequest BankLoan
                 (
                     IEnumerable<OrderItem> orderItems,
-                    string redirectUrl,
-                    string qrCode,
                     Uri statusCallbackUrl,
                     IDictionary<string, dynamic>? metadata = null
                 ) => new
@@ -23,7 +21,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.baase,
                     MethodEnum.bank_loan,
-                    new BaaseProviderMethodParameters(redirectUrl, qrCode),
+                    new EmptyProviderMethodParameters(),
                     statusCallbackUrl,
                     metadata
                 );
