@@ -1,16 +1,16 @@
-﻿using PingPayments.Shared.Helpers;
-using PingPayments.Shared.Enums;
-using PingPayments.Shared;
-using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
+﻿using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
+using PingPayments.Shared;
+using PingPayments.Shared.Enums;
+using PingPayments.Shared.Helpers;
 using System;
 using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Text.Json.Serialization;
 using System.Runtime.CompilerServices;
-using static System.Net.HttpStatusCode;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
+using static System.Net.HttpStatusCode;
 
 
 [assembly: InternalsVisibleTo("PingPayments.PaymentsApi.Tests")]
@@ -23,7 +23,7 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {
-            Converters = 
+            Converters =
             {
                 new MethodEnumJsonConvert(),
                 new JsonStringEnumConverter(),
@@ -48,9 +48,10 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
                 (ProviderEnum.billmate, MethodEnum.invoice) => await Deserialize<BillmateResponseBody>(raw, jsonOpts),
                 (ProviderEnum.verifone, MethodEnum.card) => await Deserialize<VerifoneResponseBody>(raw, jsonOpts),
                 (ProviderEnum.payment_iq, MethodEnum.vipps) => await Deserialize<PaymentIqResponseBody>(raw, jsonOpts),
-                (ProviderEnum.payment_iq, MethodEnum.card) => await Deserialize<PaymentIqResponseBody>(raw, jsonOpts), 
+                (ProviderEnum.payment_iq, MethodEnum.card) => await Deserialize<PaymentIqResponseBody>(raw, jsonOpts),
                 (ProviderEnum.dummy, MethodEnum.dummy) => await Deserialize<DummyResponseBody>(raw, jsonOpts),
                 (ProviderEnum.ping, MethodEnum.deposit) => await Deserialize<PingDepositResponseBody>(raw, jsonOpts),
+                (ProviderEnum.baase, MethodEnum.bank_loan) => await Deserialize<BaaseResponseBody>(raw, jsonOpts),
                 _ => throw new NotImplementedException(),
             };
 

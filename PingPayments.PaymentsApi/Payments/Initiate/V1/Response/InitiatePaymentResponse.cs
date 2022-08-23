@@ -16,5 +16,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Response
         public static implicit operator PaymentIqResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as PaymentIqResponseBody;
         public static implicit operator BillmateResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as BillmateResponseBody;
         public static implicit operator PingDepositResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as PingDepositResponseBody;
+        public static implicit operator BaaseResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccesfulResponseBody as BaaseResponseBody;
     }
 }
