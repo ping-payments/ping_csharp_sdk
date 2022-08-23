@@ -3,10 +3,10 @@ using PingPayments.Shared.Helpers;
 using System;
 using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Text.Json.Serialization;
-using static System.Net.HttpStatusCode;
+using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
+using static System.Net.HttpStatusCode;
 
 
 namespace PingPayments.PaymentsApi.Payments.Get.V1

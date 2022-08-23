@@ -1,5 +1,5 @@
-﻿using PingPayments.Shared.Helpers;
-using PingPayments.Shared;
+﻿using PingPayments.Shared;
+using PingPayments.Shared.Helpers;
 using Xunit;
 
 namespace PingPayments.PaymentsApi.Tests
@@ -29,8 +29,8 @@ namespace PingPayments.PaymentsApi.Tests
 
         [Theory]
         [InlineData(133700, 1337)]
-        [InlineData( 1000, 10)]
-        [InlineData( 100, 1)]
+        [InlineData(1000, 10)]
+        [InlineData(100, 1)]
         [InlineData(0, 0)]
         public void FromMinorCurrency_tests(int input, decimal expected) => Assert.Equal(expected, input.FromMinorCurrencyUnit());
 
