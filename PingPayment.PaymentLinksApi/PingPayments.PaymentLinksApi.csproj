@@ -7,12 +7,12 @@
 	  <LangVersion>10</LangVersion>
 	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	  <PackageId>PingPayments.PaymentLinks</PackageId>
-	  <Version>0.2.1-alpha</Version>
+	  <Version>0.2.2-alpha</Version>
 	  <Authors>pingpaymentsab</Authors>
 	  <Company>Ping Payments AB</Company>
 	  <Owners>Ping Payments</Owners>
 	  <Product>Ping Payments Payment Links API</Product>
-	  <Copyright>Copyright ©  2022</Copyright>
+	  <Copyright>Ping Payments AB © 2022</Copyright>
 	  <Description>.NET client library for the Ping Payments Payment Links API</Description>
   </PropertyGroup>
 

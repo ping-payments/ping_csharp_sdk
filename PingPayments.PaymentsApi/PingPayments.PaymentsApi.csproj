@@ -6,12 +6,12 @@
     <LangVersion>9.0</LangVersion>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageId>PingPayments.Payments</PackageId>
-    <Version>0.6.1-alpha</Version>
+    <Version>0.7.0-alpha</Version>
     <Authors>pingpaymentsab</Authors>
     <Company>Ping Payments AB</Company>
     <Owners>Ping Payments</Owners>
     <Product>Ping Payments Payments API</Product>
-    <Copyright>Copyright ©  2022</Copyright>
+    <Copyright>Ping Payments AB © 2022</Copyright>
     <Description>.NET client library for the Ping Payments Payments API</Description>
   </PropertyGroup>
 
