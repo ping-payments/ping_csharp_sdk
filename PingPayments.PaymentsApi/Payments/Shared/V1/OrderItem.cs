@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PingPayments.Shared.Helpers;
+using System;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.Payments.Shared.V1
@@ -7,7 +8,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
     {
         public OrderItem(int amount, string name, decimal vat, Guid merchantId)
         {
-            Amount = amount;
+            Amount = amount.ToMinorCurrencyUnit();
             Name = name;
             Vat = vat;
             MerchantId = merchantId;
@@ -17,8 +18,8 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// Amount in minor currency unit, i ex Swedish Ören
         /// </summary>
         [JsonPropertyName("amount")]
-        public int Amount { get; set; }        
-        
+        public int Amount { get; set; }
+
         /// <summary>
         /// Name of the item sold
         /// </summary>

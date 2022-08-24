@@ -1,12 +1,12 @@
-﻿using PingPayments.Shared;
-using PingPayments.Shared.Enums;
+﻿using PingPayments.PaymentsApi.Payments.Shared.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
-using PingPayments.PaymentsApi.Payments.Shared.V1;
+using PingPayments.Shared;
+using PingPayments.Shared.Enums;
 using PingPayments.Shared.Helpers;
 using System;
-using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace PingPayments.PaymentsApi.Tests.V1
@@ -21,8 +21,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 CurrencyEnum.SEK,
                 new OrderItem[]
                 {
-                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
-                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
+                    new OrderItem(5, "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5, "B", SwedishVat.Vat12, TestData.MerchantId),
                 },
                 TestData.FakeCallback
             );
@@ -30,7 +30,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             AssertHttpOK(response);
             Assert.NotNull(response?.Body?.SuccesfulResponseBody);
             DummyResponseBody? body = response;
-            Assert.NotNull(body);            
+            Assert.NotNull(body);
             Assert.NotEqual(Guid.Empty, body?.Id);
         }
 
@@ -143,7 +143,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
 
 
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, request);
-            
+
             AssertHttpOK(response);
 
             var mcommerceResponse = response?.Body?.SuccesfulResponseBody as SwishMCommerceResponseBody;
