@@ -3,7 +3,6 @@ using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using PingPayments.Shared;
 using PingPayments.Shared.Enums;
-using PingPayments.Shared.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -66,8 +65,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
                1000,
                 new OrderItem[]
                 {
-                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
-                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
+                    new OrderItem(5, "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5, "B", SwedishVat.Vat12, TestData.MerchantId),
                 },
                 ProviderEnum.dummy,
                 MethodEnum.dummy,
@@ -114,8 +113,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var request = CreatePayment.Swish.Ecommerce(
                 new OrderItem[]
                 {
-                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
-                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
+                    new OrderItem(5, "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5, "B", SwedishVat.Vat12, TestData.MerchantId),
                 },
                 "0701234567",
                 "message",
@@ -133,8 +132,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var request = CreatePayment.Swish.Mcommerce(
                 new OrderItem[]
                 {
-                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
-                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
+                    new OrderItem(5, "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5, "B", SwedishVat.Vat12, TestData.MerchantId),
                 },
                 "message",
                 TestData.FakeCallback,
@@ -159,8 +158,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var request = CreatePayment.Swish.Mcommerce(
                 new OrderItem[]
                 {
-                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
-                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
+                    new OrderItem(5, "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5, "B", SwedishVat.Vat12, TestData.MerchantId),
                 },
                 "message",
                 TestData.FakeCallback,
