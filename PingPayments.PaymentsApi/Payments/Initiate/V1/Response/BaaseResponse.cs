@@ -9,6 +9,9 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Response
 
         [JsonPropertyName("redirect_url")]
         public string RedirectUrl { get; set; }
+
+        [JsonPropertyName("reference")]
+        public string Reference { get; set; }
     }
 }
 
