@@ -1,4 +1,4 @@
-﻿namespace PingPayments.PaymentLinksApi.Files.Invoice.Create.V1
+﻿namespace PingPayments.Shared.Enums
 {
     public enum ReferenceTypeEnum
     {
