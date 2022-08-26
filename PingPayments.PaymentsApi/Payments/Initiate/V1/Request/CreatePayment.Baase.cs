@@ -11,8 +11,10 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         {
             public static InitiatePaymentRequest BankLoan
                 (
+
                     IEnumerable<OrderItem> orderItems,
                     Uri statusCallbackUrl,
+                    BaaseInvoiceInformation? invoiceInformation = null,
                     IDictionary<string, dynamic>? metadata = null
                 ) => new
                 (
@@ -21,7 +23,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.baase,
                     MethodEnum.bank_loan,
-                    new EmptyProviderMethodParameters(),
+                    new BaaseProviderMethodParameters(invoiceInformation),
                     statusCallbackUrl,
                     metadata
                 );
