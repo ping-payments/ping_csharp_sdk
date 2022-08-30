@@ -1,7 +1,10 @@
 # Change Log
 
+## 0.8.0-alpha (2022-08-26)
+- BAASE was added as a payment method. 
+
 ## 0.7.0-alpha (2022-08-23)
-- New project reference pointing to the nuget package "PingPayments.Common". Where all shared code between packages resides.
+- New project reference pointing to the nuget package "PingPayments.Common" where all shared code between packages resides.
 
 ## 0.6.1-alpha (2022-07-29)
 - Moved LangVersionCsharp9Fix file to each project.
