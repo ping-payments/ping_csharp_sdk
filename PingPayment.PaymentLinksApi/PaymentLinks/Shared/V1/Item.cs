@@ -1,5 +1,4 @@
-﻿using PingPayments.Shared.Helpers;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
@@ -9,7 +8,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         {
             Description = description;
             MerchantId = merchantId;
-            Price = price.ToMinorCurrencyUnit();
+            Price = price;
             Quantity = quantity;
             Vat = vat;
             ItemNumber = itemNumber;

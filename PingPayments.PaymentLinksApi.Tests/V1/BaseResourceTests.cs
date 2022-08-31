@@ -10,7 +10,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
 
         public BaseResourceTests()
         {
-            _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.SandboxUri, TestData.TenantId);
+            _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.PaymentLinksApi.SandboxUri, TestData.TenantId);
             _api = new PingPaymentLinksApiClient(_httpClient);
         }
 

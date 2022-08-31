@@ -1,5 +1,5 @@
-﻿using PingPayments.Shared;
-using PingPayments.PaymentsApi.Helpers;
+﻿using PingPayments.PaymentsApi.Helpers;
+using PingPayments.Shared;
 using System.Net.Http;
 using Xunit;
 
@@ -12,7 +12,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
 
         public BaseResourceTests()
         {
-            _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.SandboxUri, TestData.TenantId);
+            _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.PaymentsApi.SandboxUri, TestData.TenantId);
             _api = new PingPaymentsApiClient(_httpClient);
         }
 
