@@ -1,7 +1,7 @@
-﻿using PingPayments.PaymentsApi.Shared;
+﻿using PingPayments.Shared;
 using System.Threading.Tasks;
 
-namespace PingPayments.PaymentsApi.Payments
+namespace PingPayments.PaymentsApi.Ping
 {
     public interface IPingV1
     {

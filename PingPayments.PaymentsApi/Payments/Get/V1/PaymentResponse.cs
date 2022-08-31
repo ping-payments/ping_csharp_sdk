@@ -1,4 +1,4 @@
-﻿using PingPayments.PaymentsApi.Shared;
+﻿using PingPayments.Shared;
 using System.Net;
 
 namespace PingPayments.PaymentsApi.Payments.Get.V1

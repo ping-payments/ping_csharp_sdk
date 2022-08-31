@@ -1,10 +1,10 @@
-﻿using PingPayments.PaymentsApi.Helpers;
-using PingPayments.PaymentsApi.Shared;
-using System.Net.Http;
-using System.Text.Json;
+﻿using PingPayments.Shared;
+using PingPayments.Shared.Helpers;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using static PingPayments.PaymentsApi.Shared.RequestTypeEnum;
+using System.Net.Http;
+using System.Text.Json;
+using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Merchants.Create.V1

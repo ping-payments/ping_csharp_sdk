@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<LangVersion>10</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<PackageId>PingPayments.Common</PackageId>
+	<Version>0.1.0-alpha</Version>
+	<Authors>pingpaymentsab</Authors>
+	<Company>Ping Payments AB</Company>
+	<Owners>Ping Payments</Owners>
+	<Product>Ping Payments Common</Product>
+	<Copyright>Ping Payments AB © 2022</Copyright>
+	<Description>Common functionality for Ping payments C# SDks. Do not install this package manually, it will be added as a prerequisite by other packages that require it.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="6.0.2" />
+	<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+  </ItemGroup>
+
+</Project>

@@ -1,4 +1,4 @@
-﻿using PingPayments.PaymentsApi.Shared;
+﻿using PingPayments.Shared;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Shared.V1
 {

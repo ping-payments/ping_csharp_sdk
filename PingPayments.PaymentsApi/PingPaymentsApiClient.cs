@@ -1,3 +1,4 @@
+using PingPayments.PaymentsApi.Merchants;
 using PingPayments.PaymentsApi.Merchants.Create.V1;
 using PingPayments.PaymentsApi.Merchants.Get.V1;
 using PingPayments.PaymentsApi.Merchants.List.V1;
@@ -12,8 +13,7 @@ using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
 using PingPayments.PaymentsApi.Payments;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1;
-using PingPayments.PaymentsApi.Payout;
-using PingPayments.PaymentsApi.Payout.List.V1;
+using PingPayments.PaymentsApi.Ping;
 using PingPayments.PaymentsApi.Ping.V1;
 using System;
 using System.Net.Http;

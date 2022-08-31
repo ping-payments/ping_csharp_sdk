@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>netstandard2.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	  <LangVersion>10</LangVersion>
+	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	  <PackageId>PingPayments.PaymentLinks</PackageId>
+	  <Version>0.2.2-alpha</Version>
+	  <Authors>pingpaymentsab</Authors>
+	  <Company>Ping Payments AB</Company>
+	  <Owners>Ping Payments</Owners>
+	  <Product>Ping Payments Payment Links API</Product>
+	  <Copyright>Ping Payments AB © 2022</Copyright>
+	  <Description>.NET client library for the Ping Payments Payment Links API</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Shared\**" />
+    <EmbeddedResource Remove="Shared\**" />
+    <None Remove="Shared\**" />
+  </ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" Version="0.1.0-alpha"/>
+	</ItemGroup>
+
+</Project>
