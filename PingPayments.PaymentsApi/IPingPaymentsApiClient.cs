@@ -1,7 +1,8 @@
-﻿using PingPayments.PaymentsApi.PaymentOrders;
+using PingPayments.PaymentsApi.PaymentOrders;
 using PingPayments.PaymentsApi.Payments;
 using PingPayments.PaymentsApi.Ping;
 using PingPayments.PaymentsApi.Merchants;
+
 
 namespace PingPayments.PaymentsApi
 {
@@ -11,6 +12,6 @@ namespace PingPayments.PaymentsApi
         IPaymentOrderResource PaymentOrder { get; }
         IPaymentResource Payments { get; }
         IPingResource Ping { get; }
-
+        IPayoutResource Payouts { get; }
     }
 }
