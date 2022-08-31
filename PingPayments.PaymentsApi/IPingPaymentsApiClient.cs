@@ -1,7 +1,8 @@
+using PingPayments.PaymentsApi.Merchants;
 using PingPayments.PaymentsApi.PaymentOrders;
 using PingPayments.PaymentsApi.Payments;
+using PingPayments.PaymentsApi.Payouts;
 using PingPayments.PaymentsApi.Ping;
-using PingPayments.PaymentsApi.Merchants;
 
 
 namespace PingPayments.PaymentsApi

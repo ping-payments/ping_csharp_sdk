@@ -10,14 +10,14 @@ namespace PingPayments.PaymentsApi.Tests.V1
         private static Dictionary<string, Guid>? Settings { get; set; } = null;
         private static Dictionary<string, Guid> GetSettings()
         {
-            if(Settings != null)
+            if (Settings != null)
             {
                 return Settings;
             }
             var testSetupJson = JsonDocument.Parse(File.ReadAllText("TestSetup.json"));
             Guid GetGuidValue(string key) => Guid.Parse
             (
-                Environment.GetEnvironmentVariable(key) ?? 
+                Environment.GetEnvironmentVariable(key) ??
                 testSetupJson.RootElement.GetProperty(key).GetString() ??
                 throw new Exception($"Missing setting {key}")
             );
@@ -27,7 +27,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 {"MerchantId",  GetGuidValue("MERCHANTID")},
                 {"OrderId",  GetGuidValue("ORDERID")},
                 {"SplitTreeId",  GetGuidValue("SPLITTREEID")},
-                {"PaymentId",  GetGuidValue("PAYMENTID")}
+                {"PaymentId",  GetGuidValue("PAYMENTID")},
+                {"PayoutId",  GetGuidValue("PAYOUTID")}
             };
             return Settings;
         }
@@ -36,6 +37,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public static Guid OrderId => GetSettings()["OrderId"];
         public static Guid SplitTreeId => GetSettings()["SplitTreeId"];
         public static Guid PaymentId => GetSettings()["PaymentId"];
+        public static Guid PayoutId => GetSettings()["PayoutId"];
         public static Uri FakeCallback => new("https://not.real.callback.pingpayments.com");
     }
 }

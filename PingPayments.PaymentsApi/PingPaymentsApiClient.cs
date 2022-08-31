@@ -13,10 +13,14 @@ using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
 using PingPayments.PaymentsApi.Payments;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1;
+using PingPayments.PaymentsApi.Payouts;
+using PingPayments.PaymentsApi.Payouts.Get.V1;
+using PingPayments.PaymentsApi.Payouts.List.V1;
 using PingPayments.PaymentsApi.Ping;
 using PingPayments.PaymentsApi.Ping.V1;
 using System;
 using System.Net.Http;
+
 
 namespace PingPayments.PaymentsApi
 {
@@ -56,7 +60,12 @@ namespace PingPayments.PaymentsApi
 
             _ping = new Lazy<IPingResource>(() => new PingResource(new PingV1(new Lazy<PingOperation>(() => new PingOperation(httpClient)))));
 
-            _payoutResource = new Lazy<IPayoutResource>(() => new PayoutResource(new PayoutV1(new Lazy<ListOperation>(() => new ListOperation(httpClient)))));
+            var payoutV1 = new PayoutV1
+            (
+                new Lazy<ListPayoutOperation>(() => new ListPayoutOperation(httpClient)),
+                new Lazy<GetPayoutOperation>(() => new GetPayoutOperation(httpClient))
+            );
+            _payoutResource = new Lazy<IPayoutResource>(() => new PayoutResource(payoutV1));
         }
 
         private readonly Lazy<IPaymentResource> _payments;

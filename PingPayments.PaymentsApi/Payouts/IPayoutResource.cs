@@ -1,4 +1,4 @@
-﻿namespace PingPayments.PaymentsApi.Payout
+﻿namespace PingPayments.PaymentsApi.Payouts
 {
     public interface IPayoutResource
     {
