@@ -122,15 +122,31 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Can_not_split_before_close_403()
         {
+            //1. Prepare a order
+            var idTuple = PreparePaymentOrder();
+            Guid paymentId = idTuple.Result.paymentId;
+            Guid orderId = idTuple.Result.orderId;
+
+            //2. Await payment
+            await AwaitPaymentCallback(orderId, paymentId);
+
             // Split an open order
-            AssertHttpApiError(await _api.PaymentOrder.V1.Split(TestData.OpenOrderId));
+            AssertHttpApiError(await _api.PaymentOrder.V1.Split(orderId));
         }
 
         [Fact]
         public async Task Can_not_settle_before_close_403()
         {
+            //1. Prepare a order
+            var idTuple = PreparePaymentOrder();
+            Guid paymentId = idTuple.Result.paymentId;
+            Guid orderId = idTuple.Result.orderId;
+
+            //2. Await payment
+            await AwaitPaymentCallback(orderId, paymentId);
+
             // Settle an open order
-            AssertHttpApiError(await _api.PaymentOrder.V1.Settle(TestData.OpenOrderId));
+            AssertHttpApiError(await _api.PaymentOrder.V1.Settle(orderId));
         }
 
         [Fact]
