@@ -101,7 +101,103 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Can_close_then_split_then_settle_an_order()
         {
 
-            //1. Create order
+            //1. Prepare a order
+            var idTuple = PreparePaymentOrder();
+            Guid paymentId = idTuple.Result.paymentId;
+            Guid orderId = idTuple.Result.orderId;
+
+            //2. Await payment
+            await AwaitPaymentCallback(orderId, paymentId);
+
+            //3. Close
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Close(orderId));
+
+            //4. Split
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Split(orderId));
+
+            //5. Settle 
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Settle(orderId));
+        }
+
+        [Fact]
+        public async Task Can_not_split_before_close_403()
+        {
+            //1. Prepare a order
+            var idTuple = PreparePaymentOrder();
+            Guid paymentId = idTuple.Result.paymentId;
+            Guid orderId = idTuple.Result.orderId;
+
+            //2. Await payment
+            await AwaitPaymentCallback(orderId, paymentId);
+
+            // Split an open order
+            AssertHttpApiError(await _api.PaymentOrder.V1.Split(orderId));
+        }
+
+        [Fact]
+        public async Task Can_not_settle_before_close_403()
+        {
+            //1. Prepare a order
+            var idTuple = PreparePaymentOrder();
+            Guid paymentId = idTuple.Result.paymentId;
+            Guid orderId = idTuple.Result.orderId;
+
+            //2. Await payment
+            await AwaitPaymentCallback(orderId, paymentId);
+
+            // Settle an open order
+            AssertHttpApiError(await _api.PaymentOrder.V1.Settle(orderId));
+        }
+
+        [Fact]
+        public async Task Can_not_settle_before_split_403()
+        {
+            //1. Prepare a order
+            var idTuple = PreparePaymentOrder();
+            Guid paymentId = idTuple.Result.paymentId;
+            Guid orderId = idTuple.Result.orderId;
+
+            //2. Await payment
+            await AwaitPaymentCallback(orderId, paymentId);
+
+            //3. Close
+            await _api.PaymentOrder.V1.Close(orderId);
+            //4. Settle without split
+            AssertHttpApiError(await _api.PaymentOrder.V1.Settle(orderId));
+        }
+
+        [Fact]
+        public async Task Can_fast_forward_to_settle()
+        {
+            //1. Prepare a order
+            var idTuple = PreparePaymentOrder();
+            Guid paymentId = idTuple.Result.paymentId;
+            Guid orderId = idTuple.Result.orderId;
+
+            //2. Await payment
+            await AwaitPaymentCallback(orderId, paymentId);
+
+            //3. fast forward to settle
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Settle(orderId, true));
+        }
+
+        [Fact]
+        public async Task Can_fast_forward_to_split()
+        {
+            //1. Prepare a order
+            var idTuple = PreparePaymentOrder();
+            Guid paymentId = idTuple.Result.paymentId;
+            Guid orderId = idTuple.Result.orderId;
+
+            //2. Await payment
+            await AwaitPaymentCallback(orderId, paymentId);
+
+            //3. fast forward to split
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Split(orderId, true));
+        }
+
+        public async Task<(Guid orderId, Guid paymentId)> PreparePaymentOrder()
+        {
             var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
             Guid orderId = await _api.PaymentOrder.V1.Create(request);
 
@@ -112,27 +208,20 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 new OrderItem(10.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId).InList(),
                 TestData.FakeCallback
             );
-
-
-            InitiatePaymentResponse paymentId = await _api.Payments.V1.Initiate(orderId, requestObject);
-
+            InitiatePaymentResponse paymentResponse = await _api.Payments.V1.Initiate(orderId, requestObject);
+            Guid paymentId = paymentResponse.Body.SuccesfulResponseBody.Id;
+            return (orderId, paymentId);
+        }
+        public async Task AwaitPaymentCallback(Guid orderId, Guid paymentId)
+        {
             bool isStatusCompleted = false;
             while (!isStatusCompleted)
             {
-                PaymentResponse payment = await _api.Payments.V1.Get(orderId, paymentId.Body.SuccesfulResponseBody.Id);
+                PaymentResponse payment = await _api.Payments.V1.Get(orderId, paymentId);
                 var paymentStatus = payment.Body.SuccesfulResponseBody.Status;
 
                 if (paymentStatus == PaymentStatusEnum.COMPLETED) isStatusCompleted = true;
             }
-
-            //3. Close
-            AssertHttpNoContent(await _api.PaymentOrder.V1.Close(orderId));
-
-            //4. Split
-            AssertHttpNoContent(await _api.PaymentOrder.V1.Split(orderId));
-
-            //5. Settle 
-            AssertHttpNoContent(await _api.PaymentOrder.V1.Settle(orderId));
         }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
     }
