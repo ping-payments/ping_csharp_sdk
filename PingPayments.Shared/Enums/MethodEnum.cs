@@ -2,6 +2,6 @@
 {
     public enum MethodEnum
     {
-        e_commerce, m_commerce, pis, card, invoice, autogiro, vipps, deposit, dummy, bank_loan
+        e_commerce, m_commerce, pis, card, invoice, autogiro, vipps, deposit, credit, dummy, bank_loan
     }
 }
