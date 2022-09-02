@@ -4,6 +4,7 @@ using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 using PingPayments.Shared;
 using PingPayments.Shared.Enums;
+using PingPayments.Shared.Helpers;
 
 
 namespace PingPayments.PaymentLinksApi.Tests.V1
@@ -105,7 +106,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             var customer = new Customer("FrstName", "LastName");
             var items = new Item[]
             {
-                new Item("Hawaii Pizza", TestData.MerchantId, 70, 2, SwedishVat.Vat12)
+                new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
             var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
             var suppler = new Supplier("Supllier name");
@@ -143,7 +144,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             var customer = new Customer("FrstName", "LastName");
             var items = new Item[]
             {
-                new Item("Hawaii Pizza", TestData.MerchantId, 7000, 2, SwedishVat.Vat12)
+                new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
             var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
             var suppler = new Supplier("Supllier name");
@@ -179,7 +180,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             var customer = new Customer("FrstName", "LastName");
             var items = new Item[]
             {
-                new Item("Hawaii Pizza", TestData.MerchantId, 7000, 2, SwedishVat.Vat12)
+                new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
             var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
             var suppler = new Supplier("Supllier name");

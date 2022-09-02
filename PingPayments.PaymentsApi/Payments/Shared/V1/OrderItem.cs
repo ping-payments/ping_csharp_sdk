@@ -17,8 +17,8 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// Amount in minor currency unit, i ex Swedish Ören
         /// </summary>
         [JsonPropertyName("amount")]
-        public int Amount { get; set; }        
-        
+        public int Amount { get; set; }
+
         /// <summary>
         /// Name of the item sold
         /// </summary>

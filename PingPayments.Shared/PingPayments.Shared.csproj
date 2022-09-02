@@ -12,7 +12,7 @@
 	<Owners>Ping Payments</Owners>
 	<Product>Ping Payments Common</Product>
 	<Copyright>Ping Payments AB © 2022</Copyright>
-	<Description>Common functionality for Ping payments C# SDks. Do not install this package manually, it will be added as a prerequisite by other packages that require it.</Description>
+	<Description>Common functionality for Ping payments C# SDKs. Do not install this package manually, it will be added as a prerequisite by other packages that require it.</Description>
   </PropertyGroup>
 
   <ItemGroup>
