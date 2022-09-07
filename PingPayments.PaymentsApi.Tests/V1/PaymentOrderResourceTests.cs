@@ -1,6 +1,7 @@
 using PingPayments.PaymentsApi.Helpers;
 using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Shared.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
@@ -68,13 +69,20 @@ namespace PingPayments.PaymentsApi.Tests.V1
         }
 
         [Fact]
-        public async Task Can_update_order_with_split_tree_id()
+        public async Task Can_update_order_with_split_tree_id_and_split_parameters()
         {
+            dynamic splitParamters = new { tenant_fee = 20.ToMinorCurrencyUnit() };
+            var updateRequest = new UpdatePaymentOrderRequest
+            (
+                SplitParamters: splitParamters,
+                SplitTreeId: TestData.SplitTreeId
+            );
+
             var response = await _api.PaymentOrder.V1.Update
-            ((
+            (
                 TestData.OrderId,
-                TestData.SplitTreeId
-            ));
+                updateRequest
+            );
             AssertHttpNoContent(response);
         }
 

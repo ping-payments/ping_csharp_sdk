@@ -1,8 +1,8 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
-using PingPayments.Shared.Helpers;
 using PingPayments.Shared;
-using System.Text.Json.Serialization;
+using PingPayments.Shared.Helpers;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
 
@@ -16,14 +16,14 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
             await BaseExecute
             (
                 PUT,
-                $"api/v1/payment_links/{request.paymentLinkID}/distribute", 
+                $"api/v1/payment_links/{request.paymentLinkID}/distribute",
                 request,
                 await ToJson(request.sendPaymentLinkRequestBody)
             );
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {
-            Converters = {  new JsonStringEnumConverter()   },
+            Converters = { new JsonStringEnumConverter() },
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
