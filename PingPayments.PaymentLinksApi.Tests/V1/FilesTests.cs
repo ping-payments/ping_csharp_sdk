@@ -1,4 +1,5 @@
 ﻿using PingPayments.PaymentLinksApi.Files.Invoice.Create.V1;
+using PingPayments.Shared.Enums;
 
 namespace PingPayments.PaymentLinksApi.Tests.V1;
 
@@ -25,7 +26,7 @@ public class FilesTests : BaseResourceTests
         AssertHttpNotFound(await _api.Invoice.V1.Create(new Guid(), requestBody));
     }
 
-    [Fact] 
+    [Fact]
     public async Task Get_invoice_returns_200()
     {
         AssertHttpOK(await _api.Invoice.V1.Get(TestData.PaymentLinkId));

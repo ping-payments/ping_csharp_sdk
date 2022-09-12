@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using PingPayments.Shared.Enums;
+using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.Files.Invoice.Create.V1
 {
