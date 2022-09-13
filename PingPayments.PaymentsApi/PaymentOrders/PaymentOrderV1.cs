@@ -44,8 +44,8 @@ namespace PingPayments.PaymentsApi.PaymentOrders
             await _listPaymentOrderOperation.Value.ExecuteRequest(dateFilter);
         public async Task<GuidResponse> Create(CreatePaymentOrderRequest createPaymentOrderRequest) =>
             await _createPaymentOrderOperation.Value.ExecuteRequest(createPaymentOrderRequest);
-        public async Task<EmptyResponse> Update((Guid OrderId, Guid SplitTreeId) updateRequest) =>
-            await _updatePaymentOrderOperation.Value.ExecuteRequest(updateRequest);
+        public async Task<EmptyResponse> Update(Guid orderId, UpdatePaymentOrderRequest updatePaymentOrderRequest) =>
+            await _updatePaymentOrderOperation.Value.ExecuteRequest((orderId, updatePaymentOrderRequest));
         public async Task<EmptyResponse> Close(Guid orderId) =>
             await _closePaymentOrderOperation.Value.ExecuteRequest(orderId);
         public async Task<EmptyResponse> Split(Guid orderId, bool fastForward = false) =>
