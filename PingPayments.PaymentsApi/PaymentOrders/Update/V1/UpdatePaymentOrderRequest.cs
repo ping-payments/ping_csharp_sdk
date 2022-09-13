@@ -11,7 +11,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Update.V1
         /// Parameters used to control parts of the split tree
         /// </summary>
         [JsonPropertyName("split_parameters")]
-        public dynamic? SplitParamters { get; set; } = SplitParamters ?? new Dictionary<string, dynamic>();
+        public dynamic SplitParamters { get; set; } = SplitParamters ?? new Dictionary<string, dynamic>();
 
         /// <summary>
         /// Split tree used for the payment order
