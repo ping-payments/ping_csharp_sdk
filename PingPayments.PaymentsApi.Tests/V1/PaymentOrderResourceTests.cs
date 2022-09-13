@@ -74,7 +74,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             dynamic splitParamters = new { tenant_fee = 20.ToMinorCurrencyUnit() };
             var updateRequest = new UpdatePaymentOrderRequest
             (
-
+                SplitParamters: splitParamters,
                 SplitTreeId: TestData.SplitTreeId
             );
 
