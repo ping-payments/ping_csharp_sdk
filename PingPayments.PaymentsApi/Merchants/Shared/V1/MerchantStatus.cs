@@ -2,8 +2,9 @@
 {
     public enum MerchantStatus
     {
-        CREATED, 
-        APPROVED, 
-        DENIED
+        CREATED,
+        APPROVED,
+        DENIED,
+        PENDING
     }
 }
