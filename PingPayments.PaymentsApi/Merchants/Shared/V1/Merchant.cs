@@ -15,7 +15,7 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         /// Email to the merchant
         /// </summary>
         [JsonPropertyName("email")]
-        public string Email { get; set;}
+        public string Email { get; set; }
 
         /// <summary>
         /// Phone number to the merchant
@@ -33,6 +33,13 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         /// The merchants underlying organization
         /// </summary>
         [JsonPropertyName("organization")]
-        public Organization Organization { get; set;}
+        public Organization? Organization { get; set; }
+
+        /// <summary>
+        /// Swedish personal identity number. 
+        /// The personal identity number is composed of your date of birth followed by a 4-digit number with the following pattern: ^\d{12}$
+        /// </summary>
+        [JsonPropertyName("person")]
+        public Person? Person { get; set; }
     }
 }

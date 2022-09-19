@@ -6,7 +6,7 @@
     <LangVersion>9.0</LangVersion>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageId>PingPayments.Payments</PackageId>
-    <Version>0.8.1-alpha</Version>
+    <Version>1.0.0</Version>
     <Authors>pingpaymentsab</Authors>
     <Company>Ping Payments AB</Company>
     <Owners>Ping Payments</Owners>
@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" Version="0.1.0-alpha" />
+    <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" />
   </ItemGroup>
 
 </Project>
