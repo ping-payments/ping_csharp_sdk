@@ -11,7 +11,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Create.V1
     {
         public CreatePaymentOrderOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<GuidResponse> ExecuteRequest(CreatePaymentOrderRequest createPaymentOrderRequest) => 
+        public override async Task<GuidResponse> ExecuteRequest(CreatePaymentOrderRequest createPaymentOrderRequest) =>
             await BaseExecute
             (
                 POST,

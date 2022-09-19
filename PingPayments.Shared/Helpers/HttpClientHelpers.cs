@@ -2,6 +2,7 @@
 
 [assembly: InternalsVisibleTo("PingPayments.PaymentsApi")]
 [assembly: InternalsVisibleTo("PingPayments.PaymentLinksApi")]
+[assembly: InternalsVisibleTo("PingPayments.KYC")]
 
 namespace PingPayments.Shared.Helpers
 {
