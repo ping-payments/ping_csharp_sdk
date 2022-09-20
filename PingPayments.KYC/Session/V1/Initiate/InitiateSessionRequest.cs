@@ -3,9 +3,8 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Session.V1.Initiate
 {
-    public record InitiateRequest
+    public record InitiateSessionRequest
     {
-
         /// <summary>
         /// Email of the one to perform the KYC
         /// </summary>

@@ -12,10 +12,13 @@ namespace PingPayments.Shared
             url.EndsWith("/") ?
                 url :
                 $"{url}/";
-        public static HttpClient ConfigurePingPaymentsClient(this HttpClient httpClient, Uri uri, Guid tenantId, string xApiSecret = null)
+        public static HttpClient ConfigurePingPaymentsClient(this HttpClient httpClient, Uri uri, Guid? tenantId = null, string xApiSecret = null)
         {
             var headers = httpClient.DefaultRequestHeaders;
-            headers.Add("tenant_id", tenantId.ToString());
+            if (tenantId != null)
+            {
+                headers.Add("tenant_id", tenantId.ToString());
+            }
             if (!string.IsNullOrWhiteSpace(xApiSecret))
             {
                 headers.Add("x-api-secret", xApiSecret);
@@ -24,7 +27,7 @@ namespace PingPayments.Shared
             return httpClient;
         }
 
-        public static HttpClient ConfigurePingPaymentsClient(this HttpClient httpClient, string uri, Guid tenantId) =>
+        public static HttpClient ConfigurePingPaymentsClient(this HttpClient httpClient, string uri, Guid? tenantId = null) =>
             ConfigurePingPaymentsClient(httpClient, new Uri(EnsureCorrectUrl(uri)), tenantId);
     }
 }
