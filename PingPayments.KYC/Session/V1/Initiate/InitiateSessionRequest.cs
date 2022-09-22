@@ -31,13 +31,13 @@ namespace PingPayments.KYC.Session.V1.Initiate
         public string PsuId { get; set; } = PsuId;
 
         /// <summary>
-        ///TODO
+        /// URL redirections 
         /// </summary>
         [JsonPropertyName("redirects")]
         public Redirects? Redirects { get; set; } = Redirects;
 
         /// <summary>
-        /// TODO
+        /// Style for for the KYC session layout 
         /// </summary>
         [JsonPropertyName("styles")]
         public Styles? Styles { get; set; } = Styles;

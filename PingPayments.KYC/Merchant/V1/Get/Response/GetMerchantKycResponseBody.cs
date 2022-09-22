@@ -7,26 +7,31 @@ namespace PingPayments.KYC.Merchant.V1.Get.Response
     public record GetMerchantKycResponseBody
     {
         /// <summary>
-        /// TODO
+        /// Addresses
         /// </summary>
         [JsonPropertyName("addresses")]
         public Address[] Addresses { get; set; }
 
         /// <summary>
-        /// TODO
+        /// The payout account of the Merchant
         /// </summary>
         [JsonPropertyName("bank_account")]
         public BankAccount BankaAccount { get; set; }
 
-
         /// <summary>
-        /// TODO
+        /// Country in ISO-3166
         /// </summary>
         [JsonPropertyName("country")]
         public string Country { get; set; }
 
         /// <summary>
-        /// TODO
+        /// Email
+        /// </summary>
+        [JsonPropertyName("email")]
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Merchant ID
         /// </summary>
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -38,21 +43,21 @@ namespace PingPayments.KYC.Merchant.V1.Get.Response
         public IDictionary<string, dynamic> Metadata { get; set; }
 
         /// <summary>
-        /// TODO
+        /// Name
         /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
 
         /// <summary>
-        /// TODO
+        /// Phone number
         /// </summary>
         [JsonPropertyName("phone")]
         public string Phone { get; set; }
 
 
         /// <summary>
-        /// TODO
+        /// Type of legal entity
         /// </summary>
         [JsonPropertyName("type")]
         public string Type { get; set; }
