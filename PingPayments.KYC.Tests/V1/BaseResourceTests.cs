@@ -83,6 +83,5 @@ namespace PingPayments.KYC.Tests.V1
             Assert.Null(response?.Body?.SuccesfulResponseBody);
             Assert.NotNull(response?.Body?.ErrorResponseBody);
         }
-
     }
 }

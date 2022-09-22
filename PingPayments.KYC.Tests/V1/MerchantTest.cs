@@ -22,7 +22,6 @@ namespace PingPayments.KYC.Tests.V1
         [Fact]
         public async Task Verification_returns_204()
         {
-
             var bankAccount = new BankAccount
             {
                 Bic = "NDEASESS",
