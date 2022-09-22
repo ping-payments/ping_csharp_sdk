@@ -22,10 +22,7 @@ namespace PingPayments.KYC.Tests
             {
                 {"TenantId",  GetGuidValue("TENANTID")},
                 {"MerchantId",  GetGuidValue("MERCHANTID")},
-                {"OrderId",  GetGuidValue("ORDERID")},
-                {"SplitTreeId",  GetGuidValue("SPLITTREEID")},
-                {"PaymentId",  GetGuidValue("PAYMENTID")},
-                {"PayoutId",  GetGuidValue("PAYOUTID")}
+
             };
             return Settings;
         }
