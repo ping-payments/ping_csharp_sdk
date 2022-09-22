@@ -27,7 +27,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// Must be the same as the total sum of <see cref="OrderItem.Amount"/>
         /// </summary>
         [JsonPropertyName("total_amount")]
-        public int TotalAmount {  get; set;}                
+        public int TotalAmount { get; set; }
 
         /// <summary>
         /// The provider used for the payment, i ex <see cref="ProviderEnum.swish"/>
@@ -42,6 +42,5 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         [JsonPropertyName("method")]
         public MethodEnum Method { get; set; }
 
-        
     }
 }
