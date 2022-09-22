@@ -6,7 +6,7 @@ namespace PingPayments.PaymentsApi.Payments.Update.V1
     public record UpdatePaymentRequest(OrderItem[] OrderItems)
     {
         /// <summary>
-        /// TODO
+        /// Items of purchase
         /// </summary>
         [JsonPropertyName("order_items")]
         public OrderItem[] OrderItems { get; set; } = OrderItems;

@@ -10,7 +10,6 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// </summary>
         [JsonPropertyName("provider_data")]
         public IDictionary<string, dynamic>? ProviderData { get; set; }
-
     }
 }
 
