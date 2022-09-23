@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Merchant.V1.Get.Response
 {
-    public record GetMerchantKycResponseBody
+    public record KycResponseBody
     {
         /// <summary>
         /// Addresses

@@ -8,11 +8,11 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.KYC.Merchant.V1.Get
 {
-    public class GetMerchantKycOperation : OperationBase<GetMerchantKycRequest, GetMerchantKycResponse>
+    public class GetKycOperation : OperationBase<GetKycRequest, GetKycResponse>
     {
-        public GetMerchantKycOperation(HttpClient httpClient) : base(httpClient) { }
+        public GetKycOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override Task<GetMerchantKycResponse> ExecuteRequest(GetMerchantKycRequest request)
+        public override Task<GetKycResponse> ExecuteRequest(GetKycRequest request)
             => BaseExecute
             (
                 GET,
@@ -24,21 +24,21 @@ namespace PingPayments.KYC.Merchant.V1.Get
                 request
             );
 
-        protected override async Task<GetMerchantKycResponse> ParseHttpResponse(HttpResponseMessage hrm, GetMerchantKycRequest request)
+        protected override async Task<GetKycResponse> ParseHttpResponse(HttpResponseMessage hrm, GetKycRequest request)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
                 OK => await GetSuccesful(),
-                _ => GetMerchantKycResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
+                _ => GetKycResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
 
-            async Task<GetMerchantKycResponse> GetSuccesful()
+            async Task<GetKycResponse> GetSuccesful()
             {
-                var paymentOrders = await Deserialize<GetMerchantKycResponseBody[]?>(responseBody);
-                var paymentOrderList = paymentOrders != null ? new MerchantKycVerificationList(paymentOrders) : null;
-                var response = GetMerchantKycResponse.Succesful(hrm.StatusCode, paymentOrderList, responseBody);
+                var kycs = await Deserialize<KycResponseBody[]?>(responseBody);
+                var kycList = kycs != null ? new KycList(kycs) : null;
+                var response = GetKycResponse.Succesful(hrm.StatusCode, kycList, responseBody);
                 return response;
             }
         }

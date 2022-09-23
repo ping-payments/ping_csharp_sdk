@@ -18,8 +18,8 @@ namespace PingPayments.KYC
 
             var merchantV1 = new MerchantV1
                 (
-                    new Lazy<MerchantKycVerificationOperation>(() => new MerchantKycVerificationOperation(httplient)),
-                    new Lazy<GetMerchantKycOperation>(() => new GetMerchantKycOperation(httplient))
+                    new Lazy<KycVerificationOperation>(() => new KycVerificationOperation(httplient)),
+                    new Lazy<GetKycOperation>(() => new GetKycOperation(httplient))
                 );
             _merchant = new Lazy<IMerchantResource>(() => new MerchantResource(merchantV1));
         }

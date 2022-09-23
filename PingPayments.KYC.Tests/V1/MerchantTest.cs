@@ -10,7 +10,7 @@ namespace PingPayments.KYC.Tests.V1
         [Fact]
         public async Task Get_merchants_returns_200()
         {
-            var request = new GetMerchantKycRequest
+            var request = new GetKycRequest
             {
                 TenantId = TestData.TenantId,
                 MerchantId = TestData.MerchantId
@@ -36,7 +36,7 @@ namespace PingPayments.KYC.Tests.V1
                 Gender = "male"
             };
 
-            var request = new MerchantKycVerificationRequest
+            var request = new KycVerificationRequest
                 (
                     bankAccount,
                     "SE",

@@ -9,19 +9,19 @@ namespace PingPayments.KYC.Merchant
 {
     public class MerchantV1 : IMerchantV1
     {
-        public MerchantV1(Lazy<MerchantKycVerificationOperation> merchantVerificationOperation, Lazy<GetMerchantKycOperation> getMerchantKycOperation)
+        public MerchantV1(Lazy<KycVerificationOperation> merchantVerificationOperation, Lazy<GetKycOperation> getMerchantKycOperation)
         {
             _merchantVerificationOperation = merchantVerificationOperation;
             _getMerchantKycOperation = getMerchantKycOperation;
         }
 
-        private readonly Lazy<MerchantKycVerificationOperation> _merchantVerificationOperation;
-        private readonly Lazy<GetMerchantKycOperation> _getMerchantKycOperation;
+        private readonly Lazy<KycVerificationOperation> _merchantVerificationOperation;
+        private readonly Lazy<GetKycOperation> _getMerchantKycOperation;
 
-        public async Task<EmptyResponse> Verification(MerchantKycVerificationRequest merchantVerificationRequest) =>
+        public async Task<EmptyResponse> Verification(KycVerificationRequest merchantVerificationRequest) =>
             await _merchantVerificationOperation.Value.ExecuteRequest(merchantVerificationRequest);
 
-        public async Task<GetMerchantKycResponse> Get(GetMerchantKycRequest request) =>
+        public async Task<GetKycResponse> Get(GetKycRequest request) =>
             await _getMerchantKycOperation.Value.ExecuteRequest(request);
     }
 }

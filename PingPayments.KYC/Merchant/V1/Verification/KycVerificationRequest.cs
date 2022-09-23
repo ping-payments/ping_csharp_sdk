@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Merchant.V1.Verification
 {
-    public record MerchantKycVerificationRequest
+    public record KycVerificationRequest
     (
         BankAccount BankAccount,
         string Country,

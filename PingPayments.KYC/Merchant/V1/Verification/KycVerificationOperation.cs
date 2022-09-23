@@ -9,9 +9,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.KYC.Merchant.V1.Verification
 {
-    public class MerchantKycVerificationOperation : OperationBase<MerchantKycVerificationRequest, EmptyResponse>
+    public class KycVerificationOperation : OperationBase<KycVerificationRequest, EmptyResponse>
     {
-        public MerchantKycVerificationOperation(HttpClient httpClient) : base(httpClient) { }
+        public KycVerificationOperation(HttpClient httpClient) : base(httpClient) { }
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {
@@ -19,7 +19,7 @@ namespace PingPayments.KYC.Merchant.V1.Verification
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        public override async Task<EmptyResponse> ExecuteRequest(MerchantKycVerificationRequest request) =>
+        public override async Task<EmptyResponse> ExecuteRequest(KycVerificationRequest request) =>
             await BaseExecute
             (
                 POST,
@@ -28,7 +28,7 @@ namespace PingPayments.KYC.Merchant.V1.Verification
                 await ToJson(request)
             );
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, MerchantKycVerificationRequest _)
+        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, KycVerificationRequest _)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch

@@ -8,7 +8,7 @@ namespace PingPayments.KYC.Merchant
 {
     public interface IMerchantV1
     {
-        Task<GetMerchantKycResponse> Get(GetMerchantKycRequest request);
-        Task<EmptyResponse> Verification(MerchantKycVerificationRequest request);
+        Task<GetKycResponse> Get(GetKycRequest request);
+        Task<EmptyResponse> Verification(KycVerificationRequest request);
     }
 }

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Merchant.V1.Get
 {
-    public record GetMerchantKycRequest
+    public record GetKycRequest
     {
         /// <summary>
         /// Number of elements per page
