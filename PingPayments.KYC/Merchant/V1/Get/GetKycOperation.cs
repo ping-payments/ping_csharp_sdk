@@ -16,11 +16,12 @@ namespace PingPayments.KYC.Merchant.V1.Get
             => BaseExecute
             (
                 GET,
+                request.MerchantId.HasValue ? $"api/tenant/{request.TenantId}/merchants?merchant_id={request.MerchantId}"
+                :
                 $"api/tenant/{request.TenantId}/merchants?" +
-                //$"page_size={request.PageSize}&" +
-                //$"page={request.Page}&" +
-                //$"type={request.Type}&" +
-                $"merchant_id={request.MerchantId}",
+                $"page_size={request.PageSize}&" +
+                $"page={request.Page}&" +
+                $"type={request.Type}&",
                 request
             );
 

@@ -7,13 +7,13 @@ namespace PingPayments.KYC.Session.V1.Initiate.Response
     public record InitiateSessionResponseBody : EmptySuccesfulResponseBody
     {
         /// <summary>
-        /// TODO
+        /// Url for Validation session
         /// </summary>
         [JsonPropertyName("validation_url")]
         public Uri ValidationUrl { get; set; }
 
         /// <summary>
-        /// TODO
+        /// Id of the verification
         /// </summary>
         [JsonPropertyName("verification_id")]
         public string VerificationId { get; set; }
