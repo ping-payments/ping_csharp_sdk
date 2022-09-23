@@ -8,7 +8,7 @@ namespace PingPayments.KYC.Tests.V1
     public class MerchantTest : BaseResourceTests
     {
         [Fact]
-        public async Task Get_merchants_returns_200()
+        public async Task Get_specific_kyc_merchants_returns_200()
         {
             var request = new GetKycRequest
             {
@@ -18,6 +18,22 @@ namespace PingPayments.KYC.Tests.V1
             var response = await _api.Merchant.V1.Get(request);
             AssertHttpOK(response);
         }
+
+        [Fact]
+        public async Task Get_List_of_kyc_merchants_returns_200()
+        {
+            var request = new GetKycRequest
+            {
+                TenantId = TestData.TenantId,
+                Page = 1,
+                PageSize = 10,
+                Type = LegalEntityTypeEnum.person
+            };
+
+            var response = await _api.Merchant.V1.Get(request);
+            AssertHttpOK(response);
+        }
+
 
         [Fact]
         public async Task Verification_returns_204()

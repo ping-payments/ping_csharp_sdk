@@ -21,7 +21,7 @@ namespace PingPayments.KYC.Merchant.V1.Get
                 :
                     $"page_size={request.PageSize}&" +
                     $"page={request.Page}&" +
-                    $"type={request.Type}&"),
+                    $"type={request.Type}"),
                 request
             );
 
