@@ -33,7 +33,7 @@ namespace PingPayments.KYC.Tests.V1
                 Firstname = "Svante",
                 Lastname = "Larsson",
                 Identity = "198002015841",
-                Gender = "male"
+                Gender = GenderEnum.male
             };
 
             var request = new KycVerificationRequest
@@ -45,7 +45,7 @@ namespace PingPayments.KYC.Tests.V1
                     "Svante",
                     "0705555555",
                     TestData.TenantId,
-                    "person",
+                    LegalEntityTypeEnum.person,
                     personData
                 );
 

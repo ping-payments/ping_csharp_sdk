@@ -20,7 +20,7 @@ namespace PingPayments.KYC.Shared
         /// Gender
         /// </summary>
         [JsonPropertyName("gender")]
-        public string Gender { get; set; }
+        public GenderEnum Gender { get; set; }
 
         /// <summary>
         /// Person identity number

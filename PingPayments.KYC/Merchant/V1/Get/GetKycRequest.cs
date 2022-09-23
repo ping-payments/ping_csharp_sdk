@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PingPayments.KYC.Shared;
+using System;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Merchant.V1.Get
@@ -27,13 +28,12 @@ namespace PingPayments.KYC.Merchant.V1.Get
         /// Type of merchants
         /// </summary>
         [JsonPropertyName("type")]
-        public string? Type { get; set; }
+        public LegalEntityTypeEnum? Type { get; set; }
 
         /// <summary>
         /// Get by Merchant ID
         /// </summary>
         [JsonPropertyName("merchant_id")]
         public Guid? MerchantId { get; set; }
-
     }
 }

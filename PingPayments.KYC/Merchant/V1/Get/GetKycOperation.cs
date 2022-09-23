@@ -16,16 +16,16 @@ namespace PingPayments.KYC.Merchant.V1.Get
             => BaseExecute
             (
                 GET,
-                request.MerchantId.HasValue ? $"api/tenant/{request.TenantId}/merchants?merchant_id={request.MerchantId}"
+                 $"api/tenant/{request.TenantId}/merchants?" +
+                    (request.MerchantId.HasValue ? $"merchant_id={request.MerchantId}"
                 :
-                $"api/tenant/{request.TenantId}/merchants?" +
-                $"page_size={request.PageSize}&" +
-                $"page={request.Page}&" +
-                $"type={request.Type}&",
+                    $"page_size={request.PageSize}&" +
+                    $"page={request.Page}&" +
+                    $"type={request.Type}&"),
                 request
             );
 
-        protected override async Task<GetKycResponse> ParseHttpResponse(HttpResponseMessage hrm, GetKycRequest request)
+        protected override async Task<GetKycResponse> ParseHttpResponse(HttpResponseMessage hrm, GetKycRequest _)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
@@ -37,9 +37,9 @@ namespace PingPayments.KYC.Merchant.V1.Get
 
             async Task<GetKycResponse> GetSuccesful()
             {
-                var kycs = await Deserialize<KycResponseBody[]?>(responseBody);
-                var kycList = kycs != null ? new KycList(kycs) : null;
-                var response = GetKycResponse.Succesful(hrm.StatusCode, kycList, responseBody);
+                var kycVerifications = await Deserialize<KycResponseBody[]?>(responseBody);
+                var kycVerificationList = kycVerifications != null ? new KycVerificationList(kycVerifications) : null;
+                var response = GetKycResponse.Succesful(hrm.StatusCode, kycVerificationList, responseBody);
                 return response;
             }
         }
