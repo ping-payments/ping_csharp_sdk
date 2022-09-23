@@ -52,6 +52,16 @@ namespace PingPayments.KYC.Tests.V1
             Assert.Null(response?.Body?.ErrorResponseBody);
         }
 
+        protected static void AssertBadRequest<T>(ApiResponseBase<T> response) where T : EmptySuccesfulResponseBody
+        {
+            Assert.NotNull(response);
+            Assert.Equal(400, (int)response.StatusCode);
+            Assert.True(response.IsFailure);
+            Assert.False(response.ParsingError);
+            Assert.False(response.IsSuccessful);
+            Assert.Null(response?.Body?.SuccesfulResponseBody);
+        }
+
         protected static void AssertHttpNotFound<T>(ApiResponseBase<T> response) where T : EmptySuccesfulResponseBody
         {
             Assert.NotNull(response);

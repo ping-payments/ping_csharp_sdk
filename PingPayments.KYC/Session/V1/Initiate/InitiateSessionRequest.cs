@@ -1,4 +1,5 @@
 ﻿using PingPayments.KYC.Shared;
+using System;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Session.V1.Initiate
@@ -10,7 +11,7 @@ namespace PingPayments.KYC.Session.V1.Initiate
         string PsuId,
         Redirects? Redirects = null,
         Styles? Styles = null,
-        string? TenantId = null)
+        Guid? TenantId = null)
     {
         /// <summary>
         /// Email of the one to perform the KYC
@@ -46,6 +47,6 @@ namespace PingPayments.KYC.Session.V1.Initiate
         /// Id of the tenant that the one to perform the KYC belongs to
         /// </summary>
         [JsonPropertyName("tenant_id")]
-        public string? TenantId { get; set; } = TenantId;
+        public Guid? TenantId { get; set; } = TenantId;
     }
 }

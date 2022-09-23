@@ -68,5 +68,39 @@ namespace PingPayments.KYC.Tests.V1
             var response = await _api.Merchant.V1.Verification(request);
             AssertHttpNoContent(response);
         }
+
+        [Fact]
+        public async Task Verification_bad_request_returns_400()
+        {
+            var bankAccount = new BankAccount
+            {
+                Bic = "NDEASESS",
+                Iban = "SE7280000810340009783242"
+            };
+            var personData = new PersonData
+            {
+                Birthdate = "1985-12-24",
+                Firstname = "Svante",
+                Lastname = "Larsson",
+                Identity = "198002015841",
+                Gender = GenderEnum.male
+            };
+
+            var request = new KycVerificationRequest
+                (
+                    bankAccount,
+                    "SE",
+                    "name@provider.com",
+                    TestData.MerchantId,
+                    "Svante",
+                    "0705555555",
+                    new Guid(),
+                    LegalEntityTypeEnum.person,
+                    personData
+                );
+
+            var response = await _api.Merchant.V1.Verification(request);
+            AssertBadRequest(response);
+        }
     }
 }
