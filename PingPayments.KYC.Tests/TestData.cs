@@ -28,10 +28,5 @@ namespace PingPayments.KYC.Tests
         }
         public static Guid TenantId => GetSettings()["TenantId"];
         public static Guid MerchantId => GetSettings()["MerchantId"];
-        public static Guid OrderId => GetSettings()["OrderId"];
-        public static Guid SplitTreeId => GetSettings()["SplitTreeId"];
-        public static Guid PaymentId => GetSettings()["PaymentId"];
-        public static Guid PayoutId => GetSettings()["PayoutId"];
-        public static Uri FakeCallback => new("https://not.real.callback.pingpayments.com");
     }
 }
