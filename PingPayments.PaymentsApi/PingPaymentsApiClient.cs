@@ -18,6 +18,8 @@ using PingPayments.PaymentsApi.Payouts.Get.V1;
 using PingPayments.PaymentsApi.Payouts.List.V1;
 using PingPayments.PaymentsApi.Ping;
 using PingPayments.PaymentsApi.Ping.V1;
+using PingPayments.PaymentsApi.Tenants;
+using PingPayments.PaymentsApi.Tenants.Get.V1;
 using System;
 using System.Net.Http;
 
@@ -66,6 +68,14 @@ namespace PingPayments.PaymentsApi
                 new Lazy<GetPayoutOperation>(() => new GetPayoutOperation(httpClient))
             );
             _payoutResource = new Lazy<IPayoutResource>(() => new PayoutResource(payoutV1));
+
+            var tenantV1 = new TenantV1
+            (
+                new Lazy<GetTenantOperation>(() => new GetTenantOperation(httpClient))
+
+            );
+            _tenantResource = new Lazy<ITenantResource>(() => new TenantResource(tenantV1));
+
         }
 
         private readonly Lazy<IPaymentResource> _payments;
@@ -82,5 +92,8 @@ namespace PingPayments.PaymentsApi
 
         private readonly Lazy<IPayoutResource> _payoutResource;
         public IPayoutResource Payouts => _payoutResource.Value;
+
+        private readonly Lazy<ITenantResource> _tenantResource;
+        public ITenantResource Tenants => _tenantResource.Value;
     }
 }

@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Shared\" />
+    <Folder Include="Tenants\Update\V1\" />
   </ItemGroup>
 
   <ItemGroup>
