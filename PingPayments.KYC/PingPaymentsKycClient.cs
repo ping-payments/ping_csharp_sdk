@@ -10,16 +10,16 @@ namespace PingPayments.KYC
 {
     public class PingPaymentsKycClient : IPingPaymentsKycClient
     {
-        public PingPaymentsKycClient(HttpClient httplient)
+        public PingPaymentsKycClient(HttpClient httpClient)
         {
-            var sessionV1 = new SessionV1(new Lazy<InitiateSessionOperation>(() => new InitiateSessionOperation(httplient)));
+            var sessionV1 = new SessionV1(new Lazy<InitiateSessionOperation>(() => new InitiateSessionOperation(httpClient)));
 
             _session = new Lazy<ISessionResource>(() => new SessionResource(sessionV1));
 
             var merchantV1 = new MerchantV1
                 (
-                    new Lazy<KycVerificationOperation>(() => new KycVerificationOperation(httplient)),
-                    new Lazy<GetKycOperation>(() => new GetKycOperation(httplient))
+                    new Lazy<KycVerificationOperation>(() => new KycVerificationOperation(httpClient)),
+                    new Lazy<GetKycOperation>(() => new GetKycOperation(httpClient))
                 );
             _merchant = new Lazy<IMerchantResource>(() => new MerchantResource(merchantV1));
         }
