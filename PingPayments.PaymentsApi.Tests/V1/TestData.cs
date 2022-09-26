@@ -28,7 +28,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 {"OrderId",  GetGuidValue("ORDERID")},
                 {"SplitTreeId",  GetGuidValue("SPLITTREEID")},
                 {"PaymentId",  GetGuidValue("PAYMENTID")},
-                {"PayoutId",  GetGuidValue("PAYOUTID")}
+                {"PayoutId",  GetGuidValue("PAYOUTID")},
+                {"DisbursementId",  GetGuidValue("DISBURSEMENTID")}
             };
             return Settings;
         }
@@ -38,6 +39,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public static Guid SplitTreeId => GetSettings()["SplitTreeId"];
         public static Guid PaymentId => GetSettings()["PaymentId"];
         public static Guid PayoutId => GetSettings()["PayoutId"];
+        public static Guid DisbursementId => GetSettings()["DisbursementId"];
         public static Uri FakeCallback => new("https://not.real.callback.pingpayments.com");
     }
 }
