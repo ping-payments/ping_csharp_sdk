@@ -19,7 +19,7 @@ namespace PingPayments.PaymentsApi.Payments.Update.V1
                 await ToJson(request.UpdatePaymentRequest)
             );
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid orderId, Guid paymentId, UpdatePaymentRequest UpdatePaymentRequest) request) =>
+        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid orderId, Guid paymentId, UpdatePaymentRequest UpdatePaymentRequest) _) =>
         hrm.StatusCode switch
         {
             NoContent => EmptyResponse.Succesful(hrm.StatusCode),
