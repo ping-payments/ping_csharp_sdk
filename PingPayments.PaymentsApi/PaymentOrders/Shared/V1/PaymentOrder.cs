@@ -17,9 +17,6 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Shared.V1
         [JsonPropertyName("currency")]
         public CurrencyEnum currency { get; set; }
 
-        [JsonPropertyName("id")]
-        public Guid Id { get; set; }
-
         [JsonPropertyName("payments")]
         public PaymentResponseBody[] Payments { get; set; } = Array.Empty<PaymentResponseBody>();
 
