@@ -20,6 +20,7 @@ using PingPayments.PaymentsApi.Ping;
 using PingPayments.PaymentsApi.Ping.V1;
 using PingPayments.PaymentsApi.Tenants;
 using PingPayments.PaymentsApi.Tenants.Get.V1;
+using PingPayments.PaymentsApi.Tenants.Update.V1;
 using System;
 using System.Net.Http;
 
@@ -71,8 +72,8 @@ namespace PingPayments.PaymentsApi
 
             var tenantV1 = new TenantV1
             (
-                new Lazy<GetTenantOperation>(() => new GetTenantOperation(httpClient))
-
+                new Lazy<GetTenantOperation>(() => new GetTenantOperation(httpClient)),
+                new Lazy<UpdateTenantOperation>(() => new UpdateTenantOperation(httpClient))
             );
             _tenantResource = new Lazy<ITenantResource>(() => new TenantResource(tenantV1));
 
