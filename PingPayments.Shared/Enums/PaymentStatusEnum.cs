@@ -2,13 +2,12 @@
 {
     public enum PaymentStatusEnum
     {
-        INITIATED, 
-        PENDING, 
-        DECLINED, 
-        CANCELLED, 
-        CRASHED, 
-        COMPLETED, 
-        EXPIRED, 
+        INITIATED,
+        PENDING,
+        DECLINED,
+        CRASHED,
+        COMPLETED,
+        EXPIRED,
         ABORTED
     }
 }
