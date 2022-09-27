@@ -15,7 +15,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Shared.V1
         public DateTimeOffset CreatedAt { get; set; }
 
         [JsonPropertyName("currency")]
-        public CurrencyEnum currency { get; set; }
+        public CurrencyEnum Currency { get; set; }
 
         [JsonPropertyName("payments")]
         public PaymentResponseBody[] Payments { get; set; } = Array.Empty<PaymentResponseBody>();
