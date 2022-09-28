@@ -1,9 +1,9 @@
 ﻿using PingPayments.Shared.Enums;
 using System.Text.Json.Serialization;
 
-namespace PingPayments.PaymentsApi.Tenants.Shared
+namespace PingPayments.Shared
 {
-    public record PaymentProviderMethod
+    public record ProviderMethodBase
     {
         [JsonPropertyName("method")]
         public MethodEnum Method { get; set; }

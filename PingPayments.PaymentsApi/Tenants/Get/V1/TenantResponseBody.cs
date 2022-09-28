@@ -1,7 +1,6 @@
 ﻿using PingPayments.PaymentsApi.Merchants.Shared.V1;
 using PingPayments.PaymentsApi.Tenants.Shared;
 using PingPayments.Shared;
-using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -29,10 +28,6 @@ namespace PingPayments.PaymentsApi.Tenants.Get.V1
         public string? MerchantStatusCallbackUrl { get; set; }
 
 
-        [JsonPropertyName("id")]
-        public Guid Id { get; set; }
-
-
         [JsonPropertyName("name")]
         public string? Name { get; set; }
 
@@ -42,7 +37,7 @@ namespace PingPayments.PaymentsApi.Tenants.Get.V1
 
 
         [JsonPropertyName("payment_provider_methods")]
-        public IEnumerable<PaymentProviderMethod>? PaymentProviderMethods { get; set; }
+        public IEnumerable<ProviderMethodBase>? PaymentProviderMethods { get; set; }
 
 
     }

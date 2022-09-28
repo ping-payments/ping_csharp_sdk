@@ -1,7 +1,5 @@
 ﻿using PingPayments.Shared;
 using System.Net.Http;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
@@ -21,10 +19,6 @@ namespace PingPayments.PaymentsApi.Tenants.Update.V1
                 updateTenantRequest,
                 await ToJson(updateTenantRequest)
             );
-        protected override JsonSerializerOptions JsonSerializerOptions => new()
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        };
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, UpdateTenantRequest updateTenantRequest) =>
             hrm.StatusCode switch
             {
