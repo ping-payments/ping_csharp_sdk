@@ -7,7 +7,7 @@ namespace PingPayments.PaymentsApi.SigningKeys.Get.V1
     {
         public GetKeyRespons(HttpStatusCode StatusCode, bool IsSuccessful, ResponseBody<GetKeyResponseBody>? Body, string RawBody) : base(StatusCode, IsSuccessful, Body, RawBody) { }
 
-        public static GetKeyRespons Succesful(HttpStatusCode statusCode, GetKeyResponseBody? b, string rb) => new(statusCode, true, b, rb);
-        public static GetKeyRespons Failure(HttpStatusCode statusCode, ErrorResponseBody? e, string rb) => new(statusCode, false, e, rb);
+        public static GetKeyRespons Succesful(HttpStatusCode statusCode, GetKeyResponseBody? body, string rawBody) => new(statusCode, true, body, rawBody);
+        public static GetKeyRespons Failure(HttpStatusCode statusCode, ErrorResponseBody? error, string rawBody) => new(statusCode, false, error, rawBody);
     }
 }
