@@ -4,6 +4,7 @@ using PingPayments.PaymentsApi.PaymentOrders;
 using PingPayments.PaymentsApi.Payments;
 using PingPayments.PaymentsApi.Payouts;
 using PingPayments.PaymentsApi.Ping;
+using PingPayments.PaymentsApi.Poke;
 using PingPayments.PaymentsApi.Tenants;
 
 namespace PingPayments.PaymentsApi
@@ -17,5 +18,7 @@ namespace PingPayments.PaymentsApi
         IPingResource Ping { get; }
         IPayoutResource Payouts { get; }
         ITenantResource Tenants { get; }
+        IPokeResource Poke { get; }
+
     }
 }
