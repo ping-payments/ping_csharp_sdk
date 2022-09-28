@@ -1,3 +1,4 @@
+using PingPayments.PaymentsApi.Disbursements;
 using PingPayments.PaymentsApi.Merchants;
 using PingPayments.PaymentsApi.PaymentOrders;
 using PingPayments.PaymentsApi.Payments;
@@ -9,6 +10,7 @@ namespace PingPayments.PaymentsApi
 {
     public interface IPingPaymentsApiClient
     {
+        IDisbursementResource Disbursements { get; }
         IMerchantResource Merchants { get; }
         IPaymentOrderResource PaymentOrder { get; }
         IPaymentResource Payments { get; }

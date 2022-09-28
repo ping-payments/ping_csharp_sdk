@@ -10,9 +10,12 @@ namespace PingPayments.PaymentsApi.Merchants
 {
     public class MerchantV1 : IMerchantV1
     {
-        public MerchantV1(Lazy<CreateMerchantOperation> createMerchantOperation,
-                          Lazy<GetMerchantOperation> getMerchantOperation,
-                          Lazy<ListMerchantsOperation> listMerchantOperation)
+        public MerchantV1
+        (
+            Lazy<CreateMerchantOperation> createMerchantOperation,
+            Lazy<GetMerchantOperation> getMerchantOperation,
+            Lazy<ListMerchantsOperation> listMerchantOperation
+        )
         {
             _createMerchantOperation = createMerchantOperation;
             _getMerchantOperation = getMerchantOperation;
