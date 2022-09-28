@@ -15,6 +15,10 @@ namespace PingPayments.Mimic.Deposit.Create.V1
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {
+            Converters =
+            {
+                new JsonStringEnumConverter(),
+            },
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 

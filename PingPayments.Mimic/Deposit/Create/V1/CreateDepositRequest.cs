@@ -7,13 +7,12 @@ namespace PingPayments.Mimic.Deposit.Create.V1
     (
         int Amount,
         CurrencyEnum Currency,
-        string ReferenceType,
+        ReferenceTypeEnum ReferenceType,
         string Reference,
         string? Iban = null,
         ProcesseTypeEnum? Type = null
     )
     {
-
         [JsonPropertyName("amount")]
         public int Amount { get; set; } = Amount;
 
@@ -31,7 +30,7 @@ namespace PingPayments.Mimic.Deposit.Create.V1
 
 
         [JsonPropertyName("reference_type")]
-        public string ReferenceType { get; set; } = ReferenceType;
+        public ReferenceTypeEnum ReferenceType { get; set; } = ReferenceType;
 
 
         [JsonPropertyName("type")]
