@@ -20,6 +20,9 @@ using PingPayments.PaymentsApi.Payouts.Get.V1;
 using PingPayments.PaymentsApi.Payouts.List.V1;
 using PingPayments.PaymentsApi.Ping;
 using PingPayments.PaymentsApi.Ping.V1;
+using PingPayments.PaymentsApi.SigningKeys;
+using PingPayments.PaymentsApi.SigningKeys.Generate.V1;
+using PingPayments.PaymentsApi.SigningKeys.Get.V1;
 using System;
 using System.Net.Http;
 
@@ -70,6 +73,13 @@ namespace PingPayments.PaymentsApi
                 new Lazy<GetPayoutOperation>(() => new GetPayoutOperation(httpClient))
             );
             _payoutResource = new Lazy<IPayoutResource>(() => new PayoutResource(payoutV1));
+
+            var signingKeyV1 = new SigningKeyV1
+            (
+                new Lazy<GenerateKeyOperation>(() => new GenerateKeyOperation(httpClient)),
+                new Lazy<GetKeyOperation>(() => new GetKeyOperation(httpClient))
+            );
+            _signingResource = new Lazy<ISigningKeyResource>(() => new SigningKeyResource(signingKeyV1));
         }
 
         private readonly Lazy<IPaymentResource> _payments;
@@ -86,5 +96,8 @@ namespace PingPayments.PaymentsApi
 
         private readonly Lazy<IPayoutResource> _payoutResource;
         public IPayoutResource Payouts => _payoutResource.Value;
+
+        private readonly Lazy<ISigningKeyResource> _signingResource;
+        public ISigningKeyResource SigningKey => _signingResource.Value;
     }
 }
