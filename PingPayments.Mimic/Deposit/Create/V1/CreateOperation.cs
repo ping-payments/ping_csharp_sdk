@@ -1,5 +1,4 @@
 ﻿using PingPayments.Shared;
-using PingPayments.Shared.Helpers;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -35,12 +34,7 @@ namespace PingPayments.Mimic.Deposit.Create.V1
             hrm.StatusCode switch
             {
                 NoContent => EmptyResponse.Succesful(hrm.StatusCode),
-                _ => EmptyResponse.Failure
-                    (
-                        hrm.StatusCode,
-                        await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
-                        await hrm.Content.ReadAsStringAsyncMemoized()
-                    )
+                _ => await ToEmptyError(hrm)
             };
     }
 }

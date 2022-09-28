@@ -1,6 +1,5 @@
 ﻿using PingPayments.Shared;
 using PingPayments.Shared.Enums;
-using PingPayments.Shared.Helpers;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -26,12 +25,7 @@ namespace PingPayments.Mimic.Merchants.Update.V1
             hrm.StatusCode switch
             {
                 NoContent => EmptyResponse.Succesful(hrm.StatusCode),
-                _ => EmptyResponse.Failure
-                    (
-                        hrm.StatusCode,
-                        await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
-                        await hrm.Content.ReadAsStringAsyncMemoized()
-                    )
+                _ => await ToEmptyError(hrm)
             };
     }
 }
