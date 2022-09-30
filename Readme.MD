@@ -2,7 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\
 ![Nuget](https://img.shields.io/nuget/v/PingPayments.Payments?label=PingPayments.Payments)\
-![Nuget](https://img.shields.io/nuget/v/PingPayments.PaymentLinks?label=PingPayments.PaymentLinks)
+![Nuget](https://img.shields.io/nuget/v/PingPayments.PaymentLinks?label=PingPayments.PaymentLinks)\
+![Nuget](https://img.shields.io/nuget/v/PingPayments.Mimic?label=PingPayments.Mimic)\
+![Nuget](https://img.shields.io/nuget/v/PingPayments.KYC?label=PingPayments.KYC)
 
 Use this C# nuget library to manage Ping Payments resources regarding payments and payment links, KYC and to simulate bank operations (Mimic).
 
