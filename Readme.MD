@@ -4,7 +4,7 @@
 ![Nuget](https://img.shields.io/nuget/v/PingPayments.Payments?label=PingPayments.Payments)\
 ![Nuget](https://img.shields.io/nuget/v/PingPayments.PaymentLinks?label=PingPayments.PaymentLinks)
 
-Use this C# nuget library to manage Ping Payments resources regarding payments and payment links.
+Use this C# nuget library to manage Ping Payments resources regarding payments and payment links, KYC and to simulate bank operations (Mimic).
 
 ## Table of contents
 
@@ -37,6 +37,12 @@ dotnet add package PingPayments.Payments
 ```sh
 dotnet add package PingPayments.PaymentLinks
 ```
+```sh
+dotnet add package PingPayments.KYC
+```
+```sh
+dotnet add package PingPayments.Mimic
+```
 
 Install the latest SDK using NuGet.exe
 
@@ -45,6 +51,12 @@ nuget install PingPayments.Payments
 ```
 ```sh
 nuget install PingPayments.PaymentLinks
+```
+```sh
+nuget install PingPayments.KYC
+```
+```sh
+nuget install PingPayments.Mimic
 ```
 
 From within Visual Studio:
