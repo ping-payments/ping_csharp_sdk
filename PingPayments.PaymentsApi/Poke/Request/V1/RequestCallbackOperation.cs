@@ -11,13 +11,13 @@ namespace PingPayments.PaymentsApi.Poke.Request.V1
     {
         public RequestCallbackOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<EmptyResponse> ExecuteRequest(Uri CallbackUrl) =>
+        public override async Task<EmptyResponse> ExecuteRequest(Uri callbackUrl) =>
             await BaseExecute
             (
                 POST,
                 "api/v1/poke",
-                CallbackUrl,
-                await ToJson((new { callback_url = CallbackUrl }))
+                callbackUrl,
+                await ToJson((new { callback_url = callbackUrl }))
             );
 
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, Uri _) =>
