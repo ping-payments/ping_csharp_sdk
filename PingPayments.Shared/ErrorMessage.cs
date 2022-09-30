@@ -11,7 +11,7 @@ namespace PingPayments.Shared
         public string Error { get; set; }
 
         [JsonPropertyName("property")]
-        public string Property { get; set; }
+        public string? Property { get; set; }
 
         [JsonPropertyName("additional_information")]
         public IDictionary<string, dynamic>? AdditionalInformation { get; set; }
