@@ -6,10 +6,10 @@ using System.Text.Json.Serialization;
 namespace PingPayments.PaymentsApi.PaymentOrders.Create.V1
 {
 
-    public record CreatePaymentOrderRequest(CurrencyEnum Currency, dynamic? SplitParamters = null, Guid ? SplitTreeId = null) 
+    public record CreatePaymentOrderRequest(CurrencyEnum Currency, dynamic? SplitParamters = null, Guid? SplitTreeId = null)
     {
         /// <summary>
-        /// The currencu which will be used in the payment order
+        /// The currency which will be used in the payment order
         /// </summary>
         [JsonPropertyName("currency")]
         public CurrencyEnum Currency { get; set; } = Currency;

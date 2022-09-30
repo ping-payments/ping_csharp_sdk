@@ -22,9 +22,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.PaymentLinksAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.Shared", "PingPayments.Shared\PingPayments.Shared.csproj", "{F0531062-DE3C-42B3-A040-2122E3EC4307}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingPayments.KYC", "PingPayments.KYC\PingPayments.KYC.csproj", "{F66A18CC-F654-4A6A-94C6-9531FFEE8FE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.KYC", "PingPayments.KYC\PingPayments.KYC.csproj", "{F66A18CC-F654-4A6A-94C6-9531FFEE8FE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingPayments.KYC.Tests", "PingPayments.KYC.Tests\PingPayments.KYC.Tests.csproj", "{5A0843BA-5ACB-4047-BC0B-FB9B2E206B86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.KYC.Tests", "PingPayments.KYC.Tests\PingPayments.KYC.Tests.csproj", "{5A0843BA-5ACB-4047-BC0B-FB9B2E206B86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingPayments.Mimic", "PingPayments.Mimic\PingPayments.Mimic.csproj", "{B5984414-A2A0-42A8-BD76-2F86DB0836BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingPayments.Mimic.Tests", "PingPayments.Mimic.Tests\PingPayments.Mimic.Tests.csproj", "{19599AD5-7405-44B1-88FF-D91D49CE2222}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +64,14 @@ Global
 		{5A0843BA-5ACB-4047-BC0B-FB9B2E206B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A0843BA-5ACB-4047-BC0B-FB9B2E206B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A0843BA-5ACB-4047-BC0B-FB9B2E206B86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5984414-A2A0-42A8-BD76-2F86DB0836BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5984414-A2A0-42A8-BD76-2F86DB0836BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5984414-A2A0-42A8-BD76-2F86DB0836BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5984414-A2A0-42A8-BD76-2F86DB0836BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19599AD5-7405-44B1-88FF-D91D49CE2222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19599AD5-7405-44B1-88FF-D91D49CE2222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19599AD5-7405-44B1-88FF-D91D49CE2222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19599AD5-7405-44B1-88FF-D91D49CE2222}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
