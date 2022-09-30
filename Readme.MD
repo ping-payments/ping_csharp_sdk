@@ -73,10 +73,9 @@ From within Visual Studio:
 For a more comprehensive documentation check out the [SDK documentation](https://docs.pingpayments.com/docs/the-ping-payments-c-sdk). 
 
 
-## Payment API 
+## Exampel Usage 
 
-### Usage 
-
+### Payment API 
 
 #### Swish ecommerce example
 
@@ -148,79 +147,6 @@ await response.MatchAsync
 if(response.IsSuccessful)
 {
     await ShowDialog("Open Swish on your device...");
-} 
-else
-{
-    await ShowError(response.Body.ErrorResponseBody);
-}
-```
-
-## Payment Links API 
-### Usage 
-
-#### Create a payment link example
-
-##### 1.a Create a client
-```c#
-var apiUrl = Configuration["PingPayments:ApiUrl"];
-var tenantId = Configuration["PingPayments:TenantId"];
-var httpClient = new HttpClient().ConfigurePingPaymentsClient(apiUrl, tenantId);
-var api = new PingPaymentLinksApiClient(httpClient);
-```
-
-##### 1.b Dependency injection
-```c#
-services.AddHttpClient<IPingPaymentLinksApiClient, PingPaymentLinksApiClient>(client =>
-{
-    var apiUrl = Configuration["PingPayments:ApiUrl"];
-    var tenantId = Configuration["PingPayments:TenantId"];
-    client.ConfigurePingPaymentsClient(apiUrl, tenantId);
-});
-```
-
-##### 2. Create a new payment link through the API  
-```c#
-var customer = new Customer("FirstName", "LastName");
-var dueDate = "2023-01-01";
-var suppler = new Supplier("Supllier name");
-var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
-var verifone = CreatePaymentProviderMethod.Verifone.Card();
-
-var paymentLinkRequest = new CreatePaymentLinkRequest
-(
-    OrderId,
-    CurrencyEnum.SEK,
-    customer,
-    dueDate,
-    Locale.Swedish,
-    new Item[]
-    {
-        new Item("Hawaii Pizza", MerchantId, 7000, 2, SwedishVat.Vat12)
-    },
-    suppler,
-    new PaymentProviderMethod[]
-    {
-        swishMcommmerce,
-        Verifone
-    }
-);
-
-var response = await api.PaymentLinks.V1.Create(paymentLinkRequest);
-```
-##### 3.a Pattern match on response (if you like it functionally)
-```c#
-await response.MatchAsync
-(
-    OnSuccess: async (CreatePaymentLinkResponse cplr) => await ShowDialog("A new payment link has been created..."),
-    OnFailure: async (ErrorResponseBody error) => await ShowError(error) 
-);
-```
-
-##### 3.b Use the ResponseBody help class and classical if-blocks
-```c#
-if(response.IsSuccessful)
-{
-    ShowDialog("A new payment link has been created...");
 } 
 else
 {
