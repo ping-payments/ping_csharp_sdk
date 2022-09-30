@@ -3,7 +3,7 @@ using PingPayments.KYC.Session;
 
 namespace PingPayments.KYC
 {
-    public interface IPingPaymentsKycClient
+    public interface IPingKycApiClient
     {
         ISessionResource Session { get; }
         IMerchantResource Merchant { get; }
