@@ -14,9 +14,8 @@ Use this C# nuget library to manage Ping Payments resources regarding payments a
 
 * [Documentation](#documentation) 
 
-*  [Payments API](#payment-api)
+* [Exampel Usage](#exampel-usage)
 
-*  [Payments Links API](#payment-links-api)
 
 * [Tests](#tests)
 
