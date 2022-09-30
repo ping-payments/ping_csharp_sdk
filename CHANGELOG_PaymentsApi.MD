@@ -12,7 +12,8 @@
 
 - PaymentOrder now contains a currency field with the type CurrencyEnum. 
 - PaymentResponseBody now contains a StatusHistory field that contains a list of status history of a payment.
-- ErrorMessage now contains a additional_information field. 
+- ErrorMessage now contains a additional_information field.
+- MerchantStatus enum moved to PingPayments.Common. The new namespace for MerchantStatus is PingPayments.Shared.Enums. 
 
 ## 0.8.0-alpha (2022-08-26)
 - BAASE was added as a payment method. 
