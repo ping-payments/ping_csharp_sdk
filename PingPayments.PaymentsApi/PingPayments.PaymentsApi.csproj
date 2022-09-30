@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Shared\" />
+	  <Folder Include="Shared\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -28,6 +28,9 @@ using PingPayments.PaymentsApi.Poke.Request.V1;
 using PingPayments.PaymentsApi.Tenants;
 using PingPayments.PaymentsApi.Tenants.Get.V1;
 using PingPayments.PaymentsApi.Tenants.Update.V1;
+using PingPayments.PaymentsApi.SigningKeys;
+using PingPayments.PaymentsApi.SigningKeys.Generate.V1;
+using PingPayments.PaymentsApi.SigningKeys.Get.V1;
 using System;
 using System.Net.Http;
 
@@ -99,6 +102,13 @@ namespace PingPayments.PaymentsApi
                 new Lazy<RequestCallbackOperation>(() => new RequestCallbackOperation(httpClient))
             );
             _pokeResource = new Lazy<IPokeResource>(() => new PokeResource(pokeV1));
+            
+            var signingKeyV1 = new SigningKeyV1
+            (
+                new Lazy<GenerateKeyOperation>(() => new GenerateKeyOperation(httpClient)),
+                new Lazy<GetKeyOperation>(() => new GetKeyOperation(httpClient))
+            );
+            _signingResource = new Lazy<ISigningKeyResource>(() => new SigningKeyResource(signingKeyV1));
 
         }
 
@@ -120,6 +130,9 @@ namespace PingPayments.PaymentsApi
         private readonly Lazy<IPayoutResource> _payoutResource;
         public IPayoutResource Payouts => _payoutResource.Value;
 
+        private readonly Lazy<ISigningKeyResource> _signingResource;
+        public ISigningKeyResource SigningKey => _signingResource.Value;
+        
         private readonly Lazy<ITenantResource> _tenantResource;
         public ITenantResource Tenants => _tenantResource.Value;
 
