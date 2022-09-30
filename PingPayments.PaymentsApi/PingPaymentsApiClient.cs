@@ -23,6 +23,8 @@ using PingPayments.PaymentsApi.Payouts.Get.V1;
 using PingPayments.PaymentsApi.Payouts.List.V1;
 using PingPayments.PaymentsApi.Ping;
 using PingPayments.PaymentsApi.Ping.V1;
+using PingPayments.PaymentsApi.Poke;
+using PingPayments.PaymentsApi.Poke.Request.V1;
 using PingPayments.PaymentsApi.Tenants;
 using PingPayments.PaymentsApi.Tenants.Get.V1;
 using PingPayments.PaymentsApi.Tenants.Update.V1;
@@ -92,6 +94,12 @@ namespace PingPayments.PaymentsApi
             );
             _tenantResource = new Lazy<ITenantResource>(() => new TenantResource(tenantV1));
 
+            var pokeV1 = new PokeV1
+            (
+                new Lazy<RequestCallbackOperation>(() => new RequestCallbackOperation(httpClient))
+            );
+            _pokeResource = new Lazy<IPokeResource>(() => new PokeResource(pokeV1));
+
         }
 
         private readonly Lazy<IDisbursementResource> _disbursementV1;
@@ -114,5 +122,8 @@ namespace PingPayments.PaymentsApi
 
         private readonly Lazy<ITenantResource> _tenantResource;
         public ITenantResource Tenants => _tenantResource.Value;
+
+        private readonly Lazy<IPokeResource> _pokeResource;
+        public IPokeResource Poke => _pokeResource.Value;
     }
 }
