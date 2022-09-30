@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.0.0 (2022-09-30)
+- New endpoints added:
+  - Disbursments TODO add link
+  - Tenants TODO add link
+  - Payouts TODO add link
+
+- PingEnvironments has changed to support multiple APIs. In the previos versions you accessed the Payments API environments with the following notation: PingEnvironments.SandboxUri and PingEnvironments.ProductionUri. This is changed to the following: PingEnvironments.PaymentsApi.SandboxUri and PingEnvironments.PaymentsApi.ProductionUri.
+
+- PaymentOrder now contains a currency field with the type CurrencyEnum. 
+- PaymentResponseBody now contains a StatusHistory field that contains a list of status history of a payment.
+- ErrorMessage now contains a additional_information field and the old field Property is removed. 
+
 ## 0.8.0-alpha (2022-08-26)
 - BAASE was added as a payment method. 
 

@@ -5,13 +5,13 @@ namespace PingPayments.KYC.Tests.V1
 {
     public class BaseResourceTests
     {
-        protected readonly IPingPaymentsKycClient _api;
+        protected readonly IPingKycApiClient _api;
         protected readonly HttpClient _httpClient;
 
         public BaseResourceTests()
         {
             _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.KYC.SandboxUri);
-            _api = new PingPaymentsKycClient(_httpClient);
+            _api = new PingKycApiClient(_httpClient);
         }
 
         protected static void AssertHttpOK<T>(ApiResponseBase<T> response) where T : EmptySuccesfulResponseBody

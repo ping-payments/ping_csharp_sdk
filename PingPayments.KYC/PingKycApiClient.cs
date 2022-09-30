@@ -8,9 +8,9 @@ using System.Net.Http;
 
 namespace PingPayments.KYC
 {
-    public class PingPaymentsKycClient : IPingPaymentsKycClient
+    public class PingKycApiClient : IPingKycApiClient
     {
-        public PingPaymentsKycClient(HttpClient httpClient)
+        public PingKycApiClient(HttpClient httpClient)
         {
             var sessionV1 = new SessionV1(new Lazy<InitiateSessionOperation>(() => new InitiateSessionOperation(httpClient)));
 
