@@ -12,6 +12,12 @@ namespace PingPayments.PaymentsApi.Disbursements.Shared
         [JsonPropertyName("id")]
         public Guid Id { get; set; }
 
+        /// <summary>
+        /// The reference attached to the payout
+        /// </summary>
+        /// 
+        [JsonPropertyName("reference")]
+        public string Reference { get; set; }
 
         /// <summary>
         /// Timestamp at which the Allocation was allocated
