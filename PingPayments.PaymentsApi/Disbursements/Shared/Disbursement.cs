@@ -32,6 +32,6 @@ namespace PingPayments.PaymentsApi.Disbursements.Shared
         /// List of settlements
         /// </summary>
         [JsonPropertyName("settlements")]
-        public Settlements[] Settlemnts { get; set; }
+        public Settlement[] Settlemnts { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.Disbursements.Shared
 {
-    public record Settlements
+    public record Settlement
     {
         /// <summary>
         /// The settled amount in minor currency
