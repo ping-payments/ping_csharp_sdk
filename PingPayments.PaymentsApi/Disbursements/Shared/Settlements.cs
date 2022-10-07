@@ -6,8 +6,25 @@ namespace PingPayments.PaymentsApi.Disbursements.Shared
     public record Settlement
     {
         /// <summary>
+        /// Allocation ID (UUID4)
+        /// </summary>
+        /// 
+        [JsonPropertyName("id")]
+        public Guid Id { get; set; }
+
+
+        /// <summary>
+        /// Timestamp at which the Allocation was allocated
+        /// </summary>
+        /// 
+        [JsonPropertyName("allocated_at")]
+        public DateTimeOffset AllocatedAt { get; set; }
+
+
+        /// <summary>
         /// The settled amount in minor currency
         /// </summary>
+        /// 
         [JsonPropertyName("amount")]
         public int Amount { get; set; }
 
