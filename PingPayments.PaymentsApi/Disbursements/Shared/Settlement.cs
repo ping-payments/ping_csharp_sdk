@@ -13,11 +13,11 @@ namespace PingPayments.PaymentsApi.Disbursements.Shared
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Timestamp at which the Allocation was allocated
+        /// The Allocation ID which the Settlement was derived from
         /// </summary>
         /// 
-        [JsonPropertyName("allocated_at")]
-        public DateTimeOffset AllocatedAt { get; set; }
+        [JsonPropertyName("allocation_id")]
+        public Guid AllocationId { get; set; }
 
 
         /// <summary>
