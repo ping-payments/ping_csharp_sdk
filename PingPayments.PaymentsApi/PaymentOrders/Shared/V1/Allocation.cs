@@ -24,7 +24,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Shared.V1
         public string? Label { get; set; }
 
         [JsonPropertyName("merchant_id")]
-        public Guid MerchantId { get; set; }
+        public Guid? MerchantId { get; set; }
 
         [JsonPropertyName("payment_id")]
         public Guid? PaymentId { get; set; }

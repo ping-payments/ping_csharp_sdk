@@ -16,9 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Shared\**" />
-    <EmbeddedResource Remove="Shared\**" />
-    <None Remove="Shared\**" />
+	  <Folder Include="Shared\" />
   </ItemGroup>
 
   <ItemGroup>
