@@ -1,4 +1,5 @@
 ﻿using PingPayments.Mimic.Deposit;
+using PingPayments.Mimic.Disbursements;
 using PingPayments.Mimic.Merchants;
 
 namespace PingPayments.Mimic
@@ -7,5 +8,6 @@ namespace PingPayments.Mimic
     {
         IDepositResource Deposit { get; }
         IMerchantResource Merchant { get; }
+        IDisbursementResource Disbursement { get; }
     }
 }
