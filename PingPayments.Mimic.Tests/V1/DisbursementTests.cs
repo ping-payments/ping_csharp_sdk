@@ -3,7 +3,6 @@
     public class DisbursementTests : BaseResourceTests
     {
 
-
         [Fact]
         public async Task Trigger_disbursement_returns_200()
         {

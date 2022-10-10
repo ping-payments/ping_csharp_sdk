@@ -8,8 +8,10 @@ namespace PingPayments.Mimic.Disbursements.Trigger.V1
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
+
         [JsonPropertyName("payment_order_id")]
         public Guid PaymentOrderId { get; set; }
+
 
         [JsonPropertyName("reason")]
         public string Reason { get; set; }
