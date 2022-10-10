@@ -40,7 +40,7 @@ namespace PingPayments.PaymentsApi.Disbursements.Shared
         /// which means the settled amount wasn't paid out to a Merchant but the Tenant or payment facilitator
         /// </summary>
         [JsonPropertyName("merchant_id")]
-        public Guid MerchantId { get; set; }
+        public Guid? MerchantId { get; set; }
 
 
         /// <summary>
