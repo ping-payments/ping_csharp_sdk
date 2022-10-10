@@ -19,10 +19,10 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Allocations.V1
         public static AllocationsResponse Succesful(HttpStatusCode statusCode, AllocationList? allocationList, string rawBody) => new(statusCode, true, allocationList, rawBody);
         public static AllocationsResponse Failure(HttpStatusCode statusCode, ErrorResponseBody? errorResponse, string rawBody) => new(statusCode, false, errorResponse, rawBody);
 
-        //public static implicit operator AllocationList?(AllocationsResponse allocationResponse) =>
-        //    allocationResponse?.Body?.SuccesfulResponseBody;
+        public static implicit operator AllocationList?(AllocationsResponse allocationResponse) =>
+            allocationResponse?.Body?.SuccesfulResponseBody;
 
-        //public static implicit operator Allocation[](AllocationsResponse allocationResponse) =>
-        //    (allocationResponse?.Body?.SuccesfulResponseBody)?.Allocations ?? new Allocation[] { };
+        public static implicit operator Allocation[](AllocationsResponse allocationResponse) =>
+            (allocationResponse?.Body?.SuccesfulResponseBody)?.Allocations ?? new Allocation[] { };
     }
 }
