@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.1.0 (2022-10-11)
+- The Payment Order enpoint now have a Allocations method where you can get all Allocations for a Payment Order. 
+- Fixed typo on SuccessfulResponseBody, added a missing "s".
+
 ## 1.0.0 (2022-09-30)
 - New endpoints added:
   - Disbursments 
