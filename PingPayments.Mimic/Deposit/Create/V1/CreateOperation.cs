@@ -33,7 +33,7 @@ namespace PingPayments.Mimic.Deposit.Create.V1
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, CreateDepositRequest _) =>
             hrm.StatusCode switch
             {
-                NoContent => EmptyResponse.Succesful(hrm.StatusCode),
+                NoContent => EmptyResponse.Successful(hrm.StatusCode),
                 _ => await ToEmptyError(hrm)
             };
     }

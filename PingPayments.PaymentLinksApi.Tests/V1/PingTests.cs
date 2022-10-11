@@ -7,7 +7,7 @@
         {
             var response = await _api.Ping.V1.Ping();
             AssertHttpOK(response);
-            Assert.Equal("pong", response.Body.SuccesfulResponseBody.Text);
+            Assert.Equal("pong", response.Body.SuccessfulResponseBody.Text);
         }
     }
 }

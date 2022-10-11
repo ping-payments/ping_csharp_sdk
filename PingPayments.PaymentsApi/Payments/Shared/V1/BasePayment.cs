@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.Payments.Shared.V1
 {
-    public abstract record BasePayment : EmptySuccesfulResponseBody
+    public abstract record BasePayment : EmptySuccessfulResponseBody
     {
         /// <summary>
         /// Currency used for payment

@@ -16,7 +16,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             _api = new PingPaymentsApiClient(_httpClient);
         }
 
-        protected static void AssertHttpOK<T>(ApiResponseBase<T> response) where T : EmptySuccesfulResponseBody
+        protected static void AssertHttpOK<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
         {
             Assert.NotNull(response);
             Assert.NotNull(response.RawBody);
@@ -25,11 +25,11 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.False(response.ParsingError);
             Assert.True(response.IsSuccessful);
             Assert.NotNull(response.Body);
-            Assert.NotNull(response?.Body?.SuccesfulResponseBody);
+            Assert.NotNull(response?.Body?.SuccessfulResponseBody);
             Assert.Null(response?.Body?.ErrorResponseBody);
         }
 
-        protected static void AssertHttpNoContent<T>(ApiResponseBase<T> response) where T : EmptySuccesfulResponseBody
+        protected static void AssertHttpNoContent<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
         {
             Assert.NotNull(response);
             Assert.True(string.IsNullOrWhiteSpace(response.RawBody));
@@ -37,31 +37,31 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.False(response.IsFailure);
             Assert.False(response.ParsingError);
             Assert.True(response.IsSuccessful);
-            Assert.NotNull(response?.Body.SuccesfulResponseBody);
+            Assert.NotNull(response?.Body.SuccessfulResponseBody);
             Assert.Null(response?.Body?.ErrorResponseBody);
         }
 
-        protected static void AssertHttpNotFound<T>(ApiResponseBase<T> response) where T : EmptySuccesfulResponseBody
+        protected static void AssertHttpNotFound<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
         {
             Assert.NotNull(response);
             Assert.Equal(404, (int)response.StatusCode);
             Assert.True(response.IsFailure);
             Assert.False(response.ParsingError);
             Assert.False(response.IsSuccessful);
-            Assert.Null(response?.Body?.SuccesfulResponseBody);
+            Assert.Null(response?.Body?.SuccessfulResponseBody);
         }
 
-        protected static void AssertHttpApiError<T>(ApiResponseBase<T> response) where T : EmptySuccesfulResponseBody
+        protected static void AssertHttpApiError<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
         {
             Assert.NotNull(response);
             Assert.Equal(403, (int)response.StatusCode);
             Assert.True(response.IsFailure);
             Assert.False(response.ParsingError);
             Assert.False(response.IsSuccessful);
-            Assert.Null(response?.Body?.SuccesfulResponseBody);
+            Assert.Null(response?.Body?.SuccessfulResponseBody);
         }
 
-        protected static void AssertHttpUnprocessableEntity<T>(ApiResponseBase<T> response) where T : EmptySuccesfulResponseBody
+        protected static void AssertHttpUnprocessableEntity<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
         {
             Assert.NotNull(response);
             Assert.NotNull(response.RawBody);
@@ -69,7 +69,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.True(response.IsFailure);
             Assert.False(response.ParsingError);
             Assert.False(response.IsSuccessful);
-            Assert.Null(response?.Body?.SuccesfulResponseBody);
+            Assert.Null(response?.Body?.SuccessfulResponseBody);
             Assert.NotNull(response?.Body?.ErrorResponseBody);
         }
     }

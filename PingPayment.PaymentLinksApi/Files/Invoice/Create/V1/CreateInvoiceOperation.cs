@@ -14,7 +14,7 @@ namespace PingPayments.PaymentLinksApi.Files.Invoice.Create.V1
 
         protected override JsonSerializerOptions JsonSerializerOptions => new()
         {
-            Converters = {new JsonStringEnumConverter()},
+            Converters = { new JsonStringEnumConverter() },
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
@@ -27,10 +27,10 @@ namespace PingPayments.PaymentLinksApi.Files.Invoice.Create.V1
                 await ToJson(request.createInvoiceRequest)
             );
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid paymentLinkID, CreateInvoiceRequest createInvoiceRequest)_) =>
+        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid paymentLinkID, CreateInvoiceRequest createInvoiceRequest) _) =>
              hrm.StatusCode switch
              {
-                 NoContent => EmptyResponse.Succesful(hrm.StatusCode),
+                 NoContent => EmptyResponse.Successful(hrm.StatusCode),
                  _ =>
                      EmptyResponse.Failure
                      (

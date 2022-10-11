@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
-    public record PaymentLink : EmptySuccesfulResponseBody
+    public record PaymentLink : EmptySuccessfulResponseBody
     {
         /// <summary>
         /// Customer gets redirected here when canceling a checkout

@@ -36,7 +36,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         public async Task Cancel_paymentLink_returns_204()
         {
             var paymentlink = await Create_paymentLink_returns_200();
-            AssertHttpNoContent(await _api.PaymentLinks.V1.Cancel(new Guid(paymentlink.Body?.SuccesfulResponseBody?.Id.ToString())));
+            AssertHttpNoContent(await _api.PaymentLinks.V1.Cancel(new Guid(paymentlink.Body?.SuccessfulResponseBody?.Id.ToString())));
         }
 
         [Fact]

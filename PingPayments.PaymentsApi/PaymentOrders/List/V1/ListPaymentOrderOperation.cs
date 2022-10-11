@@ -5,10 +5,10 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Text.Json.Serialization;
-using static System.Net.HttpStatusCode;
+using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
+using static System.Net.HttpStatusCode;
 
 
 namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
@@ -26,13 +26,13 @@ namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
             }
         };
 
-        public override async Task<PaymentOrdersResponse> ExecuteRequest((DateTimeOffset from, DateTimeOffset to)? df) => 
+        public override async Task<PaymentOrdersResponse> ExecuteRequest((DateTimeOffset from, DateTimeOffset to)? df) =>
             await BaseExecute
             (
                 GET,
                 df.HasValue ?
-                    ($"api/v1/payment_orders?" + 
-                        $"from={WebUtility.UrlEncode(df.Value.from.ToString("o"))}&" + 
+                    ($"api/v1/payment_orders?" +
+                        $"from={WebUtility.UrlEncode(df.Value.from.ToString("o"))}&" +
                         $"to={WebUtility.UrlEncode(df.Value.to.ToString("o"))}")
                 :
                     $"api/v1/payment_orders",
@@ -44,16 +44,16 @@ namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => await GetSuccesful(),
+                OK => await GetSuccessful(),
                 _ => PaymentOrdersResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
 
-            async Task<PaymentOrdersResponse> GetSuccesful()
+            async Task<PaymentOrdersResponse> GetSuccessful()
             {
                 var paymentOrders = await Deserialize<PaymentOrder[]?>(responseBody);
                 var paymentOrderList = paymentOrders != null ? new PaymentOrderList(paymentOrders) : null;
-                var response = PaymentOrdersResponse.Succesful(hrm.StatusCode, paymentOrderList, responseBody);
+                var response = PaymentOrdersResponse.Successful(hrm.StatusCode, paymentOrderList, responseBody);
                 return response;
             }
         }

@@ -32,16 +32,16 @@ namespace PingPayments.PaymentsApi.Payouts.List.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => await GetSuccesful(),
+                OK => await GetSuccessful(),
                 _ => PayoutListResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
 
-            async Task<PayoutListResponse> GetSuccesful()
+            async Task<PayoutListResponse> GetSuccessful()
             {
                 var payouts = await Deserialize<PayoutResponseBody[]?>(responseBody);
                 var payoutList = payouts != null ? new PayoutListResponseBody(payouts) : null;
-                var response = PayoutListResponse.Succesful(hrm.StatusCode, payoutList, responseBody);
+                var response = PayoutListResponse.Successful(hrm.StatusCode, payoutList, responseBody);
                 return response;
             }
         }

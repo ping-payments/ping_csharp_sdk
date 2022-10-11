@@ -12,10 +12,10 @@ namespace PingPayments.PaymentLinksApi.Ping.V1
         {
         }
 
-        public override async Task<TextResponse> ExecuteRequest(EmptyRequest emptyRequest) => 
+        public override async Task<TextResponse> ExecuteRequest(EmptyRequest emptyRequest) =>
             await BaseExecute
             (
-                GET, 
+                GET,
                 $"api/v1/ping",
                 emptyRequest
             );
@@ -25,7 +25,7 @@ namespace PingPayments.PaymentLinksApi.Ping.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => TextResponse.Succesful(hrm.StatusCode, responseBody, responseBody),
+                OK => TextResponse.Successful(hrm.StatusCode, responseBody, responseBody),
                 _ => TextResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

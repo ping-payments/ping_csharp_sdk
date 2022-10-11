@@ -14,7 +14,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1
             await BaseExecute
             (
                 PUT,
-                $"api/v1/payment_links/{paymentLinkId}/cancel", 
+                $"api/v1/payment_links/{paymentLinkId}/cancel",
                 paymentLinkId,
                 await ToJson(new { })
             );
@@ -22,7 +22,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _) =>
             hrm.StatusCode switch
             {
-                NoContent => EmptyResponse.Succesful(hrm.StatusCode),
+                NoContent => EmptyResponse.Successful(hrm.StatusCode),
                 _ =>
                     EmptyResponse.Failure
                     (

@@ -1,4 +1,4 @@
 ﻿namespace PingPayments.Shared
 {
-    public record TextResponseBody(string Text) : EmptySuccesfulResponseBody;
+    public record TextResponseBody(string Text) : EmptySuccessfulResponseBody;
 }

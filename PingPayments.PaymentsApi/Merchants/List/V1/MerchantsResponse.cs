@@ -10,11 +10,11 @@ namespace PingPayments.PaymentsApi.Merchants.List.V1
 
         public static implicit operator Merchant[]?(MerchantsResponse merchantResponse) =>
             merchantResponse.IsSuccessful &&
-            merchantResponse.Body?.SuccesfulResponseBody != null ?
-                merchantResponse.Body.SuccesfulResponseBody.Merchants :
+            merchantResponse.Body?.SuccessfulResponseBody != null ?
+                merchantResponse.Body.SuccessfulResponseBody.Merchants :
                 null;
 
-        public static MerchantsResponse Succesful(HttpStatusCode statusCode, MerchantList? b, string rb) => new(statusCode, true, b, rb);
+        public static MerchantsResponse Successful(HttpStatusCode statusCode, MerchantList? b, string rb) => new(statusCode, true, b, rb);
         public static MerchantsResponse Failure(HttpStatusCode statusCode, ErrorResponseBody? e, string rb) => new(statusCode, false, e, rb);
     }
 }

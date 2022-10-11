@@ -1,6 +1,6 @@
-﻿using PingPayments.Shared;
+﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
+using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
-using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
 
@@ -16,14 +16,14 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.List.V1
                 GET,
                 $"api/v1/payment_links",
                 emptyRequest
-            );   
+            );
 
         protected override async Task<PaymentLinksResponse> ParseHttpResponse(HttpResponseMessage hrm, EmptyRequest? _)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => PaymentLinksResponse.Succesful(hrm.StatusCode, new PaymentLinkList(await Deserialize<PaymentLink[]>(responseBody)), responseBody),
+                OK => PaymentLinksResponse.Successful(hrm.StatusCode, new PaymentLinkList(await Deserialize<PaymentLink[]>(responseBody)), responseBody),
                 _ => PaymentLinksResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

@@ -19,7 +19,7 @@ namespace PingPayments.PaymentsApi.SigningKeys.Generate.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => GenerateResponse.Succesful(hrm.StatusCode, await Deserialize<GenerateKeyResponseBody>(responseBody), responseBody),
+                OK => GenerateResponse.Successful(hrm.StatusCode, await Deserialize<GenerateKeyResponseBody>(responseBody), responseBody),
                 _ => GenerateResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

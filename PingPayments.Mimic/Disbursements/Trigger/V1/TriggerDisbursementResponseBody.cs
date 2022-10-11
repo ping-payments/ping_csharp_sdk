@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.Mimic.Disbursements.Trigger.V1
 {
-    public record TriggerDisbursementResponseBody : EmptySuccesfulResponseBody
+    public record TriggerDisbursementResponseBody : EmptySuccessfulResponseBody
     {
 
         [JsonPropertyName("disbursed_payment_orders")]

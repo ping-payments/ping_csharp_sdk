@@ -2,5 +2,5 @@
 
 namespace PingPayments.PaymentsApi.Disbursements.Shared
 {
-    public record DisbursementList(Disbursement[] Disbursements) : EmptySuccesfulResponseBody;
+    public record DisbursementList(Disbursement[] Disbursements) : EmptySuccessfulResponseBody;
 }

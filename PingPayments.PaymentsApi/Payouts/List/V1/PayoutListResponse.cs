@@ -11,10 +11,10 @@ namespace PingPayments.PaymentsApi.Payouts.List.V1
             base(StatusCode, IsSuccessful, Body, RawBody)
         { }
 
-        public static PayoutListResponse Succesful(HttpStatusCode statusCode, PayoutListResponseBody? b, string rb) => new(statusCode, true, b, rb);
+        public static PayoutListResponse Successful(HttpStatusCode statusCode, PayoutListResponseBody? b, string rb) => new(statusCode, true, b, rb);
         public static PayoutListResponse Failure(HttpStatusCode statusCode, ErrorResponseBody? e, string rb) => new(statusCode, false, e, rb);
 
         public static implicit operator PayoutResponseBody[](PayoutListResponse p) =>
-            p?.Body?.SuccesfulResponseBody?.Payouts ?? Array.Empty<PayoutResponseBody>();
+            p?.Body?.SuccessfulResponseBody?.Payouts ?? Array.Empty<PayoutResponseBody>();
     }
 }

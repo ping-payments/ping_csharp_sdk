@@ -1,14 +1,11 @@
-﻿using PingPayments.Shared;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
 using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
-using System.Text;
+using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
-using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Allocations.V1
 {
@@ -26,16 +23,16 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Allocations.V1
 
             var response = httpResponse.StatusCode switch
             {
-                OK => await GetSuccesful(),
+                OK => await GetSuccessful(),
                 _ => AllocationsResponse.Failure(httpResponse.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
 
-            async Task<AllocationsResponse> GetSuccesful()
+            async Task<AllocationsResponse> GetSuccessful()
             {
                 var allocations = await Deserialize<Allocation[]>(responseBody);
                 var allocationList = allocations == null ? null : new AllocationList(allocations);
 
-                return AllocationsResponse.Succesful(httpResponse.StatusCode, allocationList, responseBody);
+                return AllocationsResponse.Successful(httpResponse.StatusCode, allocationList, responseBody);
             }
 
             return response;

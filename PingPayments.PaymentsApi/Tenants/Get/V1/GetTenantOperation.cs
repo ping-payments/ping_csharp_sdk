@@ -20,7 +20,7 @@ namespace PingPayments.PaymentsApi.Tenants.Get.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => TenantResponse.Succesful(hrm.StatusCode, await Deserialize<TenantResponseBody>(responseBody), responseBody),
+                OK => TenantResponse.Successful(hrm.StatusCode, await Deserialize<TenantResponseBody>(responseBody), responseBody),
                 _ => TenantResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

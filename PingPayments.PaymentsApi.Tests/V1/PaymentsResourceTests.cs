@@ -29,7 +29,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             );
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
             AssertHttpOK(response);
-            Assert.NotNull(response?.Body?.SuccesfulResponseBody);
+            Assert.NotNull(response?.Body?.SuccessfulResponseBody);
             DummyResponseBody? body = response;
             Assert.NotNull(body);
             Assert.NotEqual(Guid.Empty, body?.Id);
@@ -147,7 +147,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
 
             AssertHttpOK(response);
 
-            var mcommerceResponse = response?.Body?.SuccesfulResponseBody as SwishMCommerceResponseBody;
+            var mcommerceResponse = response?.Body?.SuccessfulResponseBody as SwishMCommerceResponseBody;
             Assert.False(string.IsNullOrEmpty(mcommerceResponse?.ProviderMethodResponse.QrCode));
         }
 
@@ -185,7 +185,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 new Dictionary<string, object> { });
 
             var payment = await _api.Payments.V1.Initiate(TestData.OrderId, initiatePaymentRequest);
-            Guid paymentId = payment.Body.SuccesfulResponseBody.Id;
+            Guid paymentId = payment.Body.SuccessfulResponseBody.Id;
 
             var newOrderItems = new OrderItem[]
             {
@@ -237,7 +237,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
              );
 
             var payment = await _api.Payments.V1.Initiate(TestData.OrderId, initiatePaymentRequest);
-            Guid paymentId = payment.Body.SuccesfulResponseBody.Id;
+            Guid paymentId = payment.Body.SuccessfulResponseBody.Id;
 
             var response = await _api.Payments.V1.Stop(TestData.OrderId, paymentId);
             AssertHttpNoContent(response);

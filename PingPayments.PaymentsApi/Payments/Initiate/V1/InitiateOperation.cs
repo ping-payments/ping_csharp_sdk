@@ -61,15 +61,15 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var parsedResponse = hrm.StatusCode switch
             {
-                OK => await GetSuccesful(),
+                OK => await GetSuccessful(),
                 _ => await GetFailure()
             };
             return parsedResponse;
 
-            async Task<InitiatePaymentResponse> GetSuccesful()
+            async Task<InitiatePaymentResponse> GetSuccessful()
             {
                 var body = await GetResponseBody(request.initiatePaymentRequest.Provider, request.initiatePaymentRequest.Method, responseBody, JsonSerializerOptions);
-                var response = InitiatePaymentResponse.Succesful(hrm.StatusCode, body, responseBody);
+                var response = InitiatePaymentResponse.Successful(hrm.StatusCode, body, responseBody);
                 return response;
             }
 

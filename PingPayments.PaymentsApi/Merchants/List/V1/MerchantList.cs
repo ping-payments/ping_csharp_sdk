@@ -3,5 +3,5 @@ using PingPayments.Shared;
 
 namespace PingPayments.PaymentsApi.Merchants.List.V1
 {
-    public record MerchantList(Merchant[]? Merchants) : EmptySuccesfulResponseBody;
+    public record MerchantList(Merchant[]? Merchants) : EmptySuccessfulResponseBody;
 }

@@ -242,7 +242,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var allocationsReponse = await _api.PaymentOrder.V1.Allocations(orderId);
 
             AssertHttpApiError(allocationsReponse);
-        
+
         }
 
         public async Task<(Guid orderId, Guid paymentId)> PreparePaymentOrder()
@@ -258,7 +258,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 TestData.FakeCallback
             );
             InitiatePaymentResponse paymentResponse = await _api.Payments.V1.Initiate(orderId, requestObject);
-            Guid paymentId = paymentResponse.Body.SuccesfulResponseBody.Id;
+            Guid paymentId = paymentResponse.Body.SuccessfulResponseBody.Id;
             return (orderId, paymentId);
         }
         public async Task AwaitPaymentCallback(Guid orderId, Guid paymentId)
@@ -267,7 +267,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             while (!isStatusCompleted)
             {
                 PaymentResponse payment = await _api.Payments.V1.Get(orderId, paymentId);
-                var paymentStatus = payment.Body.SuccesfulResponseBody.Status;
+                var paymentStatus = payment.Body.SuccessfulResponseBody.Status;
 
                 if (paymentStatus == PaymentStatusEnum.COMPLETED) isStatusCompleted = true;
             }
