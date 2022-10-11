@@ -25,7 +25,7 @@ Use this C# nuget library to manage Ping Payments resources regarding payments a
 ## Requirements
 
 Use of the Ping Payments .NET SDK requires:
-NET Standard 2.1 or higher. 
+NET Standard 2.0 or higher. 
 
 ## Installation
 Select an installation method and a desired package.
