@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Allocations.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Get.V1;
 using PingPayments.PaymentsApi.PaymentOrders.List.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
@@ -17,5 +18,6 @@ namespace PingPayments.PaymentsApi.PaymentOrders
         Task<EmptyResponse> Close(Guid orderId);
         Task<EmptyResponse> Split(Guid orderId, bool fastForward = false);
         Task<EmptyResponse> Settle(Guid orderId, bool fastForward = false);
+        Task<AllocationsResponse> Allocations(Guid orderId);
     }
 }

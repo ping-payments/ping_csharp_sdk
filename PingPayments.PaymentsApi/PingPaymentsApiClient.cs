@@ -33,7 +33,7 @@ using PingPayments.PaymentsApi.SigningKeys.Generate.V1;
 using PingPayments.PaymentsApi.SigningKeys.Get.V1;
 using System;
 using System.Net.Http;
-
+using PingPayments.PaymentsApi.PaymentOrders.Allocations.V1;
 
 namespace PingPayments.PaymentsApi
 {
@@ -69,7 +69,8 @@ namespace PingPayments.PaymentsApi
                  new Lazy<ListPaymentOrderOperation>(() => new ListPaymentOrderOperation(httpClient)),
                  new Lazy<SplitPaymentOrderOperation>(() => new SplitPaymentOrderOperation(httpClient)),
                  new Lazy<ClosePaymentOrderOperation>(() => new ClosePaymentOrderOperation(httpClient)),
-                 new Lazy<SettlePaymentOrderOperation>(() => new SettlePaymentOrderOperation(httpClient))
+                 new Lazy<SettlePaymentOrderOperation>(() => new SettlePaymentOrderOperation(httpClient)),
+                 new Lazy<GetPaymentOrderAllocationsOperation>(() => new GetPaymentOrderAllocationsOperation(httpClient))
             );
             _paymentOrderResource = new Lazy<IPaymentOrderResource>(() => new PaymentOrderResource(paymentOrderV1));
 

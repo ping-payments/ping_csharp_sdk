@@ -204,6 +204,47 @@ namespace PingPayments.PaymentsApi.Tests.V1
             AssertHttpNoContent(await _api.PaymentOrder.V1.Split(orderId, true));
         }
 
+
+        [Fact]
+        public async Task Can_fetch_allocations_after_split()
+        {
+            //1. Prepare a order
+            var (orderId, paymentId) = await PreparePaymentOrder();
+
+            //2. Await payment
+            await AwaitPaymentCallback(orderId, paymentId);
+
+            //3. Close
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Close(orderId));
+
+            //4. Split
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Split(orderId));
+
+            var allocationsReponse = await _api.PaymentOrder.V1.Allocations(orderId);
+
+            AssertHttpOK(allocationsReponse);
+        }
+
+        [Fact]
+        public async Task Cant_fetch_allocations_on_order_which_has_not_been_split()
+        {
+            //1. Prepare a order
+            var (orderId, paymentId) = await PreparePaymentOrder();
+
+            //2. Await payment
+            await AwaitPaymentCallback(orderId, paymentId);
+
+            //3. Close
+            AssertHttpNoContent(await _api.PaymentOrder.V1.Close(orderId));
+
+            //4. Split
+
+            var allocationsReponse = await _api.PaymentOrder.V1.Allocations(orderId);
+
+            AssertHttpApiError(allocationsReponse);
+        
+        }
+
         public async Task<(Guid orderId, Guid paymentId)> PreparePaymentOrder()
         {
             var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);

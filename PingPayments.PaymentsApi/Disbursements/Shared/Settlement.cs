@@ -3,11 +3,27 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.Disbursements.Shared
 {
-    public record Settlements
+    public record Settlement
     {
+        /// <summary>
+        /// Allocation ID (UUID4)
+        /// </summary>
+        /// 
+        [JsonPropertyName("id")]
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// The Allocation ID which the Settlement was derived from
+        /// </summary>
+        /// 
+        [JsonPropertyName("allocation_id")]
+        public Guid AllocationId { get; set; }
+
+
         /// <summary>
         /// The settled amount in minor currency
         /// </summary>
+        /// 
         [JsonPropertyName("amount")]
         public int Amount { get; set; }
 
@@ -24,7 +40,7 @@ namespace PingPayments.PaymentsApi.Disbursements.Shared
         /// which means the settled amount wasn't paid out to a Merchant but the Tenant or payment facilitator
         /// </summary>
         [JsonPropertyName("merchant_id")]
-        public Guid MerchantId { get; set; }
+        public Guid? MerchantId { get; set; }
 
 
         /// <summary>
