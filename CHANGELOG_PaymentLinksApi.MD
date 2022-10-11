@@ -1,6 +1,9 @@
 # Change Log
 
-## 0.2.2-apha (2022-08-23)
+## 0.2.3-alpha (2022-10-11) 
+Fixed typo on SuccessfulResponseBody, added a missing "s".
+
+## 0.2.2-alpha (2022-08-23)
 - New project reference pointing to the nuget package "PingPayments.Common". Where all shared code between packages resides. 
 
 ## 0.2.1-alpha (2022-07-29)
