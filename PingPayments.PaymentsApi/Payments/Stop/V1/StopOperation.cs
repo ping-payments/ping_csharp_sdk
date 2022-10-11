@@ -17,7 +17,7 @@ namespace PingPayments.PaymentsApi.Payments.Stop.V1
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid orderId, Guid paymentId) _) =>
         hrm.StatusCode switch
         {
-            NoContent => EmptyResponse.Succesful(hrm.StatusCode),
+            NoContent => EmptyResponse.Successful(hrm.StatusCode),
             _ => await ToEmptyError(hrm)
         };
     }

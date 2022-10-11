@@ -23,7 +23,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Split.V1
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid orderId, bool fastForward) _) =>
             hrm.StatusCode switch
             {
-                NoContent => EmptyResponse.Succesful(hrm.StatusCode),
+                NoContent => EmptyResponse.Successful(hrm.StatusCode),
                 _ => await ToEmptyError(hrm)
             };
     }

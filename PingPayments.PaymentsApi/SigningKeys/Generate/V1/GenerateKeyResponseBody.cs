@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.SigningKeys.Generate.V1
 {
-    public record GenerateKeyResponseBody : EmptySuccesfulResponseBody
+    public record GenerateKeyResponseBody : EmptySuccessfulResponseBody
     {
         /// <summary>
         /// Base64 encoded binary key

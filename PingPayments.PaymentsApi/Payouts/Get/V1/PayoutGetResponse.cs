@@ -10,7 +10,7 @@ namespace PingPayments.PaymentsApi.Payouts.Get.V1
             base(StatusCode, IsSuccessful, Body, RawBody)
         { }
 
-        public static PayoutGetResponse Succesful(HttpStatusCode statusCode, PayoutResponseBody? b, string rb) => new(statusCode, true, b, rb);
+        public static PayoutGetResponse Successful(HttpStatusCode statusCode, PayoutResponseBody? b, string rb) => new(statusCode, true, b, rb);
         public static PayoutGetResponse Failure(HttpStatusCode statusCode, ErrorResponseBody? e, string rb) => new(statusCode, false, e, rb);
     }
 }

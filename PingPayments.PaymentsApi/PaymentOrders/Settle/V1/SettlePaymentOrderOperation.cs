@@ -24,7 +24,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Settle.V1
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid orderId, bool fastForward) _) =>
             hrm.StatusCode switch
             {
-                NoContent => EmptyResponse.Succesful(hrm.StatusCode),
+                NoContent => EmptyResponse.Successful(hrm.StatusCode),
                 _ => EmptyResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()), await hrm.Content.ReadAsStringAsyncMemoized())
             };
     }

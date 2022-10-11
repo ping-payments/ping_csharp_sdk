@@ -24,7 +24,7 @@ namespace PingPayments.Mimic.Merchants.Update.V1
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid merchantId, MerchantStatus merchantStatus) _) =>
             hrm.StatusCode switch
             {
-                NoContent => EmptyResponse.Succesful(hrm.StatusCode),
+                NoContent => EmptyResponse.Successful(hrm.StatusCode),
                 _ => await ToEmptyError(hrm)
             };
     }

@@ -1,9 +1,9 @@
-﻿using PingPayments.Shared.Helpers;
-using PingPayments.Shared;
+﻿using PingPayments.Shared;
+using PingPayments.Shared.Helpers;
 using System.Net.Http;
 using System.Threading.Tasks;
-using static System.Net.HttpStatusCode;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
+using static System.Net.HttpStatusCode;
 
 
 namespace PingPayments.PaymentsApi.Ping.V1
@@ -20,7 +20,7 @@ namespace PingPayments.PaymentsApi.Ping.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => TextResponse.Succesful(hrm.StatusCode, responseBody, responseBody),
+                OK => TextResponse.Successful(hrm.StatusCode, responseBody, responseBody),
                 _ => TextResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

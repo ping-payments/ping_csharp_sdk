@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.Files.Shared.V1
 {
-    public record UrlResponseBody : EmptySuccesfulResponseBody
+    public record UrlResponseBody : EmptySuccessfulResponseBody
     {
         [JsonPropertyName("url")]
         public string? Url { get; set; }

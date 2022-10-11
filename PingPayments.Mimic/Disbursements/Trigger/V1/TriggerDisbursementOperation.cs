@@ -25,7 +25,7 @@ namespace PingPayments.Mimic.Disbursements.Trigger.V1
             var rawBody = await hrm.Content.ReadAsStringAsync();
             var response = hrm.StatusCode switch
             {
-                OK => TriggerDisbursementResponse.Succesful(hrm.StatusCode, await Deserialize<TriggerDisbursementResponseBody>(rawBody), rawBody),
+                OK => TriggerDisbursementResponse.Successful(hrm.StatusCode, await Deserialize<TriggerDisbursementResponseBody>(rawBody), rawBody),
                 _ => TriggerDisbursementResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(rawBody), rawBody)
             };
 

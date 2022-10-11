@@ -13,7 +13,7 @@ namespace PingPayments.PaymentsApi.Merchants.Get.V1
     {
         public GetMerchantOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<MerchantResponse> ExecuteRequest(Guid merchantId) => 
+        public override async Task<MerchantResponse> ExecuteRequest(Guid merchantId) =>
             await BaseExecute(GET, $"api/v1/merchants/{merchantId}", merchantId);
 
         protected override async Task<MerchantResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _)
@@ -21,7 +21,7 @@ namespace PingPayments.PaymentsApi.Merchants.Get.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => MerchantResponse.Succesful(hrm.StatusCode, await Deserialize<Merchant>(responseBody), responseBody),
+                OK => MerchantResponse.Successful(hrm.StatusCode, await Deserialize<Merchant>(responseBody), responseBody),
                 _ => MerchantResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

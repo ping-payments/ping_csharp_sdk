@@ -14,8 +14,8 @@ namespace PingPayments.PaymentLinksApi.Files.Receipt.Get.V1
         public override async Task<UrlResponse> ExecuteRequest(Guid paymentLinkId) =>
             await BaseExecute
             (
-                GET, 
-                $"api/v1/payment_links/{paymentLinkId}/receipt", 
+                GET,
+                $"api/v1/payment_links/{paymentLinkId}/receipt",
                 paymentLinkId
             );
 
@@ -24,7 +24,7 @@ namespace PingPayments.PaymentLinksApi.Files.Receipt.Get.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => UrlResponse.Succesful(hrm.StatusCode, await Deserialize<UrlResponseBody>(responseBody), responseBody),
+                OK => UrlResponse.Successful(hrm.StatusCode, await Deserialize<UrlResponseBody>(responseBody), responseBody),
                 _ => await ToError(hrm)
             };
             return response;

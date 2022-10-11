@@ -22,7 +22,7 @@ namespace PingPayments.PaymentsApi.Tenants.Update.V1
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, UpdateTenantRequest updateTenantRequest) =>
             hrm.StatusCode switch
             {
-                NoContent => EmptyResponse.Succesful(hrm.StatusCode),
+                NoContent => EmptyResponse.Successful(hrm.StatusCode),
                 _ => await ToEmptyError(hrm)
             };
     }

@@ -1,11 +1,11 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
+using PingPayments.Shared;
+using PingPayments.Shared.Helpers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
-using PingPayments.Shared.Helpers;
-using PingPayments.Shared;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1
 {
@@ -25,7 +25,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        public override async Task<CreatePaymentLinkResponse> ExecuteRequest(CreatePaymentLinkRequest request) => 
+        public override async Task<CreatePaymentLinkResponse> ExecuteRequest(CreatePaymentLinkRequest request) =>
         await BaseExecute
             (
                 POST,
@@ -39,7 +39,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => CreatePaymentLinkResponse.Succesful(hrm.StatusCode, await Deserialize<CreatePaymentLinkResponseBody>(responseBody), responseBody),
+                OK => CreatePaymentLinkResponse.Successful(hrm.StatusCode, await Deserialize<CreatePaymentLinkResponseBody>(responseBody), responseBody),
                 _ => CreatePaymentLinkResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

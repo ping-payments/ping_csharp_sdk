@@ -12,7 +12,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Close.V1
     {
         public ClosePaymentOrderOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<EmptyResponse> ExecuteRequest(Guid orderId) => 
+        public override async Task<EmptyResponse> ExecuteRequest(Guid orderId) =>
             await BaseExecute
             (
                 PUT,
@@ -21,15 +21,15 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Close.V1
                 await ToJson(new { })
             );
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _) => 
+        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _) =>
             hrm.StatusCode switch
             {
-                NoContent => EmptyResponse.Succesful(hrm.StatusCode),
-                _ => 
+                NoContent => EmptyResponse.Successful(hrm.StatusCode),
+                _ =>
                     EmptyResponse.Failure
                     (
-                        hrm.StatusCode, 
-                        await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()), 
+                        hrm.StatusCode,
+                        await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
                         await hrm.Content.ReadAsStringAsyncMemoized()
                     )
             };

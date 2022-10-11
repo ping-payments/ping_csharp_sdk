@@ -30,16 +30,16 @@ namespace PingPayments.KYC.Merchant.V1.Get
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => await GetSuccesful(),
+                OK => await GetSuccessful(),
                 _ => GetKycResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
 
-            async Task<GetKycResponse> GetSuccesful()
+            async Task<GetKycResponse> GetSuccessful()
             {
                 var kycVerifications = await Deserialize<KycResponseBody[]?>(responseBody);
                 var kycVerificationList = kycVerifications != null ? new KycVerificationList(kycVerifications) : null;
-                var response = GetKycResponse.Succesful(hrm.StatusCode, kycVerificationList, responseBody);
+                var response = GetKycResponse.Successful(hrm.StatusCode, kycVerificationList, responseBody);
                 return response;
             }
         }

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Session.V1.Initiate.Response
 {
-    public record InitiateSessionResponseBody : EmptySuccesfulResponseBody
+    public record InitiateSessionResponseBody : EmptySuccessfulResponseBody
     {
         /// <summary>
         /// Url for Validation session

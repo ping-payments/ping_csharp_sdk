@@ -32,7 +32,7 @@ namespace PingPayments.PaymentsApi.Payments.Get.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => PaymentResponse.Succesful(hrm.StatusCode, await Deserialize<PaymentResponseBody>(responseBody), responseBody),
+                OK => PaymentResponse.Successful(hrm.StatusCode, await Deserialize<PaymentResponseBody>(responseBody), responseBody),
                 _ => PaymentResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

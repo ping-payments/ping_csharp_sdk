@@ -1,17 +1,15 @@
-﻿using System;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Net;
 
-namespace PingPayments.Shared 
-{ 
-    public abstract record ApiResponseBase<T>(HttpStatusCode StatusCode, bool IsSuccessful, ResponseBody<T>? Body, string RawBody) where T : EmptySuccesfulResponseBody
+namespace PingPayments.Shared
+{
+    public abstract record ApiResponseBase<T>(HttpStatusCode StatusCode, bool IsSuccessful, ResponseBody<T>? Body, string RawBody) where T : EmptySuccessfulResponseBody
     {
         public bool IsFailure => !IsSuccessful;
 
-        public bool ParsingError => 
-            IsSuccessful && 
+        public bool ParsingError =>
+            IsSuccessful &&
             !string.IsNullOrWhiteSpace(RawBody) &&
-            Body?.SuccesfulResponseBody == null;
+            Body?.SuccessfulResponseBody == null;
 
         public static implicit operator ErrorResponseBody?(ApiResponseBase<T> apiResponseBase) =>
             apiResponseBase.IsFailure &&
@@ -21,11 +19,11 @@ namespace PingPayments.Shared
 
         public void Match(Action<T> OnSuccess, Action<ErrorResponseBody> OnFailure)
         {
-            if(IsSuccessful)  
+            if (IsSuccessful)
             {
-                OnSuccess.Invoke(Body?.SuccesfulResponseBody);
-            } 
-            else 
+                OnSuccess.Invoke(Body?.SuccessfulResponseBody);
+            }
+            else
             {
                 OnFailure.Invoke(Body?.ErrorResponseBody);
             }
@@ -35,7 +33,7 @@ namespace PingPayments.Shared
         {
             if (IsSuccessful)
             {
-                await OnSuccess(Body?.SuccesfulResponseBody);
+                await OnSuccess(Body?.SuccessfulResponseBody);
             }
             else
             {

@@ -34,7 +34,7 @@ namespace PingPayments.KYC.Session.V1.Initiate
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                Created => InitiateSessionResponse.Succesful(hrm.StatusCode, await Deserialize<InitiateSessionResponseBody>(responseBody), responseBody),
+                Created => InitiateSessionResponse.Successful(hrm.StatusCode, await Deserialize<InitiateSessionResponseBody>(responseBody), responseBody),
                 _ => InitiateSessionResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

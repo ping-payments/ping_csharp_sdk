@@ -23,7 +23,7 @@ namespace PingPayments.PaymentsApi.Poke.Request.V1
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, Uri _) =>
             hrm.StatusCode switch
             {
-                OK => EmptyResponse.Succesful(hrm.StatusCode),
+                OK => EmptyResponse.Successful(hrm.StatusCode),
                 _ => await ToEmptyError(hrm)
             };
     }
