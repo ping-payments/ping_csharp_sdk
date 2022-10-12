@@ -1,6 +1,6 @@
 ﻿namespace PingPayments.Shared
 {
-    public record ResponseBody<T>(ErrorResponseBody? ErrorResponseBody, T? SuccessfulResponseBody) where T : EmptySuccessfulResponseBody
+    public record ResponseBody<T>(ErrorResponseBody? ErrorResponseBody, T? SuccessfulResponseBody) where T : class
     {
         public static ResponseBody<T> NewError(ErrorResponseBody ErrorResponseBody) =>
             new(ErrorResponseBody, null);

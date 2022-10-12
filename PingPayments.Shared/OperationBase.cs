@@ -41,7 +41,7 @@ namespace PingPayments.Shared
                 using var ms = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 return await JsonSerializer.DeserializeAsync<T>(ms, jsonSerializerOptions);
             }
-            catch
+            catch(Exception ex)
             {
                 return default;
             }
