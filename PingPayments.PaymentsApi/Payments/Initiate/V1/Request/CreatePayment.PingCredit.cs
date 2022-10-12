@@ -13,7 +13,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         (
             CurrencyEnum currency,
             IEnumerable<OrderItem> orderItems,
-            Uri statusCallbackUrl,
+            Uri? statusCallbackUrl = null,
             IDictionary<string, dynamic>? metadata = null
         ) => new
             (

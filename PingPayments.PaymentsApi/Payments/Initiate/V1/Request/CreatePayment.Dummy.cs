@@ -13,9 +13,9 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             (
                 CurrencyEnum currency,
                 IEnumerable<OrderItem> orderItems,
-                Uri statusCallbackUrl,
-                PaymentStatusEnum desiredPaymentStatus = PaymentStatusEnum.COMPLETED,
-                IDictionary<string, dynamic>? metadata = null
+                Uri? statusCallbackUrl = null,
+                IDictionary<string, dynamic>? metadata = null,
+                PaymentStatusEnum desiredPaymentStatus = PaymentStatusEnum.COMPLETED
             ) => new
                 (
                     currency,

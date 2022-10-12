@@ -12,8 +12,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             public static InitiatePaymentRequest Ocr
         (
             IEnumerable<OrderItem> orderItems,
-            ReferenceTypeEnum referenceType,
-            Uri statusCallbackUrl,
+            Uri? statusCallbackUrl = null,
             IDictionary<string, dynamic>? metadata = null
         ) => new
             (
@@ -22,7 +21,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 orderItems,
                 ProviderEnum.ping,
                 MethodEnum.deposit,
-                new PingDepositParameters(referenceType),
+                new PingDepositParameters(ReferenceTypeEnum.OCR),
                 statusCallbackUrl,
                 metadata
             );
@@ -30,8 +29,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             public static InitiatePaymentRequest Kid
             (
                 IEnumerable<OrderItem> orderItems,
-                ReferenceTypeEnum referenceType,
-                Uri statusCallbackUrl,
+                Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
                 (
@@ -40,7 +38,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(referenceType),
+                    new PingDepositParameters(ReferenceTypeEnum.KID),
                     statusCallbackUrl,
                     metadata
                 );

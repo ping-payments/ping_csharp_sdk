@@ -21,7 +21,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 string ipAddress,
                 string customerReference,
                 bool isCompanyCustomer,
-                Uri statusCallbackUrl,
+                Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
                 (

@@ -17,7 +17,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 IEnumerable<OrderItem> orderItems,
                 string phoneNumber,
                 string message,
-                Uri statusCallbackUrl,
+                Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
                 (
@@ -40,7 +40,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             (
                 IEnumerable<OrderItem> orderItems,
                 string message,
-                Uri statusCallbackUrl,
+                Uri? statusCallbackUrl = null,
                 SwishQrCode? swishQrCode = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
@@ -54,6 +54,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     statusCallbackUrl,
                     metadata
                 );
-        }       
+        }
     }
 }
