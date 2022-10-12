@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.1.1 (2022-10-12)
+- The parameter "statusCallbackUrl" of InitiatePaymentRequest is now nullable. 
+- When creating a Depost payment using the helper method CreatePayment, you no longer need to specify the ReferenceType as a parameter in the method call.
+
 ## 1.1.0 (2022-10-11)
 - The Payment Order enpoint now have a Allocations method where you can get all Allocations for a Payment Order. 
 - Fixed typo on SuccessfulResponseBody, added a missing "s".

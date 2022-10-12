@@ -15,8 +15,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 IEnumerable<OrderItem> orderItems,
                 Uri successUrl,
                 Uri cancelUrl,
-                Uri statusCallbackUrl,
                 string locale = "en-US",
+                Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
                 (

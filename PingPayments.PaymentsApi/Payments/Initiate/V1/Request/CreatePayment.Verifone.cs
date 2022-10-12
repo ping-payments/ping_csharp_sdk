@@ -17,7 +17,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 string email,
                 Uri successUrl,
                 Uri cancelUrl,
-                Uri statusCallbackUrl,
+                Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
                 (

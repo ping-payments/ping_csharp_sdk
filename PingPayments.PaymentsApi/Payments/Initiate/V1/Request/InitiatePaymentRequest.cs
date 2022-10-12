@@ -10,13 +10,13 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
     {
         public InitiatePaymentRequest
         (
-            CurrencyEnum currency, 
-            int totalAmount, 
+            CurrencyEnum currency,
+            int totalAmount,
             IEnumerable<OrderItem> orderItems,
             ProviderEnum provider,
-            MethodEnum method, 
-            ProviderMethodParameters providerMethodParameters, 
-            Uri statusCallbackUrl,
+            MethodEnum method,
+            ProviderMethodParameters providerMethodParameters,
+            Uri? statusCallbackUrl = null,
             IDictionary<string, dynamic>? metadata = null
         )
         {
@@ -40,6 +40,6 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         /// Callback where the Tenant will get payment updates through HTTP
         /// </summary>
         [JsonPropertyName("status_callback_url")]
-        public Uri StatusCallbackUrl { get; set;}        
+        public Uri? StatusCallbackUrl { get; set; }
     }
 }

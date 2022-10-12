@@ -24,10 +24,10 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 {
                     new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
                     new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
-                },
-                TestData.FakeCallback
+                }
             );
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
+
             AssertHttpOK(response);
             Assert.NotNull(response?.Body?.SuccessfulResponseBody);
             DummyResponseBody? body = response;
@@ -233,7 +233,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                     new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
                 },
                 TestData.FakeCallback,
-                PaymentStatusEnum.COMPLETED
+                desiredPaymentStatus: PaymentStatusEnum.COMPLETED
              );
 
             var payment = await _api.Payments.V1.Initiate(TestData.OrderId, initiatePaymentRequest);
