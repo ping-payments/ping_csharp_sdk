@@ -10,20 +10,20 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         public static class PingDeposit
         {
             public static InitiatePaymentRequest Ocr
-        (
-            IEnumerable<OrderItem> orderItems,
-            Uri? statusCallbackUrl = null,
-            IDictionary<string, dynamic>? metadata = null
-        ) => new
             (
-                CurrencyEnum.SEK,
-                orderItems.TotalAmountMinorCurrencyUnit(),
-                orderItems,
-                ProviderEnum.ping,
-                MethodEnum.deposit,
-                new PingDepositParameters(ReferenceTypeEnum.OCR),
-                statusCallbackUrl,
-                metadata
+                IEnumerable<OrderItem> orderItems,
+                Uri? statusCallbackUrl = null,
+                IDictionary<string, dynamic>? metadata = null
+            ) => new
+                (
+                    CurrencyEnum.SEK,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
+                    orderItems,
+                    ProviderEnum.ping,
+                    MethodEnum.deposit,
+                    new PingDepositParameters(ReferenceTypeEnum.OCR),
+                    statusCallbackUrl,
+                    metadata
             );
 
             public static InitiatePaymentRequest Kid
