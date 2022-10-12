@@ -20,7 +20,7 @@ namespace PingPayments.PaymentsApi.Merchants.List.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => MerchantsResponse.Successful(hrm.StatusCode, new MerchantList(await Deserialize<Merchant[]>(responseBody)), responseBody),
+                OK => MerchantsResponse.Successful(hrm.StatusCode, await Deserialize<Merchant[]>(responseBody), responseBody),
                 _ => MerchantsResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
