@@ -30,9 +30,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Allocations.V1
             async Task<AllocationsResponse> GetSuccessful()
             {
                 var allocations = await Deserialize<Allocation[]>(responseBody);
-                var allocationList = allocations == null ? null : new AllocationList(allocations);
-
-                return AllocationsResponse.Successful(httpResponse.StatusCode, allocationList, responseBody);
+                return AllocationsResponse.Successful(httpResponse.StatusCode, allocations, responseBody);
             }
 
             return response;

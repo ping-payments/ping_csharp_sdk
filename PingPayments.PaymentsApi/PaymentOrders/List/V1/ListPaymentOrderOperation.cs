@@ -52,8 +52,7 @@ namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
             async Task<PaymentOrdersResponse> GetSuccessful()
             {
                 var paymentOrders = await Deserialize<PaymentOrder[]?>(responseBody);
-                var paymentOrderList = paymentOrders != null ? new PaymentOrderList(paymentOrders) : null;
-                var response = PaymentOrdersResponse.Successful(hrm.StatusCode, paymentOrderList, responseBody);
+                var response = PaymentOrdersResponse.Successful(hrm.StatusCode, paymentOrders, responseBody);
                 return response;
             }
         }
