@@ -2,5 +2,5 @@
 
 namespace PingPayments.PaymentsApi.PaymentOrders.Shared.V1
 {
-    public record AllocationList(Allocation[] Allocations) : EmptySuccessfulResponseBody;
+    public record AllocationList(Allocation[] Allocations);
 }
