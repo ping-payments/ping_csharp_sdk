@@ -7,6 +7,7 @@ using PingPayments.PaymentsApi.Ping;
 using PingPayments.PaymentsApi.Poke;
 using PingPayments.PaymentsApi.Tenants;
 using PingPayments.PaymentsApi.SigningKeys;
+using PingPayments.PaymentsApi.Reconcile;
 
 namespace PingPayments.PaymentsApi
 {
@@ -21,5 +22,6 @@ namespace PingPayments.PaymentsApi
         ITenantResource Tenants { get; }
         IPokeResource Poke { get; }
         ISigningKeyResource SigningKey { get; }
+        IReconcileResource Reconcile { get; }
     }
 }

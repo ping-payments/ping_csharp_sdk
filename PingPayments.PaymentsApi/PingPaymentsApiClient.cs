@@ -31,9 +31,12 @@ using PingPayments.PaymentsApi.Tenants.Update.V1;
 using PingPayments.PaymentsApi.SigningKeys;
 using PingPayments.PaymentsApi.SigningKeys.Generate.V1;
 using PingPayments.PaymentsApi.SigningKeys.Get.V1;
+using PingPayments.PaymentsApi.Reconcile;
+using PingPayments.PaymentsApi.Reconcile.Request.V1;
 using System;
 using System.Net.Http;
 using PingPayments.PaymentsApi.PaymentOrders.Allocations.V1;
+
 
 namespace PingPayments.PaymentsApi
 {
@@ -111,33 +114,50 @@ namespace PingPayments.PaymentsApi
             );
             _signingResource = new Lazy<ISigningKeyResource>(() => new SigningKeyResource(signingKeyV1));
 
+            var reconcileV1 = new ReconcileV1
+            (
+                new Lazy<RequestReconcileOperation>(() => new RequestReconcileOperation(httpClient))
+            );
+            _reconcileResource = new Lazy<IReconcileResource>(() => new ReconcileResource(reconcileV1));
         }
 
         private readonly Lazy<IDisbursementResource> _disbursementV1;
         public IDisbursementResource Disbursements => _disbursementV1.Value;
 
+
         private readonly Lazy<IPaymentResource> _payments;
         public IPaymentResource Payments => _payments.Value;
+
 
         private readonly Lazy<IPaymentOrderResource> _paymentOrderResource;
         public IPaymentOrderResource PaymentOrder => _paymentOrderResource.Value;
 
+
         private readonly Lazy<IMerchantResource> _merchants;
         public IMerchantResource Merchants => _merchants.Value;
+
 
         private readonly Lazy<IPingResource> _ping;
         public IPingResource Ping => _ping.Value;
 
+
         private readonly Lazy<IPayoutResource> _payoutResource;
         public IPayoutResource Payouts => _payoutResource.Value;
 
+
         private readonly Lazy<ISigningKeyResource> _signingResource;
         public ISigningKeyResource SigningKey => _signingResource.Value;
+
         
         private readonly Lazy<ITenantResource> _tenantResource;
         public ITenantResource Tenants => _tenantResource.Value;
 
+
         private readonly Lazy<IPokeResource> _pokeResource;
         public IPokeResource Poke => _pokeResource.Value;
+
+
+        private readonly Lazy<IReconcileResource> _reconcileResource;
+        public IReconcileResource Reconcile => _reconcileResource.Value;
     }
 }

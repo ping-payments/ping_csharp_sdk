@@ -15,11 +15,6 @@
     <Description>.NET client library for the Ping Payments Payments API</Description>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Shared\**" />
-    <EmbeddedResource Remove="Shared\**" />
-    <None Remove="Shared\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" />
