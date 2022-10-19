@@ -1,5 +1,7 @@
 
 # Change Log
+## 1.0.0 (2022-10-19)
+- Currencies EUR, DKK in GBP is now available for Ping Deposit payments. 
 
 ## 0.2.0-alpha (2022-10-11)
 - The endpoint Disbursement was added. You can now trigger disbursements for Payment Orders.
