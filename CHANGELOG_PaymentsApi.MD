@@ -1,6 +1,6 @@
 # Change Log
 
-## x.x.x (2022-10-19)
+## 1.2.0 (2022-10-19)
 - Currencies EUR, DKK in GBP is now available for Ping Deposit payments.
 - UNDERFUNDED and OVERFUNDED added to Payment status enum.
 - Added funds property to status_history items.
