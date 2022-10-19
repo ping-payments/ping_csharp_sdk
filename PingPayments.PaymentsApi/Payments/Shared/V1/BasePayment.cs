@@ -19,6 +19,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         [JsonPropertyName("metadata")]
         public IDictionary<string, dynamic> Metadata { get; set; }
 
+
         [JsonPropertyName("order_items")]
         public IEnumerable<OrderItem> OrderItems { get; set; }
 
