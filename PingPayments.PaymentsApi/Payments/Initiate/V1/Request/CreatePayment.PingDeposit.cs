@@ -11,34 +11,38 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         {
             public static InitiatePaymentRequest Ocr
             (
+                CurrencyEnum currency,
                 IEnumerable<OrderItem> orderItems,
+                DateTimeOffset? DesiredDateOfPayment = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
                 (
-                    CurrencyEnum.SEK,
+                    currency,
                     orderItems.TotalAmountMinorCurrencyUnit(),
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.OCR),
+                    new PingDepositParameters(ReferenceTypeEnum.OCR, DesiredDateOfPayment),
                     statusCallbackUrl,
                     metadata
             );
 
             public static InitiatePaymentRequest Kid
             (
+                CurrencyEnum currency,
                 IEnumerable<OrderItem> orderItems,
+                 DateTimeOffset? DesiredDateOfPayment = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
                 (
-                    CurrencyEnum.NOK,
+                    currency,
                     orderItems.TotalAmountMinorCurrencyUnit(),
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.KID),
+                    new PingDepositParameters(ReferenceTypeEnum.KID, DesiredDateOfPayment),
                     statusCallbackUrl,
                     metadata
                 );
