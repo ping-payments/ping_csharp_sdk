@@ -1,5 +1,13 @@
 # Change Log
 
+## x.x.x (2022-10-19)
+- Currencies EUR, DKK in GBP is now available for Ping Deposit payments.
+- UNDERFUNDED and OVERFUNDED added to Payment status enum.
+- Added funds property to status_history items.
+- deposit_account field added to PingDepositResponse. 
+- desired_date_of_payment field added to PingDepositParameters
+- New paramaters added for CreatePayment.PingDeposit.Ocr() and CreatePayment.PingDeposit.Kid(). Parameters that have been added for these methods are: currency and DesiredDateOfPayment (optional). 
+
 ## 1.1.1 (2022-10-12)
 - The parameter "statusCallbackUrl" of InitiatePaymentRequest is now nullable. 
 - When creating a Depost payment using the helper method CreatePayment, you no longer need to specify the ReferenceType as a parameter in the method call.
