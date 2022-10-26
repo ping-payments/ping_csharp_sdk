@@ -18,7 +18,7 @@ namespace PingPayments.PaymentsApi.Disbursements.Shared
         /// Timestamp at which the disbursement was initiated
         /// </summary>
         [JsonPropertyName("disbursed_at")]
-        public DateTime DisbursedAt { get; set; }
+        public DateTimeOffset DisbursedAt { get; set; }
 
 
         /// <summary>

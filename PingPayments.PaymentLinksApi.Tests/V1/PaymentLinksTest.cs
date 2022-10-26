@@ -108,7 +108,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             {
                 new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
-            var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            var dueDate = DateTimeOffset.Now.AddDays(30).ToString("yyyy-MM-dd");
             var suppler = new Supplier("Supllier name");
 
             var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
@@ -146,7 +146,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             {
                 new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
-            var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            var dueDate = DateTimeOffset.Now.AddDays(30).ToString("yyyy-MM-dd");
             var suppler = new Supplier("Supllier name");
 
             var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
@@ -182,7 +182,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             {
                 new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
-            var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            var dueDate = DateTimeOffset.Now.AddDays(30).ToString("yyyy-MM-dd");
             var suppler = new Supplier("Supllier name");
 
             var _swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
