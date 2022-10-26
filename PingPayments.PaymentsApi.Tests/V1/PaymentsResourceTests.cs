@@ -1,4 +1,7 @@
-﻿using PingPayments.PaymentsApi.Payments.Shared.V1;
+﻿using PingPayments.Mimic.Deposit.Create.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+using PingPayments.PaymentsApi.Payments.Get.V1;
+using PingPayments.PaymentsApi.Payments.Shared.V1;
 using PingPayments.PaymentsApi.Payments.Update.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
@@ -249,5 +252,145 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var response = await _api.Payments.V1.Stop(TestData.OrderId, new Guid());
             AssertHttpNotFound(response);
         }
+#pragma warning disable CS8600 // Dereference of a possibly null reference.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+
+        [Fact]
+        public async Task Reconcile_underfunded_payment_204()
+        {
+            // Prepare an order with a deposit payment
+            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment();
+
+            Guid paymentId = depositResponse.Id;
+            var reference = depositResponse.ProviderMethodResponse.Reference;
+
+            // Mimic a deposit
+            CreateDepositRequest depositRequest = new
+                (
+                    Amount: 4.ToMinorCurrencyUnit(),
+                    Currency: CurrencyEnum.SEK,
+                    ReferenceType: ReferenceTypeEnum.OCR,
+                    Reference: reference,
+                    Iban: "SE4850000000054401096835",
+                    Type: ProcesseTypeEnum.instant
+                );
+            await _mimicApi.Deposit.V1.Create(depositRequest);
+
+            // Await Payment
+            await AwaitPaymentStatusCallback(orderId, paymentId, PaymentStatusEnum.UNDERFUNDED);
+
+            // Reconcile Payment funds 
+            var ReconcileOrderItems = new OrderItem[]
+            {
+                new OrderItem(4.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+
+            };
+            var response = await _api.Payments.V1.Reconcile(orderId, paymentId, ReconcileOrderItems);
+
+            AssertHttpNoContent(response);
+        }
+
+        [Fact]
+        public async Task Reconcile_overfunded_payment_204()
+        {
+            // Prepare an order with a deposit payment
+            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment();
+
+            Guid paymentId = depositResponse.Id;
+            var reference = depositResponse.ProviderMethodResponse.Reference;
+
+            // Mimic a deposit
+            CreateDepositRequest depositRequest = new
+                (
+                    Amount: 6.ToMinorCurrencyUnit(),
+                    Currency: CurrencyEnum.SEK,
+                    ReferenceType: ReferenceTypeEnum.OCR,
+                    Reference: reference,
+                    Iban: "SE4850000000054401096835",
+                    Type: ProcesseTypeEnum.instant
+                );
+            await _mimicApi.Deposit.V1.Create(depositRequest);
+
+            // Await Payment
+            await AwaitPaymentStatusCallback(orderId, paymentId, PaymentStatusEnum.OVERFUNDED);
+
+            // Reconcile Payment funds 
+            var ReconcileOrderItems = new OrderItem[]
+            {
+                new OrderItem(6.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+
+            };
+            var response = await _api.Payments.V1.Reconcile(orderId, paymentId, ReconcileOrderItems);
+
+            AssertHttpNoContent(response);
+        }
+
+        [Fact]
+        public async Task Reconcile_payment_amount_missmatch_403()
+        {
+            // Prepare an order with a deposit payment
+            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment();
+
+            Guid paymentId = depositResponse.Id;
+            var reference = depositResponse.ProviderMethodResponse.Reference;
+
+            // Mimic a deposit
+            CreateDepositRequest depositRequest = new
+                (
+                    Amount: 4.ToMinorCurrencyUnit(),
+                    Currency: CurrencyEnum.SEK,
+                    ReferenceType: ReferenceTypeEnum.OCR,
+                    Reference: reference,
+                    Iban: "SE4850000000054401096835",
+                    Type: ProcesseTypeEnum.instant
+                );
+            await _mimicApi.Deposit.V1.Create(depositRequest);
+
+            // Await Payment
+            await AwaitPaymentStatusCallback(orderId, paymentId, PaymentStatusEnum.UNDERFUNDED);
+
+            // Reconcile Payment funds 
+            var ReconcileOrderItems = new OrderItem[]
+            {
+                new OrderItem(3.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+
+            };
+            var response = await _api.Payments.V1.Reconcile(orderId, paymentId, ReconcileOrderItems);
+
+            AssertHttpApiError(response);
+        }
+
+        public async Task AwaitPaymentStatusCallback(Guid orderId, Guid paymentId, PaymentStatusEnum desiredStatus)
+        {
+            bool isStatusCompleted = false;
+            while (!isStatusCompleted)
+            {
+                PaymentResponse payment = await _api.Payments.V1.Get(orderId, paymentId);
+                var paymentStatus = payment.Body.SuccessfulResponseBody.Status;
+
+                if (paymentStatus == desiredStatus) isStatusCompleted = true;
+            }
+        }
+
+        public async Task<(Guid orderId, PingDepositResponseBody depositResponse)> PreparePaymentOrderWithDepositPayment()
+        {
+            //Create a Payment Order
+            var paymentOrderRequest = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+            var paymentorderResponse = await _api.PaymentOrder.V1.Create(paymentOrderRequest);
+            Guid orderId = paymentorderResponse.Body.SuccessfulResponseBody.Id;
+
+            //Create a deposit Payment 
+            var paymentRequest = CreatePayment.PingDeposit.Ocr
+            (
+                orderItems: new OrderItem[]
+                {
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                }
+            );
+            PingDepositResponseBody depositResponse = await _api.Payments.V1.Initiate(orderId, paymentRequest);
+
+            return (orderId, depositResponse);
+        }
+#pragma warning restore CS8600 // Dereference of a possibly null reference
     }
 }

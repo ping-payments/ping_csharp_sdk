@@ -6,6 +6,7 @@ using PingPayments.PaymentsApi.Merchants.Create.V1;
 using PingPayments.PaymentsApi.Merchants.Get.V1;
 using PingPayments.PaymentsApi.Merchants.List.V1;
 using PingPayments.PaymentsApi.PaymentOrders;
+using PingPayments.PaymentsApi.PaymentOrders.Allocations.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Close.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Get.V1;
@@ -16,6 +17,7 @@ using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
 using PingPayments.PaymentsApi.Payments;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1;
+using PingPayments.PaymentsApi.Payments.Reconcile.V1;
 using PingPayments.PaymentsApi.Payments.Stop.V1;
 using PingPayments.PaymentsApi.Payments.Update.V1;
 using PingPayments.PaymentsApi.Payouts;
@@ -25,15 +27,15 @@ using PingPayments.PaymentsApi.Ping;
 using PingPayments.PaymentsApi.Ping.V1;
 using PingPayments.PaymentsApi.Poke;
 using PingPayments.PaymentsApi.Poke.Request.V1;
-using PingPayments.PaymentsApi.Tenants;
-using PingPayments.PaymentsApi.Tenants.Get.V1;
-using PingPayments.PaymentsApi.Tenants.Update.V1;
 using PingPayments.PaymentsApi.SigningKeys;
 using PingPayments.PaymentsApi.SigningKeys.Generate.V1;
 using PingPayments.PaymentsApi.SigningKeys.Get.V1;
+using PingPayments.PaymentsApi.Tenants;
+using PingPayments.PaymentsApi.Tenants.Get.V1;
+using PingPayments.PaymentsApi.Tenants.Update.V1;
 using System;
 using System.Net.Http;
-using PingPayments.PaymentsApi.PaymentOrders.Allocations.V1;
+
 
 namespace PingPayments.PaymentsApi
 {
@@ -57,6 +59,7 @@ namespace PingPayments.PaymentsApi
                 new Lazy<InitiateOperation>(() => new InitiateOperation(httpClient)),
                 new Lazy<GetOperation>(() => new GetOperation(httpClient)),
                 new Lazy<UpdateOperation>(() => new UpdateOperation(httpClient)),
+                new Lazy<ReconcileOperation>(() => new ReconcileOperation(httpClient)),
                 new Lazy<StopOperation>(() => new StopOperation(httpClient))
             );
             _payments = new Lazy<IPaymentResource>(() => new PaymentResource(paymentsV1));
@@ -103,39 +106,46 @@ namespace PingPayments.PaymentsApi
                 new Lazy<RequestCallbackOperation>(() => new RequestCallbackOperation(httpClient))
             );
             _pokeResource = new Lazy<IPokeResource>(() => new PokeResource(pokeV1));
-            
+
             var signingKeyV1 = new SigningKeyV1
             (
                 new Lazy<GenerateKeyOperation>(() => new GenerateKeyOperation(httpClient)),
                 new Lazy<GetKeyOperation>(() => new GetKeyOperation(httpClient))
             );
             _signingResource = new Lazy<ISigningKeyResource>(() => new SigningKeyResource(signingKeyV1));
-
         }
 
         private readonly Lazy<IDisbursementResource> _disbursementV1;
         public IDisbursementResource Disbursements => _disbursementV1.Value;
 
+
         private readonly Lazy<IPaymentResource> _payments;
         public IPaymentResource Payments => _payments.Value;
+
 
         private readonly Lazy<IPaymentOrderResource> _paymentOrderResource;
         public IPaymentOrderResource PaymentOrder => _paymentOrderResource.Value;
 
+
         private readonly Lazy<IMerchantResource> _merchants;
         public IMerchantResource Merchants => _merchants.Value;
+
 
         private readonly Lazy<IPingResource> _ping;
         public IPingResource Ping => _ping.Value;
 
+
         private readonly Lazy<IPayoutResource> _payoutResource;
         public IPayoutResource Payouts => _payoutResource.Value;
 
+
         private readonly Lazy<ISigningKeyResource> _signingResource;
         public ISigningKeyResource SigningKey => _signingResource.Value;
-        
+
+
         private readonly Lazy<ITenantResource> _tenantResource;
         public ITenantResource Tenants => _tenantResource.Value;
+
 
         private readonly Lazy<IPokeResource> _pokeResource;
         public IPokeResource Poke => _pokeResource.Value;

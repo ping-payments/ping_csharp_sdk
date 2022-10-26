@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.3.0 (2022-10-26)
+- Added reconcile functionality to payments. It is now possible to "correct" underfunded or overfunded payments with the reconcile endpoint.
+- Added helper method for bankgirot autogiro payments.
+
 ## 1.2.0 (2022-10-19)
 - Currencies EUR, DKK in GBP is now available for Ping Deposit payments.
 - UNDERFUNDED and OVERFUNDED added to Payment status enum.

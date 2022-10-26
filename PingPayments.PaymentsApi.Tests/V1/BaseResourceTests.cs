@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentsApi.Helpers;
+﻿using PingPayments.Mimic;
+using PingPayments.PaymentsApi.Helpers;
 using PingPayments.Shared;
 using System.Net.Http;
 using Xunit;
@@ -7,13 +8,17 @@ namespace PingPayments.PaymentsApi.Tests.V1
 {
     public class BaseResourceTests
     {
+        protected readonly IPingMimicApiClient _mimicApi;
         protected readonly IPingPaymentsApiClient _api;
         private readonly HttpClient _httpClient;
+        private readonly HttpClient _mimicHttpClient;
 
         public BaseResourceTests()
         {
             _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.PaymentsApi.SandboxUri, TestData.TenantId);
+            _mimicHttpClient = new HttpClient().ConfigurePingPaymentsClient(Mimic.Helpers.PingEnvironments.MimicApi.SandboxUri, TestData.TenantId);
             _api = new PingPaymentsApiClient(_httpClient);
+            _mimicApi = new PingMimicApiClient(_mimicHttpClient);
         }
 
         protected static void AssertHttpOK<T>(ApiResponseBase<T> response) where T : class
