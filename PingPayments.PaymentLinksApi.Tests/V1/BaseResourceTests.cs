@@ -1,4 +1,4 @@
-﻿using PingPayments.PaymentLinksApi.Helpers;
+﻿using PingPayments.PaymentsApi;
 using PingPayments.Shared;
 
 namespace PingPayments.PaymentLinksApi.Tests.V1
@@ -7,11 +7,15 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
     {
         protected readonly IPingPaymentLinksApiClient _api;
         private readonly HttpClient _httpClient;
+        protected readonly IPingPaymentsApiClient _paymentsApi;
+        private readonly HttpClient _paymentsHttpClient;
 
         public BaseResourceTests()
         {
-            _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.PaymentLinksApi.SandboxUri, TestData.TenantId);
+            _httpClient = new HttpClient().ConfigurePingPaymentsClient(Helpers.PingEnvironments.PaymentLinksApi.SandboxUri, TestData.TenantId);
             _api = new PingPaymentLinksApiClient(_httpClient);
+            _paymentsHttpClient = new HttpClient().ConfigurePingPaymentsClient(PaymentsApi.Helpers.PingEnvironments.PaymentsApi.SandboxUri, TestData.TenantId);
+            _paymentsApi = new PingPaymentsApiClient(_paymentsHttpClient);
         }
 
         protected static void AssertHttpOK<T>(ApiResponseBase<T> response) where T : class

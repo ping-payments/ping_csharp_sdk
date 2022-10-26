@@ -107,11 +107,23 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         [JsonPropertyName("supplier")]
         public Supplier Supplier { get; set; }
 
-        
+
         /// <summary>
         /// Total amount in the smallest denomination  
         /// </summary>
         [JsonPropertyName("total_amount")]
         public int TotalAmount { get; set; }
+
+        /// <summary>
+        /// Total amount in the smallest denomination  
+        /// </summary>
+        [JsonPropertyName("status")]
+        public Status Status { get; set; }
+
+        /// <summary>
+        /// Total amount in the smallest denomination  
+        /// </summary>
+        [JsonPropertyName("sms_status")]
+        public SmsStatus SmsStatus { get; set; }
     }
 }

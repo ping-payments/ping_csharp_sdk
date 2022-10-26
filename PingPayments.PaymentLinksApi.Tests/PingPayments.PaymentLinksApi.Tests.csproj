@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PingPayment.PaymentLinksApi\PingPayments.PaymentLinksApi.csproj" />
+    <ProjectReference Include="..\PingPayments.PaymentsApi\PingPayments.PaymentsApi.csproj" />
     <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" />
   </ItemGroup>
 
