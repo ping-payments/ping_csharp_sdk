@@ -41,7 +41,9 @@ namespace PingPayments.KYC.Tests.V1
             var bankAccount = new BankAccount
             {
                 Bic = "NDEASESS",
-                Iban = "SE7280000810340009783242"
+                Iban = "SE7280000810340009783242",
+                Bban = "41971150033",
+                Clearing = "6985"
             };
             var personData = new PersonData
             {

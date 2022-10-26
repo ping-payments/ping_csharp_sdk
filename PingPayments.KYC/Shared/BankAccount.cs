@@ -15,5 +15,17 @@ namespace PingPayments.KYC.Shared
         /// </summary>
         [JsonPropertyName("iban")]
         public string Iban { get; set; }
+
+        /// <summary>
+        /// Account number
+        /// </summary>
+        [JsonPropertyName("bban")]
+        public string Bban { get; set; }
+
+        /// <summary>
+        /// Clearing numberr
+        /// </summary>
+        [JsonPropertyName("clearing")]
+        public string Clearing { get; set; }
     }
 }
