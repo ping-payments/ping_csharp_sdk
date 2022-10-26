@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.2.0 (2022-10-26)
+- Added reconcile functionality to payments. It is now possible to "correct" underfunded or overfunded payments with the reconcile endpoint.
+- Added helper method for bankgirot autogiro payments.
+
 ## 1.1.1 (2022-10-12)
 - The parameter "statusCallbackUrl" of InitiatePaymentRequest is now nullable. 
 - When creating a Depost payment using the helper method CreatePayment, you no longer need to specify the ReferenceType as a parameter in the method call.

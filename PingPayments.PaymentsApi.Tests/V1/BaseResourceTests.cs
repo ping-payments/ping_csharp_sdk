@@ -16,7 +16,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public BaseResourceTests()
         {
             _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.PaymentsApi.SandboxUri, TestData.TenantId);
-            _mimicHttpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.PaymentsApi.MimicSandboxUri, TestData.TenantId);
+            _mimicHttpClient = new HttpClient().ConfigurePingPaymentsClient(Mimic.Helpers.PingEnvironments.MimicApi.SandboxUri, TestData.TenantId);
             _api = new PingPaymentsApiClient(_httpClient);
             _mimicApi = new PingMimicApiClient(_mimicHttpClient);
         }
