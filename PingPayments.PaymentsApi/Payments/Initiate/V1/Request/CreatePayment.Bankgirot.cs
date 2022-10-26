@@ -8,9 +8,9 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1.Request
 {
     public static partial class CreatePayment
     {
-        public static class Autogiro
+        public static class Bankgirot
         {
-            public static InitiatePaymentRequest Card
+            public static InitiatePaymentRequest Autogiro
             (
                 IEnumerable<OrderItem> orderItems,
                 string mandateId,
