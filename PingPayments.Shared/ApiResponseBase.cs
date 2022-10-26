@@ -2,7 +2,7 @@
 
 namespace PingPayments.Shared
 {
-    public abstract record ApiResponseBase<T>(HttpStatusCode StatusCode, bool IsSuccessful, ResponseBody<T>? Body, string RawBody) where T : EmptySuccessfulResponseBody
+    public abstract record ApiResponseBase<T>(HttpStatusCode StatusCode, bool IsSuccessful, ResponseBody<T>? Body, string RawBody) where T : class
     {
         public bool IsFailure => !IsSuccessful;
 

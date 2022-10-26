@@ -13,6 +13,12 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public Details? Details { get; set; }
 
         /// <summary>
+        /// Payment status funds summary
+        /// </summary>
+        [JsonPropertyName("funds")]
+        public Funds? Funds { get; set; }
+
+        /// <summary>
         /// Timestamp at which the status event was logged
         /// </summary>
         [JsonPropertyName("occurred_at")]

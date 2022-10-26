@@ -21,7 +21,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             _mimicApi = new PingMimicApiClient(_mimicHttpClient);
         }
 
-        protected static void AssertHttpOK<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
+        protected static void AssertHttpOK<T>(ApiResponseBase<T> response) where T : class
         {
             Assert.NotNull(response);
             Assert.NotNull(response.RawBody);
@@ -34,7 +34,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.Null(response?.Body?.ErrorResponseBody);
         }
 
-        protected static void AssertHttpNoContent<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
+        protected static void AssertHttpNoContent<T>(ApiResponseBase<T> response) where T : class
         {
             Assert.NotNull(response);
             Assert.True(string.IsNullOrWhiteSpace(response.RawBody));
@@ -46,7 +46,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.Null(response?.Body?.ErrorResponseBody);
         }
 
-        protected static void AssertHttpNotFound<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
+        protected static void AssertHttpNotFound<T>(ApiResponseBase<T> response) where T : class
         {
             Assert.NotNull(response);
             Assert.Equal(404, (int)response.StatusCode);
@@ -56,7 +56,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.Null(response?.Body?.SuccessfulResponseBody);
         }
 
-        protected static void AssertHttpApiError<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
+        protected static void AssertHttpApiError<T>(ApiResponseBase<T> response) where T : class
         {
             Assert.NotNull(response);
             Assert.Equal(403, (int)response.StatusCode);
@@ -66,7 +66,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.Null(response?.Body?.SuccessfulResponseBody);
         }
 
-        protected static void AssertHttpUnprocessableEntity<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
+        protected static void AssertHttpUnprocessableEntity<T>(ApiResponseBase<T> response) where T : class
         {
             Assert.NotNull(response);
             Assert.NotNull(response.RawBody);

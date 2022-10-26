@@ -1,8 +1,16 @@
 # Change Log
 
-## 1.2.0 (2022-10-26)
+## 1.3.0 (2022-10-26)
 - Added reconcile functionality to payments. It is now possible to "correct" underfunded or overfunded payments with the reconcile endpoint.
 - Added helper method for bankgirot autogiro payments.
+
+## 1.2.0 (2022-10-19)
+- Currencies EUR, DKK in GBP is now available for Ping Deposit payments.
+- UNDERFUNDED and OVERFUNDED added to Payment status enum.
+- Added funds property to status_history items.
+- deposit_account field added to PingDepositResponse. 
+- desired_date_of_payment field added to PingDepositParameters
+- New paramaters added for CreatePayment.PingDeposit.Ocr() and CreatePayment.PingDeposit.Kid(). Parameters that have been added for these methods are: currency and DesiredDateOfPayment (optional). 
 
 ## 1.1.1 (2022-10-12)
 - The parameter "statusCallbackUrl" of InitiatePaymentRequest is now nullable. 
