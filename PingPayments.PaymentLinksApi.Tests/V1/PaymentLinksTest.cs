@@ -2,6 +2,7 @@ using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.Shared;
 using PingPayments.Shared.Enums;
 using PingPayments.Shared.Helpers;
@@ -103,6 +104,10 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task<CreatePaymentLinkResponse> Create_paymentLink_returns_200()
         {
+            var paymentOrderRequest = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+            var paymentOrderResponose = await _paymentsApi.PaymentOrder.V1.Create(paymentOrderRequest);
+            var orderId = paymentOrderResponose.Body.SuccessfulResponseBody.Id;
+
             var customer = new Customer("FrstName", "LastName");
             var items = new Item[]
             {
@@ -117,7 +122,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
 
             var paymentLinkRequest = new CreatePaymentLinkRequest
                 (
-                    TestData.OrderId,
+                    orderId,
                     CurrencyEnum.SEK,
                     customer,
                     dueDate,
