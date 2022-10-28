@@ -259,7 +259,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Reconcile_underfunded_payment_204()
         {
             // Prepare an order with a deposit payment
-            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment();
+            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment(price: 5);
 
             Guid paymentId = depositResponse.Id;
             var reference = depositResponse.ProviderMethodResponse.Reference;
@@ -294,7 +294,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         public async Task Reconcile_overfunded_payment_204()
         {
             // Prepare an order with a deposit payment
-            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment();
+            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment(price: 5);
 
             Guid paymentId = depositResponse.Id;
             var reference = depositResponse.ProviderMethodResponse.Reference;
@@ -326,10 +326,73 @@ namespace PingPayments.PaymentsApi.Tests.V1
         }
 
         [Fact]
+        public async Task Create_deposit_payment_same_completed_reference()
+        {
+            // Prepare an order with a deposit payment
+            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment(price: 5);
+
+            Guid paymentId = depositResponse.Id;
+            var reference = depositResponse.ProviderMethodResponse.Reference;
+
+            // Mimic a deposit
+            CreateDepositRequest depositRequest = new
+                (
+                    Amount: 5.ToMinorCurrencyUnit(),
+                    Currency: CurrencyEnum.SEK,
+                    ReferenceType: ReferenceTypeEnum.OCR,
+                    Reference: reference,
+                    Iban: "SE4850000000054401096835",
+                    Type: ProcesseTypeEnum.instant
+                );
+            await _mimicApi.Deposit.V1.Create(depositRequest);
+
+            // Await Payment to get completed
+            await AwaitPaymentStatusCallback(orderId, paymentId, PaymentStatusEnum.COMPLETED);
+
+            //Create another deposit Payment, same OCR
+            var paymentRequest = CreatePayment.PingDeposit.Ocr
+            (
+                CurrencyEnum.SEK,
+                orderItems: new OrderItem[]
+                {
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                },
+                alreadyUsedReference: reference
+            );
+            var response = await _api.Payments.V1.Initiate(orderId, paymentRequest);
+
+            AssertHttpOK(response);
+        }
+
+        [Fact]
+        public async Task Create_deposit_payment_same_pending_reference()
+        {
+            // Prepare an order with a deposit payment
+            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment(price: 5);
+
+            Guid paymentId = depositResponse.Id;
+            var reference = depositResponse.ProviderMethodResponse.Reference;
+
+            //Create another deposit Payment, same OCR
+            var paymentRequest = CreatePayment.PingDeposit.Ocr
+            (
+                CurrencyEnum.SEK,
+                orderItems: new OrderItem[]
+                {
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                },
+                alreadyUsedReference: reference
+            );
+            var response = await _api.Payments.V1.Initiate(orderId, paymentRequest);
+
+            AssertHttpApiError(response);
+        }
+
+        [Fact]
         public async Task Reconcile_payment_amount_missmatch_403()
         {
             // Prepare an order with a deposit payment
-            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment();
+            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment(price: 5);
 
             Guid paymentId = depositResponse.Id;
             var reference = depositResponse.ProviderMethodResponse.Reference;
@@ -372,7 +435,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             }
         }
 
-        public async Task<(Guid orderId, PingDepositResponseBody depositResponse)> PreparePaymentOrderWithDepositPayment()
+        public async Task<(Guid orderId, PingDepositResponseBody depositResponse)> PreparePaymentOrderWithDepositPayment(int price)
         {
             //Create a Payment Order
             var paymentOrderRequest = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
@@ -382,9 +445,10 @@ namespace PingPayments.PaymentsApi.Tests.V1
             //Create a deposit Payment 
             var paymentRequest = CreatePayment.PingDeposit.Ocr
             (
+                CurrencyEnum.SEK,
                 orderItems: new OrderItem[]
                 {
-                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(price.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
                 }
             );
             PingDepositResponseBody depositResponse = await _api.Payments.V1.Initiate(orderId, paymentRequest);
