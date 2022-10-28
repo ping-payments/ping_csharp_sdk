@@ -13,42 +13,8 @@ public class FilesTests : BaseResourceTests
     [Fact]
     public async Task Create_Invoice_returns_204()
     {
-        //Create a paymentOrder
-        var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
-        var paymentOrderResponse = await _paymentsApi.PaymentOrder.V1.Create(request);
-        Guid paymentOrderId = paymentOrderResponse.Body.SuccessfulResponseBody.Id;
 
-        // Create a PaymentLink
-        var customer = new Customer("FrstName", "LastName");
-        var items = new Item[]
-        {
-                new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
-        };
-        var dueDate = DateTimeOffset.Now.AddDays(30).ToString("yyyy-MM-dd");
-        var suppler = new Supplier("Supllier name");
-
-        var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
-        var Verifone = CreatePaymentProviderMethod.Verifone.Card();
-        var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
-
-        var paymentLinkRequest = new CreatePaymentLinkRequest
-            (
-                paymentOrderId,
-                CurrencyEnum.SEK,
-                customer,
-                dueDate,
-                Locale.Swedish,
-                items,
-                suppler,
-                new PaymentProviderMethod[]
-                {
-                        swishMcommmerce,
-                        Verifone,
-                        billmate,
-                }
-            );
-        var paymentLinkResponse = await _api.PaymentLinks.V1.Create(paymentLinkRequest);
-        Guid paymentLinkId = paymentLinkResponse.Body.SuccessfulResponseBody.Id;
+        Guid paymentLinkId = await CreatePaymentLinkInNewPaymentOrder();
 
         // Create an Invoice
         CreateInvoiceRequest requestBody = new(ReferenceTypeEnum.OCR);
@@ -85,7 +51,8 @@ public class FilesTests : BaseResourceTests
     [Fact]
     public async Task Get_invoice_from_paymentLink_with_no_invoice_returns_403()
     {
-        AssertHttpApiError(await _api.Invoice.V1.Get(TestData.PaymentLinkIdNoInvoice));
+        Guid paymentlinkId = await CreatePaymentLinkInNewPaymentOrder();
+        AssertHttpApiError(await _api.Invoice.V1.Get(paymentlinkId));
     }
 
     [Fact]
@@ -110,5 +77,46 @@ public class FilesTests : BaseResourceTests
     public async Task Get_receipts_paymentLink_not_found_returns_404()
     {
         AssertHttpNotFound(await _api.Receipt.V1.Get(new Guid()));
+    }
+    public async Task<Guid> CreatePaymentLinkInNewPaymentOrder()
+    {
+        //Create a paymentOrder
+        var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+        var paymentOrderResponse = await _paymentsApi.PaymentOrder.V1.Create(request);
+        Guid paymentOrderId = paymentOrderResponse.Body.SuccessfulResponseBody.Id;
+
+        // Create a PaymentLink
+        var customer = new Customer("FrstName", "LastName");
+        var items = new Item[]
+        {
+                new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
+        };
+        var dueDate = DateTimeOffset.Now.AddDays(30).ToString("yyyy-MM-dd");
+        var suppler = new Supplier("Supllier name");
+        var invoiceAdress = new Adress("Örebro", "Signalgatan 7", "70216");
+        var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
+        var Verifone = CreatePaymentProviderMethod.Verifone.Card();
+        var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
+
+        var paymentLinkRequest = new CreatePaymentLinkRequest
+            (
+                paymentOrderId,
+                CurrencyEnum.SEK,
+                customer,
+                dueDate,
+                Locale.Swedish,
+                items,
+
+                suppler,
+                new PaymentProviderMethod[]
+                {
+                        swishMcommmerce,
+                        Verifone,
+                        billmate,
+                },
+                invoiceAdress: invoiceAdress
+            );
+        var paymentLinkResponse = await _api.PaymentLinks.V1.Create(paymentLinkRequest);
+        return paymentLinkResponse.Body.SuccessfulResponseBody.Id;
     }
 }
