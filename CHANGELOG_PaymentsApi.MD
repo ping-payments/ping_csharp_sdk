@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.0 (2022-10-28)
+- Added support for reusable reference types regarding completed deposit payments
+
 ## 1.3.0 (2022-10-26)
 - Added reconcile functionality to payments. It is now possible to "correct" underfunded or overfunded payments with the reconcile endpoint.
 - Added helper method for bankgirot autogiro payments.
