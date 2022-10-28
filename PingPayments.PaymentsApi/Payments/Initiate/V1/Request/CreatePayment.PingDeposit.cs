@@ -16,7 +16,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 DateTimeOffset? DesiredDateOfPayment = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
-                string? reuseReference = null
+                string? reuseReference = null,
+                bool? CompleteWhenFunded = null
             ) => new
                 (
                     currency,
@@ -24,7 +25,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.OCR, DesiredDateOfPayment, reuseReference),
+                    new PingDepositParameters(ReferenceTypeEnum.OCR, DesiredDateOfPayment, reuseReference, CompleteWhenFunded),
                     statusCallbackUrl,
                     metadata
             );
@@ -36,7 +37,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                  DateTimeOffset? DesiredDateOfPayment = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
-                string? reuseReference = null
+                string? reuseReference = null,
+                bool? CompleteWhenFunded = null
             ) => new
                 (
                     currency,
@@ -44,7 +46,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.KID, DesiredDateOfPayment, reuseReference),
+                    new PingDepositParameters(ReferenceTypeEnum.KID, DesiredDateOfPayment, reuseReference, CompleteWhenFunded),
                     statusCallbackUrl,
                     metadata
                 );
