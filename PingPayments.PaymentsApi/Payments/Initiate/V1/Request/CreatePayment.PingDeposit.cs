@@ -17,7 +17,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
                 string? reuseReference = null,
-                bool? CompleteWhenFunded = null
+                bool? completeWhenFunded = null
             ) => new
                 (
                     currency,
@@ -25,7 +25,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.OCR, DesiredDateOfPayment, reuseReference, CompleteWhenFunded),
+                    new PingDepositParameters(ReferenceTypeEnum.OCR, DesiredDateOfPayment, reuseReference, completeWhenFunded),
                     statusCallbackUrl,
                     metadata
             );
