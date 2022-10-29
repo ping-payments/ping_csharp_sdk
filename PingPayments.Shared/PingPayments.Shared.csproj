@@ -6,13 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<PackageId>PingPayments.Common</PackageId>
-	<Version>1.2.0</Version>
+	<Version>1.3.0</Version>
 	<Authors>pingpaymentsab</Authors>
 	<Company>Ping Payments AB</Company>
 	<Owners>Ping Payments</Owners>
 	<Product>Ping Payments Common</Product>
 	<Copyright>Ping Payments AB © 2022</Copyright>
-	<Description>Common functionality for Ping payments C# SDKs. Do not install this package manually, it will be added as a prerequisite by other packages that require it.</Description>
+	<Description>Common functionality for Ping payments nuget packages. Do not install this package manually, it will be added as a prerequisite by other packages that require it.</Description>
   </PropertyGroup>
 
   <ItemGroup>

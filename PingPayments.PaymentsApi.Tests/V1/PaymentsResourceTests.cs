@@ -364,6 +364,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             AssertHttpOK(response);
         }
 
+
         [Fact]
         public async Task Create_deposit_payment_same_pending_reference()
         {
@@ -423,6 +424,40 @@ namespace PingPayments.PaymentsApi.Tests.V1
             AssertHttpApiError(response);
         }
 
+        [Fact]
+        public async Task Reconcile_funded_payment_204()
+        {
+            // Prepare an order with a deposit payment
+            var (orderId, depositResponse) = await PreparePaymentOrderWithDepositPayment(price: 10, completeWhenFunded: false);
+
+            Guid paymentId = depositResponse.Id;
+            var reference = depositResponse.ProviderMethodResponse.Reference;
+
+            // Mimic a deposit
+            CreateDepositRequest depositRequest = new
+                (
+                    Amount: 10.ToMinorCurrencyUnit(),
+                    Currency: CurrencyEnum.SEK,
+                    ReferenceType: ReferenceTypeEnum.OCR,
+                    Reference: reference,
+                    Iban: "SE4850000000054401096835",
+                    Type: ProcesseTypeEnum.instant
+                );
+            await _mimicApi.Deposit.V1.Create(depositRequest);
+
+            // Await Payment
+            await AwaitPaymentStatusCallback(orderId, paymentId, PaymentStatusEnum.FUNDED);
+
+            var response = await _api.Payments.V1.Reconcile(orderId, paymentId);
+
+            var completedPayment = await _api.Payments.V1.Get(orderId, paymentId);
+
+            Assert.Equal(PaymentStatusEnum.COMPLETED, completedPayment.Body.SuccessfulResponseBody.Status);
+
+            AssertHttpNoContent(response);
+        }
+
+
         public async Task AwaitPaymentStatusCallback(Guid orderId, Guid paymentId, PaymentStatusEnum desiredStatus)
         {
             bool isStatusCompleted = false;
@@ -435,7 +470,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
             }
         }
 
-        public async Task<(Guid orderId, PingDepositResponseBody depositResponse)> PreparePaymentOrderWithDepositPayment(int price)
+
+        public async Task<(Guid orderId, PingDepositResponseBody depositResponse)> PreparePaymentOrderWithDepositPayment(int price, bool completeWhenFunded = true)
         {
             //Create a Payment Order
             var paymentOrderRequest = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
@@ -449,12 +485,15 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 orderItems: new OrderItem[]
                 {
                     new OrderItem(price.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
-                }
+                },
+                completeWhenFunded: completeWhenFunded
+
             );
             PingDepositResponseBody depositResponse = await _api.Payments.V1.Initiate(orderId, paymentRequest);
 
             return (orderId, depositResponse);
         }
 #pragma warning restore CS8600 // Dereference of a possibly null reference
+
     }
 }
