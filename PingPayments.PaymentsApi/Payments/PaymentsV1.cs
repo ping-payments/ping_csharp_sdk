@@ -44,7 +44,7 @@ namespace PingPayments.PaymentsApi.Payments
 
         public async Task<EmptyResponse> Update(Guid orderId, Guid paymentId, UpdatePaymentRequest UpdatePaymentRequest) =>
             await _updateOperation.Value.ExecuteRequest((orderId, paymentId, UpdatePaymentRequest));
-        public async Task<EmptyResponse> Reconcile(Guid paymentOrderId, Guid paymentId, OrderItem[] orderItems) =>
+        public async Task<EmptyResponse> Reconcile(Guid paymentOrderId, Guid paymentId, OrderItem[]? orderItems = null) =>
             await _reconcileOperation.Value.ExecuteRequest((paymentOrderId, paymentId, orderItems));
 
         public async Task<EmptyResponse> Stop(Guid orderId, Guid paymentId) =>

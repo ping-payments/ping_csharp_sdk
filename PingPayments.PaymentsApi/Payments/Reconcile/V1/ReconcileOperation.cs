@@ -9,11 +9,11 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Payments.Reconcile.V1
 {
-    public class ReconcileOperation : OperationBase<(Guid paymentOrderId, Guid paymentId, OrderItem[] orderItems), EmptyResponse>
+    public class ReconcileOperation : OperationBase<(Guid paymentOrderId, Guid paymentId, OrderItem[]? orderItems), EmptyResponse>
     {
         public ReconcileOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<EmptyResponse> ExecuteRequest((Guid paymentOrderId, Guid paymentId, OrderItem[] orderItems) request) =>
+        public override async Task<EmptyResponse> ExecuteRequest((Guid paymentOrderId, Guid paymentId, OrderItem[]? orderItems) request) =>
             await BaseExecute
             (
                 PUT,
@@ -22,7 +22,7 @@ namespace PingPayments.PaymentsApi.Payments.Reconcile.V1
                 await ToJson((new { order_items = request.orderItems }))
             );
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage httpResponseMessage, (Guid paymentOrderId, Guid paymentId, OrderItem[] orderItems) _) =>
+        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage httpResponseMessage, (Guid paymentOrderId, Guid paymentId, OrderItem[]? orderItems) _) =>
             httpResponseMessage.StatusCode switch
             {
                 NoContent => EmptyResponse.Successful(httpResponseMessage.StatusCode),

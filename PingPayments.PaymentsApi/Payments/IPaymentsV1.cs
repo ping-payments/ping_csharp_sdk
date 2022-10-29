@@ -14,7 +14,7 @@ namespace PingPayments.PaymentsApi.Payments
         Task<PaymentResponse> Get(Guid orderId, Guid paymentId);
         Task<InitiatePaymentResponse> Initiate(Guid orderId, InitiatePaymentRequest initiatePaymentRequest);
         Task<EmptyResponse> Update(Guid orderId, Guid paymentId, UpdatePaymentRequest UpdatePaymentRequest);
-        Task<EmptyResponse> Reconcile(Guid paymentOrderId, Guid paymentId, OrderItem[] orderItems);
+        Task<EmptyResponse> Reconcile(Guid paymentOrderId, Guid paymentId, OrderItem[]? orderItems = null);
         Task<EmptyResponse> Stop(Guid orderId, Guid paymentId);
     }
 }
