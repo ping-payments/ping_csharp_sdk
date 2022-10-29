@@ -450,6 +450,10 @@ namespace PingPayments.PaymentsApi.Tests.V1
 
             var response = await _api.Payments.V1.Reconcile(orderId, paymentId);
 
+            var completedPayment = await _api.Payments.V1.Get(orderId, paymentId);
+
+            Assert.Equal(PaymentStatusEnum.COMPLETED, completedPayment.Body.SuccessfulResponseBody.Status);
+
             AssertHttpNoContent(response);
         }
 
@@ -482,7 +486,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 {
                     new OrderItem(price.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
                 },
-                CompleteWhenFunded: completeWhenFunded
+                completeWhenFunded: completeWhenFunded
 
             );
             PingDepositResponseBody depositResponse = await _api.Payments.V1.Initiate(orderId, paymentRequest);
