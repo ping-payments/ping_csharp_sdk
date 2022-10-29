@@ -2,7 +2,7 @@
 
 ## 1.5.0 (2022-10-29)
 - The new Payment status `FUNDED` added to PaymentStatusEnum.
-- Added a new optional parameter `CompleteWhenFunded` of type bool to PingDepositParameters. If this parameter is set to `false`, the payment status will not change to `COMPLETED` when the payment funds matches the total amount, the payment status will instead remain at status `FUNDED`. **The deafult value of this parameter is set to `true`**.
+- Added a new optional parameter `CompleteWhenFunded` of type `bool` to PingDepositParameters. If this parameter is set to `false`, the payment status will not change to `COMPLETED` when the payment funds matches the total amount, the payment status will instead remain at status `FUNDED`. **The deafult value of this parameter is set to `true`**.
 - The required `orderItems` parameter used in the call to `Reconcile()` is now changed to an optional parameter. When you reconcile a payment with status `FUNDED`, it is possible to omit the `orderItems` parameter.
 
 
