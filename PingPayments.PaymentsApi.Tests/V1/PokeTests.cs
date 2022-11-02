@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
-using Xunit;
+﻿using PingPayments.Tests;
+using System.Threading.Tasks;
+
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
-    public class PokeTests : BaseResourceTests
+    public class PokeTests : PaymentsApiTestClient
     {
 
         [Fact]

@@ -8,7 +8,7 @@ using PingPayments.Shared.Helpers;
 
 namespace PingPayments.PaymentLinksApi.Tests.V1;
 
-public class FilesTests : BaseResourceTests
+public class FilesTests : PaymentLinksApiTestClient
 {
     [Fact]
     public async Task Create_Invoice_returns_204()
@@ -22,11 +22,15 @@ public class FilesTests : BaseResourceTests
         AssertHttpNoContent(response);
     }
 
+
     [Fact]
     public async Task Create_Invoice_already_exists_returns_403()
     {
+        Guid paymentLinkId = await CreatePaymentLinkInNewPaymentOrder();
         CreateInvoiceRequest requestBody = new(ReferenceTypeEnum.OCR);
-        var response = await _api.Invoice.V1.Create(TestData.PaymentLinkId, requestBody);
+        await _api.Invoice.V1.Create(paymentLinkId, requestBody);
+
+        var response = await _api.Invoice.V1.Create(paymentLinkId, requestBody);
         AssertHttpApiError(response);
     }
 

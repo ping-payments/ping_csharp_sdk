@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="TestSetup.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TestSetup.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit.assert" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PingPayment.PaymentLinksApi\PingPayments.PaymentLinksApi.csproj" />
+    <ProjectReference Include="..\PingPayments.KYC\PingPayments.KYC.csproj" />
+    <ProjectReference Include="..\PingPayments.Mimic\PingPayments.Mimic.csproj" />
+    <ProjectReference Include="..\PingPayments.PaymentsApi\PingPayments.PaymentsApi.csproj" />
+  </ItemGroup>
+
+</Project>

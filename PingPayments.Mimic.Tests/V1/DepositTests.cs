@@ -3,7 +3,7 @@ using PingPayments.Shared.Enums;
 
 namespace PingPayments.Mimic.Tests.V1
 {
-    public class DepositTests : BaseResourceTests
+    public class DepositTests : MimicApiTestClient
     {
 
         [Fact]

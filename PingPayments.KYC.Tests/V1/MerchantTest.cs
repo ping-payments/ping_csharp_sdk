@@ -1,11 +1,12 @@
 ﻿using PingPayments.KYC.Merchant.V1.Get;
 using PingPayments.KYC.Merchant.V1.Verification;
 using PingPayments.KYC.Shared;
+using PingPayments.Tests;
 
 
 namespace PingPayments.KYC.Tests.V1
 {
-    public class MerchantTest : BaseResourceTests
+    public class MerchantTest : KYCApiTestClient
     {
         [Fact]
         public async Task Get_specific_kyc_merchants_returns_200()

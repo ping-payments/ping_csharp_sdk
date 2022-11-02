@@ -1,6 +1,6 @@
 ﻿namespace PingPayments.PaymentLinksApi.Tests.V1
 {
-    public class PingTests : BaseResourceTests
+    public class PingTests : PaymentLinksApiTestClient
     {
         [Fact]
         public async Task Get_returns_200()

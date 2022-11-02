@@ -10,7 +10,7 @@ using PingPayments.Shared.Helpers;
 
 namespace PingPayments.PaymentLinksApi.Tests.V1
 {
-    public class PaymentLinksTest : BaseResourceTests
+    public class PaymentLinksTest : PaymentLinksApiTestClient
     {
         [Fact]
         public async Task List_paymentLink_returns_200()

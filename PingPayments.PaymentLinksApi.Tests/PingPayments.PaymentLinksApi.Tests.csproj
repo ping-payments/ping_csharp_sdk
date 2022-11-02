@@ -9,16 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="TestSetup.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="TestSetup.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -35,6 +25,7 @@
     <ProjectReference Include="..\PingPayment.PaymentLinksApi\PingPayments.PaymentLinksApi.csproj" />
     <ProjectReference Include="..\PingPayments.PaymentsApi\PingPayments.PaymentsApi.csproj" />
     <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" />
+    <ProjectReference Include="..\PingPayments.Tests\PingPayments.Tests.csproj" />
   </ItemGroup>
 
 </Project>

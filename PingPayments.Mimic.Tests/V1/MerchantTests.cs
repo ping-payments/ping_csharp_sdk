@@ -1,8 +1,9 @@
 ﻿using PingPayments.Shared.Enums;
+using PingPayments.Tests;
 
 namespace PingPayments.Mimic.Tests.V1
 {
-    public class MerchantTests : BaseResourceTests
+    public class MerchantTests : MimicApiTestClient
     {
         [Fact]
         public async Task Update_merchant_status_returns_204()
