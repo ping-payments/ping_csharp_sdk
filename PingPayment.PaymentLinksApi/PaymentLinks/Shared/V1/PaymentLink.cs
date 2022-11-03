@@ -115,13 +115,13 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         public int TotalAmount { get; set; }
 
         /// <summary>
-        /// Total amount in the smallest denomination  
+        /// Status of the payment
         /// </summary>
         [JsonPropertyName("status")]
         public Status Status { get; set; }
 
         /// <summary>
-        /// Total amount in the smallest denomination  
+        /// Status of sms delivery
         /// </summary>
         [JsonPropertyName("sms_status")]
         public SmsStatus SmsStatus { get; set; }
