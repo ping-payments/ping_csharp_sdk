@@ -18,7 +18,7 @@ namespace PingPayments.Tests
             Assert.Null(response?.Body?.ErrorResponseBody);
         }
 
-        protected static void AssertHttpCreated<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
+        protected static void AssertHttpCreated<T>(ApiResponseBase<T> response) where T : class
         {
             Assert.NotNull(response);
             Assert.NotNull(response.RawBody);
@@ -31,7 +31,7 @@ namespace PingPayments.Tests
             Assert.Null(response?.Body?.ErrorResponseBody);
         }
 
-        protected static void AssertBadRequest<T>(ApiResponseBase<T> response) where T : EmptySuccessfulResponseBody
+        protected static void AssertBadRequest<T>(ApiResponseBase<T> response) where T : class
         {
             Assert.NotNull(response);
             Assert.Equal(400, (int)response.StatusCode);

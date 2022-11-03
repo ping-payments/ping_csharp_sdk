@@ -6,7 +6,7 @@ using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.Shared;
 using PingPayments.Shared.Enums;
 using PingPayments.Shared.Helpers;
-
+using PingPayments.Tests;
 
 namespace PingPayments.PaymentLinksApi.Tests.V1
 {
@@ -49,7 +49,11 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task PaymentLink_Already_Canceled_returns_403()
         {
-            AssertHttpApiError(await _api.PaymentLinks.V1.Cancel(TestData.PaymentLinkId));
+            var paymentLinkResponse = Create_paymentLink_returns_200();
+            Guid paymentLinkId = paymentLinkResponse.Result.Body.SuccessfulResponseBody.Id;
+            await _api.PaymentLinks.V1.Cancel(paymentLinkId);
+
+            AssertHttpApiError(await _api.PaymentLinks.V1.Cancel(paymentLinkId));
         }
 
         [Fact]
