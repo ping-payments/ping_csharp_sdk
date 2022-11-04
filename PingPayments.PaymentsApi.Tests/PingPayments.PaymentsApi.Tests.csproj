@@ -16,8 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PingPayments.KYC\PingPayments.KYC.csproj" />
-    <ProjectReference Include="..\PingPayments.Mimic.Tests\PingPayments.Mimic.Tests.csproj" />
+    <ProjectReference Include="..\PingPayments.Mimic\PingPayments.Mimic.csproj" />
     <ProjectReference Include="..\PingPayments.PaymentsApi\PingPayments.PaymentsApi.csproj" />
     <ProjectReference Include="..\PingPayments.Tests\PingPayments.Tests.csproj" />
   </ItemGroup>
