@@ -1,11 +1,12 @@
 ﻿using PingPayments.KYC.Merchant.V1.Get;
 using PingPayments.KYC.Merchant.V1.Verification;
 using PingPayments.KYC.Shared;
+using PingPayments.Tests;
 
 
 namespace PingPayments.KYC.Tests.V1
 {
-    public class MerchantTest : BaseResourceTests
+    public class MerchantTest : KYCApiTestClient
     {
         [Fact]
         public async Task Get_specific_kyc_merchants_returns_200()
@@ -41,7 +42,9 @@ namespace PingPayments.KYC.Tests.V1
             var bankAccount = new BankAccount
             {
                 Bic = "NDEASESS",
-                Iban = "SE7280000810340009783242"
+                Iban = "SE7280000810340009783242",
+                Bban = "41971150033",
+                Clearing = "6985"
             };
             var personData = new PersonData
             {

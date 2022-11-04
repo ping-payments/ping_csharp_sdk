@@ -1,26 +1,10 @@
-﻿using PingPayments.Mimic;
-using PingPayments.PaymentsApi.Helpers;
-using PingPayments.Shared;
-using System.Net.Http;
+﻿using PingPayments.Shared;
 using Xunit;
 
-namespace PingPayments.PaymentsApi.Tests.V1
+namespace PingPayments.Tests
 {
     public class BaseResourceTests
     {
-        protected readonly IPingMimicApiClient _mimicApi;
-        protected readonly IPingPaymentsApiClient _api;
-        private readonly HttpClient _httpClient;
-        private readonly HttpClient _mimicHttpClient;
-
-        public BaseResourceTests()
-        {
-            _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.PaymentsApi.SandboxUri, TestData.TenantId);
-            _mimicHttpClient = new HttpClient().ConfigurePingPaymentsClient(Mimic.Helpers.PingEnvironments.MimicApi.SandboxUri, TestData.TenantId);
-            _api = new PingPaymentsApiClient(_httpClient);
-            _mimicApi = new PingMimicApiClient(_mimicHttpClient);
-        }
-
         protected static void AssertHttpOK<T>(ApiResponseBase<T> response) where T : class
         {
             Assert.NotNull(response);
@@ -32,6 +16,29 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.NotNull(response.Body);
             Assert.NotNull(response?.Body?.SuccessfulResponseBody);
             Assert.Null(response?.Body?.ErrorResponseBody);
+        }
+
+        protected static void AssertHttpCreated<T>(ApiResponseBase<T> response) where T : class
+        {
+            Assert.NotNull(response);
+            Assert.NotNull(response.RawBody);
+            Assert.Equal(201, (int)response.StatusCode);
+            Assert.False(response.IsFailure);
+            Assert.False(response.ParsingError);
+            Assert.True(response.IsSuccessful);
+            Assert.NotNull(response.Body);
+            Assert.NotNull(response?.Body?.SuccessfulResponseBody);
+            Assert.Null(response?.Body?.ErrorResponseBody);
+        }
+
+        protected static void AssertBadRequest<T>(ApiResponseBase<T> response) where T : class
+        {
+            Assert.NotNull(response);
+            Assert.Equal(400, (int)response.StatusCode);
+            Assert.True(response.IsFailure);
+            Assert.False(response.ParsingError);
+            Assert.False(response.IsSuccessful);
+            Assert.Null(response?.Body?.SuccessfulResponseBody);
         }
 
         protected static void AssertHttpNoContent<T>(ApiResponseBase<T> response) where T : class

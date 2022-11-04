@@ -4,6 +4,7 @@
   "ORDERID": "",
   "SPLITTREEID": "",
   "PAYMENTID": "",
-  "PAYMENTLINKID": "",
-  "PAYMENTLINKID-NO-INVOICE": ""
+  "PAYOUTID": "",
+  "DISBURSEMENTID": "",
+  "PAYMENTLINKID": ""
 }

@@ -1,6 +1,6 @@
 ﻿namespace PingPayments.Mimic.Tests.V1
 {
-    public class DisbursementTests : BaseResourceTests
+    public class DisbursementTests : MimicApiTestClient
     {
 
         [Fact]

@@ -1,12 +1,13 @@
 ﻿using PingPayments.PaymentsApi.Payouts.Shared;
+using PingPayments.Tests;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
+
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
-    public class PayoutTests : BaseResourceTests
+    public class PayoutTests : PaymentsApiTestClient
     {
 
         [Fact]

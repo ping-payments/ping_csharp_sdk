@@ -1,11 +1,12 @@
 ﻿using PingPayments.PaymentsApi.Tenants.Update.V1;
+using PingPayments.Tests;
 using System.Threading.Tasks;
-using Xunit;
+
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
 
-    public class TenantResourceTests : BaseResourceTests
+    public class TenantResourceTests : PaymentsApiTestClient
     {
         [Fact]
         public async Task Get_Correctly_returns_200()

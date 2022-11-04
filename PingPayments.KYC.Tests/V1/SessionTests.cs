@@ -3,7 +3,7 @@ using PingPayments.KYC.Shared;
 
 namespace PingPayments.KYC.Tests.V1
 {
-    public class SessionTests : BaseResourceTests
+    public class SessionTests : KYCApiTestClient
     {
         [Fact]
         public async Task Initiate_Created_returns_201()

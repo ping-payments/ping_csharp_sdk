@@ -9,15 +9,15 @@ using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using PingPayments.Shared;
 using PingPayments.Shared.Enums;
 using PingPayments.Shared.Helpers;
+using PingPayments.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
-    public class PaymentOrderResourceTests : BaseResourceTests
+    public class PaymentOrderResourceTests : PaymentsApiTestClient
     {
         [Fact]
         public async Task Get_returns_200()

@@ -2,14 +2,15 @@ using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.Shared;
 using PingPayments.Shared.Enums;
 using PingPayments.Shared.Helpers;
-
+using PingPayments.Tests;
 
 namespace PingPayments.PaymentLinksApi.Tests.V1
 {
-    public class PaymentLinksTest : BaseResourceTests
+    public class PaymentLinksTest : PaymentLinksApiTestClient
     {
         [Fact]
         public async Task List_paymentLink_returns_200()
@@ -48,7 +49,11 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task PaymentLink_Already_Canceled_returns_403()
         {
-            AssertHttpApiError(await _api.PaymentLinks.V1.Cancel(TestData.PaymentLinkId));
+            var paymentLinkResponse = Create_paymentLink_returns_200();
+            Guid paymentLinkId = paymentLinkResponse.Result.Body.SuccessfulResponseBody.Id;
+            await _api.PaymentLinks.V1.Cancel(paymentLinkId);
+
+            AssertHttpApiError(await _api.PaymentLinks.V1.Cancel(paymentLinkId));
         }
 
         [Fact]
@@ -103,12 +108,16 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task<CreatePaymentLinkResponse> Create_paymentLink_returns_200()
         {
+            var paymentOrderRequest = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+            var paymentOrderResponose = await _paymentsApi.PaymentOrder.V1.Create(paymentOrderRequest);
+            var orderId = paymentOrderResponose.Body.SuccessfulResponseBody.Id;
+
             var customer = new Customer("FrstName", "LastName");
             var items = new Item[]
             {
                 new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
-            var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            var dueDate = DateTimeOffset.Now.AddDays(30).ToString("yyyy-MM-dd");
             var suppler = new Supplier("Supllier name");
 
             var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
@@ -117,7 +126,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
 
             var paymentLinkRequest = new CreatePaymentLinkRequest
                 (
-                    TestData.OrderId,
+                    orderId,
                     CurrencyEnum.SEK,
                     customer,
                     dueDate,
@@ -146,7 +155,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             {
                 new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
-            var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            var dueDate = DateTimeOffset.Now.AddDays(30).ToString("yyyy-MM-dd");
             var suppler = new Supplier("Supllier name");
 
             var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
@@ -182,7 +191,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             {
                 new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
-            var dueDate = DateTime.Now.AddDays(30).ToString("yyyy-MM-dd");
+            var dueDate = DateTimeOffset.Now.AddDays(30).ToString("yyyy-MM-dd");
             var suppler = new Supplier("Supllier name");
 
             var _swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");

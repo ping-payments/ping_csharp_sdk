@@ -6,16 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="TestSetup.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="TestSetup.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Bogus" Version="34.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -29,6 +19,7 @@
     <ProjectReference Include="..\PingPayments.KYC\PingPayments.KYC.csproj" />
     <ProjectReference Include="..\PingPayments.Mimic\PingPayments.Mimic.csproj" />
     <ProjectReference Include="..\PingPayments.PaymentsApi\PingPayments.PaymentsApi.csproj" />
+    <ProjectReference Include="..\PingPayments.Tests\PingPayments.Tests.csproj" />
   </ItemGroup>
 
 </Project>

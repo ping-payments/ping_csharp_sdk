@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Xunit;
+
 
 namespace PingPayments.PaymentsApi.Tests.V1
 {
-    public class SigningKeyTests : BaseResourceTests
+    public class SigningKeyTests : PaymentsApiTestClient
     {
         [Fact]
         public async Task Get_returns_200()

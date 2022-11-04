@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace PingPayments.Mimic.Tests
+namespace PingPayments.Tests
 {
     public static class TestData
     {
@@ -22,11 +22,23 @@ namespace PingPayments.Mimic.Tests
             {
                 {"TenantId",  GetGuidValue("TENANTID")},
                 {"MerchantId",  GetGuidValue("MERCHANTID")},
-
+                {"OrderId",  GetGuidValue("ORDERID")},
+                {"SplitTreeId",  GetGuidValue("SPLITTREEID")},
+                {"PaymentId",  GetGuidValue("PAYMENTID")},
+                {"PayoutId",  GetGuidValue("PAYOUTID")},
+                {"DisbursementId",  GetGuidValue("DISBURSEMENTID")},
+                {"PaymentLinkId",  GetGuidValue("PAYMENTLINKID")},
             };
             return Settings;
         }
         public static Guid TenantId => GetSettings()["TenantId"];
         public static Guid MerchantId => GetSettings()["MerchantId"];
+        public static Guid OrderId => GetSettings()["OrderId"];
+        public static Guid SplitTreeId => GetSettings()["SplitTreeId"];
+        public static Guid PaymentId => GetSettings()["PaymentId"];
+        public static Guid PayoutId => GetSettings()["PayoutId"];
+        public static Guid DisbursementId => GetSettings()["DisbursementId"];
+        public static Guid PaymentLinkId => GetSettings()["PaymentLinkId"];
+        public static Uri FakeCallback => new("https://not.real.callback.pingpayments.com");
     }
 }
