@@ -2,7 +2,7 @@
 using PingPayments.Shared;
 using PingPayments.Tests;
 
-namespace PingPayments.KYC.Tests.V1
+namespace PingPayments.KYC.Tests
 {
     public class KYCApiTestClient : BaseResourceTests
     {

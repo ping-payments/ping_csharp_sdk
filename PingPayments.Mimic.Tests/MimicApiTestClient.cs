@@ -2,7 +2,7 @@
 using PingPayments.Shared;
 using PingPayments.Tests;
 
-namespace PingPayments.Mimic.Tests.V1
+namespace PingPayments.Mimic.Tests
 {
     public class MimicApiTestClient : BaseResourceTests
     {

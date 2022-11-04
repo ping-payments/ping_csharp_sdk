@@ -3,7 +3,7 @@ using PingPayments.Shared;
 using PingPayments.Tests;
 using System.Net.Http;
 
-namespace PingPayments.PaymentsApi.Tests.V1
+namespace PingPayments.PaymentsApi.Tests
 {
     public class PaymentsApiTestClient : BaseResourceTests
     {

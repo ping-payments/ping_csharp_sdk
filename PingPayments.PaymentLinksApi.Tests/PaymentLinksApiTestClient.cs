@@ -2,7 +2,7 @@
 using PingPayments.Shared;
 using PingPayments.Tests;
 
-namespace PingPayments.PaymentLinksApi.Tests.V1
+namespace PingPayments.PaymentLinksApi.Tests
 {
     public class PaymentLinksApiTestClient : BaseResourceTests
     {
