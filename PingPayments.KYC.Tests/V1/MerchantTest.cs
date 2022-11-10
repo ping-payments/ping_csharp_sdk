@@ -1,4 +1,5 @@
-﻿using PingPayments.KYC.Merchant.V1.Get;
+﻿using PingPayments.KYC.Merchant.V1.AIS;
+using PingPayments.KYC.Merchant.V1.Get;
 using PingPayments.KYC.Merchant.V1.Verification;
 using PingPayments.KYC.Shared;
 using PingPayments.Tests;
@@ -104,6 +105,43 @@ namespace PingPayments.KYC.Tests.V1
 
             var response = await _api.Merchant.V1.Verification(request);
             AssertBadRequest(response);
+        }
+
+        [Fact]
+        public async Task Ais_merchant_with_full_body_exept_redirects_return_200()
+        {
+            Styles stylesObj = new()
+            {
+                BackgroundColor = "#47e331",
+                FormBackgroundColor = "#44aacc",
+                Primary = "#ffe7ec"
+            };
+
+            Distribution distributionObj = new()
+            {
+                EmailOptions = new EmailOptions() { Distribute = true, Originator = "originator" },
+                SmsOptions = new SmsOptions() { Distribute = true, Message = "a message", Originator = "originator" }
+            };
+            var request = new AisMerchantRequest
+            (
+                tenantId: TestData.TenantId,
+                merchantId: TestData.MerchantId,
+                country: "SE",
+                distribution: distributionObj,
+                email: "test.mail@gmail.com",
+                phoneNumber: "0701231212",
+                psuId: "199412345676",
+                styles: stylesObj
+            );
+
+            var response = await _api.Merchant.V1.AIS(request);
+            AssertHttpOK(response);
+        }
+
+        [Fact]
+        public async Task Ais_merchant_with_bad_request_return_400()
+        {
+            AssertBadRequest(await _api.Merchant.V1.AIS(null));
         }
     }
 }
