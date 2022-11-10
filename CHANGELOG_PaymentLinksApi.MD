@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.0.0 (2022-11-09)
+Added response parameters when using get() and list() payment links:
+- Status (status of a payment)
+- SmsStatus (status of the sms delivery)
+
 ## 0.2.3-alpha (2022-10-11) 
 Fixed typo on SuccessfulResponseBody, added a missing "s".
 
