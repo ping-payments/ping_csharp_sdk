@@ -1,4 +1,5 @@
 ﻿using PingPayments.KYC.Merchant;
+using PingPayments.KYC.Merchant.V1.AIS;
 using PingPayments.KYC.Merchant.V1.Get;
 using PingPayments.KYC.Merchant.V1.Verification;
 using PingPayments.KYC.Session;
@@ -19,7 +20,8 @@ namespace PingPayments.KYC
             var merchantV1 = new MerchantV1
                 (
                     new Lazy<KycVerificationOperation>(() => new KycVerificationOperation(httpClient)),
-                    new Lazy<GetKycOperation>(() => new GetKycOperation(httpClient))
+                    new Lazy<GetKycOperation>(() => new GetKycOperation(httpClient)),
+                    new Lazy<AisKycMerchantOperation>(() => new AisKycMerchantOperation(httpClient))
                 );
             _merchant = new Lazy<IMerchantResource>(() => new MerchantResource(merchantV1));
         }
