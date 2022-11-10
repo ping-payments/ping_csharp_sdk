@@ -23,7 +23,7 @@ namespace PingPayments.KYC.Shared
         public string Bban { get; set; }
 
         /// <summary>
-        /// Clearing numberr
+        /// Clearing number
         /// </summary>
         [JsonPropertyName("clearing")]
         public string Clearing { get; set; }
