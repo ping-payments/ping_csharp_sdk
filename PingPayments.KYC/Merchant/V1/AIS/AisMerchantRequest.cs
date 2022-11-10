@@ -49,7 +49,7 @@ namespace PingPayments.KYC.Merchant.V1.AIS
         public string Country { get; set; }
 
         /// <summary>
-        /// Number of elements per page
+        /// Way of distribution
         /// </summary>
         [JsonPropertyName("distribution")]
         public Distribution? Distribution { get; set; }
@@ -79,7 +79,7 @@ namespace PingPayments.KYC.Merchant.V1.AIS
         public Redirects? Redirects { get; set; }
 
         /// <summary>
-        /// Merchants phone number
+        /// Style options
         /// </summary>
         [JsonPropertyName("styles")]
         public Styles? Styles { get; set; }

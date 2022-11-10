@@ -5,13 +5,13 @@ namespace PingPayments.KYC.Shared
     public record Distribution
     {
         /// <summary>
-        /// ISO 9362 Business Identifier Code
+        /// Options for email distribution
         /// </summary>
         [JsonPropertyName("email_options")]
         public EmailOptions EmailOptions { get; set; }
 
         /// <summary>
-        /// Bank account number (IBAN)
+        /// Options for sms distribution
         /// </summary>
         [JsonPropertyName("sms_options")]
         public SmsOptions SmsOptions { get; set; }
