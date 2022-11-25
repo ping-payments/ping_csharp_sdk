@@ -37,5 +37,11 @@ namespace PingPayments.PaymentsApi.PaymentOrders.Shared.V1
 
         [JsonPropertyName("recipient_type")]
         public RecipientTypeEnum RecipientType { get; set; }
+
+        /// <summary>
+        /// Custom metadata
+        /// </summary>
+        [JsonPropertyName("metadata")]
+        public IDictionary<string, dynamic> Metadata { get; set; }
     }
 }
