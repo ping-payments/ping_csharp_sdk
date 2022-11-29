@@ -3,7 +3,7 @@
 ## 1.6.0 (2022-11-29)
 - When initiating a payment, you can now add metadata to order items with the field `metadata`. 
 
-This metadata is available in the response body via `Payments.V1.Get()`, `Disbursement.V1.Get` and 
+This metadata is available in the response body via `Payments.V1.Get()`, `Disbursement.V1.Get()` and 
 `PaymentOrder.V1.Allocations()`. 
 
 ## 1.5.0 (2022-10-29)
