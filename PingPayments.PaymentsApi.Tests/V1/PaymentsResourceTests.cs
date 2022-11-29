@@ -26,7 +26,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 CurrencyEnum.SEK,
                 new OrderItem[]
                 {
-                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId, new Dictionary<string, object> { { "Key", "Data" } }),
                     new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
                 }
             );

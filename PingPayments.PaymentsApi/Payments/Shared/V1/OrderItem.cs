@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.Payments.Shared.V1
 {
     public record OrderItem
     {
-        public OrderItem(int amount, string name, decimal vat, Guid merchantId)
+        public OrderItem(int amount, string name, decimal vat, Guid merchantId, IDictionary<string, dynamic>? metadata = null)
         {
             Amount = amount;
             Name = name;
             Vat = vat;
             MerchantId = merchantId;
+            Metadata = metadata ?? new Dictionary<string, dynamic>();
         }
 
         /// <summary>
@@ -36,6 +38,12 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// </summary>
         [JsonPropertyName("merchant_id")]
         public Guid MerchantId { get; set; }
+
+        /// <summary>
+        /// Custom metadata
+        /// </summary>
+        [JsonPropertyName("metadata")]
+        public IDictionary<string, dynamic> Metadata { get; set; }
 
         /// <summary>
         /// Simplifies creation of order items array

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.Disbursements.Shared
@@ -77,5 +78,12 @@ namespace PingPayments.PaymentsApi.Disbursements.Shared
         /// </summary>
         [JsonPropertyName("recipient_type")]
         public RecipientTypeEnum RecipientType { get; set; }
+
+
+        /// <summary>
+        /// Custom metadata
+        /// </summary>
+        [JsonPropertyName("metadata")]
+        public IDictionary<string, dynamic> Metadata { get; set; }
     }
 }
