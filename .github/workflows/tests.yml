@@ -1,0 +1,29 @@
+# This workflow will build and test the .NET project
+name: build and tests
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: create-json
+      id: create-json
+      uses: jsdaniell/create-json@v1.2.1
+      with:
+        name: "TestSetup.json"
+        json: ${{ secrets.TEST_SETUP }}
+
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
