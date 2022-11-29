@@ -15,6 +15,7 @@ jobs:
       with:
         name: "TestSetup.json"
         json: ${{ secrets.TEST_SETUP }}
+        dir: '/'
 
     - uses: actions/checkout@v3
     - name: Setup .NET
