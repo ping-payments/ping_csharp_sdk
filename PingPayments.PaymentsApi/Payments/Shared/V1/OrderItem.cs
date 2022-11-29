@@ -12,7 +12,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
             Name = name;
             Vat = vat;
             MerchantId = merchantId;
-            Metadata = metadata;
+            Metadata = metadata ?? new Dictionary<string, dynamic>();
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// Custom metadata
         /// </summary>
         [JsonPropertyName("metadata")]
-        public IDictionary<string, dynamic>? Metadata { get; set; }
+        public IDictionary<string, dynamic> Metadata { get; set; }
 
         /// <summary>
         /// Simplifies creation of order items array
