@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.6.0 (2022-11-29)
+- When initiating a payment, you can now add metadata to order items with the field `metadata`. 
+
+This metadata is available in the response body via `Payments.V1.Get()`, `Disbursement.V1.Get` and 
+`PaymentOrder.V1.Allocations()`. 
+
 ## 1.5.0 (2022-10-29)
 - The new Payment status `FUNDED` added to PaymentStatusEnum.
 - Added a new optional parameter `CompleteWhenFunded` of type `bool` to PingDepositParameters. If this parameter is set to `false`, the payment status will not change to `COMPLETED` when the payment funds matches the total amount, the payment status will instead remain at status `FUNDED`. **The deafult value of this parameter is set to `true`**.
