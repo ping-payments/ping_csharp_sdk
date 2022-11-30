@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.6.1 
+- Added AutogiroResponseBody. 
+- If no response body is found for the chosen payment provider `null` will be returned instead of throwing `new NotImplementedException()`.
+
 ## 1.6.0 (2022-11-29)
 - When initiating a payment, you can now add metadata to order items with the optional parameter `metadata`. 
 
