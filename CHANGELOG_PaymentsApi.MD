@@ -1,10 +1,10 @@
 # Change Log
 
 
-## 1.6.2
+## 1.6.2 (2022-12-01)
 - Added missing AutogiroResponseBody to InitiatePaymentResponse. 
 
-## 1.6.1 
+## 1.6.1 (2022-11-30)
 - Added AutogiroResponseBody. 
 - If no response body is found for the chosen payment provider `null` will be returned instead of throwing `new NotImplementedException()`.
 
