@@ -46,7 +46,6 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
                 (ProviderEnum.swish, MethodEnum.e_commerce) => await Deserialize<SwishECommerceResponseBody>(raw, jsonOpts),
                 (ProviderEnum.swish, MethodEnum.m_commerce) => await Deserialize<SwishMCommerceResponseBody>(raw, jsonOpts),
                 (ProviderEnum.billmate, MethodEnum.invoice) => await Deserialize<BillmateResponseBody>(raw, jsonOpts),
-                (ProviderEnum.verifone, MethodEnum.card) => await Deserialize<VerifoneResponseBody>(raw, jsonOpts),
                 (ProviderEnum.payment_iq, MethodEnum.vipps) => await Deserialize<PaymentIqResponseBody>(raw, jsonOpts),
                 (ProviderEnum.payment_iq, MethodEnum.card) => await Deserialize<PaymentIqResponseBody>(raw, jsonOpts),
                 (ProviderEnum.dummy, MethodEnum.dummy) => await Deserialize<DummyResponseBody>(raw, jsonOpts),
