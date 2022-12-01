@@ -121,7 +121,6 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             var suppler = new Supplier("Supllier name");
 
             var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
-            var Verifone = CreatePaymentProviderMethod.Verifone.Card();
             var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
 
             var paymentLinkRequest = new CreatePaymentLinkRequest
@@ -136,7 +135,6 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
                     new PaymentProviderMethod[]
                     {
                         swishMcommmerce,
-                        Verifone,
                         billmate,
                     }
                 );
@@ -159,7 +157,6 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             var suppler = new Supplier("Supllier name");
 
             var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
-            var Verifone = CreatePaymentProviderMethod.Verifone.Card();
             var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
 
             var paymentLinkRequest = new CreatePaymentLinkRequest
@@ -174,7 +171,6 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
                     new PaymentProviderMethod[]
                     {
                         swishMcommmerce,
-                        Verifone,
                         billmate,
                     }
                 );
@@ -195,7 +191,6 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             var suppler = new Supplier("Supllier name");
 
             var _swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
-            var _Verifone = CreatePaymentProviderMethod.Verifone.Card();
             var _billmate = CreatePaymentProviderMethod.Billmate.Invoice();
 
             var paymentLinkRequest = new CreatePaymentLinkRequest
