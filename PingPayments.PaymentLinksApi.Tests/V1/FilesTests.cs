@@ -100,7 +100,6 @@ public class FilesTests : PaymentLinksApiTestClient
         var suppler = new Supplier("Supllier name");
         var invoiceAdress = new Adress("Örebro", "Signalgatan 7", "70216");
         var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
-        var Verifone = CreatePaymentProviderMethod.Verifone.Card();
         var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
 
         var paymentLinkRequest = new CreatePaymentLinkRequest
@@ -116,7 +115,6 @@ public class FilesTests : PaymentLinksApiTestClient
                 new PaymentProviderMethod[]
                 {
                         swishMcommmerce,
-                        Verifone,
                         billmate,
                 },
                 invoiceAdress: invoiceAdress

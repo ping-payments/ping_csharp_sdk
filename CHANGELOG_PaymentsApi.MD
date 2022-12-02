@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.7.0 (2022-12-02)
+- Verifone payments is no longer supported. 
+
 
 ## 1.6.2 (2022-12-01)
 - Added missing AutogiroResponseBody to InitiatePaymentResponse. 

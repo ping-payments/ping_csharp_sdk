@@ -65,20 +65,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 !string.IsNullOrWhiteSpace(x.ProviderMethodResponse.QrCode)
             );
 
-        [Fact]
-        public async Task Can_parse_verifone() =>
-            Assert.True
-            (
-                await InitiateOperation.GetResponseBody
-                (
-                    ProviderEnum.verifone,
-                    MethodEnum.card,
-                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"redirect_url\":\"https://verifone.com/pay/whatever\"}}",
-                    new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() } }
-                ) is VerifoneResponseBody x &&
-                !string.IsNullOrWhiteSpace(x.ProviderMethodResponse.RedirectUrl)
-            );
-
+   
         [Fact]
         public async Task Can_parse_billmate() =>
             Assert.True
