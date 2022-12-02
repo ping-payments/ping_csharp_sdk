@@ -134,5 +134,32 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 ) is PingDepositResponseBody x &&
                 !string.IsNullOrWhiteSpace(x.ProviderMethodResponse.Reference)
             );
+
+        [Fact]
+        public async Task Can_parse_ping_credit() =>
+            Assert.True
+            (
+                await InitiateOperation.GetResponseBody
+                (
+                    ProviderEnum.ping,
+                    MethodEnum.credit,
+                    "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{}}",
+                    new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() } }
+                ) is PingCreditResponseBody
+            );
+
+        [Fact]
+        public async Task Can_parse_Bankgirot_autogiro() =>
+          Assert.True
+          (
+              await InitiateOperation.GetResponseBody
+              (
+                  ProviderEnum.bankgirot,
+                  MethodEnum.autogiro,
+                  "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{}}",
+                  new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() } }
+              ) is AutogiroResponseBody
+          );
+
     }
 }
