@@ -1,6 +1,6 @@
 # Change Log
 
-## 2.0.0 (2022-12-01)
+## 1.7.0 (2022-12-02)
 - Verifone payments is no longer supported. 
 
 
