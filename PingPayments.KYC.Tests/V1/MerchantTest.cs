@@ -14,7 +14,6 @@ namespace PingPayments.KYC.Tests.V1
         {
             var request = new GetKycRequest
             {
-                TenantId = TestData.TenantId,
                 MerchantId = TestData.MerchantId
             };
             var response = await _api.Merchant.V1.Get(request);
@@ -26,10 +25,8 @@ namespace PingPayments.KYC.Tests.V1
         {
             var request = new GetKycRequest
             {
-                TenantId = TestData.TenantId,
                 Page = 1,
                 PageSize = 10,
-                Type = LegalEntityTypeEnum.person
             };
 
             var response = await _api.Merchant.V1.Get(request);

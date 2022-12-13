@@ -6,11 +6,6 @@ namespace PingPayments.KYC.Merchant.V1.Get
 {
     public record GetKycRequest
     {
-        /// <summary>
-        /// Number of elements per page
-        /// </summary>
-        [JsonPropertyName("tenant_id")]
-        public Guid TenantId { get; set; }
 
         /// <summary>
         /// Number of elements per page
@@ -24,11 +19,6 @@ namespace PingPayments.KYC.Merchant.V1.Get
         [JsonPropertyName("page")]
         public int? Page { get; set; }
 
-        /// <summary>
-        /// Type of merchants
-        /// </summary>
-        [JsonPropertyName("type")]
-        public LegalEntityTypeEnum? Type { get; set; }
 
         /// <summary>
         /// Get by Merchant ID
