@@ -8,6 +8,6 @@ namespace PingPayments.PaymentLinksApi.Files.Invoice
     public interface IInvoiceV1
     {
         Task<EmptyResponse> Create(Guid paymentLinkID, CreateInvoiceRequest createInvoiceRequest);
-        Task<UrlResponse> Get(Guid paymentLinkID);
+        Task<GetInvoiceResponse> Get(Guid paymentLinkID);
     }
 }
