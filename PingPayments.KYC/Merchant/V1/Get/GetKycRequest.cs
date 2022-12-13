@@ -13,6 +13,7 @@ namespace PingPayments.KYC.Merchant.V1.Get
         [JsonPropertyName("page_size")]
         public int? PageSize { get; set; }
 
+
         /// <summary>
         /// Number of the page
         /// </summary>

@@ -16,8 +16,8 @@ namespace PingPayments.KYC.Merchant.V1.Verification
             Guid merchantId,
             string name,
             string phone,
-            Guid tenantId,
             LegalEntityTypeEnum type,
+            Files files = null,
             PersonData? personData = null,
             OrganizationData? organizationData = null,
             Address[]? adresses = null,
@@ -29,10 +29,10 @@ namespace PingPayments.KYC.Merchant.V1.Verification
             BankAccount = bankAccount;
             Country = country;
             Email = email;
+            Files = files;
             MerchantId = merchantId;
             Name = name;
             Phone = phone;
-            TenantId = tenantId;
             Type = type;
             PersonData = personData;
             OrganizationData = organizationData;
@@ -65,10 +65,10 @@ namespace PingPayments.KYC.Merchant.V1.Verification
         public IDictionary<string, string> Questions { get; set; }
 
         /// <summary>
-        /// Tenant ID
+        /// Files
         /// </summary>
-        [JsonPropertyName("tenant_id")]
-        public Guid TenantId { get; set; }
+        [JsonPropertyName("files")]
+        public Files? Files { get; set; }
     }
 }
 

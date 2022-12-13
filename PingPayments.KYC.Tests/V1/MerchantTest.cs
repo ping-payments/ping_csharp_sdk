@@ -61,9 +61,8 @@ namespace PingPayments.KYC.Tests.V1
                     TestData.MerchantId,
                     "Svante",
                     "0705555555",
-                    TestData.TenantId,
                     LegalEntityTypeEnum.person,
-                    personData
+                    personData: personData
                 );
 
             var response = await _api.Merchant.V1.Verification(request);
@@ -95,9 +94,8 @@ namespace PingPayments.KYC.Tests.V1
                     TestData.MerchantId,
                     "Svante",
                     "0705555555",
-                    new Guid(),
                     LegalEntityTypeEnum.person,
-                    personData
+                    personData: personData
                 );
 
             var response = await _api.Merchant.V1.Verification(request);
@@ -121,7 +119,6 @@ namespace PingPayments.KYC.Tests.V1
             };
             var request = new AisMerchantRequest
             (
-                tenantId: TestData.TenantId,
                 merchantId: TestData.MerchantId,
                 country: "SE",
                 distribution: distributionObj,

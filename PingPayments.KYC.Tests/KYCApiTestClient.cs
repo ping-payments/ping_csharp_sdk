@@ -11,7 +11,7 @@ namespace PingPayments.KYC.Tests
 
         public KYCApiTestClient()
         {
-            _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.KYC.SandboxUri);
+            _httpClient = new HttpClient().ConfigurePingPaymentsClient(PingEnvironments.KYC.SandboxUri, TestData.TenantId);
             _api = new PingKycApiClient(_httpClient);
         }
 
