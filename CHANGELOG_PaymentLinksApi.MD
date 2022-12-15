@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.0.0 (2022-12-15)
+- Changed name of `UrlResponse` to `GetInvoiceResponse` which contains `Url`, `ReferenceType` and `Reference` fileds. 
+- The parameter `dueDate` in `CreatePaymentLinkRequest` is no longer requierd. 
+
 ## 1.0.0 (2022-11-09)
 Added response parameters when using get() and list() payment links:
 - Status (status of a payment)
