@@ -37,7 +37,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Theory]
         [InlineData("SE")]
         [InlineData("NO")]
-        public async Task Create_merchant_returns_200(string country)
+        public async Task Create_merchant_organization_returns_200(string country)
         {
             var fakeOrganizationGenerator = new Faker<Organization>()
                 .RuleFor(x => x.Country, country)
@@ -52,6 +52,26 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var fakeMercantGenerator = new Faker<CreateMerchantRequest>()
                 .RuleFor(x => x.Name, f => f.Company.CompanyName())
                 .RuleFor(x => x.Organization, fakeOrganizationGenerator.Generate());
+            var fakeMerchant = fakeMercantGenerator.Generate();
+
+            var response = await _api.Merchants.V1.Create(fakeMerchant);
+            AssertHttpOK(response);
+            Assert.NotEqual(Guid.Empty, response);
+        }
+
+        [Theory]
+        [InlineData("SE")]
+        [InlineData("DE")]
+        public async Task Create_merchant_person_returns_200(string country)
+        {
+            var fakePersonGenerator = new Faker<Merchants.Shared.V1.Person>()
+                .RuleFor(x => x.Country, country)
+                .RuleFor(x => x.SePersonalIdentityNumber, (f, p) =>
+                   country == "SE" ? new Randomizer().Replace("############") : null);
+
+            var fakeMercantGenerator = new Faker<CreateMerchantRequest>()
+                .RuleFor(x => x.Name, f => f.Person.FullName)
+                .RuleFor(x => x.Person, fakePersonGenerator.Generate());
             var fakeMerchant = fakeMercantGenerator.Generate();
 
             var response = await _api.Merchants.V1.Create(fakeMerchant);
