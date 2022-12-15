@@ -3,63 +3,63 @@ using PingPayments.Shared;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace PingPayments.KYC.Merchant.V1.Get.Response
+namespace PingPayments.KYC.Merchant.V1.Shared
 {
-    public record KycResponseBody : GuidResponseBody
+    public record KycBody : GuidResponseBody
     {
         /// <summary>
         /// Array of Addresses
         /// </summary>
         [JsonPropertyName("addresses")]
-        public Address[]? Addresses { get; set; }
+        public Address[] Addresses { get; set; }
 
         /// <summary>
         /// The payout account of the Merchant
         /// </summary>
         [JsonPropertyName("bank_account")]
-        public BankAccount? BankAccount { get; set; }
+        public BankAccount BankAccount { get; set; }
 
         /// <summary>
         /// Country in ISO-3166
         /// </summary>
         [JsonPropertyName("country")]
-        public string? Country { get; set; }
+        public string Country { get; set; }
 
         /// <summary>
         /// Email
         /// </summary>
         [JsonPropertyName("email")]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// Metadata object
         /// </summary>
         [JsonPropertyName("metadata")]
-        public IDictionary<string, dynamic>? Metadata { get; set; }
+        public IDictionary<string, dynamic> Metadata { get; set; }
 
         /// <summary>
         /// Name
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Data for an organization
         /// </summary>
         [JsonPropertyName("organization_data")]
-        public OrganizationData? OrganizationData { get; set; }
+        public OrganizationData OrganizationData { get; set; }
 
         /// <summary>
         /// Data for person
         /// </summary>
         [JsonPropertyName("person_data")]
-        public PersonData? PersonData { get; set; }
+        public PersonData PersonData { get; set; }
 
         /// <summary>
         /// Phone number
         /// </summary>
         [JsonPropertyName("phone")]
-        public string? Phone { get; set; }
+        public string Phone { get; set; }
 
         /// <summary>
         /// Type of legal entity

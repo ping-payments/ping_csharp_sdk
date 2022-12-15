@@ -1,4 +1,4 @@
-﻿using PingPayments.KYC.Merchant.V1.Get.Response;
+﻿using PingPayments.KYC.Merchant.V1.Shared;
 using PingPayments.KYC.Shared;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Merchant.V1.Verification
 {
-    public record KycVerificationRequest : KycResponseBody
+    public record KycVerificationRequest : KycBody
     {
         public KycVerificationRequest
         (

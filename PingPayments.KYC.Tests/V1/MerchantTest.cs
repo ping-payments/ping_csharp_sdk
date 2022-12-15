@@ -133,6 +133,23 @@ namespace PingPayments.KYC.Tests.V1
         }
 
         [Fact]
+        public async Task Ais_merchant_entity_already_registered_returns_201()
+        {
+            var request = new AisMerchantRequest
+            (
+                merchantId: TestData.MerchantId,
+                country: "SE",
+                email: "test.mail@gmail.com",
+                phoneNumber: "0701231212",
+                psuId: "191111111111"
+            );
+
+            var response = await _api.Merchant.V1.AIS(request);
+            AssertHttpCreated(response);
+        }
+
+
+        [Fact]
         public async Task Ais_merchant_with_bad_request_return_400()
         {
             AssertBadRequest(await _api.Merchant.V1.AIS(null));
