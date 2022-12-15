@@ -1,4 +1,5 @@
 ﻿using PingPayments.KYC.Merchant.V1.Get.Response;
+using PingPayments.KYC.Merchant.V1.Shared;
 using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using System.Net.Http;
@@ -16,12 +17,11 @@ namespace PingPayments.KYC.Merchant.V1.Get
             => BaseExecute
             (
                 GET,
-                 $"api/tenant/{request.TenantId}/merchants?" +
+                 $"api/merchants?" +
                     (request.MerchantId.HasValue ? $"merchant_id={request.MerchantId}"
                 :
                     $"page_size={request.PageSize}&" +
-                    $"page={request.Page}&" +
-                    $"type={request.Type}"),
+                    $"page={request.Page}&"),
                 request
             );
 
@@ -37,7 +37,7 @@ namespace PingPayments.KYC.Merchant.V1.Get
 
             async Task<GetKycResponse> GetSuccessful()
             {
-                var kycVerifications = await Deserialize<KycResponseBody[]?>(responseBody);
+                var kycVerifications = await Deserialize<KycBody[]?>(responseBody);
                 var kycVerificationList = kycVerifications != null ? new KycVerificationList(kycVerifications) : null;
                 var response = GetKycResponse.Successful(hrm.StatusCode, kycVerificationList, responseBody);
                 return response;

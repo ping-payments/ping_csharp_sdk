@@ -1,4 +1,4 @@
-﻿using PingPayments.KYC.Merchant.V1.Get.Response;
+﻿using PingPayments.KYC.Merchant.V1.Shared;
 using PingPayments.KYC.Shared;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Merchant.V1.Verification
 {
-    public record KycVerificationRequest : KycResponseBody
+    public record KycVerificationRequest : KycBody
     {
         public KycVerificationRequest
         (
@@ -16,8 +16,8 @@ namespace PingPayments.KYC.Merchant.V1.Verification
             Guid merchantId,
             string name,
             string phone,
-            Guid tenantId,
             LegalEntityTypeEnum type,
+            File[]? files = null,
             PersonData? personData = null,
             OrganizationData? organizationData = null,
             Address[]? adresses = null,
@@ -29,10 +29,10 @@ namespace PingPayments.KYC.Merchant.V1.Verification
             BankAccount = bankAccount;
             Country = country;
             Email = email;
+            Files = files;
             MerchantId = merchantId;
             Name = name;
             Phone = phone;
-            TenantId = tenantId;
             Type = type;
             PersonData = personData;
             OrganizationData = organizationData;
@@ -46,11 +46,13 @@ namespace PingPayments.KYC.Merchant.V1.Verification
         [JsonPropertyName("merchant_id")]
         public Guid MerchantId { get; set; }
 
+
         /// <summary>
         /// Data for an organization
         /// </summary>
         [JsonPropertyName("organization_data")]
         public OrganizationData? OrganizationData { get; set; }
+
 
         /// <summary>
         /// Data for person
@@ -58,17 +60,19 @@ namespace PingPayments.KYC.Merchant.V1.Verification
         [JsonPropertyName("person_data")]
         public PersonData? PersonData { get; set; }
 
+
         /// <summary>
         /// Key value pair question and answers
         /// </summary>
         [JsonPropertyName("questions")]
         public IDictionary<string, string> Questions { get; set; }
 
+
         /// <summary>
-        /// Tenant ID
+        /// Files
         /// </summary>
-        [JsonPropertyName("tenant_id")]
-        public Guid TenantId { get; set; }
+        [JsonPropertyName("files")]
+        public File[]? Files { get; set; }
     }
 }
 

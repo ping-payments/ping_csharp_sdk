@@ -34,6 +34,7 @@ namespace PingPayments.KYC.Merchant.V1.AIS
             var response = hrm.StatusCode switch
             {
                 OK => AisMerchantResponse.Successful(hrm.StatusCode, await Deserialize<AisMerchantResponseBody>(responseBody), responseBody),
+                Created => AisMerchantResponse.Successful(hrm.StatusCode, await Deserialize<AisMerchantResponseBody>(responseBody), responseBody), 
                 _ => AisMerchantResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

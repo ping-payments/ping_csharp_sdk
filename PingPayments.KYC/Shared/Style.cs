@@ -2,7 +2,7 @@
 
 namespace PingPayments.KYC.Shared
 {
-    public record Styles
+    public record Style
     {
 
         /// <summary>

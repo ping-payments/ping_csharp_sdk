@@ -1,4 +1,5 @@
-﻿using PingPayments.Shared;
+﻿using PingPayments.KYC.Merchant.V1.Shared;
+using PingPayments.Shared;
 using System.Net;
 
 namespace PingPayments.KYC.Merchant.V1.Get.Response
@@ -12,7 +13,7 @@ namespace PingPayments.KYC.Merchant.V1.Get.Response
         public static implicit operator KycVerificationList(GetKycResponse getKycResponse) =>
           getKycResponse?.Body?.SuccessfulResponseBody;
 
-        public static implicit operator KycResponseBody[](GetKycResponse getKycResponse) =>
-            (getKycResponse?.Body?.SuccessfulResponseBody)?.KycVerifications ?? new KycResponseBody[] { };
+        public static implicit operator KycBody[](GetKycResponse getKycResponse) =>
+            (getKycResponse?.Body?.SuccessfulResponseBody)?.KycVerifications ?? new KycBody[] { };
     }
 }

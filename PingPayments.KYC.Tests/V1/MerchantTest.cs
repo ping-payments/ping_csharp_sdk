@@ -14,7 +14,6 @@ namespace PingPayments.KYC.Tests.V1
         {
             var request = new GetKycRequest
             {
-                TenantId = TestData.TenantId,
                 MerchantId = TestData.MerchantId
             };
             var response = await _api.Merchant.V1.Get(request);
@@ -26,10 +25,8 @@ namespace PingPayments.KYC.Tests.V1
         {
             var request = new GetKycRequest
             {
-                TenantId = TestData.TenantId,
                 Page = 1,
                 PageSize = 10,
-                Type = LegalEntityTypeEnum.person
             };
 
             var response = await _api.Merchant.V1.Get(request);
@@ -64,9 +61,8 @@ namespace PingPayments.KYC.Tests.V1
                     TestData.MerchantId,
                     "Svante",
                     "0705555555",
-                    TestData.TenantId,
                     LegalEntityTypeEnum.person,
-                    personData
+                    personData: personData
                 );
 
             var response = await _api.Merchant.V1.Verification(request);
@@ -98,9 +94,8 @@ namespace PingPayments.KYC.Tests.V1
                     TestData.MerchantId,
                     "Svante",
                     "0705555555",
-                    new Guid(),
                     LegalEntityTypeEnum.person,
-                    personData
+                    personData: personData
                 );
 
             var response = await _api.Merchant.V1.Verification(request);
@@ -110,7 +105,7 @@ namespace PingPayments.KYC.Tests.V1
         [Fact]
         public async Task Ais_merchant_with_full_body_exept_redirects_return_200()
         {
-            Styles stylesObj = new()
+            Style stylesObj = new()
             {
                 BackgroundColor = "#47e331",
                 FormBackgroundColor = "#44aacc",
@@ -124,19 +119,35 @@ namespace PingPayments.KYC.Tests.V1
             };
             var request = new AisMerchantRequest
             (
-                tenantId: TestData.TenantId,
                 merchantId: TestData.MerchantId,
                 country: "SE",
                 distribution: distributionObj,
                 email: "test.mail@gmail.com",
                 phoneNumber: "0701231212",
                 psuId: "199412345676",
-                styles: stylesObj
+                style: stylesObj
             );
 
             var response = await _api.Merchant.V1.AIS(request);
             AssertHttpOK(response);
         }
+
+        [Fact]
+        public async Task Ais_merchant_entity_already_registered_returns_201()
+        {
+            var request = new AisMerchantRequest
+            (
+                merchantId: TestData.MerchantId,
+                country: "SE",
+                email: "test.mail@gmail.com",
+                phoneNumber: "0701231212",
+                psuId: "191111111111"
+            );
+
+            var response = await _api.Merchant.V1.AIS(request);
+            AssertHttpCreated(response);
+        }
+
 
         [Fact]
         public async Task Ais_merchant_with_bad_request_return_400()

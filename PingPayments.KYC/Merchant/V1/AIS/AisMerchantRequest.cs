@@ -8,19 +8,18 @@ namespace PingPayments.KYC.Merchant.V1.AIS
     {
         public AisMerchantRequest
         (
-            Guid tenantId,
-            Guid merchantId,
             string country,
+            Guid? merchantId = null,
             Distribution? distribution = null,
             string? email = null,
             string? phoneNumber = null,
             string? psuId = null,
             Redirects? redirects = null,
-            Styles? styles = null
+            Style? style = null
 
         )
         {
-            TenantId = tenantId;
+    
             MerchantId = merchantId;
             Country = country;
             Distribution = distribution;
@@ -28,19 +27,15 @@ namespace PingPayments.KYC.Merchant.V1.AIS
             PhoneNumber = phoneNumber;
             PsuId = psuId;
             Redirects = redirects;
-            Styles = styles;
+            Style = style;
         }
-        /// <summary>
-        /// Number of elements per page
-        /// </summary>
-        [JsonPropertyName("tenant_id")]
-        public Guid TenantId { get; set; }
+
 
         /// <summary>
         /// Get by Merchant ID
         /// </summary>
         [JsonPropertyName("merchant_id")]
-        public Guid MerchantId { get; set; }
+        public Guid? MerchantId { get; set; }
 
         /// <summary>
         /// Country of merchant
@@ -82,7 +77,7 @@ namespace PingPayments.KYC.Merchant.V1.AIS
         /// Style options
         /// </summary>
         [JsonPropertyName("styles")]
-        public Styles? Styles { get; set; }
+        public Style? Style { get; set; }
 
     }
 }
