@@ -17,7 +17,7 @@ namespace PingPayments.KYC.Merchant.V1.Verification
             string name,
             string phone,
             LegalEntityTypeEnum type,
-            Files files = null,
+            File[]? files = null,
             PersonData? personData = null,
             OrganizationData? organizationData = null,
             Address[]? adresses = null,
@@ -46,11 +46,13 @@ namespace PingPayments.KYC.Merchant.V1.Verification
         [JsonPropertyName("merchant_id")]
         public Guid MerchantId { get; set; }
 
+
         /// <summary>
         /// Data for an organization
         /// </summary>
         [JsonPropertyName("organization_data")]
         public OrganizationData? OrganizationData { get; set; }
+
 
         /// <summary>
         /// Data for person
@@ -58,17 +60,19 @@ namespace PingPayments.KYC.Merchant.V1.Verification
         [JsonPropertyName("person_data")]
         public PersonData? PersonData { get; set; }
 
+
         /// <summary>
         /// Key value pair question and answers
         /// </summary>
         [JsonPropertyName("questions")]
         public IDictionary<string, string> Questions { get; set; }
 
+
         /// <summary>
         /// Files
         /// </summary>
         [JsonPropertyName("files")]
-        public Files? Files { get; set; }
+        public File[]? Files { get; set; }
     }
 }
 

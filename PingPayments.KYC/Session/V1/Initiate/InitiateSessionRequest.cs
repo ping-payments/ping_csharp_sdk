@@ -10,8 +10,8 @@ namespace PingPayments.KYC.Session.V1.Initiate
         string Phone,
         string PsuId,
         Redirects? Redirects = null,
-        Styles? Styles = null,
-        Guid? TenantId = null)
+        Style? Styles = null
+        )
     {
         /// <summary>
         /// Email of the one to perform the KYC
@@ -41,12 +41,6 @@ namespace PingPayments.KYC.Session.V1.Initiate
         /// Style for for the KYC session layout 
         /// </summary>
         [JsonPropertyName("styles")]
-        public Styles? Styles { get; set; } = Styles;
-
-        /// <summary>
-        /// Id of the tenant that the one to perform the KYC belongs to
-        /// </summary>
-        [JsonPropertyName("tenant_id")]
-        public Guid? TenantId { get; set; } = TenantId;
+        public Style? Styles { get; set; } = Styles;
     }
 }

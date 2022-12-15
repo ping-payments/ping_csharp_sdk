@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Shared
 {
-    public record Files
+    public record File
     {
         /// <summary>
         /// File contents
@@ -13,11 +13,13 @@ namespace PingPayments.KYC.Shared
         [JsonPropertyName("content")]
         public string Content { get; set; }
 
+
         /// <summary>
         /// File content type
         /// </summary>
         [JsonPropertyName("content_type")]
         public string ContentType { get; set; }
+
 
         /// <summary>
         /// Filename

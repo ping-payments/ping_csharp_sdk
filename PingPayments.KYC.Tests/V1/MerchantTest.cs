@@ -105,7 +105,7 @@ namespace PingPayments.KYC.Tests.V1
         [Fact]
         public async Task Ais_merchant_with_full_body_exept_redirects_return_200()
         {
-            Styles stylesObj = new()
+            Style stylesObj = new()
             {
                 BackgroundColor = "#47e331",
                 FormBackgroundColor = "#44aacc",
@@ -125,7 +125,7 @@ namespace PingPayments.KYC.Tests.V1
                 email: "test.mail@gmail.com",
                 phoneNumber: "0701231212",
                 psuId: "199412345676",
-                styles: stylesObj
+                style: stylesObj
             );
 
             var response = await _api.Merchant.V1.AIS(request);

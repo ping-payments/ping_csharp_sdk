@@ -15,7 +15,7 @@ namespace PingPayments.KYC.Merchant.V1.AIS
             string? phoneNumber = null,
             string? psuId = null,
             Redirects? redirects = null,
-            Styles? styles = null
+            Style? style = null
 
         )
         {
@@ -27,7 +27,7 @@ namespace PingPayments.KYC.Merchant.V1.AIS
             PhoneNumber = phoneNumber;
             PsuId = psuId;
             Redirects = redirects;
-            Styles = styles;
+            Style = style;
         }
 
 
@@ -77,7 +77,7 @@ namespace PingPayments.KYC.Merchant.V1.AIS
         /// Style options
         /// </summary>
         [JsonPropertyName("styles")]
-        public Styles? Styles { get; set; }
+        public Style? Style { get; set; }
 
     }
 }
