@@ -6,11 +6,11 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentLinksApi.Files.Invoice.Get.V1
 {
-    public class GetInvoiceOperation : OperationBase<Guid, UrlResponse>
+    public class GetInvoiceOperation : OperationBase<Guid, GetInvoiceResponse>
     {
         public GetInvoiceOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<UrlResponse> ExecuteRequest(Guid paymentLinkId) =>
+        public override async Task<GetInvoiceResponse> ExecuteRequest(Guid paymentLinkId) =>
             await BaseExecute
             (
                 GET,
@@ -18,19 +18,19 @@ namespace PingPayments.PaymentLinksApi.Files.Invoice.Get.V1
                 paymentLinkId
             );
 
-        protected override async Task<UrlResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _)
+        protected override async Task<GetInvoiceResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => UrlResponse.Successful(hrm.StatusCode, await Deserialize<UrlResponseBody>(responseBody), responseBody),
+                OK => GetInvoiceResponse.Successful(hrm.StatusCode, await Deserialize<GetInvoiceResponseBody>(responseBody), responseBody),
                 _ => await ToError(hrm)
             };
             return response;
         }
 
-        protected async Task<UrlResponse> ToError(HttpResponseMessage hrm) =>
-            UrlResponse.Failure
+        protected async Task<GetInvoiceResponse> ToError(HttpResponseMessage hrm) =>
+            GetInvoiceResponse.Failure
             (
                 hrm.StatusCode,
                 await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),

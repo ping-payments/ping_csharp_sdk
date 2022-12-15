@@ -7,30 +7,12 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public record PaymentLink : EmptySuccessfulResponseBody
     {
-        /// <summary>
-        /// Customer gets redirected here when canceling a checkout
-        /// </summary>
-        [JsonPropertyName("checkout_cancel_url")]
-        public string? CheckoutCancelUrl { get; set; }
-
-        /// <summary>
-        /// Customer gets redirected here when completed a checkout successfully
-        /// </summary>
-        [JsonPropertyName("checkout_success_url")]
-        public string? CheckoutSuccessUrl { get; set; }
-
-
+       
         /// <summary>
         /// The url to the checkout (should only be set if building a custom checkout)
         /// </summary>
         [JsonPropertyName("checkout_url")]
         public string? CheckoutUrl { get; set; }
-
-        /// <summary>
-        /// The currencies which the amounts is given in
-        /// </summary>
-        [JsonPropertyName("currency")]
-        public CurrencyEnum Currency { get; set; }
 
 
         /// <summary>
@@ -46,16 +28,29 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         public Adress? DeliveryAdress { get; set; }
 
         /// <summary>
+        /// If payment link is distributed by email
+        /// </summary>
+        [JsonPropertyName("distributed_by_email")]
+        public bool? DistributedByEmail { get; set; }
+
+        /// <summary>
         ///  The expiration date of the PaymentLink 
         /// </summary>
         [JsonPropertyName("due_date")]
-        public string DueDate { get; set; }
+        public string? DueDate { get; set; }
 
         /// <summary>
         ///  Invoice adress for the payment  
         /// </summary>
         [JsonPropertyName("invoice_address")]
         public Adress? InvoiceAdress { get; set; }
+
+
+        /// <summary>
+        /// If invoce is created
+        /// </summary>
+        [JsonPropertyName("invoice_created")]
+        public bool? InvoiceCreated { get; set; }
 
         /// <summary>
         ///  Items iclueded in the PaymentLink 
@@ -81,6 +76,17 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         [JsonPropertyName("metadata")]
         public IDictionary<string, dynamic>? Metadata { get; set; }
 
+        /// <summary>
+        /// Payment Id   
+        /// </summary>
+        [JsonPropertyName("payment_id")]
+        public Guid? PaymentId { get; set; }
+
+        /// <summary>
+        /// Payment link id  
+        /// </summary>
+        [JsonPropertyName("payment_link_id")]
+        public Guid paymentLinkId { get; set; }
 
         /// <summary>
         /// Callback url for checking the status of a PaymentLink  
@@ -92,27 +98,20 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         /// Payment order id   
         /// </summary>
         [JsonPropertyName("payment_order_id")]
-        public Guid PaymentOrderId { get; set; }
+        public Guid? PaymentOrderId { get; set; }
 
         /// <summary>
         /// The payment provider methods available in the checkout   
         /// </summary>
         [JsonPropertyName("payment_provider_methods")]
-        public IEnumerable<PaymentProviderMethod> PaymentProviderMethods { get; set; }
+        public IEnumerable<PaymentProviderMethod>? PaymentProviderMethods { get; set; }
 
 
         /// <summary>
-        /// Supplier of a PaymentLink 
+        /// Status of sms delivery
         /// </summary>
-        [JsonPropertyName("supplier")]
-        public Supplier Supplier { get; set; }
-
-
-        /// <summary>
-        /// Total amount in the smallest denomination  
-        /// </summary>
-        [JsonPropertyName("total_amount")]
-        public int TotalAmount { get; set; }
+        [JsonPropertyName("sms_status")]
+        public SmsStatus SmsStatus { get; set; }
 
         /// <summary>
         /// Status fo the payment
@@ -121,9 +120,15 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         public Status Status { get; set; }
 
         /// <summary>
-        /// Status of sms delivery
+        /// Tenant id   
         /// </summary>
-        [JsonPropertyName("sms_status")]
-        public SmsStatus SmsStatus { get; set; }
+        [JsonPropertyName("tenant_id")]
+        public Guid? TenantId { get; set; }
+
+        /// <summary>
+        /// Total amount in the smallest denomination  
+        /// </summary>
+        [JsonPropertyName("total_amount")]
+        public int TotalAmount { get; set; }
     }
 }

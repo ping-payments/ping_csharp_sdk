@@ -1,5 +1,6 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
-using PingPayments.Shared.Enums; 
+using PingPayments.Shared.Enums;
+using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
@@ -10,11 +11,11 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             Guid paymentOrderId,
             CurrencyEnum currency,
             Customer customer,
-            string dueDate,
             string local,
             IEnumerable<Item> items,
             Supplier supplier,
-            IEnumerable<PaymentProviderMethod> paymentProviderMethods,
+            IEnumerable<PaymentProviderMethod>? paymentProviderMethods,
+            string? dueDate = null,
             string? checkoutCancelUrl = null,
             string? checkoutSuccessUrl = null,
             string? checkoutUrl = null,
@@ -43,5 +44,29 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
             PaymentLinkStatusCallbackUrl = paymentLinkStatusCallbackUrl;
             Metadata = metadata ?? new Dictionary<string, dynamic>();
         }
+
+        /// <summary>
+        /// Customer gets redirected here when canceling a checkout
+        /// </summary>
+        [JsonPropertyName("checkout_cancel_url")]
+        public string? CheckoutCancelUrl { get; set; }
+
+        /// <summary>
+        /// Customer gets redirected here when completed a checkout successfully
+        /// </summary>
+        [JsonPropertyName("checkout_success_url")]
+        public string? CheckoutSuccessUrl { get; set; }
+
+        /// <summary>
+        /// The currencies which the amounts is given in
+        /// </summary>
+        [JsonPropertyName("currency")]
+        public CurrencyEnum Currency { get; set; }
+
+        /// <summary>
+        /// Supplier of a PaymentLink 
+        /// </summary>
+        [JsonPropertyName("supplier")]
+        public Supplier Supplier { get; set; }
     }
 }

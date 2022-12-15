@@ -96,7 +96,6 @@ public class FilesTests : PaymentLinksApiTestClient
         {
                 new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
         };
-        var dueDate = DateTimeOffset.Now.AddDays(30).ToString("yyyy-MM-dd");
         var suppler = new Supplier("Supllier name");
         var invoiceAdress = new Adress("Örebro", "Signalgatan 7", "70216");
         var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
@@ -107,10 +106,8 @@ public class FilesTests : PaymentLinksApiTestClient
                 paymentOrderId,
                 CurrencyEnum.SEK,
                 customer,
-                dueDate,
                 Locale.Swedish,
                 items,
-
                 suppler,
                 new PaymentProviderMethod[]
                 {

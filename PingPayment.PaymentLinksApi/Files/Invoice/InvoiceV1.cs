@@ -20,7 +20,7 @@ namespace PingPayments.PaymentLinksApi.Files.Invoice
         public async Task<EmptyResponse> Create(Guid paymentLinkID, CreateInvoiceRequest createInvoiceRequest) =>
             await _createInvoiceOperation.Value.ExecuteRequest((paymentLinkID,  createInvoiceRequest));
 
-        public async Task<UrlResponse> Get(Guid paymentLinkID) =>
+        public async Task<GetInvoiceResponse> Get(Guid paymentLinkID) =>
             await _getInvoiceOperation.Value.ExecuteRequest(paymentLinkID);
     } 
 }
