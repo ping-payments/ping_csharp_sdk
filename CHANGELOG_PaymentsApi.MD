@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.8.0 (2022-12-17)
+- The `person` object has been extended with a field named `Country`. 
+
 ## 1.7.0 (2022-12-02)
 - Verifone payments is no longer supported. 
 
