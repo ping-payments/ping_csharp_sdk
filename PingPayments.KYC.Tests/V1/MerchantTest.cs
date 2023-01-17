@@ -42,7 +42,9 @@ namespace PingPayments.KYC.Tests.V1
                 Bic = "NDEASESS",
                 Iban = "SE7280000810340009783242",
                 Bban = "41971150033",
-                Clearing = "6985"
+                Clearing = "6985",
+                Plusgiro = "12345678",
+                Bankgiro = "87654321"
             };
             var personData = new PersonData
             {
