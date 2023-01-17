@@ -27,5 +27,17 @@ namespace PingPayments.KYC.Shared
         /// </summary>
         [JsonPropertyName("clearing")]
         public string Clearing { get; set; }
+
+        /// <summary>
+        /// Plusgiro number
+        /// </summary>
+        [JsonPropertyName("plusgiro")]
+        public string Plusgiro { get; set; }
+
+        /// <summary>
+        /// Bankgiro number
+        /// </summary>
+        [JsonPropertyName("bankgiro")]
+        public string Bankgiro { get; set; }
     }
 }
