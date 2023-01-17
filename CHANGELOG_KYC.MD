@@ -1,6 +1,9 @@
 
 # Change Log
 
+## 2.1.0 (2023-01-17)
+- We have introduced the addition of `Plusgiro` and `Bankgiro` options to the `BankAccount`. Please note that this change will only affect Swedish accounts."
+
 ## 2.0.0 (2022-12-15)
 - The tenant id is now passed in the `ConfigurePingPaymentsClient()` function when initiating a HTTP client.
 - As a result, the tenant id has been removed from the `GetKycRequest`, `AisMerchantRequest`, `KycVerificationRequest`, and `InitiateSessionRequest` objects.
