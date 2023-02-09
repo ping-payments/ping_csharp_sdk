@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.9.0 (2023-02-09)
+- Status history of a payment now contains an id for status changes.
+
 ## 1.8.0 (2022-12-17)
 - The `person` object has been extended with a field named `Country`. 
 
