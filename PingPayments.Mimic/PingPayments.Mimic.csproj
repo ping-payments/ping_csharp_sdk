@@ -10,7 +10,7 @@
 	<Company>Ping Payments AB</Company>
 	<Owners>Ping Payments</Owners>
 	<Product>Ping Payments Mimic API</Product>
-	<Copyright>Ping Payments AB © 2022</Copyright>
+	<Copyright>Ping Payments AB © 2023</Copyright>
 	<Description>.NET client library for the Ping Payments Mimic API</Description>
   </PropertyGroup>
 

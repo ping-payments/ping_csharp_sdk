@@ -11,7 +11,7 @@
 	<Company>Ping Payments AB</Company>
 	<Owners>Ping Payments</Owners>
 	<Product>Ping Payments Common</Product>
-	<Copyright>Ping Payments AB © 2022</Copyright>
+	<Copyright>Ping Payments AB © 2023</Copyright>
 	<Description>Common functionality for Ping payments nuget packages. Do not install this package manually, it will be added as a prerequisite by other packages that require it.</Description>
   </PropertyGroup>
 
