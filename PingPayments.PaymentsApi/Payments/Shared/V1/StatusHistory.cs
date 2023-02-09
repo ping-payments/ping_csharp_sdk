@@ -19,7 +19,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public Funds? Funds { get; set; }
 
         /// <summary>
-        /// Payment status funds summary
+        /// Id of a payment status
         /// </summary>
         [JsonPropertyName("id")]
         public Guid? PaymentStatusId { get; set; }
