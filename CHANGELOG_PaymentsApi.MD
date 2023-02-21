@@ -1,4 +1,6 @@
 # Change Log
+## 1.9.2 (2023-02-21)
+- Added bban and bic to DepositAccount.  
 
 ## 1.9.1 (2023-02-20)
 - Fixed a bug where the desired deposit payment date formated incorrectly.
