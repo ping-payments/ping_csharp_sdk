@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.9.1 (2023-02-20)
+- Fixed a bug where the desired deposit payment date formated incorrectly.
+
 ## 1.9.0 (2023-02-09)
 - Status history of a payment now contains an id for status changes.
 
