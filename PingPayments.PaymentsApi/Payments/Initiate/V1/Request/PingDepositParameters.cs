@@ -14,10 +14,11 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
     {
         public override Dictionary<string, dynamic> ToDictionary() => new()
         {
+
             { "complete_when_funded", CompleteWhenFunded ?? true },
             { "reference_type", ReferenceType },
             { "reference", ReuseReference },
-            { "desired_date_of_payment", DesiredDateOfPayment }
+            { "desired_date_of_payment", DesiredDateOfPayment?.ToString("yyyy-MM-dd") }
         };
     }
 }
