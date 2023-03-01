@@ -7,8 +7,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
     public record PingDepositParameters
     (
         ReferenceTypeEnum ReferenceType,
-        DateTimeOffset? DesiredDateOfPayment,
-        string? ReuseReference,
+        string? Reference,
         bool? CompleteWhenFunded
     ) : ProviderMethodParameters
     {
@@ -17,8 +16,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 
             { "complete_when_funded", CompleteWhenFunded ?? true },
             { "reference_type", ReferenceType },
-            { "reference", ReuseReference },
-            { "desired_date_of_payment", DesiredDateOfPayment?.ToString("yyyy-MM-dd") }
+            { "reference", Reference }
         };
     }
 }

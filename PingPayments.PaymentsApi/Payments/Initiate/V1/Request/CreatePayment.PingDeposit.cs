@@ -13,10 +13,9 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             (
                 CurrencyEnum currency,
                 IEnumerable<OrderItem> orderItems,
-                DateTimeOffset? DesiredDateOfPayment = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
-                string? reuseReference = null,
+                string? reference = null,
                 bool? completeWhenFunded = null
             ) => new
                 (
@@ -25,7 +24,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.OCR, DesiredDateOfPayment, reuseReference, completeWhenFunded),
+                    new PingDepositParameters(ReferenceTypeEnum.OCR, reference, completeWhenFunded),
                     statusCallbackUrl,
                     metadata
             );
@@ -34,10 +33,9 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             (
                 CurrencyEnum currency,
                 IEnumerable<OrderItem> orderItems,
-                 DateTimeOffset? DesiredDateOfPayment = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
-                string? reuseReference = null,
+                string? reference = null,
                 bool? completeWhenFunded = null
             ) => new
                 (
@@ -46,7 +44,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.KID, DesiredDateOfPayment, reuseReference, completeWhenFunded),
+                    new PingDepositParameters(ReferenceTypeEnum.KID, reference, completeWhenFunded),
                     statusCallbackUrl,
                     metadata
                 );

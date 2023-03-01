@@ -1,4 +1,8 @@
 # Change Log
+
+## 2.0.0 (2023-02-29)
+- Changed name on parameter `reuseReference` to `refrencce` and removed `DesiredDateOfPayment` on `PingDeposit` . 
+
 ## 1.9.2 (2023-02-21)
 - Added bban and bic to DepositAccount.  
 
