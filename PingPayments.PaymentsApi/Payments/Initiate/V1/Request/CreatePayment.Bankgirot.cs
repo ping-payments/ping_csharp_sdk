@@ -1,10 +1,9 @@
 ﻿using PingPayments.PaymentsApi.Payments.Shared.V1;
-using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.Shared.Enums;
 using System;
 using System.Collections.Generic;
 
-namespace PingPayments.PaymentsApi.Payments.Initiate.V1.Request
+namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 {
     public static partial class CreatePayment
     {

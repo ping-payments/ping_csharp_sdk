@@ -1,7 +1,6 @@
-﻿using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace PingPayments.PaymentsApi.Payments.Initiate.V1.Request
+namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 {
     public record BankgirotProviderMethodParameters
     (
