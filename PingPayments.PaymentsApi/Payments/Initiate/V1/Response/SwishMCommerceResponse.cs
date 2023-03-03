@@ -12,7 +12,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Response
         public string SwishUrl { get; set; }
 
         /// <summary>
-        /// Used for opening Swish in Mobile Phone by redirect. Does not contain callbackUrl.
+        /// Swish payment request token
         /// </summary>
         [JsonPropertyName("payment_request_token")]
         public string PaymentRequestToken { get; set; }
