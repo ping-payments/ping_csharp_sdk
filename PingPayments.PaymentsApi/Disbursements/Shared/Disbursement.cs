@@ -10,6 +10,13 @@ namespace PingPayments.PaymentsApi.Disbursements.Shared
         /// <summary>
         /// Amount in minor currency unit
         /// </summary>
+        [JsonPropertyName("amount")]
+        public int Amount { get; set; }
+
+
+        /// <summary>
+        /// Amount in minor currency unit
+        /// </summary>
         [JsonPropertyName("currency")]
         public string Currency { get; set; }
 

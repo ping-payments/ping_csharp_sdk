@@ -1,8 +1,10 @@
 # Change Log
 
+## 3.2.0 (2023-03-07)
+- Added request token swish m-commerce response.
+
 ## 3.1.0 (2023-03-03)
 - Added request token swish m-commerce response. 
-
 
 ## 3.0.0 (2023-03-02)
 - Corrected the namespace of Bankgirot request body and is now same as the rest: `PingPayments.PaymentsApi.Payments.V1.Initiate.Request`. 
