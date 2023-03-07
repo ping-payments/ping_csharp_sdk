@@ -1,7 +1,7 @@
 # Change Log
 
 ## 3.2.0 (2023-03-07)
-- Added request token swish m-commerce response.
+- Added amount to the get disbursement response.
 
 ## 3.1.0 (2023-03-03)
 - Added request token swish m-commerce response. 
