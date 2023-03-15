@@ -57,13 +57,40 @@ namespace PingPayments.KYC.Tests.V1
 
             var request = new KycVerificationRequest
                 (
-                    bankAccount,
-                    "SE",
-                    "name@provider.com",
-                    TestData.MerchantId,
-                    "Svante",
-                    "0705555555",
-                    LegalEntityTypeEnum.person,
+                    bankAccount: bankAccount,
+                    merchantId: TestData.MerchantId,
+                    country: "SE",
+                    email: "name@provider.com",
+                    name: "Svante",
+                    phone: "0705555555",
+                    type: LegalEntityTypeEnum.person,
+                    personData: personData
+                );
+
+            var response = await _api.Merchant.V1.Verification(request);
+            AssertHttpNoContent(response);
+        }
+
+        [Fact]
+        public async Task Verification_minimal_request_body_returns_204()
+        {
+            var bankAccount = new BankAccount();
+            var personData = new PersonData
+            {
+                Birthdate = "1985-12-24",
+                Firstname = "Svante",
+                Lastname = "Larsson",
+                Identity = "198002015841",
+                Gender = GenderEnum.male
+            };
+
+            var request = new KycVerificationRequest
+                (
+                    bankAccount: bankAccount,
+                    merchantId: TestData.MerchantId,
+                    country: "SE",
+                    name: "Svante",
+                    type: LegalEntityTypeEnum.person,
                     personData: personData
                 );
 
@@ -90,13 +117,13 @@ namespace PingPayments.KYC.Tests.V1
 
             var request = new KycVerificationRequest
                 (
-                    bankAccount,
-                    "SE",
-                    "name@provider.com",
-                    TestData.MerchantId,
-                    "Svante",
-                    "0705555555",
-                    LegalEntityTypeEnum.person,
+                    bankAccount: bankAccount,
+                    country: "SE",
+                    email: "name@provider.com",
+                    merchantId: TestData.MerchantId,
+                    name: "Svante",
+                    phone: "0705555555",
+                    type: LegalEntityTypeEnum.person,
                     personData: personData
                 );
 
