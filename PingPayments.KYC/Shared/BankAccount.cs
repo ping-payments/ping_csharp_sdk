@@ -4,6 +4,15 @@ namespace PingPayments.KYC.Shared
 {
     public record BankAccount
     {
+        public BankAccount(string bic = null, string iban = null, string bban = null, string clearing = null, string plusgiro = null, string bankgiro = null)
+        {
+            Bic = bic ?? "";
+            Iban = iban ?? "";
+            Bban = bban ?? "";
+            Clearing = clearing ?? "";
+            Plusgiro = plusgiro;
+            Bankgiro = bankgiro;
+        }
         /// <summary>
         /// ISO 9362 Business Identifier Code
         /// </summary>

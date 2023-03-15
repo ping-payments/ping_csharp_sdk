@@ -11,15 +11,15 @@ namespace PingPayments.KYC.Merchant.V1.Verification
         public KycVerificationRequest
         (
             BankAccount bankAccount,
-            string country,
-            string email,
             Guid merchantId,
             string name,
-            string phone,
+            OrganizationData organizationData,
             LegalEntityTypeEnum type,
+            string? phone = null,
+            string? country = null,
+            string? email = null,
             File[]? files = null,
             PersonData? personData = null,
-            OrganizationData? organizationData = null,
             Address[]? adresses = null,
             IDictionary<string, dynamic>? metadata = null,
             IDictionary<string, string>? questions = null
@@ -27,16 +27,16 @@ namespace PingPayments.KYC.Merchant.V1.Verification
         {
             Addresses = adresses;
             BankAccount = bankAccount;
-            Country = country;
-            Email = email;
             Files = files;
             MerchantId = merchantId;
             Name = name;
-            Phone = phone;
             Type = type;
             PersonData = personData;
             OrganizationData = organizationData;
             Metadata = metadata;
+            Country = country ?? "";
+            Email = email ?? "";
+            Phone = phone ?? "";
             Questions = questions ?? new Dictionary<string, string>();
         }
 
@@ -51,7 +51,7 @@ namespace PingPayments.KYC.Merchant.V1.Verification
         /// Data for an organization
         /// </summary>
         [JsonPropertyName("organization_data")]
-        public OrganizationData? OrganizationData { get; set; }
+        public OrganizationData OrganizationData { get; set; }
 
 
         /// <summary>
