@@ -46,14 +46,12 @@ namespace PingPayments.KYC.Tests.V1
                 Plusgiro = "12345678",
                 Bankgiro = "87654321"
             };
-            var personData = new PersonData
-            {
-                Birthdate = "1985-12-24",
-                Firstname = "Svante",
-                Lastname = "Larsson",
-                Identity = "198002015841",
-                Gender = GenderEnum.male
-            };
+            var personData = new PersonData(
+                identity: "198002015841",
+                gender: GenderEnum.male,
+                birthdate: "1985-12-24",
+                firstname: "Svante",
+                lastname: "Larsson");
 
             var request = new KycVerificationRequest
                 (
@@ -75,14 +73,7 @@ namespace PingPayments.KYC.Tests.V1
         public async Task Verification_minimal_request_body_returns_204()
         {
             var bankAccount = new BankAccount();
-            var personData = new PersonData
-            {
-                Birthdate = "1985-12-24",
-                Firstname = "Svante",
-                Lastname = "Larsson",
-                Identity = "198002015841",
-                Gender = GenderEnum.male
-            };
+            var personData = new PersonData(GenderEnum.male, "198002015841");
 
             var request = new KycVerificationRequest
                 (
@@ -106,14 +97,12 @@ namespace PingPayments.KYC.Tests.V1
                 Bic = "NDEASESS",
                 Iban = "SE7280000810340009783242"
             };
-            var personData = new PersonData
-            {
-                Birthdate = "1985-12-24",
-                Firstname = "Svante",
-                Lastname = "Larsson",
-                Identity = "198002015841",
-                Gender = GenderEnum.male
-            };
+            var personData = new PersonData(
+                identity: "",
+                gender: GenderEnum.male,
+                birthdate: "1985-12-24",
+                firstname: "Svante",
+                lastname: "Larsson");
 
             var request = new KycVerificationRequest
                 (
