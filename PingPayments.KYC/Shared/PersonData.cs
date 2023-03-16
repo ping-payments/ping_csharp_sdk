@@ -4,6 +4,14 @@ namespace PingPayments.KYC.Shared
 {
     public record PersonData
     {
+        public PersonData(GenderEnum gender, string identity, string birthdate = null, string firstname = null, string lastname = null)
+        {
+            Gender = gender;
+            Identity = identity;
+            Birthdate = birthdate ?? "";
+            Firstname = firstname ?? "";
+            Lastname = lastname ?? "";
+        }
         /// <summary>
         /// Birthdate
         /// </summary>
