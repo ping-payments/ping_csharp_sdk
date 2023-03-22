@@ -1,5 +1,8 @@
 # Change Log
 
+## 3.3.0 (2023-03-22)
+- Added refund information when using the get payment endpoint.
+
 ## 3.2.0 (2023-03-07)
 - Added amount to the get disbursement response.
 

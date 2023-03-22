@@ -24,5 +24,11 @@ namespace PingPayments.PaymentsApi.Payments.Get.V1
         /// </summary>
         [JsonPropertyName("status_history")]
         public StatusHistory[]? StatusHistory { get; set; }
+
+        /// <summary>
+        /// Shows refund information if not null
+        /// </summary>
+        [JsonPropertyName("refund")]
+        public Refund? Refund { get; set; }
     }
 }
