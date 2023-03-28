@@ -15,14 +15,8 @@
 	  <Copyright>Ping Payments AB © 2023</Copyright>
 	  <Description>.NET client library for the Ping Payments Payment Links API</Description>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Shared\**" />
-    <EmbeddedResource Remove="Shared\**" />
-    <None Remove="Shared\**" />
-  </ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj"/>
+	  <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

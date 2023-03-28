@@ -1,12 +1,12 @@
-﻿using PingPayments.Shared;
+﻿using PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
+using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.PaymentLinksApi.PaymentLinks.Get.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.List.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1;
 using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
-using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1;
-using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
-using PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1;
-
+using PingPayments.PaymentLinksApi.Shared;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks
 {
@@ -14,9 +14,9 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks
     {
         public PaymentLinksV1
             (
-                Lazy<ListPaymentLinksOperation> listPaymentLinksOperation, 
-                Lazy<CreatePaymentLinkOperation> createPaymentLinkOperation, 
-                Lazy<GetPaymentLinkOperation> getPaymentLinkOperation, 
+                Lazy<ListPaymentLinksOperation> listPaymentLinksOperation,
+                Lazy<CreatePaymentLinkOperation> createPaymentLinkOperation,
+                Lazy<GetPaymentLinkOperation> getPaymentLinkOperation,
                 Lazy<CancelPaymentLinkOperation> cancelPaymentLinkOperation,
                 Lazy<SendPaymentLinkOperation> sendPaymentLinkOperation
             )
@@ -34,19 +34,19 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks
         private readonly Lazy<CancelPaymentLinkOperation> _cancelPaymentLinkOperation;
         private readonly Lazy<SendPaymentLinkOperation> _sendPaymentLinkOperation;
 
-        public async Task<PaymentLinksResponse> List() => 
+        public async Task<PaymentLinksResponse> List() =>
             await _listPaymentLinksOperation.Value.ExecuteRequest(new EmptyRequest());
 
-        public async Task<CreatePaymentLinkResponse> Create(CreatePaymentLinkRequest createPaymentLinkRequest) =>  
+        public async Task<CreatePaymentLinkResponse> Create(CreatePaymentLinkRequest createPaymentLinkRequest) =>
             await _createPaymentLinkOperation.Value.ExecuteRequest(createPaymentLinkRequest);
 
-        public async Task<PaymentLinkResponse> Get(Guid paymentLinkID) => 
+        public async Task<PaymentLinkResponse> Get(Guid paymentLinkID) =>
             await _getPaymentLinkOperation.Value.ExecuteRequest(paymentLinkID);
 
-        public async Task<EmptyResponse> Cancel(Guid paymentLinkID) =>
+        public async Task<PaymentLinksEmptyResponse> Cancel(Guid paymentLinkID) =>
             await _cancelPaymentLinkOperation.Value.ExecuteRequest(paymentLinkID);
 
-        public async Task<EmptyResponse> Send(Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) =>
+        public async Task<PaymentLinksEmptyResponse> Send(Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) =>
             await _sendPaymentLinkOperation.Value.ExecuteRequest((paymentLinkID, sendPaymentLinkRequestBody));
     }
 }

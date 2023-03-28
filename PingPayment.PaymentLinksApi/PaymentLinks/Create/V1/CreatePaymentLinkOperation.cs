@@ -1,5 +1,6 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
+using PingPayments.PaymentLinksApi.Shared;
 using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using System.Text.Json;
@@ -40,7 +41,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1
             var response = hrm.StatusCode switch
             {
                 OK => CreatePaymentLinkResponse.Successful(hrm.StatusCode, await Deserialize<CreatePaymentLinkResponseBody>(responseBody), responseBody),
-                _ => CreatePaymentLinkResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
+                _ => CreatePaymentLinkResponse.Failure(hrm.StatusCode, await Deserialize<PaymentLinksErrorResponseBody>(responseBody), responseBody)
             };
             return response;
         }

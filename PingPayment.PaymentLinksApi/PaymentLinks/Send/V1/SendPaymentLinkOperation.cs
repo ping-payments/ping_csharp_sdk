@@ -1,4 +1,5 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Send.V1.Requests;
+using PingPayments.PaymentLinksApi.Shared;
 using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using System.Text.Json;
@@ -8,11 +9,11 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
 {
-    public class SendPaymentLinkOperation : OperationBase<(Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody), EmptyResponse>
+    public class SendPaymentLinkOperation : OperationBase<(Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody), PaymentLinksEmptyResponse>
     {
         public SendPaymentLinkOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<EmptyResponse> ExecuteRequest((Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) request) =>
+        public override async Task<PaymentLinksEmptyResponse> ExecuteRequest((Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) request) =>
             await BaseExecute
             (
                 PUT,
@@ -27,15 +28,15 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Send.V1
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) _) =>
+        protected override async Task<PaymentLinksEmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid paymentLinkID, SendPaymentLinkRequestBody sendPaymentLinkRequestBody) _) =>
             hrm.StatusCode switch
             {
-                NoContent => EmptyResponse.Successful(hrm.StatusCode),
+                NoContent => PaymentLinksEmptyResponse.Successful(hrm.StatusCode),
                 _ =>
-                    EmptyResponse.Failure
+                    PaymentLinksEmptyResponse.Failure
                     (
                         hrm.StatusCode,
-                        await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
+                        await Deserialize<PaymentLinksErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
                         await hrm.Content.ReadAsStringAsyncMemoized()
                     )
             };

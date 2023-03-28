@@ -1,4 +1,5 @@
 ﻿using PingPayments.PaymentLinksApi.Files.Shared.V1;
+using PingPayments.PaymentLinksApi.Shared;
 using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
@@ -33,7 +34,7 @@ namespace PingPayments.PaymentLinksApi.Files.Invoice.Get.V1
             GetInvoiceResponse.Failure
             (
                 hrm.StatusCode,
-                await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
+                await Deserialize<PaymentLinksErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
                 await hrm.Content.ReadAsStringAsyncMemoized()
             );
     }

@@ -1,5 +1,6 @@
-﻿using PingPayments.Shared;
-using PingPayments.PaymentLinksApi.Ping.V1;
+﻿using PingPayments.PaymentLinksApi.Ping.V1;
+using PingPayments.PaymentLinksApi.Shared;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentLinksApi.Ping
 {
@@ -12,7 +13,7 @@ namespace PingPayments.PaymentLinksApi.Ping
             _pingOperation = pingOperation;
         }
 
-        public async Task<TextResponse> Ping()
+        public async Task<PaymentLinksTextResponse> Ping()
         {
             var response = await _pingOperation.Value.ExecuteRequest(new EmptyRequest());
             return response;
