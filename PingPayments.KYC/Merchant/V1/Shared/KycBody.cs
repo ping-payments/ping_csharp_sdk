@@ -78,11 +78,5 @@ namespace PingPayments.KYC.Merchant.V1.Shared
         /// </summary>
         [JsonPropertyName("type")]
         public LegalEntityTypeEnum? Type { get; set; }
-
-        /// <summary>
-        /// Type of legal entity
-        /// </summary>
-        [JsonPropertyName("upload_files")]
-        public File[] Files { get; set; }
     }
 }
