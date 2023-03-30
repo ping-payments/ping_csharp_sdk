@@ -4,15 +4,6 @@ namespace PingPayments.KYC.Shared
 {
     public record BankAccount
     {
-        public BankAccount(string bic = null, string iban = null, string bban = null, string clearing = null, string plusgiro = null, string bankgiro = null)
-        {
-            Bic = bic ?? "";
-            Iban = iban ?? "";
-            Bban = bban ?? "";
-            Clearing = clearing ?? "";
-            Plusgiro = plusgiro;
-            Bankgiro = bankgiro;
-        }
         /// <summary>
         /// ISO 9362 Business Identifier Code
         /// </summary>
@@ -41,12 +32,18 @@ namespace PingPayments.KYC.Shared
         /// Plusgiro number
         /// </summary>
         [JsonPropertyName("plusgiro")]
-        public string Plusgiro { get; set; }
+        public string? Plusgiro { get; set; }
 
         /// <summary>
         /// Bankgiro number
         /// </summary>
         [JsonPropertyName("bankgiro")]
-        public string Bankgiro { get; set; }
+        public string? Bankgiro { get; set; }
+
+        /// <summary>
+        /// Type of currency
+        /// </summary>
+        [JsonPropertyName("currency")]
+        public string? Currency { get; set; }
     }
 }

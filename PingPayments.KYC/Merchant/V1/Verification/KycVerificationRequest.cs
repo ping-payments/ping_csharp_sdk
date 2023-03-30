@@ -10,10 +10,12 @@ namespace PingPayments.KYC.Merchant.V1.Verification
     {
         public KycVerificationRequest
         (
-            BankAccount bankAccount,
+
             Guid merchantId,
             string name,
             LegalEntityTypeEnum type,
+            BankAccount? bankAccount = null,
+            BankAccount[]? bankAccounts = null,
             string? phone = null,
             string? country = null,
             string? email = null,
@@ -27,6 +29,7 @@ namespace PingPayments.KYC.Merchant.V1.Verification
         {
             Addresses = adresses;
             BankAccount = bankAccount;
+            BankAccounts = bankAccounts;
             Files = files;
             MerchantId = merchantId;
             Name = name;

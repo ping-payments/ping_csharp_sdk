@@ -14,10 +14,16 @@ namespace PingPayments.KYC.Merchant.V1.Shared
         public Address[] Addresses { get; set; }
 
         /// <summary>
-        /// The payout account of the Merchant
+        /// Payout accounts for the Merchant. Not needed if "BankAccounts" is used.
         /// </summary>
         [JsonPropertyName("bank_account")]
         public BankAccount BankAccount { get; set; }
+
+        /// <summary>
+        /// The list of payout accounts for the Merchants
+        /// </summary>
+        [JsonPropertyName("bank_accounts")]
+        public BankAccount[] BankAccounts { get; set; }
 
         /// <summary>
         /// Country in ISO-3166
@@ -62,9 +68,21 @@ namespace PingPayments.KYC.Merchant.V1.Shared
         public string Phone { get; set; }
 
         /// <summary>
+        /// Merchant status
+        /// </summary>
+        [JsonPropertyName("status")]
+        public string Status { get; set; }
+
+        /// <summary>
         /// Type of legal entity
         /// </summary>
         [JsonPropertyName("type")]
         public LegalEntityTypeEnum? Type { get; set; }
+
+        /// <summary>
+        /// Type of legal entity
+        /// </summary>
+        [JsonPropertyName("upload_files")]
+        public File[] Files { get; set; }
     }
 }

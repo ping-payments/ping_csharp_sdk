@@ -37,14 +37,16 @@ namespace PingPayments.KYC.Tests.V1
         [Fact]
         public async Task Verification_returns_204()
         {
-            var bankAccount = new BankAccount
-            {
-                Bic = "NDEASESS",
-                Iban = "SE7280000810340009783242",
-                Bban = "41971150033",
-                Clearing = "6985",
-                Plusgiro = "12345678",
-                Bankgiro = "87654321"
+            var bankAccounts = new BankAccount[] {
+                new BankAccount()
+                {
+                    Bic = "NDEASESS",
+                    Iban = "SE7280000810340009783241",
+                    Bban = "41971150033",
+                    Clearing = "1985",
+                    Plusgiro = "12345678",
+                    Bankgiro = "17654321"
+                }
             };
             var personData = new PersonData(
                 identity: "198002015841",
@@ -55,7 +57,7 @@ namespace PingPayments.KYC.Tests.V1
 
             var request = new KycVerificationRequest
                 (
-                    bankAccount: bankAccount,
+                    bankAccounts: bankAccounts,
                     merchantId: TestData.MerchantId,
                     country: "SE",
                     email: "name@provider.com",
@@ -72,12 +74,12 @@ namespace PingPayments.KYC.Tests.V1
         [Fact]
         public async Task Verification_minimal_request_body_returns_204()
         {
-            var bankAccount = new BankAccount();
+            var bankAccounts = new BankAccount[] { };
             var personData = new PersonData(GenderEnum.male, "198002015841");
 
             var request = new KycVerificationRequest
                 (
-                    bankAccount: bankAccount,
+                    bankAccounts: bankAccounts,
                     merchantId: TestData.MerchantId,
                     country: "SE",
                     name: "Svante",
@@ -94,8 +96,6 @@ namespace PingPayments.KYC.Tests.V1
         {
             var bankAccount = new BankAccount
             {
-                Bic = "NDEASESS",
-                Iban = "SE7280000810340009783242"
             };
             var personData = new PersonData(
                 identity: "",
@@ -106,7 +106,6 @@ namespace PingPayments.KYC.Tests.V1
 
             var request = new KycVerificationRequest
                 (
-                    bankAccount: bankAccount,
                     country: "SE",
                     email: "name@provider.com",
                     merchantId: TestData.MerchantId,
