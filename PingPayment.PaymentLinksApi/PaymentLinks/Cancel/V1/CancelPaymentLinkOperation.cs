@@ -1,4 +1,5 @@
-﻿using PingPayments.Shared;
+﻿using PingPayments.PaymentLinksApi.Shared;
+using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
@@ -6,11 +7,11 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1
 {
-    public class CancelPaymentLinkOperation : OperationBase<Guid, EmptyResponse>
+    public class CancelPaymentLinkOperation : OperationBase<Guid, PaymentLinksEmptyResponse>
     {
         public CancelPaymentLinkOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<EmptyResponse> ExecuteRequest(Guid paymentLinkId) =>
+        public override async Task<PaymentLinksEmptyResponse> ExecuteRequest(Guid paymentLinkId) =>
             await BaseExecute
             (
                 PUT,
@@ -19,15 +20,15 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Cancel.V1
                 await ToJson(new { })
             );
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _) =>
+        protected override async Task<PaymentLinksEmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _) =>
             hrm.StatusCode switch
             {
-                NoContent => EmptyResponse.Successful(hrm.StatusCode),
+                NoContent => PaymentLinksEmptyResponse.Successful(hrm.StatusCode),
                 _ =>
-                    EmptyResponse.Failure
+                    PaymentLinksEmptyResponse.Failure
                     (
                         hrm.StatusCode,
-                        await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
+                        await Deserialize<PaymentLinksErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
                         await hrm.Content.ReadAsStringAsyncMemoized()
                     )
             };

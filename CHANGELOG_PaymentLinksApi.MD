@@ -1,5 +1,8 @@
 # Change Log
 
+## 2.0.1 (2023-03-30)
+- Changed how resonses parse 
+
 ## 2.0.0 (2022-12-15)
 - Changed name of `UrlResponse` to `GetInvoiceResponse` which contains `Url`, `ReferenceType` and `Reference` fileds. 
 - The parameter `dueDate` in `CreatePaymentLinkRequest` is no longer requierd. 

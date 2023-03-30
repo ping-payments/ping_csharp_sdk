@@ -1,4 +1,5 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
+using PingPayments.PaymentLinksApi.Shared;
 using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
@@ -24,7 +25,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.List.V1
             var response = hrm.StatusCode switch
             {
                 OK => PaymentLinksResponse.Successful(hrm.StatusCode, new PaymentLinkList(await Deserialize<PaymentLink[]>(responseBody)), responseBody),
-                _ => PaymentLinksResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
+                _ => PaymentLinksResponse.Failure(hrm.StatusCode, await Deserialize<PaymentLinksErrorResponseBody>(responseBody), responseBody)
             };
             return response;
         }

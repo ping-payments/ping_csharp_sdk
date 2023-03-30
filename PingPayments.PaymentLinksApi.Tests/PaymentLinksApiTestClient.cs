@@ -4,7 +4,7 @@ using PingPayments.Tests;
 
 namespace PingPayments.PaymentLinksApi.Tests
 {
-    public class PaymentLinksApiTestClient : BaseResourceTests
+    public class PaymentLinksApiTestClient : PaymentLinksBaseResourceTests
     {
         protected readonly IPingPaymentLinksApiClient _api;
         private readonly HttpClient _httpClient;
