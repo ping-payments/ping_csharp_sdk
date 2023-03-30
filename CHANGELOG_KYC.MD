@@ -1,5 +1,9 @@
 # Change Log
 
+## 4.0.1 (2023-03-30)
+
+-   Removed an unwanted filed from the KycBody
+
 ## 4.0.0 (2023-03-30)
 
 -   Added functionality to add a list of bank accounts.
