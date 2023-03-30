@@ -1,5 +1,10 @@
 # Change Log
 
+## 4.0.0 (2023-03-30)
+
+-   Added functionality to add a list of bank accounts.
+-   Removed constructors from bank account due to improvements in the api.
+
 ## 3.0.0 (2023-03-15)
 
 -   Improved DX(Developer Experience) for the merchant verification request by adding some constructors which makes it easier to see what is required due to some required fields, having default values.
