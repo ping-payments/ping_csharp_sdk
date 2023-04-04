@@ -358,7 +358,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 {
                     new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
                 },
-                
+
                 reference: reference
             );
             var response = await _api.Payments.V1.Initiate(orderId, paymentRequest);
