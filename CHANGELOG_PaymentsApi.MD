@@ -1,5 +1,8 @@
 # Change Log
 
+## 3.4.0 (2023-04-04)
+- Added chashier parameter when initiating card payments.
+
 ## 3.3.0 (2023-03-22)
 - Added refund information when using the get payment endpoint.
 
