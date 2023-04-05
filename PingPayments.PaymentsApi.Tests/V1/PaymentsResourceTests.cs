@@ -39,6 +39,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.NotEqual(Guid.Empty, body?.Id);
         }
 
+
         [Fact]
         public async Task Initiate_payment_422_when_order_items_and_total_amount_does_not_match()
         {
@@ -358,7 +359,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 {
                     new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
                 },
-                
+
                 reference: reference
             );
             var response = await _api.Payments.V1.Initiate(orderId, paymentRequest);

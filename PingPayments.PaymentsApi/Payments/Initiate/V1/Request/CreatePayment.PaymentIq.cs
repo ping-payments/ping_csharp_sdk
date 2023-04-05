@@ -17,6 +17,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 Uri cancelUrl,
                 string locale = "en-US",
                 Uri? statusCallbackUrl = null,
+                Cashier? cashier = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
                 (
@@ -29,7 +30,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     (
                         successUrl,
                         cancelUrl,
-                        locale
+                        locale,
+                        cashier
                     ),
                     statusCallbackUrl,
                     metadata
