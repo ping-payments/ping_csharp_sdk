@@ -1,5 +1,8 @@
 # Change Log
 
+## 3.5.0 (2023-04-06)
+- Added CSS padding option to container for cashier parameter when initiating card payments.
+
 ## 3.4.0 (2023-04-04)
 - Added chashier parameter when initiating card payments.
 

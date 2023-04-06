@@ -17,6 +17,12 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public Header? Header { get; set; }
 
         /// <summary>
+        /// The Container of the cashier
+        /// </summary>
+        [JsonPropertyName("container")]
+        public Container? Container { get; set; }
+
+        /// <summary>
         /// Submit button
         /// </summary>
         [JsonPropertyName("submit_button")]
