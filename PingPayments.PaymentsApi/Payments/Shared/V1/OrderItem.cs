@@ -6,13 +6,14 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
 {
     public record OrderItem
     {
-        public OrderItem(int amount, string name, decimal vat, Guid merchantId, IDictionary<string, dynamic>? metadata = null)
+        public OrderItem(int amount, string name, decimal vat, Guid merchantId, IDictionary<string, dynamic>? metadata = null, string[]? tags = null)
         {
             Amount = amount;
             Name = name;
             Vat = vat;
             MerchantId = merchantId;
             Metadata = metadata ?? new Dictionary<string, dynamic>();
+            Tags = tags ?? new string[] { };
         }
 
         /// <summary>
@@ -44,6 +45,12 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// </summary>
         [JsonPropertyName("metadata")]
         public IDictionary<string, dynamic> Metadata { get; set; }
+
+        /// <summary>
+        /// Custom metadata
+        /// </summary>
+        [JsonPropertyName("tags")]
+        public string[]? Tags { get; set; }
 
         /// <summary>
         /// Simplifies creation of order items array

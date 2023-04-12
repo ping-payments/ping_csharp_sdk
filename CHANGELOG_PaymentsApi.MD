@@ -1,5 +1,8 @@
 # Change Log
 
+## 3.6.0 (2023-04-12)
+- Added tags to order items that can be set when initiating a payment.
+
 ## 3.5.0 (2023-04-06)
 - Added CSS padding option to container for cashier parameter when initiating card payments.
 
