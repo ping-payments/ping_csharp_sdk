@@ -1,7 +1,10 @@
 # Change Log
 
+## 2.1.0 (2023-05-22)
+- List of tags can now be put on an item when creating a payment link to route funds
+
 ## 2.0.1 (2023-03-30)
-- Changed how resonses parse 
+- Changed how responses parse 
 
 ## 2.0.0 (2022-12-15)
 - Changed name of `UrlResponse` to `GetInvoiceResponse` which contains `Url`, `ReferenceType` and `Reference` fileds. 

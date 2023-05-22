@@ -4,7 +4,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public record Item
     {
-        public Item(string description, Guid merchantId, int price, int quantity, decimal vat, string? itemNumber = null, string? unit = "st")
+        public Item(string description, Guid merchantId, int price, int quantity, decimal vat, string? itemNumber = null, string? unit = "st", string[]? tags = null)
         {
             Description = description;
             MerchantId = merchantId;
@@ -13,6 +13,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
             Vat = vat;
             ItemNumber = itemNumber;
             Unit = unit;
+            Tags = tags ?? Array.Empty<string>();
         }
 
         /// <summary>
@@ -56,6 +57,12 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         /// </summary>
         [JsonPropertyName("unit")]
         public string? Unit { get; set; }
+
+        /// <summary>
+        /// Set tags on an item to route funds
+        /// </summary>
+        [JsonPropertyName("tags")]
+        public string[]? Tags { get; set; }
 
         /// <summary>
         /// Simplifies creation of  items array

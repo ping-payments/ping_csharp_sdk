@@ -47,7 +47,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public IDictionary<string, dynamic> Metadata { get; set; }
 
         /// <summary>
-        /// Custom metadata
+        /// Set tags on an item to route funds
         /// </summary>
         [JsonPropertyName("tags")]
         public string[]? Tags { get; set; }
