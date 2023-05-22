@@ -113,9 +113,16 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             var orderId = paymentOrderResponose.Body.SuccessfulResponseBody.Id;
 
             var customer = new Customer("FrstName", "LastName");
+            var tags = new string[] { "test1", "test2" };
             var items = new Item[]
             {
-                new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
+                new Item(
+                    description:"Hawaii Pizza",
+                    merchantId: TestData.MerchantId,
+                    price: 70.ToMinorCurrencyUnit(),
+                    quantity: 2,
+                    vat: SwedishVat.Vat12,
+                    tags: tags)
             };
             var suppler = new Supplier("Supllier name");
 
