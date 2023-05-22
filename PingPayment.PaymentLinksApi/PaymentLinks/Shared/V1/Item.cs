@@ -13,7 +13,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
             Vat = vat;
             ItemNumber = itemNumber;
             Unit = unit;
-            Tags = tags ?? new string[] { };
+            Tags = tags ?? Array.Empty<string>();
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         public string? Unit { get; set; }
 
         /// <summary>
-        /// Set tags on an item
+        /// Set tags on an item to route funds
         /// </summary>
         [JsonPropertyName("tags")]
         public string[]? Tags { get; set; }
