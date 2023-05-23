@@ -122,6 +122,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
                     price: 70.ToMinorCurrencyUnit(),
                     quantity: 2,
                     vat: SwedishVat.Vat12,
+                    metadata: new Dictionary<string, dynamic>(){ {"meta", "data"} },
                     tags: tags)
             };
             var suppler = new Supplier("Supllier name");

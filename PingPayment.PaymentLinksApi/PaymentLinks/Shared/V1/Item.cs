@@ -4,7 +4,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
 {
     public record Item
     {
-        public Item(string description, Guid merchantId, int price, int quantity, decimal vat, string? itemNumber = null, string? unit = "st", string[]? tags = null)
+        public Item(string description, Guid merchantId, int price, int quantity, decimal vat, string? itemNumber = null, string? unit = "st", IDictionary<string, dynamic>? metadata = null, string[]? tags = null)
         {
             Description = description;
             MerchantId = merchantId;
@@ -13,6 +13,7 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
             Vat = vat;
             ItemNumber = itemNumber;
             Unit = unit;
+            Metadata = metadata ?? new Dictionary<string, dynamic>();
             Tags = tags ?? Array.Empty<string>();
         }
 
@@ -57,6 +58,12 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1
         /// </summary>
         [JsonPropertyName("unit")]
         public string? Unit { get; set; }
+
+        /// <summary>
+        /// Custom metadata
+        /// </summary>
+        [JsonPropertyName("metadata")]
+        public IDictionary<string, dynamic> Metadata { get; set; }
 
         /// <summary>
         /// Set tags on an item to route funds

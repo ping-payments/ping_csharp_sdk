@@ -1,5 +1,8 @@
 # Change Log
 
+## 2.2.0 (2023-05-23)
+- Metadata can now be put on an Item when creating a payment link.
+
 ## 2.1.0 (2023-05-22)
 - List of tags can now be put on an item when creating a payment link to route funds
 
