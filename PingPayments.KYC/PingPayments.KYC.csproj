@@ -18,8 +18,4 @@
     <ProjectReference Include="..\PingPayments.Shared\PingPayments.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Agreement\V1\Update\" />
-  </ItemGroup>
-
 </Project>
