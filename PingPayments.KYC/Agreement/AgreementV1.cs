@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace PingPayments.KYC.Agreement
 {
-    public class AgreementV1
+
+    public class AgreementV1 : IAgreementV1
     {
         private readonly Lazy<CreateAgreementOperation> _createAgreementOperation;
         private readonly Lazy<GetAgreementOperation> _getAgreementOperation;
