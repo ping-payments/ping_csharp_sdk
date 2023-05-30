@@ -23,6 +23,6 @@ namespace PingPayments.KYC.Agreement.V1.Create
                 _ => GuidResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
-        });
+        }
     }
 }
