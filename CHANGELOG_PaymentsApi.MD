@@ -1,5 +1,8 @@
 # Change Log
 
+## 3.7.0 (2023-05-31)
+- Added support for new cashier parameters when initiating card payments.
+
 ## 3.6.0 (2023-04-12)
 - Added tags to order items that can be set when initiating a payment.
 
