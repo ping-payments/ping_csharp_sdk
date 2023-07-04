@@ -10,36 +10,32 @@ namespace PingPayments.KYC.Agreement.V1.Create
         /// <summary>
         /// The agreement template to be used
         /// </summary>
-        /// <value>The agreement template to be used</value>
         [JsonPropertyName("agreement_template_id")]
         public Guid? AgreementTemplateId { get; set; }
 
         /// <summary>
         /// The merchant for which the agreement is created for
         /// </summary>
-        /// <value>The merchant for which the agreement is created for</value>
         [JsonPropertyName("merchant_id")]
         public Guid? MerchantId { get; set; }
 
         /// <summary>
         /// The name of the agreement
         /// </summary>
-        /// <value>The name of the agreement</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
         /// The agreement provider
         /// </summary>
-        /// <value>The agreement provider</value>
         [JsonPropertyName("provider")]
-        public string Provider { get; set; }
+        public TypeOfAgreementToCreate Provider { get; set; }
 
         /// <summary>
         /// Gets or Sets ProviderParameters
         /// </summary>
         [JsonPropertyName("provider_parameters")]
-        public Dictionary<string, object> ProviderParameters { get; set; }
+        public ICreateAgreementProviderParameters ProviderParameters { get; set; }
 
 
         /// <summary>

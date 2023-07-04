@@ -29,7 +29,7 @@ namespace PingPayments.KYC.Agreement.V1.GetAgreementTemplates
         /// <value>Provider of the agreement service</value>
         [DataMember(Name = "provider", EmitDefaultValue = false)]
         [JsonPropertyName("provider")]
-        public string Provider { get; set; }
+        public AgreementTemplateType Provider { get; set; }
 
 
         /// <summary>

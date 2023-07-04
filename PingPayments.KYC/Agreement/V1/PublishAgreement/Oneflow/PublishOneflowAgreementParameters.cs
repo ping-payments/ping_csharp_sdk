@@ -1,21 +1,20 @@
-﻿using System.Text;
+﻿using PingPayments.KYC.Agreement.V1.Publish;
+using System.Text;
 using System.Text.Json.Serialization;
 
-namespace PingPayments.KYC.Agreement.V1.Publish
+namespace PingPayments.KYC.Agreement.V1.PublishAgreement.Oneflow
 {
     public class PublishOneflowAgreementParameters : IPublishAgreementProviderParameters
     {
         /// <summary>
         /// Message to be sent along with the invitation
         /// </summary>
-        /// <value>Message to be sent along with the invitation</value>
         [JsonPropertyName("message")]
         public string Message { get; set; }
 
         /// <summary>
         /// Subject of the message
         /// </summary>
-        /// <value>Subject of the message</value>
         [JsonPropertyName("subject")]
         public string Subject { get; set; }
 
