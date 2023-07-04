@@ -1,5 +1,5 @@
 ﻿using PingPayments.KYC.Agreement.V1.Create;
-using PingPayments.KYC.Merchant.V1.Get;
+using PingPayments.KYC.Agreement.V1.Create.Oneflow;
 using PingPayments.Tests;
 
 namespace PingPayments.KYC.Tests.V1
@@ -20,7 +20,31 @@ namespace PingPayments.KYC.Tests.V1
                 MerchantId = TestData.MerchantId,
                 Name = "Test",
                 Provider = TypeOfAgreementToCreate.oneflow,
-                ProviderParameters = null
+                ProviderParameters = new OneflowProviderParameters
+                {
+                    Party = new OneflowOrganization
+                    {
+                        Country = OneflowCountryCode.SE,
+                        Identity = "559171-1873",
+                        Name = "RaJo Software AB",
+                        SubParties = new List<OneflowSubparty>
+                        {
+                            new OneflowSubparty
+                            {
+                                Identity = "199201154953",
+                                Name = "Johannes Norrbacka",
+                                Email = "johannes@monetax.se",
+                                Country = OneflowCountryCode.SE,
+                                Editor = true,
+                                PhoneNumber = "4673879474",
+                                Signatory = true,
+                                SignMethod = OneflowSignMethod.swedish_bankid,
+                                Title = "Master of coin"
+                            }
+                        }
+
+                    }
+                }
             };
             var createAgreementResponse = await _api.Agreement.V1.Create(createAgreementRequest);
             AssertHttpOK(createAgreementResponse);

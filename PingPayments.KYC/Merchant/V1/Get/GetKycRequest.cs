@@ -1,5 +1,4 @@
-﻿using PingPayments.KYC.Shared;
-using System;
+﻿using System;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Merchant.V1.Get

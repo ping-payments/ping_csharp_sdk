@@ -1,7 +1,6 @@
 ﻿using PingPayments.Shared;
 using System.Net;
 using System.Threading.Tasks;
-using Xunit;
 
 namespace PingPayments.PaymentsApi.Tests
 {

@@ -12,7 +12,12 @@ namespace PingPayments.KYC.Agreement.V1.Publish
         public PublishAgreementOperation(HttpClient httpClient) : base(httpClient) { }
 
         public async override Task<EmptyResponse> ExecuteRequest(PublishAgreementRequest publishAgreementRequest) =>
-            await BaseExecute(GET, $"api/agreements/{publishAgreementRequest.AgreementId}/publish", publishAgreementRequest);
+            await BaseExecute(
+                GET, 
+                $"api/agreements/{publishAgreementRequest.AgreementId}/publish", 
+                publishAgreementRequest,
+                await ToJson(publishAgreementRequest)
+            );
 
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, PublishAgreementRequest _)
         {

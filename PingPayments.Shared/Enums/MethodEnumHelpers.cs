@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PingPayments.Shared.Enums
+﻿namespace PingPayments.Shared.Enums
 {
     public static class MethodEnumHelpers
     {

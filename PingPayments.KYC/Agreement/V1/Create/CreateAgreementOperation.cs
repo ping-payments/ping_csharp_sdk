@@ -12,7 +12,7 @@ namespace PingPayments.KYC.Agreement.V1.Create
         public CreateAgreementOperation(HttpClient httpClient) : base(httpClient) { }
 
         public async override Task<GuidResponse> ExecuteRequest(CreateAgreementRequestBody createAgreement) =>
-            await BaseExecute(POST, $"api/agreements", createAgreement);
+            await BaseExecute(POST, $"api/agreements", createAgreement, await ToJson(createAgreement));
 
         protected override async Task<GuidResponse> ParseHttpResponse(HttpResponseMessage hrm, CreateAgreementRequestBody _createAgreement)
         {

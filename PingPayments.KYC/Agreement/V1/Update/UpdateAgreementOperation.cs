@@ -1,5 +1,4 @@
-﻿using PingPayments.KYC.Agreement.V1.Publish;
-using PingPayments.Shared;
+﻿using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -13,7 +12,12 @@ namespace PingPayments.KYC.Agreement.V1.Update
         public UpdateAgreementOperation(HttpClient httpClient) : base(httpClient) { }
 
         public async override Task<EmptyResponse> ExecuteRequest(UpdateAgreementRequest updateAgreementRequest) =>
-            await BaseExecute(PUT, $"api/agreements/{updateAgreementRequest.AgreementId}", updateAgreementRequest);
+            await BaseExecute(
+                PUT, 
+                $"api/agreements/{updateAgreementRequest.AgreementId}", 
+                updateAgreementRequest,
+                await ToJson(updateAgreementRequest)
+            );
 
         protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, UpdateAgreementRequest _)
         {
