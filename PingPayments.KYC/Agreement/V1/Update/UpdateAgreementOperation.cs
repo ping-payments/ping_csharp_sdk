@@ -24,7 +24,7 @@ namespace PingPayments.KYC.Agreement.V1.Update
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => EmptyResponse.Successful(hrm.StatusCode),
+                NoContent => EmptyResponse.Successful(hrm.StatusCode),
                 _ => EmptyResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

@@ -7,7 +7,10 @@ namespace PingPayments.KYC.Agreement.V1.Update
     {
         public Guid AgreementId { get; set; }
 
+        [property: JsonIgnore]
+        public UpdateAgreementProviderParameters ProviderParameters { get; set; }
+
         [JsonPropertyName("provider_parameters")]
-        public IUpdateAgreementProviderParameters ProviderParameters { get; set; }
+        public object provider_parameters => ProviderParameters;
     }
 }

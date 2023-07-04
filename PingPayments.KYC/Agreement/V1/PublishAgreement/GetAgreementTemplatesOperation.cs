@@ -13,7 +13,7 @@ namespace PingPayments.KYC.Agreement.V1.Publish
 
         public async override Task<EmptyResponse> ExecuteRequest(PublishAgreementRequest publishAgreementRequest) =>
             await BaseExecute(
-                GET, 
+                POST, 
                 $"api/agreements/{publishAgreementRequest.AgreementId}/publish", 
                 publishAgreementRequest,
                 await ToJson(publishAgreementRequest)
@@ -24,7 +24,7 @@ namespace PingPayments.KYC.Agreement.V1.Publish
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => EmptyResponse.Successful(hrm.StatusCode),
+                NoContent => EmptyResponse.Successful(hrm.StatusCode),
                 _ => EmptyResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

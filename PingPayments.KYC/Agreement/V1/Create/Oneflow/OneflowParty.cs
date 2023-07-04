@@ -2,7 +2,7 @@
 
 namespace PingPayments.KYC.Agreement.V1.Create.Oneflow
 {
-    public class OneflowParty
+    public abstract class OneflowParty
     {
         /// <summary>
         /// The country code of the party

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PingPayments.KYC.Agreement.V1.Get.Oneflow;
+using System;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Agreement.V1.Get
@@ -33,8 +35,18 @@ namespace PingPayments.KYC.Agreement.V1.Get
         /// <summary>
         /// Agreement specific data from provider
         /// </summary>
+        //[JsonIgnore()]
+        public AgreementProviderData ProviderData => Provider switch
+        {
+            AgreementType.oneflow =>  JsonSerializer.Deserialize<OneflowContract>(
+                provider_data.GetRawText(), 
+                new JsonSerializerOptions() { Converters = { new JsonStringEnumConverter() } }
+            ),
+            _ => null
+        };
+
         [JsonPropertyName("provider_data")]
-        public IAgreementProviderData ProviderData { get; set; }
+        public JsonElement provider_data { get; set; }
 
         /// <summary>
         /// When the agreement was published
@@ -60,7 +72,6 @@ namespace PingPayments.KYC.Agreement.V1.Get
             sb.Append("  MerchantId: ").Append(MerchantId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Provider: ").Append(Provider).Append("\n");
-            sb.Append("  ProviderData: ").Append(ProviderData).Append("\n");
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  Signed: ").Append(Signed).Append("\n");
             sb.Append("}\n");

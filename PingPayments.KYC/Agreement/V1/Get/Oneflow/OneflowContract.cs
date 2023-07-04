@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Agreement.V1.Get.Oneflow
 {
-    public class OneflowContract : IAgreementProviderData
+    public class OneflowContract : AgreementProviderData
     {
         /// <summary>
         /// Gets or Sets DataFields

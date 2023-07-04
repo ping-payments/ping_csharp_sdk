@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Agreement.V1.PublishAgreement.Oneflow
 {
-    public class PublishOneflowAgreementParameters : IPublishAgreementProviderParameters
+    public class PublishOneflowAgreementParameters : PublishAgreementProviderParameters
     {
         /// <summary>
         /// Message to be sent along with the invitation

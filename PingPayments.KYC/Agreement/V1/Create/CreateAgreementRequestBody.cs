@@ -33,8 +33,14 @@ namespace PingPayments.KYC.Agreement.V1.Create
         /// <summary>
         /// Gets or Sets ProviderParameters
         /// </summary>
+        [property: JsonIgnore]
+        public CreateAgreementProviderParameters ProviderParameters { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ProviderParameters
+        /// </summary>
         [JsonPropertyName("provider_parameters")]
-        public ICreateAgreementProviderParameters ProviderParameters { get; set; }
+        public object provider_parameters => ProviderParameters;
 
 
         /// <summary>

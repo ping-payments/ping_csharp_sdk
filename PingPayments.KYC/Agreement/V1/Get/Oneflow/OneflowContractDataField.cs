@@ -15,16 +15,21 @@ namespace PingPayments.KYC.Agreement.V1.Get.Oneflow
         /// <summary>
         /// The id of the data field
         /// </summary>
-        /// <value>The id of the data field</value>
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
         /// <summary>
         /// Name of data field
         /// </summary>
-        /// <value>Name of data field</value>
         [JsonPropertyName("name")]
         public string Name { get; set; }
+
+
+        /// <summary>
+        /// value of data field
+        /// </summary>
+        [JsonPropertyName("value")]
+        public string Value { get; set; }
 
 
         /// <summary>
