@@ -26,6 +26,12 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public decimal Vat { get; set; }
 
         /// <summary>
+        /// Item description
+        /// </summary>
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        /// <summary>
         /// Simplifies creation of invoice items array
         /// </summary>
         public static implicit operator InvoiceItem[](InvoiceItem invoiceItem) => new[] { invoiceItem };

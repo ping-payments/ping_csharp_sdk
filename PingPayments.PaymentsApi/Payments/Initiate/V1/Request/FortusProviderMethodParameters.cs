@@ -6,18 +6,18 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
     public record FortusProviderMethodParameters
     (
        Invoice InvoiceInformation,
-       Address InvoiceAddress,
-       Address DeliveryAddress,
-       IEnumerable<InvoiceItem>? InvoiceItems = null
+       Address? DeliveryAddress = null,
+       IEnumerable<InvoiceItem>? InvoiceItems = null,
+       string[]? AdditionalInformation = null
 
     ) : ProviderMethodParameters
     {
         public override Dictionary<string, dynamic> ToDictionary() => new()
         {
             { "invoice", InvoiceInformation },
-            { "invoice_address", InvoiceAddress },
             { "delivery_address", DeliveryAddress },
             { "invoice_items", InvoiceItems },
+            { "additional_information", AdditionalInformation },
         };
     }
 }

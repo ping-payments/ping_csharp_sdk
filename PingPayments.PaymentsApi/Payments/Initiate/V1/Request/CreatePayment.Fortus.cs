@@ -13,12 +13,11 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1.Request
             public static InitiatePaymentRequest Invoice
             (
                 IEnumerable<OrderItem> orderItems,
-                int invoiceType,
+                InvoiceTypeEnum invoiceType,
                 string personalNumber,
                 string country,
                 string ip,
-                Address invoiceAddress,
-                Address deliveryAddress,
+                Address? deliveryAddress = null,
                 IEnumerable<InvoiceItem>? invoiceItems = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null
@@ -38,7 +37,6 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1.Request
                             Ip = ip,
                             PersonalNumber = personalNumber,
                         },
-                        invoiceAddress,
                         deliveryAddress,
                         invoiceItems
                     ),

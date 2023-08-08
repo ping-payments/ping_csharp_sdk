@@ -8,10 +8,10 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
     public record Invoice
     {
         /// <summary>
-        /// Type of finance product. 1: 14 days, 6: three months, 7: six months, 8: twelve months, 11: customer account
+        /// Type of finance product. 1: 14 days, 6: three months, 7: six months, 8: twelve months
         /// </summary>
         [JsonPropertyName("invoice_type")]
-        public int Type { get; set; }
+        public InvoiceTypeEnum Type { get; set; }
 
         /// <summary>
         /// Payer national ID number 
