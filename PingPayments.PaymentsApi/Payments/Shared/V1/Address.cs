@@ -20,7 +20,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public string LastName { get; set; }
 
         /// <summary>
-        /// Address os residence
+        /// Address of residence
         /// </summary>
         [JsonPropertyName("address")]
         public string StreetAddress { get; set; }
