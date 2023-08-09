@@ -28,7 +28,7 @@
 - Corrected the namespace of Bankgirot request body and is now same as the rest: `PingPayments.PaymentsApi.Payments.V1.Initiate.Request`. 
 
 ## 2.0.0 (2023-02-29)
-- Changed name on parameter `reuseReference` to `refrencce` and removed `DesiredDateOfPayment` on `PingDeposit` . 
+- Changed name on parameter `reuseReference` to `reference` and removed `DesiredDateOfPayment` on `PingDeposit` . 
 
 ## 1.9.2 (2023-02-21)
 - Added bban and bic to DepositAccount.  
