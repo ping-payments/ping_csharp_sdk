@@ -1,5 +1,8 @@
 # Change Log
 
+## 3.8.0 (2023-08-09)
+- Added Fortus as a new payment provider for invoice payments.
+
 ## 3.7.0 (2023-05-31)
 - Added support for new cashier parameters when initiating card payments.
 
