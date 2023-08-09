@@ -49,6 +49,7 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
                 (ProviderEnum.payment_iq, MethodEnum.vipps) => await Deserialize<PaymentIqResponseBody>(raw, jsonOpts),
                 (ProviderEnum.payment_iq, MethodEnum.card) => await Deserialize<PaymentIqResponseBody>(raw, jsonOpts),
                 (ProviderEnum.dummy, MethodEnum.dummy) => await Deserialize<DummyResponseBody>(raw, jsonOpts),
+                (ProviderEnum.fortus, MethodEnum.invoice) => await Deserialize<FortusResponseBody>(raw, jsonOpts),
                 (ProviderEnum.ping, MethodEnum.deposit) => await Deserialize<PingDepositResponseBody>(raw, jsonOpts),
                 (ProviderEnum.ping, MethodEnum.credit) => await Deserialize<PingCreditResponseBody>(raw, jsonOpts),
                 (ProviderEnum.baase, MethodEnum.bank_loan) => await Deserialize<BaaseResponseBody>(raw, jsonOpts),
