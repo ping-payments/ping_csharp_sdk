@@ -1,16 +1,17 @@
-﻿using System;
+﻿using PingPayments.KYC.Agreement.V1.Shared;
+using System;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Agreement.V1.Create
 {
-    public class CreateAgreementRequestBody
+    public class CreateRequestBody
     {
         /// <summary>
-        /// The agreement template to be used
+        /// Id of agreement template to be used
         /// </summary>
         [JsonPropertyName("agreement_template_id")]
-        public Guid? AgreementTemplateId { get; set; }
+        public Guid? TemplateId { get; set; }
 
         /// <summary>
         /// The merchant for which the agreement is created for
@@ -28,7 +29,7 @@ namespace PingPayments.KYC.Agreement.V1.Create
         /// The agreement provider
         /// </summary>
         [JsonPropertyName("provider")]
-        public TypeOfAgreementToCreate Provider { get; set; }
+        public AgreementTypeEnum Provider { get; set; }
 
         /// <summary>
         /// Gets or Sets ProviderParameters
@@ -51,7 +52,7 @@ namespace PingPayments.KYC.Agreement.V1.Create
         {
             var sb = new StringBuilder();
             sb.Append("class CreateAgreementRequestBody {\n");
-            sb.Append("  AgreementTemplateId: ").Append(AgreementTemplateId).Append("\n");
+            sb.Append("  AgreementTemplateId: ").Append(TemplateId).Append("\n");
             sb.Append("  MerchantId: ").Append(MerchantId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Provider: ").Append(Provider).Append("\n");

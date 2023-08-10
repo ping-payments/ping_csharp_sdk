@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Agreement.V1.Get.Oneflow
 {
-    public class OneflowContractParticipant
+    public class ContractParticipant
     {
         /// <summary>
         /// Gets or Sets Identity
@@ -21,7 +21,7 @@ namespace PingPayments.KYC.Agreement.V1.Get.Oneflow
         /// Gets or Sets SignState
         /// </summary>
         [JsonPropertyName("sign_state")]
-        public OneflowContractSignedState SignState { get; set; }
+        public ContractSignedStateEnum SignState { get; set; }
 
         /// <summary>
         /// Gets or Sets Signatory

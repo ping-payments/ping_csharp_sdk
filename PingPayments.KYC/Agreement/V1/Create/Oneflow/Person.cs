@@ -2,10 +2,10 @@
 
 namespace PingPayments.KYC.Agreement.V1.Create.Oneflow
 {
-    public class OneflowPerson : OneflowParty
+    public class Person : Party
     {
         /// <summary>
-        /// If the person can edit the agreement information
+        /// Person who can edit agreement information
         /// </summary>
         [JsonPropertyName("editor")]
         public bool? Editor { get; set; }
@@ -26,20 +26,20 @@ namespace PingPayments.KYC.Agreement.V1.Create.Oneflow
         /// Sign method
         /// </summary>
         [JsonPropertyName("sign_method")]
-        public OneflowSignMethod SignMethod { get; set; }
+        public SignMethodEnum SignMethod { get; set; }
 
         /// <summary>
-        /// If the person can sign the agreement
+        /// Person who can sign agreement
         /// </summary>
         /// <value>If the person can sign the agreement</value
         [JsonPropertyName("signatory")]
         public bool? Signatory { get; set; }
 
         /// <summary>
-        /// The type can only be person
+        /// Type can only be person
         /// </summary>
         /// <value>The type can only be person</value>
         [JsonPropertyName("type")]
-        public OneflowPartyType Type => OneflowPartyType.person;
+        public PartyTypeEnum Type => PartyTypeEnum.person;
     }
 }

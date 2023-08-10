@@ -11,10 +11,10 @@ namespace PingPayments.KYC.Agreement
 {
     public interface IAgreementV1
     {
-        Task<GuidResponse> Create(CreateAgreementRequestBody request);
+        Task<GuidResponse> Create(CreateRequestBody request);
         Task<AgreementResponse> Get(Guid agreementId);
-        Task<AgreementTemplatesResponse> GetAgreementTemplates();
-        Task<EmptyResponse> PublishAgreement(PublishAgreementRequest publishAgreementRequest);
-        Task<EmptyResponse> UpdateAgreement(UpdateAgreementRequest updateAgreementRequest);
+        Task<AgreementTemplatesResponse> ListTemplates();
+        Task<EmptyResponse> Publish(PublishRequest request);
+        Task<EmptyResponse> Update(UpdateRequest request);
     }
 }

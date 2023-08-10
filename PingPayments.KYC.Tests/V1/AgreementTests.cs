@@ -1,9 +1,9 @@
 ﻿using PingPayments.KYC.Agreement.V1.Create;
 using PingPayments.KYC.Agreement.V1.Create.Oneflow;
 using PingPayments.KYC.Agreement.V1.Get;
-using PingPayments.KYC.Agreement.V1.Get.Oneflow;
 using PingPayments.KYC.Agreement.V1.Publish;
-using PingPayments.KYC.Agreement.V1.PublishAgreement.Oneflow;
+using PingPayments.KYC.Agreement.V1.Publish.Oneflow;
+using PingPayments.KYC.Agreement.V1.Shared;
 using PingPayments.KYC.Agreement.V1.Update;
 using PingPayments.KYC.Agreement.V1.Update.Oneflow;
 using PingPayments.Tests;
@@ -15,36 +15,36 @@ namespace PingPayments.KYC.Tests.V1
         [Fact]
         public async Task Verify_a_full_agreement_flow_for_organization()
         {
-            var agreementResponse = await _api.Agreement.V1.GetAgreementTemplates();
+            var agreementResponse = await _api.Agreement.V1.ListTemplates();
             AssertHttpOK(agreementResponse);
 
             var templateId = agreementResponse.Body.SuccessfulResponseBody.First().Id;
 
-            var createAgreementRequest = new CreateAgreementRequestBody
+            var createAgreementRequest = new CreateRequestBody
             {
-                AgreementTemplateId = templateId,
+                TemplateId = templateId,
                 MerchantId = TestData.MerchantId,
                 Name = "Test",
-                Provider = TypeOfAgreementToCreate.oneflow,
-                ProviderParameters = new OneflowProviderParameters
+                Provider = AgreementTypeEnum.oneflow,
+                ProviderParameters = new ProviderParameters
                 {
-                    Party = new OneflowOrganization
+                    Party = new Organization
                     {
-                        Country = OneflowCountryCode.SE,
+                        Country = CountryEnum.SE,
                         Identity = "559171-1873",
                         Name = "RaJo Software AB",
-                        SubParties = new List<OneflowSubparty>
+                        SubParties = new List<Subparty>
                         {
-                            new OneflowSubparty
+                            new Subparty
                             {
                                 Identity = "199201154953",
                                 Name = "Johannes Norrbacka",
                                 Email = "johannes@monetax.se",
-                                Country = OneflowCountryCode.SE,
+                                Country = CountryEnum.SE,
                                 Editor = true,
                                 PhoneNumber = "46701234567",
                                 Signatory = true,
-                                SignMethod = OneflowSignMethod.standard_esign,
+                                SignMethod = SignMethodEnum.standard_esign,
                                 Title = "Master of coin"
                             }
                         }
@@ -54,7 +54,7 @@ namespace PingPayments.KYC.Tests.V1
             };
             var createAgreementResponse = await _api.Agreement.V1.Create(createAgreementRequest);
             AssertHttpOK(createAgreementResponse);
-            
+
             var agreementId = createAgreementResponse.Body.SuccessfulResponseBody.Id;
             var getAgreementResponse = await _api.Agreement.V1.Get(agreementId);
             AssertHttpOK(getAgreementResponse);
@@ -62,13 +62,13 @@ namespace PingPayments.KYC.Tests.V1
             AgreementResponseBody agreement = getAgreementResponse.Body.SuccessfulResponseBody;
             Assert.NotNull(agreement.ProviderData);
 
-            var updatePayload = new UpdateAgreementRequest
+            var updatePayload = new UpdateRequest
             {
                 AgreementId = agreementId,
-                ProviderParameters = new OneflowUpdateAgreementProviderParameters
+                ProviderParameters = new UpdateAgreementProviderParameters
                 {
                     DataFields = new[] {
-                      new OneflowUpdateAgreementDataField
+                      new UpdateAgreementDataField
                       {
                           Id = "first-name",
                           Value = "August"
@@ -76,19 +76,19 @@ namespace PingPayments.KYC.Tests.V1
                     }
                 }
             };
-            var updateAgreementResponse = await _api.Agreement.V1.UpdateAgreement(updatePayload);
+            var updateAgreementResponse = await _api.Agreement.V1.Update(updatePayload);
             AssertHttpNoContent(updateAgreementResponse);
 
-            var publishPayload = new PublishAgreementRequest
+            var publishPayload = new PublishRequest
             {
-                AgreementId= agreementId,
-                ProviderParameters = new PublishOneflowAgreementParameters
+                AgreementId = agreementId,
+                ProviderParameters = new PublishAgreementParameters
                 {
                     Subject = "Signa detta mannen!",
                     Message = "Inte alls en scam!"
                 }
             };
-            var publishAgreementResponse = await _api.Agreement.V1.PublishAgreement(publishPayload);
+            var publishAgreementResponse = await _api.Agreement.V1.Publish(publishPayload);
             AssertHttpNoContent(publishAgreementResponse);
         }
 
@@ -96,29 +96,29 @@ namespace PingPayments.KYC.Tests.V1
         [Fact]
         public async Task Verify_a_full_agreement_flow_for_person()
         {
-            var agreementResponse = await _api.Agreement.V1.GetAgreementTemplates();
+            var agreementResponse = await _api.Agreement.V1.ListTemplates();
             AssertHttpOK(agreementResponse);
 
             var templateId = agreementResponse.Body.SuccessfulResponseBody.First().Id;
 
-            var createAgreementRequest = new CreateAgreementRequestBody
+            var createAgreementRequest = new CreateRequestBody
             {
-                AgreementTemplateId = templateId,
+                TemplateId = templateId,
                 MerchantId = TestData.MerchantId,
                 Name = "Test",
-                Provider = TypeOfAgreementToCreate.oneflow,
-                ProviderParameters = new OneflowProviderParameters
+                Provider = AgreementTypeEnum.oneflow,
+                ProviderParameters = new ProviderParameters
                 {
-                    Party = new OneflowPerson
+                    Party = new Person
                     {
                         Identity = "199201154953",
                         Name = "Johannes Norrbacka",
                         Email = "johannes@monetax.se",
-                        Country = OneflowCountryCode.SE,
+                        Country = CountryEnum.SE,
                         Editor = true,
                         PhoneNumber = "46701234567",
                         Signatory = true,
-                        SignMethod = OneflowSignMethod.standard_esign
+                        SignMethod = SignMethodEnum.standard_esign
                     }
                 }
             };
@@ -132,13 +132,13 @@ namespace PingPayments.KYC.Tests.V1
             AgreementResponseBody agreement = getAgreementResponse.Body.SuccessfulResponseBody;
             Assert.NotNull(agreement.ProviderData);
 
-            var updatePayload = new UpdateAgreementRequest
+            var updatePayload = new UpdateRequest
             {
                 AgreementId = agreementId,
-                ProviderParameters = new OneflowUpdateAgreementProviderParameters
+                ProviderParameters = new UpdateAgreementProviderParameters
                 {
                     DataFields = new[] {
-                      new OneflowUpdateAgreementDataField
+                      new UpdateAgreementDataField
                       {
                           Id = "first-name",
                           Value = "August"
@@ -146,19 +146,19 @@ namespace PingPayments.KYC.Tests.V1
                     }
                 }
             };
-            var updateAgreementResponse = await _api.Agreement.V1.UpdateAgreement(updatePayload);
+            var updateAgreementResponse = await _api.Agreement.V1.Update(updatePayload);
             AssertHttpNoContent(updateAgreementResponse);
 
-            var publishPayload = new PublishAgreementRequest
+            var publishPayload = new PublishRequest
             {
                 AgreementId = agreementId,
-                ProviderParameters = new PublishOneflowAgreementParameters
+                ProviderParameters = new PublishAgreementParameters
                 {
                     Subject = "Signa detta mannen!",
                     Message = "Inte alls en scam!"
                 }
             };
-            var publishAgreementResponse = await _api.Agreement.V1.PublishAgreement(publishPayload);
+            var publishAgreementResponse = await _api.Agreement.V1.Publish(publishPayload);
             AssertHttpNoContent(publishAgreementResponse);
         }
 

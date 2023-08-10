@@ -2,7 +2,7 @@
 
 namespace PingPayments.KYC.Agreement.V1.Update.Oneflow
 {
-    public record OneflowUpdateAgreementDataField
+    public record UpdateAgreementDataField
     {
         [JsonPropertyName("id")]
         public string Id { get; set; }

@@ -2,10 +2,10 @@
 
 namespace PingPayments.KYC.Agreement.V1.Create.Oneflow
 {
-    public class OneflowSubparty : OneflowPerson
+    public class Subparty : Person
     {
         /// <summary>
-        /// Sign method
+        /// Oneflow sub party title
         /// </summary>
         [JsonPropertyName("title")]
         public string Title { get; set; }

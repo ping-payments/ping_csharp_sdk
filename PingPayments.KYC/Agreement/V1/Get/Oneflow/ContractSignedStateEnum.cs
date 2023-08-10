@@ -1,6 +1,6 @@
 ﻿namespace PingPayments.KYC.Agreement.V1.Get.Oneflow
 {
-    public enum OneflowContractSignedState
+    public enum ContractSignedStateEnum
     {
         undecided,
         signed,

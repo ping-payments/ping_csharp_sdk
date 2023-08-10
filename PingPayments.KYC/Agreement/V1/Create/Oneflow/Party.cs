@@ -2,16 +2,16 @@
 
 namespace PingPayments.KYC.Agreement.V1.Create.Oneflow
 {
-    public abstract class OneflowParty
+    public abstract class Party
     {
         /// <summary>
-        /// The country code of the party
+        /// Country code of party
         /// </summary>
         [JsonPropertyName("country")]
-        public OneflowCountryCode Country { get; set; }
+        public CountryEnum Country { get; set; }
 
         /// <summary>
-        /// Identity of the party
+        /// Identity of party
         /// </summary>
         [JsonPropertyName("identity")]
         public string Identity { get; set; }

@@ -2,11 +2,11 @@
 
 namespace PingPayments.KYC.Agreement.V1.Create.Oneflow
 {
-    public class OneflowProviderParameters : CreateAgreementProviderParameters
+    public class ProviderParameters : CreateAgreementProviderParameters
     {
         [property: JsonIgnore]
-        public OneflowParty Party { get; set; }
-    
+        public Party Party { get; set; }
+
         [JsonPropertyName("party")]
         public object party => Party;
     }
