@@ -150,7 +150,7 @@ namespace PingPayments.KYC.Tests.V1
         }
 
         [Fact]
-        public async Task Ais_merchant_entity_already_registered_returns_200()
+        public async Task Ais_merchant_entity_already_registered_returns_201()
         {
             var request = new AisMerchantRequest
             (
@@ -162,7 +162,7 @@ namespace PingPayments.KYC.Tests.V1
             );
 
             var response = await _api.Merchant.V1.AIS(request);
-            AssertHttpOK(response);
+            AssertHttpCreated(response);
         }
 
 
