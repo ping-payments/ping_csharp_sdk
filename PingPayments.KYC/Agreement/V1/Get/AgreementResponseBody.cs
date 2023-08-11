@@ -1,4 +1,5 @@
 ﻿using PingPayments.KYC.Agreement.V1.Get.Oneflow;
+using PingPayments.KYC.Agreement.V1.Shared;
 using System;
 using System.Text;
 using System.Text.Json;
@@ -30,7 +31,7 @@ namespace PingPayments.KYC.Agreement.V1.Get
         /// The agreement provider
         /// </summary>
         [JsonPropertyName("provider")]
-        public AgreementType Provider { get; set; }
+        public AgreementTypeEnum Provider { get; set; }
 
         /// <summary>
         /// Agreement specific data from provider
@@ -38,8 +39,8 @@ namespace PingPayments.KYC.Agreement.V1.Get
         //[JsonIgnore()]
         public AgreementProviderData ProviderData => Provider switch
         {
-            AgreementType.oneflow =>  JsonSerializer.Deserialize<OneflowContract>(
-                provider_data.GetRawText(), 
+            AgreementTypeEnum.oneflow => JsonSerializer.Deserialize<Contract>(
+                provider_data.GetRawText(),
                 new JsonSerializerOptions() { Converters = { new JsonStringEnumConverter() } }
             ),
             _ => null

@@ -1,6 +1,6 @@
 ﻿namespace PingPayments.KYC.Agreement.V1.Create.Oneflow
 {
-    public enum OneflowPartyType
+    public enum PartyTypeEnum
     {
         person,
         organization

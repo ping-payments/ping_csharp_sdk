@@ -5,21 +5,21 @@ using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
 
-namespace PingPayments.KYC.Agreement.V1.Publish
-{ 
-    public class PublishAgreementOperation : OperationBase<PublishAgreementRequest, EmptyResponse>
+namespace PingPayments.KYC.Agreement.V1.Update
+{
+    public class UpdateOperation : OperationBase<UpdateRequest, EmptyResponse>
     {
-        public PublishAgreementOperation(HttpClient httpClient) : base(httpClient) { }
+        public UpdateOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public async override Task<EmptyResponse> ExecuteRequest(PublishAgreementRequest publishAgreementRequest) =>
+        public async override Task<EmptyResponse> ExecuteRequest(UpdateRequest updateAgreementRequest) =>
             await BaseExecute(
-                POST, 
-                $"api/agreements/{publishAgreementRequest.AgreementId}/publish", 
-                publishAgreementRequest,
-                await ToJson(publishAgreementRequest)
+                PUT,
+                $"api/agreements/{updateAgreementRequest.AgreementId}",
+                updateAgreementRequest,
+                await ToJson(updateAgreementRequest)
             );
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, PublishAgreementRequest _)
+        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, UpdateRequest _)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch

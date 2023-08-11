@@ -1,4 +1,5 @@
-﻿using PingPayments.Shared;
+﻿
+using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using System;
 using System.Net.Http;
@@ -8,9 +9,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.KYC.Agreement.V1.Get
 {
-    public class GetAgreementOperation : OperationBase<Guid, AgreementResponse>
+    public class GetOperation : OperationBase<Guid, AgreementResponse>
     {
-        public GetAgreementOperation(HttpClient httpClient) : base(httpClient) { }
+        public GetOperation(HttpClient httpClient) : base(httpClient) { }
 
         public async override Task<AgreementResponse> ExecuteRequest(Guid agreementId) =>
             await BaseExecute(GET, $"api/agreements/{agreementId}", agreementId);

@@ -3,9 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Agreement.V1.Update.Oneflow
 {
-    public class OneflowUpdateAgreementProviderParameters : UpdateAgreementProviderParameters
+    public class UpdateAgreementProviderParameters : UpdateProviderParameters
     {
         [JsonPropertyName("data_fields")]
-        public IList<OneflowUpdateAgreementDataField> DataFields { get; set; }
+        public IList<UpdateAgreementDataField> DataFields { get; set; }
     }
 }

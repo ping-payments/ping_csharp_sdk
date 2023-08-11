@@ -12,40 +12,39 @@ namespace PingPayments.KYC.Agreement
 
     public class AgreementV1 : IAgreementV1
     {
-        private readonly Lazy<CreateAgreementOperation> _createAgreementOperation;
-        private readonly Lazy<GetAgreementOperation> _getAgreementOperation;
-        private readonly Lazy<GetAgreementTemplatesOperation> _getAgreementTemplatesOperation;
-        private readonly Lazy<PublishAgreementOperation> _publishAgreementOperation;
-        private readonly Lazy<UpdateAgreementOperation> _updateAgreementOperation;
+        private readonly Lazy<CreateOperation> _createOperation;
+        private readonly Lazy<GetOperation> _getOperation;
+        private readonly Lazy<ListTemplatesOperation> _listTemplatesOperation;
+        private readonly Lazy<PublishOperation> _publishOperation;
+        private readonly Lazy<UpdateOperation> _updateOperation;
 
         public AgreementV1(
-            Lazy<CreateAgreementOperation> createAgreementOperation,
-            Lazy<GetAgreementOperation> getAgreementOperation,
-            Lazy<GetAgreementTemplatesOperation> getAgreementTemplatesOperation,
-            Lazy<PublishAgreementOperation> publishAgreementOperation,
-            Lazy<UpdateAgreementOperation> updateAgreementOperation)
+            Lazy<CreateOperation> createAgreementOperation,
+            Lazy<GetOperation> getAgreementOperation,
+            Lazy<ListTemplatesOperation> getAgreementTemplatesOperation,
+            Lazy<PublishOperation> publishAgreementOperation,
+            Lazy<UpdateOperation> updateAgreementOperation)
         {
-            _createAgreementOperation = createAgreementOperation;
-            _getAgreementOperation = getAgreementOperation;
-            _getAgreementTemplatesOperation = getAgreementTemplatesOperation;
-            _publishAgreementOperation = publishAgreementOperation;
-            _updateAgreementOperation = updateAgreementOperation;
+            _createOperation = createAgreementOperation;
+            _getOperation = getAgreementOperation;
+            _listTemplatesOperation = getAgreementTemplatesOperation;
+            _publishOperation = publishAgreementOperation;
+            _updateOperation = updateAgreementOperation;
         }
 
-        public async Task<GuidResponse> Create(CreateAgreementRequestBody request) =>
-            await _createAgreementOperation.Value.ExecuteRequest(request);
+        public async Task<GuidResponse> Create(CreateRequestBody request) =>
+            await _createOperation.Value.ExecuteRequest(request);
 
         public async Task<AgreementResponse> Get(Guid agreementId) =>
-            await _getAgreementOperation.Value.ExecuteRequest(agreementId);
+            await _getOperation.Value.ExecuteRequest(agreementId);
 
-        public async Task<AgreementTemplatesResponse> GetAgreementTemplates() =>
-            await _getAgreementTemplatesOperation.Value.ExecuteRequest(null);
+        public async Task<AgreementTemplatesResponse> ListTemplates() =>
+            await _listTemplatesOperation.Value.ExecuteRequest(null);
 
-        public async Task<EmptyResponse> PublishAgreement(PublishAgreementRequest publishAgreementRequest) =>
-            await _publishAgreementOperation.Value.ExecuteRequest(publishAgreementRequest);
+        public async Task<EmptyResponse> Publish(PublishRequest request) =>
+            await _publishOperation.Value.ExecuteRequest(request);
 
-        public async Task<EmptyResponse> UpdateAgreement(UpdateAgreementRequest updateAgreementRequest) =>
-            await _updateAgreementOperation.Value.ExecuteRequest(updateAgreementRequest);
-
+        public async Task<EmptyResponse> Update(UpdateRequest request) =>
+            await _updateOperation.Value.ExecuteRequest(request);
     }
 }

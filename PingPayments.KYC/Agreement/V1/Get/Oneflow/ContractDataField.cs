@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Agreement.V1.Get.Oneflow
 {
-    public class OneflowContractDataField
+    public class ContractDataField
     {
         /// <summary>
         /// If the data field has been filled out or not

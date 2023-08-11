@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace PingPayments.KYC.Agreement.V1.Publish
+namespace PingPayments.KYC.Agreement.V1.Update
 {
-    public class PublishAgreementRequest
+    public record UpdateRequest
     {
-        [property: JsonIgnore]
+        /// <summary>
+        /// Id of the agreement to be updated
+        /// </summary>
         public Guid AgreementId { get; set; }
 
         [property: JsonIgnore]
-        public PublishAgreementProviderParameters ProviderParameters { get; set; }
+        public UpdateProviderParameters ProviderParameters { get; set; }
 
         [JsonPropertyName("provider_parameters")]
         public object provider_parameters => ProviderParameters;

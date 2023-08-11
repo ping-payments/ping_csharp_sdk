@@ -33,11 +33,11 @@ namespace PingPayments.KYC
 
             var agreementV1 = new AgreementV1
                 (
-                    new Lazy<CreateAgreementOperation>(() => new CreateAgreementOperation(httpClient)),
-                    new Lazy<GetAgreementOperation>(() => new GetAgreementOperation(httpClient)),
-                    new Lazy<GetAgreementTemplatesOperation>(() => new GetAgreementTemplatesOperation(httpClient)),
-                    new Lazy<PublishAgreementOperation>(() => new PublishAgreementOperation(httpClient)),
-                    new Lazy<UpdateAgreementOperation>(() => new UpdateAgreementOperation(httpClient))
+                    new Lazy<CreateOperation>(() => new CreateOperation(httpClient)),
+                    new Lazy<GetOperation>(() => new GetOperation(httpClient)),
+                    new Lazy<ListTemplatesOperation>(() => new ListTemplatesOperation(httpClient)),
+                    new Lazy<PublishOperation>(() => new PublishOperation(httpClient)),
+                    new Lazy<UpdateOperation>(() => new UpdateOperation(httpClient))
                 );
             _agreement = new Lazy<IAgreementResource>(() => new AgreementResource(agreementV1));
         }

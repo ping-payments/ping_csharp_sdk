@@ -7,9 +7,9 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.KYC.Agreement.V1.GetAgreementTemplates
 {
-    public class GetAgreementTemplatesOperation : OperationBase<EmptyRequest?, AgreementTemplatesResponse>
+    public class ListTemplatesOperation : OperationBase<EmptyRequest?, AgreementTemplatesResponse>
     {
-        public GetAgreementTemplatesOperation(HttpClient httpClient) : base(httpClient) { }
+        public ListTemplatesOperation(HttpClient httpClient) : base(httpClient) { }
 
         public async override Task<AgreementTemplatesResponse> ExecuteRequest(EmptyRequest? emptyRequest = null) =>
             await BaseExecute(GET, $"api/agreements/templates", emptyRequest);

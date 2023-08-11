@@ -4,25 +4,25 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Agreement.V1.Get.Oneflow
 {
-    public class OneflowContract : AgreementProviderData
+    public class Contract : AgreementProviderData
     {
         /// <summary>
         /// Gets or Sets DataFields
         /// </summary>
         [JsonPropertyName("data_fields")]
-        public List<OneflowContractDataField> DataFields { get; set; }
+        public List<ContractDataField> DataFields { get; set; }
 
         /// <summary>
         /// Gets or Sets Participants
         /// </summary>
         [JsonPropertyName("participants")]
-        public List<OneflowContractParticipant> Participants { get; set; }
+        public List<ContractParticipant> Participants { get; set; }
 
         /// <summary>
         /// Gets or Sets State
         /// </summary>
         [JsonPropertyName("state")]
-        public OneflowContractState State { get; set; }
+        public ContractStateEnum State { get; set; }
 
 
         /// <summary>
