@@ -1,6 +1,5 @@
 ﻿using PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request;
 using PingPayments.Shared;
-using PingPayments.Shared.Enums;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1

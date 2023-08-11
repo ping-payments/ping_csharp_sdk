@@ -1,6 +1,4 @@
-﻿using PingPayments.PaymentLinksApi.PaymentLinks.Shared.V1;
-
-namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
+﻿namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
 {
     public static partial class CreatePaymentProviderMethod
     {

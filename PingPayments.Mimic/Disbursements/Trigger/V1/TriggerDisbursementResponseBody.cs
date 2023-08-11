@@ -1,5 +1,4 @@
-﻿using PingPayments.Shared;
-using System;
+﻿using System;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.Mimic.Disbursements.Trigger.V1

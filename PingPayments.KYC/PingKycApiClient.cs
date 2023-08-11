@@ -1,4 +1,10 @@
-﻿using PingPayments.KYC.Merchant;
+﻿using PingPayments.KYC.Agreement;
+using PingPayments.KYC.Agreement.V1.Create;
+using PingPayments.KYC.Agreement.V1.Get;
+using PingPayments.KYC.Agreement.V1.GetAgreementTemplates;
+using PingPayments.KYC.Agreement.V1.Publish;
+using PingPayments.KYC.Agreement.V1.Update;
+using PingPayments.KYC.Merchant;
 using PingPayments.KYC.Merchant.V1.AIS;
 using PingPayments.KYC.Merchant.V1.Get;
 using PingPayments.KYC.Merchant.V1.Verification;
@@ -24,6 +30,16 @@ namespace PingPayments.KYC
                     new Lazy<AisKycMerchantOperation>(() => new AisKycMerchantOperation(httpClient))
                 );
             _merchant = new Lazy<IMerchantResource>(() => new MerchantResource(merchantV1));
+
+            var agreementV1 = new AgreementV1
+                (
+                    new Lazy<CreateOperation>(() => new CreateOperation(httpClient)),
+                    new Lazy<GetOperation>(() => new GetOperation(httpClient)),
+                    new Lazy<ListTemplatesOperation>(() => new ListTemplatesOperation(httpClient)),
+                    new Lazy<PublishOperation>(() => new PublishOperation(httpClient)),
+                    new Lazy<UpdateOperation>(() => new UpdateOperation(httpClient))
+                );
+            _agreement = new Lazy<IAgreementResource>(() => new AgreementResource(agreementV1));
         }
 
         private readonly Lazy<ISessionResource> _session;
@@ -31,5 +47,8 @@ namespace PingPayments.KYC
 
         private readonly Lazy<IMerchantResource> _merchant;
         public IMerchantResource Merchant => _merchant.Value;
+
+        private readonly Lazy<IAgreementResource> _agreement;
+        public IAgreementResource Agreement => _agreement.Value;
     }
 }
