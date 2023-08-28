@@ -97,10 +97,10 @@ namespace PingPayments.KYC.Tests.V1
             var publishAgreementResponse = await _api.Agreement.V1.Publish(publishPayload);
             AssertHttpNoContent(publishAgreementResponse);
 
-            var accessLinkPayload = new Agreement.V1.CreateAccessLink.CreateRequestBody
+            var accessLinkPayload = new Agreement.V1.CreateAccessLink.CreateAccessLinkRequestBody
             {
                 AgreementId = agreementId,
-                ProviderParameters = new CreateAgreementAccessLinkParameters
+                ProviderParameters = new CreateAccessLinkParameters
                 {
                     ParticipantId = participantId,
                 }
@@ -181,10 +181,10 @@ namespace PingPayments.KYC.Tests.V1
             var publishAgreementResponse = await _api.Agreement.V1.Publish(publishPayload);
             AssertHttpNoContent(publishAgreementResponse);
 
-            var accessLinkPayload = new Agreement.V1.CreateAccessLink.CreateRequestBody
+            var accessLinkPayload = new Agreement.V1.CreateAccessLink.CreateAccessLinkRequestBody
             {
                 AgreementId = agreementId,
-                ProviderParameters = new CreateAgreementAccessLinkParameters
+                ProviderParameters = new CreateAccessLinkParameters
                 {
                     ParticipantId = participantId,
                 }

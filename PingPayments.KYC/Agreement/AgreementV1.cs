@@ -16,7 +16,7 @@ namespace PingPayments.KYC.Agreement
         private readonly Lazy<V1.Create.CreateOperation> _createAgreementOperation;
         private readonly Lazy<GetOperation> _getAgreementOperation;
         private readonly Lazy<ListTemplatesOperation> _listTemplatesOperation;
-        private readonly Lazy<V1.CreateAccessLink.CreateOperation> _createAccessLinkOperation;
+        private readonly Lazy<V1.CreateAccessLink.CreateAccessLinkOperation> _createAccessLinkOperation;
         private readonly Lazy<PublishOperation> _publishAgreementOperation;
         private readonly Lazy<UpdateOperation> _updateAgreementOperation;
 
@@ -24,7 +24,7 @@ namespace PingPayments.KYC.Agreement
             Lazy<V1.Create.CreateOperation> createAgreementOperation,
             Lazy<GetOperation> getAgreementOperation,
             Lazy<ListTemplatesOperation> getAgreementTemplatesOperation,
-            Lazy<V1.CreateAccessLink.CreateOperation> createAccessLinkOperation,
+            Lazy<V1.CreateAccessLink.CreateAccessLinkOperation> createAccessLinkOperation,
             Lazy<PublishOperation> publishAgreementOperation,
             Lazy<UpdateOperation> updateAgreementOperation)
         {
@@ -45,7 +45,7 @@ namespace PingPayments.KYC.Agreement
         public async Task<AgreementTemplatesResponse> ListTemplates() =>
             await _listTemplatesOperation.Value.ExecuteRequest(null);
 
-        public async Task<CreateResponse> CreateAccessLink(V1.CreateAccessLink.CreateRequestBody request) =>
+        public async Task<CreateAccessLinkResponse> CreateAccessLink(V1.CreateAccessLink.CreateAccessLinkRequestBody request) =>
            await _createAccessLinkOperation.Value.ExecuteRequest(request);
 
         public async Task<EmptyResponse> Publish(PublishRequest request) =>

@@ -37,7 +37,7 @@ namespace PingPayments.KYC
                     new Lazy<Agreement.V1.Create.CreateOperation>(() => new Agreement.V1.Create.CreateOperation(httpClient)),
                     new Lazy<GetOperation>(() => new GetOperation(httpClient)),
                     new Lazy<ListTemplatesOperation>(() => new ListTemplatesOperation(httpClient)),
-                    new Lazy<Agreement.V1.CreateAccessLink.CreateOperation>(() => new Agreement.V1.CreateAccessLink.CreateOperation(httpClient)),
+                    new Lazy<Agreement.V1.CreateAccessLink.CreateAccessLinkOperation>(() => new Agreement.V1.CreateAccessLink.CreateAccessLinkOperation(httpClient)),
                     new Lazy<PublishOperation>(() => new PublishOperation(httpClient)),
                     new Lazy<UpdateOperation>(() => new UpdateOperation(httpClient))
                 );

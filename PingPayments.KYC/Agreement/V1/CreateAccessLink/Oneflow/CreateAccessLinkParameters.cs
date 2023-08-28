@@ -2,7 +2,7 @@
 
 namespace PingPayments.KYC.Agreement.V1.CreateAccessLink.Oneflow
 {
-    public class CreateAgreementAccessLinkParameters : ProviderParameters
+    public class CreateAccessLinkParameters : CreateAccessLinkProviderParameters
     {
         /// <summary>
         /// Id of the participant for which the link should be created
