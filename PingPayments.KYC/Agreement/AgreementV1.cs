@@ -45,7 +45,7 @@ namespace PingPayments.KYC.Agreement
         public async Task<AgreementTemplatesResponse> ListTemplates() =>
             await _listTemplatesOperation.Value.ExecuteRequest(null);
 
-        public async Task<CreateResponse> Create(Guid agreementId, V1.CreateAccessLink.CreateRequestBody request) =>
+        public async Task<CreateResponse> CreateAccessLink(V1.CreateAccessLink.CreateRequestBody request) =>
            await _createAccessLinkOperation.Value.ExecuteRequest(request);
 
         public async Task<EmptyResponse> Publish(PublishRequest request) =>

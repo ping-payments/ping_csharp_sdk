@@ -6,6 +6,12 @@ namespace PingPayments.KYC.Agreement.V1.Get.Oneflow
     public class ContractParticipant
     {
         /// <summary>
+        /// participant id
+        /// </summary>
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        /// <summary>
         /// Gets or Sets Identity
         /// </summary>
         [JsonPropertyName("identity")]

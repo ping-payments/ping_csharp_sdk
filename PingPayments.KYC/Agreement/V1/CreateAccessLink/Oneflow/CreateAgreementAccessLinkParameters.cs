@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Agreement.V1.CreateAccessLink.Oneflow
 {
-    public abstract class ProviderParameters : CreateAccessLinkProviderParameters
+    public class CreateAgreementAccessLinkParameters : ProviderParameters
     {
         /// <summary>
         /// Id of the participant for which the link should be created

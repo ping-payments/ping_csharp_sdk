@@ -1,17 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Agreement.V1.CreateAccessLink
 {
     public class CreateRequestBody
     {
+
+        /// <summary>
+        /// Id of a specific agreement
+        /// </summary>
+        [property: JsonIgnore]
+        public Guid AgreementId { get; set; }
+
         /// <summary>
         /// Gets or Sets ProviderParameters
         /// </summary>
         [property: JsonIgnore]
-        public CreateAccessLinkProviderParameters ProviderParameters { get; set; }
+        public ProviderParameters ProviderParameters { get; set; }
 
         /// <summary>
         /// Gets or Sets ProviderParameters

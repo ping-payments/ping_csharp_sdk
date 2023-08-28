@@ -1,6 +1,9 @@
 ﻿using PingPayments.KYC.Agreement.V1.Create;
 using PingPayments.KYC.Agreement.V1.Create.Oneflow;
+using PingPayments.KYC.Agreement.V1.CreateAccessLink;
+using PingPayments.KYC.Agreement.V1.CreateAccessLink.Oneflow;
 using PingPayments.KYC.Agreement.V1.Get;
+using PingPayments.KYC.Agreement.V1.Get.Oneflow;
 using PingPayments.KYC.Agreement.V1.Publish;
 using PingPayments.KYC.Agreement.V1.Publish.Oneflow;
 using PingPayments.KYC.Agreement.V1.Shared;
@@ -20,13 +23,13 @@ namespace PingPayments.KYC.Tests.V1
 
             var templateId = agreementResponse.Body.SuccessfulResponseBody.First().Id;
 
-            var createAgreementRequest = new CreateRequestBody
+            var createAgreementRequest = new Agreement.V1.Create.CreateRequestBody
             {
                 TemplateId = templateId,
                 MerchantId = TestData.MerchantId,
                 Name = "Test",
                 Provider = AgreementTypeEnum.oneflow,
-                ProviderParameters = new ProviderParameters
+                ProviderParameters = new Agreement.V1.Create.Oneflow.ProviderParameters
                 {
                     Party = new Organization
                     {
@@ -59,6 +62,9 @@ namespace PingPayments.KYC.Tests.V1
             var getAgreementResponse = await _api.Agreement.V1.Get(agreementId);
             AssertHttpOK(getAgreementResponse);
 
+            Contract providerData = (Contract)getAgreementResponse.Body.SuccessfulResponseBody.ProviderData;
+            var participantId = providerData.Participants[1].Id;
+
             AgreementResponseBody agreement = getAgreementResponse.Body.SuccessfulResponseBody;
             Assert.NotNull(agreement.ProviderData);
 
@@ -90,6 +96,17 @@ namespace PingPayments.KYC.Tests.V1
             };
             var publishAgreementResponse = await _api.Agreement.V1.Publish(publishPayload);
             AssertHttpNoContent(publishAgreementResponse);
+
+            var accessLinkPayload = new Agreement.V1.CreateAccessLink.CreateRequestBody
+            {
+                AgreementId = agreementId,
+                ProviderParameters = new CreateAgreementAccessLinkParameters
+                {
+                    ParticipantId = participantId,
+                }
+            };
+            var createAccessLinkResponse = await _api.Agreement.V1.CreateAccessLink(accessLinkPayload);
+            AssertHttpOK(createAccessLinkResponse);
         }
 
 
@@ -101,13 +118,13 @@ namespace PingPayments.KYC.Tests.V1
 
             var templateId = agreementResponse.Body.SuccessfulResponseBody.First().Id;
 
-            var createAgreementRequest = new CreateRequestBody
+            var createAgreementRequest = new Agreement.V1.Create.CreateRequestBody
             {
                 TemplateId = templateId,
                 MerchantId = TestData.MerchantId,
                 Name = "Test",
                 Provider = AgreementTypeEnum.oneflow,
-                ProviderParameters = new ProviderParameters
+                ProviderParameters = new Agreement.V1.Create.Oneflow.ProviderParameters
                 {
                     Party = new Person
                     {
@@ -129,6 +146,9 @@ namespace PingPayments.KYC.Tests.V1
             var getAgreementResponse = await _api.Agreement.V1.Get(agreementId);
             AssertHttpOK(getAgreementResponse);
 
+            Contract providerData = (Contract)getAgreementResponse.Body.SuccessfulResponseBody.ProviderData;
+            var participantId = providerData.Participants[1].Id;
+
             AgreementResponseBody agreement = getAgreementResponse.Body.SuccessfulResponseBody;
             Assert.NotNull(agreement.ProviderData);
 
@@ -160,6 +180,17 @@ namespace PingPayments.KYC.Tests.V1
             };
             var publishAgreementResponse = await _api.Agreement.V1.Publish(publishPayload);
             AssertHttpNoContent(publishAgreementResponse);
+
+            var accessLinkPayload = new Agreement.V1.CreateAccessLink.CreateRequestBody
+            {
+                AgreementId = agreementId,
+                ProviderParameters = new CreateAgreementAccessLinkParameters
+                {
+                    ParticipantId = participantId,
+                }
+            };
+            var createAccessLinkResponse = await _api.Agreement.V1.CreateAccessLink(accessLinkPayload);
+            AssertHttpOK(createAccessLinkResponse);
         }
 
     }

@@ -15,7 +15,7 @@ namespace PingPayments.KYC.Agreement
         Task<GuidResponse> Create(V1.Create.CreateRequestBody request);
         Task<AgreementResponse> Get(Guid agreementId);
         Task<AgreementTemplatesResponse> ListTemplates();
-        Task<CreateResponse> Create(Guid agreementId, V1.CreateAccessLink.CreateRequestBody request);
+        Task<CreateResponse> CreateAccessLink(V1.CreateAccessLink.CreateRequestBody request);
         Task<EmptyResponse> Publish(PublishRequest request);
         Task<EmptyResponse> Update(UpdateRequest request);
     }
