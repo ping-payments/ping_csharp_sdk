@@ -1,13 +1,20 @@
 # Change Log
 
+## 4.2.0 (2023-08-29)
+
+Added new fuctionality regarding oneflow agreements:
+
+-   Added `CreateAccessLink` which is used to create an access link for a specific participant in an agreement.
+
 ## 4.1.0 (2023-08-11)
 
 Added new fuctionality regarding oneflow agreements:
-- Added `Create` agreement
-- Added `Get` agreement
-- Added `ListTemplates`
-- Added `Publish` agreement
-- Added `Update` agreement
+
+-   Added `Create` agreement
+-   Added `Get` agreement
+-   Added `ListTemplates`
+-   Added `Publish` agreement
+-   Added `Update` agreement
 
 ## 4.0.1 (2023-03-30)
 
