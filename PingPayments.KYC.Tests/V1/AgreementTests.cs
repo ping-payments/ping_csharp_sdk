@@ -40,13 +40,12 @@ namespace PingPayments.KYC.Tests.V1
                         {
                             new Subparty
                             {
-                                Identity = "199201154953",
                                 Name = "Johannes Norrbacka",
                                 Email = "johannes@monetax.se",
                                 Country = CountryEnum.SE,
                                 Editor = true,
                                 PhoneNumber = "46701234567",
-                                Signatory = true,
+                                Signatory = false,
                                 SignMethod = SignMethodEnum.standard_esign,
                                 Title = "Master of coin"
                             }
@@ -97,7 +96,7 @@ namespace PingPayments.KYC.Tests.V1
             var publishAgreementResponse = await _api.Agreement.V1.Publish(publishPayload);
             AssertHttpNoContent(publishAgreementResponse);
 
-            var accessLinkPayload = new Agreement.V1.CreateAccessLink.CreateAccessLinkRequestBody
+            var accessLinkPayload = new CreateAccessLinkRequestBody
             {
                 AgreementId = agreementId,
                 ProviderParameters = new CreateAccessLinkParameters
@@ -118,13 +117,13 @@ namespace PingPayments.KYC.Tests.V1
 
             var templateId = agreementResponse.Body.SuccessfulResponseBody.First().Id;
 
-            var createAgreementRequest = new Agreement.V1.Create.CreateRequestBody
+            var createAgreementRequest = new CreateRequestBody
             {
                 TemplateId = templateId,
                 MerchantId = TestData.MerchantId,
                 Name = "Test",
                 Provider = AgreementTypeEnum.oneflow,
-                ProviderParameters = new Agreement.V1.Create.Oneflow.ProviderParameters
+                ProviderParameters = new ProviderParameters
                 {
                     Party = new Person
                     {

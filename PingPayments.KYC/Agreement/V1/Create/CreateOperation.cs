@@ -1,6 +1,8 @@
 ﻿using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using System.Net.Http;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
@@ -10,6 +12,15 @@ namespace PingPayments.KYC.Agreement.V1.Create
     public class CreateOperation : OperationBase<CreateRequestBody, GuidResponse>
     {
         public CreateOperation(HttpClient httpClient) : base(httpClient) { }
+
+        protected override JsonSerializerOptions JsonSerializerOptions => new()
+        {
+            Converters =
+            {
+                new JsonStringEnumConverter()
+            },
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
 
         public async override Task<GuidResponse> ExecuteRequest(CreateRequestBody createAgreement) =>
             await BaseExecute(POST, $"api/agreements", createAgreement, await ToJson(createAgreement));
