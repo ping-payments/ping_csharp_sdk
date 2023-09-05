@@ -1,6 +1,6 @@
 # Change Log
 
-## 3.8.0 (2023-08-09)
+## 3.8.0 (2023-09-05)
 - Added Fortus as a new payment provider for invoice payments.
 
 ## 3.7.0 (2023-05-31)
