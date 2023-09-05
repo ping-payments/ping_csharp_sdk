@@ -10,6 +10,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Response
         public static InitiatePaymentResponse Failure(HttpStatusCode statusCode, ErrorResponseBody? e, string rb) => new(statusCode, false, e, rb);
 
         public static implicit operator DummyResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccessfulResponseBody as DummyResponseBody;
+        public static implicit operator FortusResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccessfulResponseBody as FortusResponseBody;
         public static implicit operator SwishECommerceResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccessfulResponseBody as SwishECommerceResponseBody;
         public static implicit operator SwishMCommerceResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccessfulResponseBody as SwishMCommerceResponseBody;
         public static implicit operator PaymentIqResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccessfulResponseBody as PaymentIqResponseBody;
