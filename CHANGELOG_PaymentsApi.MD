@@ -1,5 +1,8 @@
 # Change Log
 
+## 3.8.0 (2023-09-05)
+- Added Fortus as a new payment provider for invoice payments.
+
 ## 3.7.0 (2023-05-31)
 - Added support for new cashier parameters when initiating card payments.
 
@@ -25,7 +28,7 @@
 - Corrected the namespace of Bankgirot request body and is now same as the rest: `PingPayments.PaymentsApi.Payments.V1.Initiate.Request`. 
 
 ## 2.0.0 (2023-02-29)
-- Changed name on parameter `reuseReference` to `refrencce` and removed `DesiredDateOfPayment` on `PingDeposit` . 
+- Changed name on parameter `reuseReference` to `reference` and removed `DesiredDateOfPayment` on `PingDeposit` . 
 
 ## 1.9.2 (2023-02-21)
 - Added bban and bic to DepositAccount.  
