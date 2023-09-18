@@ -32,6 +32,12 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public string? Description { get; set; }
 
         /// <summary>
+        /// Article number of product to be bought. Will be shown on invoice and will be auto-generated if not provided.
+        /// </summary>
+        [JsonPropertyName("article_no")]
+        public string? ArticleNumber { get; set; }
+
+        /// <summary>
         /// Simplifies creation of invoice items array
         /// </summary>
         public static implicit operator InvoiceItem[](InvoiceItem invoiceItem) => new[] { invoiceItem };

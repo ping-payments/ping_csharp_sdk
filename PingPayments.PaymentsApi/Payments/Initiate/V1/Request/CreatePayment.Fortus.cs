@@ -16,6 +16,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 string personalNumber,
                 string country,
                 string ip,
+                string email,
                 Address? deliveryAddress = null,
                 IEnumerable<InvoiceItem>? invoiceItems = null,
                 Uri? statusCallbackUrl = null,
@@ -35,6 +36,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                             Country = country,
                             Ip = ip,
                             PersonalNumber = personalNumber,
+                            Email = email
                         },
                         deliveryAddress,
                         invoiceItems

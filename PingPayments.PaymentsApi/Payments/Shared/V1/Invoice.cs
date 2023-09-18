@@ -30,5 +30,11 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// </summary>
         [JsonPropertyName("ip")]
         public string Ip { get; set; }
+
+        /// <summary>
+        /// Email of payer
+        /// </summary>
+        [JsonPropertyName("email")]
+        public string Email { get; set; }
     }
 }
