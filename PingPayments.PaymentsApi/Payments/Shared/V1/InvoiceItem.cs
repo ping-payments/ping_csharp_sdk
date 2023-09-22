@@ -7,6 +7,15 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
 {
     public record InvoiceItem
     {
+        public InvoiceItem(int quantity, int price, decimal vat, string description, string? articleNumber = null)
+        {
+            Quantity = quantity;
+            Price = price;
+            Vat = vat;
+            Description = description;
+            ArticleNumber = articleNumber;
+        }
+
         /// <summary>
         /// Quantity of item
         /// </summary>
@@ -29,7 +38,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// Item description
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Article number of product to be bought. Will be shown on invoice and will be auto-generated if not provided.

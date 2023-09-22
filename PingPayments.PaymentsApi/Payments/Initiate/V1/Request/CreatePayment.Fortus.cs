@@ -19,6 +19,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 string email,
                 Address? deliveryAddress = null,
                 IEnumerable<InvoiceItem>? invoiceItems = null,
+                string[]? additional_information = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
@@ -39,7 +40,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                             Email = email
                         },
                         deliveryAddress,
-                        invoiceItems
+                        invoiceItems,
+                        additional_information
                     ),
                     statusCallbackUrl,
                     metadata
