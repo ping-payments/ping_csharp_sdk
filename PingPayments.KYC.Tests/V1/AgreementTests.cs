@@ -29,7 +29,7 @@ namespace PingPayments.KYC.Tests.V1
                 MerchantId = TestData.MerchantId,
                 Name = "Test",
                 Provider = AgreementTypeEnum.oneflow,
-                ProviderParameters = new Agreement.V1.Create.Oneflow.ProviderParameters
+                ProviderParameters = new ProviderParameters
                 {
                     Party = new Organization
                     {
@@ -52,7 +52,8 @@ namespace PingPayments.KYC.Tests.V1
                         }
 
                     }
-                }
+                },
+                ProviderStateCallbackUrl = new Uri("http://www.hokuS-pokuS-boguS.com")
             };
             var createAgreementResponse = await _api.Agreement.V1.Create(createAgreementRequest);
             AssertHttpOK(createAgreementResponse);

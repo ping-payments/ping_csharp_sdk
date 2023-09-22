@@ -43,6 +43,11 @@ namespace PingPayments.KYC.Agreement.V1.Create
         [JsonPropertyName("provider_parameters")]
         public object provider_parameters => ProviderParameters;
 
+        /// <summary>
+        ///  URL that will be called when the provider state is updated
+        /// </summary>
+        [JsonPropertyName("provider_state_callback_url")]
+        public Uri? ProviderStateCallbackUrl { get; set; }
 
         /// <summary>
         /// Get the string presentation of the object
@@ -57,6 +62,7 @@ namespace PingPayments.KYC.Agreement.V1.Create
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Provider: ").Append(Provider).Append("\n");
             sb.Append("  ProviderParameters: ").Append(ProviderParameters).Append("\n");
+            sb.Append("  ProviderStateCallbackUrl: ").Append(ProviderStateCallbackUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
