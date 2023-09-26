@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.3.0 (2023-09-26)
+
+Added new fuctionality when creating a oneflow agreements:
+
+-   Added `ProviderStateCallbackUrl` which is the Url where callbacks regarding the provider status are sent to.
+
 ## 4.2.0 (2023-08-29)
 
 Added new fuctionality regarding oneflow agreements:
