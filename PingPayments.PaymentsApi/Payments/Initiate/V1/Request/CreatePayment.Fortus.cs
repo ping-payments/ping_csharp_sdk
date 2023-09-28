@@ -16,8 +16,10 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 string personalNumber,
                 string country,
                 string ip,
+                string email,
                 Address? deliveryAddress = null,
                 IEnumerable<InvoiceItem>? invoiceItems = null,
+                string[]? additional_information = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null
             ) => new
@@ -35,9 +37,11 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                             Country = country,
                             Ip = ip,
                             PersonalNumber = personalNumber,
+                            Email = email
                         },
                         deliveryAddress,
-                        invoiceItems
+                        invoiceItems,
+                        additional_information
                     ),
                     statusCallbackUrl,
                     metadata
