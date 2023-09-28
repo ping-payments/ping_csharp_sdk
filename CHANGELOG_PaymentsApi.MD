@@ -1,6 +1,6 @@
 # Change Log
 
-## 3.8.1 (2023-09-26)
+## 3.8.1 (2023-09-28)
 - Added new parameters when creating a fortus invoice: 
 	- ´Email´, email of payer.
 	- ´ArticleNumber´, article number of an invoice item.
