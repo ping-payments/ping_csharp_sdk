@@ -37,11 +37,11 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                             Country = country,
                             Ip = ip,
                             PersonalNumber = personalNumber,
-                            Email = email
+                            Email = email,
+                            AdditionalInformation = additional_information
                         },
                         deliveryAddress,
-                        invoiceItems,
-                        additional_information
+                        invoiceItems
                     ),
                     statusCallbackUrl,
                     metadata

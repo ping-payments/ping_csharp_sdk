@@ -36,5 +36,11 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// </summary>
         [JsonPropertyName("email")]
         public string Email { get; set; }
+
+        /// <summary>
+        /// Additional information shown on the invoice. Max 4 strings
+        /// </summary>
+        [JsonPropertyName("additional_information")]
+        public string[]? AdditionalInformation { get; set; }
     }
 }

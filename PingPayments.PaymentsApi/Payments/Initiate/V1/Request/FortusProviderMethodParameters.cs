@@ -7,8 +7,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
     (
        Invoice InvoiceInformation,
        Address? DeliveryAddress = null,
-       IEnumerable<InvoiceItem>? InvoiceItems = null,
-       string[]? AdditionalInformation = null
+       IEnumerable<InvoiceItem>? InvoiceItems = null
 
     ) : ProviderMethodParameters
     {
@@ -16,8 +15,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         {
             { "invoice", InvoiceInformation },
             { "delivery_address", DeliveryAddress },
-            { "invoice_items", InvoiceItems },
-            { "additional_information", AdditionalInformation },
+            { "invoice_items", InvoiceItems }
         };
     }
 }
