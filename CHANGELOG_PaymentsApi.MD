@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.8.3 (2023-11-07)
+- Small fix regarding fortus payents:
+	- `Fortus` is now actually listed as a payment provider in `ProviderEnum`
+
 ## 3.8.2 (2023-10-09)
 - Small fix regarding fortus payents:
 	- `AdditionalInformation` is now a parameter in `Invoice`
