@@ -1,6 +1,9 @@
 using PingPayments.PaymentsApi.Disbursements;
 using PingPayments.PaymentsApi.Disbursements.Get.V1;
 using PingPayments.PaymentsApi.Disbursements.List.V1;
+using PingPayments.PaymentsApi.LiquidityAccounts;
+using PingPayments.PaymentsApi.LiquidityAccounts.Create.V1;
+using PingPayments.PaymentsApi.LiquidityAccounts.Get.V1;
 using PingPayments.PaymentsApi.Merchants;
 using PingPayments.PaymentsApi.Merchants.Create.V1;
 using PingPayments.PaymentsApi.Merchants.Get.V1;
@@ -85,6 +88,13 @@ namespace PingPayments.PaymentsApi
             );
             _merchants = new Lazy<IMerchantResource>(() => new MerchantResource(merchantV1));
 
+            var liquidityAccountV1 = new LiquidityAccountV1
+            (
+                new Lazy<CreateLiquidityAccountOperation>(() => new CreateLiquidityAccountOperation(httpClient)),
+                new Lazy<GetLiquidityAccountOperation>(() => new GetLiquidityAccountOperation(httpClient))
+            );
+            _liquidityAccounts = new Lazy<ILiquidityAccountResource>(() => new LiquidityAccountResource(liquidityAccountV1));
+
             _ping = new Lazy<IPingResource>(() => new PingResource(new PingV1(new Lazy<PingOperation>(() => new PingOperation(httpClient)))));
 
             var payoutV1 = new PayoutV1
@@ -129,6 +139,10 @@ namespace PingPayments.PaymentsApi
 
         private readonly Lazy<IMerchantResource> _merchants;
         public IMerchantResource Merchants => _merchants.Value;
+
+
+        private readonly Lazy<ILiquidityAccountResource> _liquidityAccounts;
+        public ILiquidityAccountResource LiquidityAccounts => _liquidityAccounts.Value;
 
 
         private readonly Lazy<IPingResource> _ping;
