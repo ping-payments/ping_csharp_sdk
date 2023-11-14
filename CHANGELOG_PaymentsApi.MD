@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.9.0 (2023-11-14)
+- Added new functionality regarding liquidity accounts:
+	- `Get` Fetches a specific liquidity account using it's `Guid`
+	- `Create` Creates a liquidity account using `CreateLiquidityAccountRequest`
+- Added some helpfull records:
+	- `AccountHolder`
+	- `BankAccount`
+	- `DepositInformation`
+	- `LegalEntityIdentity`
+- Added some helpfull Enums:
+	- `LegalEntityCountryEnum`
+	- `LegalEntityTypeEnum`
+
 ## 3.8.3 (2023-11-07)
 - Small fix regarding fortus payents:
 	- `Fortus` is now actually listed as a payment provider in `ProviderEnum`
