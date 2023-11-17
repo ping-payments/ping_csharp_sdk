@@ -13,6 +13,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         (
             CurrencyEnum currency,
             IEnumerable<OrderItem> orderItems,
+            string liquidityAccountId,
             Uri? statusCallbackUrl = null,
             IDictionary<string, dynamic>? metadata = null
         ) => new
@@ -22,7 +23,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 orderItems,
                 ProviderEnum.ping,
                 MethodEnum.credit,
-                new EmptyProviderMethodParameters(),
+                new PingCreditProviderMethodParameters(liquidityAccountId),
                 statusCallbackUrl,
                 metadata
             );
