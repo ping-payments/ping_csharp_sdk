@@ -1,9 +1,11 @@
 # Change Log
 
+## 3.9.2 (2023-11-21)
+- Corrected parameter name when fetching a liquidity account.
+
 ## 3.9.1 (2023-11-17)
 - Added missing parameters required for initiating a payment with a liquidity account:
 	- `PingCreditProviderMethodParameters` contains the request parameters and can be used through `CreatePayment.PingCredit`.
-
 
 ## 3.9.0 (2023-11-14)
 - Added new functionality regarding liquidity accounts:

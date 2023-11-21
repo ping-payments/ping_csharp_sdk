@@ -20,8 +20,8 @@ namespace PingPayments.PaymentsApi.LiquidityAccounts.Get.V1
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        public override async Task<GetLiquidityAccountResponse> ExecuteRequest(Guid merchantId) =>
-            await BaseExecute(GET, $"api/v1/liquidity_accounts/{merchantId}", merchantId);
+        public override async Task<GetLiquidityAccountResponse> ExecuteRequest(Guid liquidityAccountId) =>
+            await BaseExecute(GET, $"api/v1/liquidity_accounts/{liquidityAccountId}", liquidityAccountId);
 
         protected override async Task<GetLiquidityAccountResponse> ParseHttpResponse(HttpResponseMessage hrm, Guid _)
         {

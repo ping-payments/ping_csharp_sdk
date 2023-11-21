@@ -8,6 +8,6 @@ namespace PingPayments.PaymentsApi.LiquidityAccounts
     public interface ILiquidityAccountV1
     {
         Task<CreateLiquidityAccountResponse> Create(CreateLiquidityAccountRequest createLiquidityAccountRequest);
-        Task<GetLiquidityAccountResponse> Get(Guid merchantId);
+        Task<GetLiquidityAccountResponse> Get(Guid liquidityAccountId);
     }
 }

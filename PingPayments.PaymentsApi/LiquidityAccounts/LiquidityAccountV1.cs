@@ -20,8 +20,8 @@ namespace PingPayments.PaymentsApi.LiquidityAccounts
         private readonly Lazy<CreateLiquidityAccountOperation> _createLiquidityAccountOperation;
         private readonly Lazy<GetLiquidityAccountOperation> _getLiquidityAccountOperation;
 
-        public async Task<GetLiquidityAccountResponse> Get(Guid merchantId) =>
-            await _getLiquidityAccountOperation.Value.ExecuteRequest(merchantId);
+        public async Task<GetLiquidityAccountResponse> Get(Guid liquidityAccountId) =>
+            await _getLiquidityAccountOperation.Value.ExecuteRequest(liquidityAccountId);
 
         public async Task<CreateLiquidityAccountResponse> Create(CreateLiquidityAccountRequest createLiquidityAccountRequest) =>
             await _createLiquidityAccountOperation.Value.ExecuteRequest(createLiquidityAccountRequest);
