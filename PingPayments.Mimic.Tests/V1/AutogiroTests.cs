@@ -19,7 +19,7 @@ namespace PingPayments.Mimic.Tests.V1
         {
             var request = new UpdatePaymentRequest(Guid.NewGuid(), PaymentStatusEnum.PAID);
             var response = await _api.Autogiro.V1.UpdatePayment(request);
-            AssertHttpUnprocessableEntity(response);
+            AssertHttpNoContent(response);
         }
     }
 }
