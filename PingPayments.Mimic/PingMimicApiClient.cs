@@ -1,4 +1,7 @@
-﻿using PingPayments.Mimic.Deposit;
+﻿using PingPayments.Mimic.Autogiro;
+using PingPayments.Mimic.Autogiro.Update.Mandate.V1;
+using PingPayments.Mimic.Autogiro.Update.Payment.V1;
+using PingPayments.Mimic.Deposit;
 using PingPayments.Mimic.Deposit.Create.V1;
 using PingPayments.Mimic.Disbursements;
 using PingPayments.Mimic.Disbursements.Trigger.V1;
@@ -21,10 +24,21 @@ namespace PingPayments.Mimic
 
             var disbursementV1 = new DisbursementV1(new Lazy<TriggerDisbursementOperation>(() => new TriggerDisbursementOperation(httpClient)));
             _disbursement = new Lazy<IDisbursementResource>(() => new DisbursementResource(disbursementV1));
+
+            var autogirotV1 = new AutogiroV1
+            (
+                new Lazy<UpdateMandateOperation>(() => new UpdateMandateOperation(httpClient)),
+                new Lazy<UpdatePaymentOperation>(() => new UpdatePaymentOperation(httpClient))
+            );
+            _autogiro = new Lazy<IAutogiroResource>(() => new AutogiroResource(autogirotV1));
         }
 
         private readonly Lazy<IDepositResource> _deposit;
         public IDepositResource Deposit => _deposit.Value;
+
+
+        private readonly Lazy<IAutogiroResource> _autogiro;
+        public IAutogiroResource Autogiro => _autogiro.Value;
 
 
         private readonly Lazy<IMerchantResource> _merchant;
