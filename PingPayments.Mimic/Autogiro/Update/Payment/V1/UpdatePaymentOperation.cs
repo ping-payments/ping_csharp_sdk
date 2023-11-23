@@ -1,11 +1,10 @@
-﻿using PingPayments.Mimic.Autogiro.Update.Payment.V1;
-using PingPayments.Shared;
+﻿using PingPayments.Shared;
 using System.Net.Http;
 using System.Threading.Tasks;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
 using static System.Net.HttpStatusCode;
 
-namespace PingPayments.Mimic.Autogiro.Update.Mandate.V1
+namespace PingPayments.Mimic.Autogiro.Update.Payment.V1
 {
     public class UpdatePaymentOperation : OperationBase<UpdatePaymentRequest, EmptyResponse>
     {

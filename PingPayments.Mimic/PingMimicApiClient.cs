@@ -1,5 +1,6 @@
 ﻿using PingPayments.Mimic.Autogiro;
 using PingPayments.Mimic.Autogiro.Update.Mandate.V1;
+using PingPayments.Mimic.Autogiro.Update.Payment.V1;
 using PingPayments.Mimic.Deposit;
 using PingPayments.Mimic.Deposit.Create.V1;
 using PingPayments.Mimic.Disbursements;
