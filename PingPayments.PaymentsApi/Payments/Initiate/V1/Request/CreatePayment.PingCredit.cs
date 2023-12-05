@@ -15,7 +15,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             IEnumerable<OrderItem> orderItems,
             string liquidityAccountId,
             Uri? statusCallbackUrl = null,
-            IDictionary<string, dynamic>? metadata = null
+            IDictionary<string, dynamic>? metadata = null,
+            Payer? payer = null
         ) => new
             (
                 currency,
@@ -25,7 +26,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 MethodEnum.credit,
                 new PingCreditProviderMethodParameters(liquidityAccountId),
                 statusCallbackUrl,
-                metadata
+                metadata,
+                payer
             );
         }
     }

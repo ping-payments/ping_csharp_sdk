@@ -16,7 +16,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
                 string? reference = null,
-                bool? completeWhenFunded = null
+                bool? completeWhenFunded = null,
+                Payer? payer = null
             ) => new
                 (
                     currency,
@@ -26,7 +27,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     MethodEnum.deposit,
                     new PingDepositParameters(ReferenceTypeEnum.OCR, reference, completeWhenFunded),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
             );
 
             public static InitiatePaymentRequest Kid
@@ -36,7 +38,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
                 string? reference = null,
-                bool? completeWhenFunded = null
+                bool? completeWhenFunded = null,
+                Payer? payer = null
             ) => new
                 (
                     currency,
@@ -46,7 +49,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     MethodEnum.deposit,
                     new PingDepositParameters(ReferenceTypeEnum.KID, reference, completeWhenFunded),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
                 );
         }
     }

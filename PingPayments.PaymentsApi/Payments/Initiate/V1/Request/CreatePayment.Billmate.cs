@@ -22,7 +22,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 string customerReference,
                 bool isCompanyCustomer,
                 Uri? statusCallbackUrl = null,
-                IDictionary<string, dynamic>? metadata = null
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
             ) => new
                 (
                     CurrencyEnum.SEK,
@@ -43,7 +44,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                         isCompanyCustomer
                     ),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
                 );
         }
     }

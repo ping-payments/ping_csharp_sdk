@@ -17,7 +17,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             MethodEnum method,
             ProviderMethodParameters providerMethodParameters,
             Uri? statusCallbackUrl = null,
-            IDictionary<string, dynamic>? metadata = null
+            IDictionary<string, dynamic>? metadata = null,
+            Payer? payer = null
         )
         {
             Currency = currency;
@@ -25,6 +26,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             Metadata = metadata ?? new Dictionary<string, dynamic>();
             OrderItems = orderItems;
             Method = method;
+            Payer = payer;
             Provider = provider;
             ProviderMethodParameters = providerMethodParameters;
             StatusCallbackUrl = statusCallbackUrl;

@@ -14,7 +14,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 IEnumerable<OrderItem> orderItems,
                 string mandateId,
                 Uri? statusCallbackUrl = null,
-                IDictionary<string, dynamic>? metadata = null
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
             ) => new
                 (
                     CurrencyEnum.SEK,
@@ -24,7 +25,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     MethodEnum.autogiro,
                     new BankgirotProviderMethodParameters(mandateId),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
                 );
         }
     }

@@ -18,7 +18,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 string phoneNumber,
                 string message,
                 Uri? statusCallbackUrl = null,
-                IDictionary<string, dynamic>? metadata = null
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
             ) => new
                 (
                     CurrencyEnum.SEK,
@@ -28,7 +29,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     MethodEnum.e_commerce,
                     new SwishECommerceParameters(message, phoneNumber),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
                 );
 
             /// <summary>
@@ -42,7 +44,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 string message,
                 Uri? statusCallbackUrl = null,
                 SwishQrCode? swishQrCode = null,
-                IDictionary<string, dynamic>? metadata = null
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
             ) => new
                 (
                     CurrencyEnum.SEK,
@@ -52,7 +55,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     MethodEnum.m_commerce,
                     new SwishMCommerceParameters(message, swishQrCode),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
                 );
         }
     }

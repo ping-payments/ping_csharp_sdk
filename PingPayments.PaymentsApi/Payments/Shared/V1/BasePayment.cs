@@ -43,5 +43,11 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         [JsonPropertyName("method")]
         public MethodEnum Method { get; set; }
 
+        /// <summary>
+        /// Information regarding the payer
+        /// </summary>
+        [JsonPropertyName("payer")]
+        public Payer? Payer { get; set; }
+
     }
 }
