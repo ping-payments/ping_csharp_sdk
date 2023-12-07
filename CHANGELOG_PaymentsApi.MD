@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.10.0 (2023-12-07
+- Added `BankAccount` in `PingDepositResponse`
+- Marked `CreditAccount` in `PingDepositResponse` as `OBSOLETE`
+
 ## 3.9.2 (2023-11-21)
 - Corrected parameter name when fetching a liquidity account.
 

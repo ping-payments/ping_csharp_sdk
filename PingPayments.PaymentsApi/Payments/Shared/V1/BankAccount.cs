@@ -2,7 +2,7 @@
 
 namespace PingPayments.PaymentsApi.Payments.Shared.V1
 {
-    public record DepositAccount
+    public record BankAccount
     {
         [JsonPropertyName("iban")]
         public string Iban { get; set; }
