@@ -28,8 +28,7 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
                 new MethodEnumJsonConvert(),
                 new JsonStringEnumConverter(),
                 new ProviderMethodParametersJsonConvert(),
-            },
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            }
         };
 
         public override async Task<InitiatePaymentResponse> ExecuteRequest((Guid orderId, InitiatePaymentRequest initiatePaymentRequest) request) =>
