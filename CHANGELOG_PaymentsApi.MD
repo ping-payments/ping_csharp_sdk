@@ -1,6 +1,9 @@
 # Change Log
 
-## 3.10.0 (2023-12-07
+## 3.11.0 (2023-12-11)
+- Added `Payer` object to `InitiatePaymentRequest` that should be popuated with available information regarding the payer.
+
+## 3.10.0 (2023-12-07)
 - Added `BankAccount` in `PingDepositResponse`
 - Marked `CreditAccount` in `PingDepositResponse` as `OBSOLETE`
 
