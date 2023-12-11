@@ -15,7 +15,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     IEnumerable<OrderItem> orderItems,
                     Uri? statusCallbackUrl = null,
                     BaaseInvoiceInformation? invoiceInformation = null,
-                    IDictionary<string, dynamic>? metadata = null
+                    IDictionary<string, dynamic>? metadata = null,
+                    Payer? payer = null
                 ) => new
                 (
                     CurrencyEnum.SEK,
@@ -25,7 +26,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     MethodEnum.bank_loan,
                     new BaaseProviderMethodParameters(invoiceInformation),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
                 );
         }
     }

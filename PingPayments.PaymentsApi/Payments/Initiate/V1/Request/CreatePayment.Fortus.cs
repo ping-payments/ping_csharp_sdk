@@ -21,7 +21,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 IEnumerable<InvoiceItem>? invoiceItems = null,
                 string[]? additional_information = null,
                 Uri? statusCallbackUrl = null,
-                IDictionary<string, dynamic>? metadata = null
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
             ) => new
                 (
                     CurrencyEnum.SEK,
@@ -44,7 +45,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                         invoiceItems
                     ),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
                 );
         }
     }

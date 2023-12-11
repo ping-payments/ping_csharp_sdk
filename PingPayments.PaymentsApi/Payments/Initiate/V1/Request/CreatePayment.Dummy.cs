@@ -15,7 +15,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 IEnumerable<OrderItem> orderItems,
                 Uri? statusCallbackUrl = null,
                 PaymentStatusEnum desiredPaymentStatus = PaymentStatusEnum.COMPLETED,
-                IDictionary<string, dynamic>? metadata = null
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
 
             ) => new
                 (
@@ -26,7 +27,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     MethodEnum.dummy,
                     new DummyProviderMethodParameters(desiredPaymentStatus),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
                 );
         }
     }

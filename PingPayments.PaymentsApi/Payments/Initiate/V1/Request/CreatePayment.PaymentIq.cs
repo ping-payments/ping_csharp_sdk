@@ -18,7 +18,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 string locale = "en-US",
                 Uri? statusCallbackUrl = null,
                 Cashier? cashier = null,
-                IDictionary<string, dynamic>? metadata = null
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
             ) => new
                 (
                     currency,
@@ -34,7 +35,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                         cashier
                     ),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
                 );
 
             public static InitiatePaymentRequest Vipps
@@ -44,7 +46,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 Uri cancelUrl,
                 Uri statusCallbackUrl,
                 string locale = "en-US",
-                IDictionary<string, dynamic>? metadata = null
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
             ) => new
                 (
                     CurrencyEnum.NOK,
@@ -59,7 +62,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                         locale
                     ),
                     statusCallbackUrl,
-                    metadata
+                    metadata,
+                    payer
                 );
         }
     }
