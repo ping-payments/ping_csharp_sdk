@@ -1,5 +1,8 @@
 # Change Log
 
+## 3.11.1 (2024-01-09)
+- Fixed a parsing bug when using the `Get` payment endpoint
+
 ## 3.11.0 (2023-12-11)
 - Added `Payer` object to `InitiatePaymentRequest` that should be popuated with available information regarding the payer.
 

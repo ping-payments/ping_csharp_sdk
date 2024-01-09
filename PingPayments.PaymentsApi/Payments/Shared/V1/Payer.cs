@@ -13,13 +13,18 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
             Name = name;
             PhoneNumber = phoneNumber;
             Identity = identity;
-            Address = payerAddress ?? new PayerAddress();
+            Address = payerAddress;
         }
+        public Payer()
+        {
+
+        }
+
         /// <summary>
         /// Address of payer
         /// </summary>
         [JsonPropertyName("address")]
-        public PayerAddress? Address { get; set; }
+        public PayerAddress? Address { get; set; } = new PayerAddress();
 
         /// <summary>
         /// Email of payer
