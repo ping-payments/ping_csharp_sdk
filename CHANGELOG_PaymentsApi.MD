@@ -1,5 +1,8 @@
 # Change Log
 
+## 3.11.2 (2024-01-10)
+- Fixed another but less frequent parsing bug when using the `Get` payment endpoint.
+
 ## 3.11.1 (2024-01-09)
 - Fixed a parsing bug when using the `Get` payment endpoint
 
