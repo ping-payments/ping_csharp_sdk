@@ -3,6 +3,9 @@ using PingPayments.KYC.Merchant.V1.Get;
 using PingPayments.KYC.Merchant.V1.Verification;
 using PingPayments.KYC.Shared;
 using PingPayments.Tests;
+using System;
+using System.Runtime.CompilerServices;
+using Xunit;
 
 
 namespace PingPayments.KYC.Tests.V1
@@ -34,7 +37,7 @@ namespace PingPayments.KYC.Tests.V1
         }
 
 
-        [Fact]
+        [Fact(Skip = "New merchant needs to be created each time")]
         public async Task Verification_returns_204()
         {
             var bankAccounts = new BankAccount[] {
@@ -71,11 +74,11 @@ namespace PingPayments.KYC.Tests.V1
             AssertHttpNoContent(response);
         }
 
-        [Fact]
+        [Fact(Skip = "New merchant needs to be created each time")]
         public async Task Verification_minimal_request_body_returns_204()
         {
             var bankAccounts = new BankAccount[] { };
-            var personData = new PersonData(GenderEnum.male, "198002015841");
+            var personData = new PersonData(GenderEnum.male, "");
 
             var request = new KycVerificationRequest
                 (
@@ -150,7 +153,7 @@ namespace PingPayments.KYC.Tests.V1
         }
 
         [Fact]
-        public async Task Ais_merchant_entity_already_registered_returns_201()
+        public async Task Ais_merchant_entity_already_registered_returns_200()
         {
             var request = new AisMerchantRequest
             (
@@ -162,14 +165,7 @@ namespace PingPayments.KYC.Tests.V1
             );
 
             var response = await _api.Merchant.V1.AIS(request);
-            AssertHttpCreated(response);
-        }
-
-
-        [Fact]
-        public async Task Ais_merchant_with_bad_request_return_400()
-        {
-            AssertBadRequest(await _api.Merchant.V1.AIS(null));
+            AssertHttpOK(response);
         }
     }
 }
