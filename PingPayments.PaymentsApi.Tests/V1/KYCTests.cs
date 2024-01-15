@@ -1,4 +1,5 @@
 ﻿using PingPayments.PaymentsApi.KYC.AccountVerificationSession.Create.V1;
+using PingPayments.PaymentsApi.KYC.AccountVerificationSession.Get.V1;
 using PingPayments.PaymentsApi.KYC.AccountVerificationSession.Shared;
 using PingPayments.PaymentsApi.KYC.AccountVerificationSession.Shared.Styling;
 using PingPayments.PaymentsApi.LiquidityAccounts.Shared;
@@ -10,9 +11,30 @@ namespace PingPayments.PaymentsApi.Tests.V1
 {
     public class KYCTests : PaymentsApiTestClient
     {
+        [Fact]
+        public async Task Malformed_identity_create_verification_session_returns_400()
+        {
+            var payload = new CreateSessionRequest
+            {
+                AccountHolder = new LegalEntityIdentity
+                {
+                    Country = LegalEntityCountryEnum.SE,
+                    Identifier = "",
+                    Type = LegalEntityTypeEnum.person
+                },
+                MerchantId = TestData.MerchantId.ToString(),
+                Options = new SessionOptions
+                {
+                    Locale = SupportedLocales.sv_SE
+                }
+            };
+
+            var createResponse = await _api.AccountVerification.V1.Create(payload);
+            AssertBadRequest(createResponse);
+        }
 
         [Fact]
-        public async Task CanCreateAndGetVerificationSession()
+        public async Task Can_create_and_get_verification_session()
         {
             var payload = new CreateSessionRequest
             {
@@ -45,13 +67,22 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var createResponse = await _api.AccountVerification.V1.Create(payload);
             AssertHttpOK(createResponse);
 
-            CreateSessionResponseBody body = createResponse.Body.SuccessfulResponseBody;
-            Assert.NotEqual("", body.Id);
+            CreateSessionResponseBody createBody = createResponse.Body.SuccessfulResponseBody;
+            Assert.NotEqual("", createBody.Id);
+            Assert.NotNull(createBody.Id);
+            Assert.NotNull(createBody.SessionVerificationUrl);
+            Assert.NotEqual("", createBody.SessionVerificationUrl);
 
-            var getResponse = await _api.AccountVerification.V1.Get(body.Id);
+            var getResponse = await _api.AccountVerification.V1.Get(createBody.Id);
             AssertHttpOK(getResponse);
 
-            Assert.NotNull(getResponse);
+            GetSessionResponseBody getBody = getResponse.Body.SuccessfulResponseBody;
+            Assert.NotEqual("", getBody.Id);
+            Assert.NotNull(getBody.Id);
+            Assert.NotEmpty(getBody.StatusHistory);
+            Assert.NotNull(getBody.SessionUrl);
+
+            Assert.Equal(createBody.Id, getBody.Id);
         }
     }
 }
