@@ -1,6 +1,9 @@
 using PingPayments.PaymentsApi.Disbursements;
 using PingPayments.PaymentsApi.Disbursements.Get.V1;
 using PingPayments.PaymentsApi.Disbursements.List.V1;
+using PingPayments.PaymentsApi.KYC.AccountVerificationSession;
+using PingPayments.PaymentsApi.KYC.AccountVerificationSession.Create.V1;
+using PingPayments.PaymentsApi.KYC.AccountVerificationSession.Get.V1;
 using PingPayments.PaymentsApi.LiquidityAccounts;
 using PingPayments.PaymentsApi.LiquidityAccounts.Create.V1;
 using PingPayments.PaymentsApi.LiquidityAccounts.Get.V1;
@@ -56,6 +59,14 @@ namespace PingPayments.PaymentsApi
             );
 
             _disbursementV1 = new Lazy<IDisbursementResource>(() => new DisbursementResource(disbursementV1));
+
+            var accountBerificationSessionV1 = new AccountVerificationSessionV1
+           (
+               new Lazy<GetSessionOperation>(() => new GetSessionOperation(httpClient)),
+               new Lazy<CreateSessionOperation>(() => new CreateSessionOperation(httpClient))
+           );
+
+            _accountVerificationSessionResource = new Lazy<IAccountVerificationSessionResource>(() => new AccountVerificationSessionResource(accountBerificationSessionV1));
 
             var paymentsV1 = new PaymentsV1
             (
@@ -127,6 +138,10 @@ namespace PingPayments.PaymentsApi
 
         private readonly Lazy<IDisbursementResource> _disbursementV1;
         public IDisbursementResource Disbursements => _disbursementV1.Value;
+
+
+        private readonly Lazy<IAccountVerificationSessionResource> _accountVerificationSessionResource;
+        public IAccountVerificationSessionResource AccountVerification => _accountVerificationSessionResource.Value;
 
 
         private readonly Lazy<IPaymentResource> _payments;
