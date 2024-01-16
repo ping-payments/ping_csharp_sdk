@@ -5,7 +5,7 @@
 	  <LangVersion>9.0</LangVersion>
 	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	  <PackageId>PingPayments.KYC</PackageId>
-	  <Version>4.3.0</Version>
+	  <Version>4.4.0</Version>
 	  <Authors>pingpaymentsab</Authors>
 	  <Company>Ping Payments AB</Company>
 	  <Owners>Ping Payments</Owners>

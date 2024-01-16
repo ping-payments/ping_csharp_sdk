@@ -6,7 +6,7 @@
     <LangVersion>9.0</LangVersion>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageId>PingPayments.Payments</PackageId>
-    <Version>3.11.2</Version>
+    <Version>3.12.0</Version>
     <Authors>pingpaymentsab</Authors>
     <Company>Ping Payments AB</Company>
     <Owners>Ping Payments</Owners>
