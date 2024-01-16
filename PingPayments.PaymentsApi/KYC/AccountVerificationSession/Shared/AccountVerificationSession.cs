@@ -8,7 +8,7 @@ namespace PingPayments.PaymentsApi.KYC.AccountVerificationSession.Shared
     public record AccountVerificationSessionBase
     {
         /// <summary>
-        /// Properties for identifying a legal entity
+        /// Properties for identifying a account holder
         /// </summary>
         [JsonPropertyName("account_holder")]
         public LegalEntityIdentity AccountHolder { get; set; }
