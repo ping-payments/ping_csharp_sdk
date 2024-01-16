@@ -1,5 +1,9 @@
 # Change Log
 
+## 4.4.0 (2024-01-16)
+
+Removed unused Session-functionality that has been moved to `PingPayments.Payments`
+
 ## 4.3.0 (2023-09-26)
 
 Added new fuctionality when creating a oneflow agreements:

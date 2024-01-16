@@ -1,5 +1,10 @@
 # Change Log
 
+## 3.12.0 (2024-01-16)
+- Added two new endpoints regarding an Account Verification Session:
+	- `Create` which creates an Account Verification Session using `CreateSessionRequest`
+	- `Get` which fetches an Account Verification Session using an Id
+
 ## 3.11.2 (2024-01-10)
 - Fixed another but less frequent parsing bug when using the `Get` payment endpoint.
 
