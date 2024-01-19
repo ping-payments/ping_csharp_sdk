@@ -60,6 +60,6 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// Where the money is coming from that is being used for this purchase
         /// </summary>
         [JsonPropertyName("source_of_funds")]
-        public string[] SourceOfFunds { get; set; }
+        public string[]? SourceOfFunds { get; set; }
     }
 }
