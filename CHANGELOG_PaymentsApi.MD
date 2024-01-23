@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.13.0 (2024-01-23)
+- Added a new field when creating an Invoice with Fortus
+	- `OrderNumber` added to `FortusProviderMethodParameters` and as a parameter in `CreatePayment.Fortus.Invoice`.
+
 ## 3.12.0 (2024-01-16)
 - Added two new endpoints regarding an Account Verification Session:
 	- `Create` which creates an Account Verification Session using `CreateSessionRequest`
