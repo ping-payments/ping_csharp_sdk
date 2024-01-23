@@ -38,6 +38,12 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public string Email { get; set; }
 
         /// <summary>
+        /// Can be an internal order number or a reference to a Ping Payments "PaymentOrderId"
+        /// </summary>
+        [JsonPropertyName("order_no")]
+        public string OrderNumber { get; set; }
+
+        /// <summary>
         /// Additional information shown on the invoice. Max 4 strings
         /// </summary>
         [JsonPropertyName("additional_information")]

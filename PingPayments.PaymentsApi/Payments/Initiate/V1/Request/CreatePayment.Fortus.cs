@@ -17,6 +17,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 string country,
                 string ip,
                 string email,
+                string orderNumber,
                 Address? deliveryAddress = null,
                 IEnumerable<InvoiceItem>? invoiceItems = null,
                 string[]? additional_information = null,
@@ -39,6 +40,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                             Ip = ip,
                             PersonalNumber = personalNumber,
                             Email = email,
+                            OrderNumber = orderNumber,
                             AdditionalInformation = additional_information
                         },
                         deliveryAddress,
