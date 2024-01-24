@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.14.0 (2024-01-24)
+- Added new field in `Payer` when initiating a payment
+	- `SourceOfFunds` added to `Payer` and is a list of `SourceOfFundsEnum`.
+
 ## 3.13.0 (2024-01-23)
 - Added a new field when creating an Invoice with Fortus
 	- `OrderNumber` added to `FortusProviderMethodParameters` and as a parameter in `CreatePayment.Fortus.Invoice`.
