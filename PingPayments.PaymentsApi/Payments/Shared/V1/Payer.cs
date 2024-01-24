@@ -6,7 +6,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
 {
     public record Payer
     {
-        public Payer(string? email = null, string? ipAddress = null, string? name = null, string? phoneNumber = null, PayerAddress? payerAddress = null, LegalEntity? identity = null)
+        public Payer(string? email = null, string? ipAddress = null, string? name = null, string? phoneNumber = null, PayerAddress? payerAddress = null, LegalEntity? identity = null, SourceOfFundsEnum[]? sourceOfFunds = null)
         {
             Email = email;
             IpAddress = ipAddress;
@@ -14,6 +14,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
             PhoneNumber = phoneNumber;
             Identity = identity;
             Address = payerAddress;
+            SourceOfFunds = sourceOfFunds;
         }
         public Payer()
         {
@@ -55,5 +56,11 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// </summary>
         [JsonPropertyName("phone_number")]
         public string? PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Where the money is coming from that is being used for this purchase
+        /// </summary>
+        [JsonPropertyName("source_of_funds")]
+        public SourceOfFundsEnum[]? SourceOfFunds { get; set; }
     }
 }

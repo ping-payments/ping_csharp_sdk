@@ -29,7 +29,25 @@ namespace PingPayments.PaymentsApi.Tests.V1
                     new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId, new Dictionary<string, object> { { "Key", "Data" } }),
                     new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId, tags: new string[] {"typ1"}),
                 },
-                payer: new Payer()
+                payer: new Payer(
+                    sourceOfFunds: new SourceOfFundsEnum[]
+                    {
+                        SourceOfFundsEnum.rental_income,
+                        SourceOfFundsEnum.loan_or_credit,
+                        SourceOfFundsEnum.business_profits,
+                        SourceOfFundsEnum.salary_or_employment_income,
+                        SourceOfFundsEnum.legal_settlements,
+                        SourceOfFundsEnum.gifts_and_donations,
+                        SourceOfFundsEnum.dividends_and_investment_income,
+                        SourceOfFundsEnum.foreign_remittances,
+                        SourceOfFundsEnum.inheritance,
+                        SourceOfFundsEnum.insurance_payouts,
+                        SourceOfFundsEnum.lottery_or_gambling_winnings,
+                        SourceOfFundsEnum.retirement_funds,
+                        SourceOfFundsEnum.royalties,
+                        SourceOfFundsEnum.sale_of_assets
+                    }
+                    )
             );
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
 
