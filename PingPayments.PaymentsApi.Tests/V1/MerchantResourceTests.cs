@@ -33,6 +33,23 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Merchant[]? merchants = response;
             Assert.True(merchants != null && merchants.Any());
         }
+        [Fact]
+        public async Task Create_merchant_dk_organization_returns_200()
+        {
+
+            var createMerchantRequest = new CreateMerchantRequest
+            {
+                Name = "Danske Bolag",
+                Organization = new Organization
+                {
+                    Country = "DK",
+                    DkOrganizationNumber = "12345678"
+                }
+            };
+            var response = await _api.Merchants.V1.Create(createMerchantRequest);
+            AssertHttpOK(response);
+            Assert.NotEqual(Guid.Empty, response);
+        }
 
         [Theory]
         [InlineData("SE")]
@@ -47,6 +64,10 @@ namespace PingPayments.PaymentsApi.Tests.V1
                         null)
                 .RuleFor(x => x.NoOrganizationNumber, (f, o) =>
                     country == "NO" ?
+                        new Randomizer().Replace("#########") :
+                        null)
+                .RuleFor(x => x.DkOrganizationNumber, (f, o) =>
+                    country == "DK" ?
                         new Randomizer().Replace("#########") :
                         null);
             var fakeMercantGenerator = new Faker<CreateMerchantRequest>()

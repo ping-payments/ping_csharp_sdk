@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.15.0 (2024-02-20)
+- You can now create a merchant with a danish organization number:
+	- `DkOrganizationNumber` compined with `Country = "DK"` in the `CreateMerchantRequest`
+
 ## 3.14.0 (2024-01-24)
 - Added new field in `Payer` when initiating a payment
 	- `SourceOfFunds` added to `Payer` and is a list of `SourceOfFundsEnum`.

@@ -27,6 +27,13 @@ namespace PingPayments.PaymentsApi.Disbursements.Shared
 
 
         /// <summary>
+        /// Danish organization number
+        /// </summary>
+        [JsonPropertyName("dk_organization_number")]
+        public string? DkOrganizationNumber { get; set; }
+
+
+        /// <summary>
         /// Swedish organization number
         /// </summary>
         [JsonPropertyName("se_organization_number")]

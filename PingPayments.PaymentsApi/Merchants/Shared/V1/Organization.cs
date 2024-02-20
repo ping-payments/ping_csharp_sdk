@@ -8,13 +8,19 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         /// Country code for organization
         /// </summary>
         [JsonPropertyName("country")]
-        public string Country { get; set;}
+        public string Country { get; set; }
 
         /// <summary>
         /// Norwegian organization number
         /// </summary>
         [JsonPropertyName("no_organization_number")]
         public string? NoOrganizationNumber { get; set; }
+
+        /// <summary>
+        /// Norwegian organization number
+        /// </summary>
+        [JsonPropertyName("dk_organization_number")]
+        public string? DkOrganizationNumber { get; set; }
 
         /// <summary>
         /// Swedish organization number
