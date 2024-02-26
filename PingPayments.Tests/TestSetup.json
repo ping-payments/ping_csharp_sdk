@@ -6,5 +6,6 @@
   "PAYMENTID": "",
   "PAYOUTID": "",
   "DISBURSEMENTID": "",
-  "PAYMENTLINKID": ""
+  "PAYMENTLINKID": "",
+  "LIQUIDITYACCOUNTID":  ""
 }

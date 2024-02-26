@@ -6,12 +6,13 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
 {
     public record OrderItem
     {
-        public OrderItem(int amount, string name, decimal vat, Guid merchantId, IDictionary<string, dynamic>? metadata = null, string[]? tags = null)
+        public OrderItem(int amount, string name, decimal vat, Guid? merchantId = null, Guid? liquidityAccountId = null, IDictionary<string, dynamic>? metadata = null, string[]? tags = null)
         {
             Amount = amount;
             Name = name;
             Vat = vat;
             MerchantId = merchantId;
+            LiquidityAccountId = liquidityAccountId;
             Metadata = metadata ?? new Dictionary<string, dynamic>();
             Tags = tags ?? new string[] { };
         }
@@ -35,10 +36,16 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public decimal Vat { get; set; }
 
         /// <summary>
-        /// Merchant that is selling/providing the item
+        /// Merchant that is selling/providing the item. Liquidity account must be unset or set to null
         /// </summary>
         [JsonPropertyName("merchant_id")]
-        public Guid MerchantId { get; set; }
+        public Guid? MerchantId { get; set; }
+
+        /// <summary>
+        /// Liquidity account to receive funds. Merchant must be unset or set to null
+        /// </summary>
+        [JsonPropertyName("liquidity_account_id")]
+        public Guid? LiquidityAccountId { get; set; }
 
         /// <summary>
         /// Custom metadata
