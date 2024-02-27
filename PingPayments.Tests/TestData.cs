@@ -28,6 +28,7 @@ namespace PingPayments.Tests
                 {"PayoutId",  GetGuidValue("PAYOUTID")},
                 {"DisbursementId",  GetGuidValue("DISBURSEMENTID")},
                 {"PaymentLinkId",  GetGuidValue("PAYMENTLINKID")},
+                {"LiquidityAccountId",  GetGuidValue("LIQUIDITYACCOUNTID")}
             };
             return Settings;
         }
@@ -39,6 +40,7 @@ namespace PingPayments.Tests
         public static Guid PayoutId => GetSettings()["PayoutId"];
         public static Guid DisbursementId => GetSettings()["DisbursementId"];
         public static Guid PaymentLinkId => GetSettings()["PaymentLinkId"];
+        public static Guid LiquidityAccountId => GetSettings()["LiquidityAccountId"];
         public static Uri FakeCallback => new("https://not.real.callback.pingpayments.com");
     }
 }
