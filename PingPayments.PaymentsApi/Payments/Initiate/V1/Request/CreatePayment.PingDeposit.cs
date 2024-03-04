@@ -15,6 +15,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 IEnumerable<OrderItem> orderItems,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
+                Shared.V1.Deposit.Invoice? invoice = null,
                 string? reference = null,
                 bool? completeWhenFunded = null,
                 Payer? payer = null
@@ -25,11 +26,11 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.OCR, reference, completeWhenFunded),
+                    new PingDepositParameters(ReferenceTypeEnum.OCR, invoice, reference, completeWhenFunded),
                     statusCallbackUrl,
                     metadata,
                     payer
-            );
+                );
 
             public static InitiatePaymentRequest Kid
             (
@@ -37,6 +38,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 IEnumerable<OrderItem> orderItems,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
+                Shared.V1.Deposit.Invoice? invoice = null,
                 string? reference = null,
                 bool? completeWhenFunded = null,
                 Payer? payer = null
@@ -47,7 +49,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.KID, reference, completeWhenFunded),
+                    new PingDepositParameters(ReferenceTypeEnum.KID, invoice, reference, completeWhenFunded),
                     statusCallbackUrl,
                     metadata,
                     payer
