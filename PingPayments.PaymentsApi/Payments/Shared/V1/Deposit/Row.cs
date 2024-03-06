@@ -8,31 +8,31 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1.Deposit
     public record Row
     {
         /// <summary>
-        /// Url to display the invoice
+        /// Description of the product or service
         /// </summary>
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
         /// <summary>
-        /// Url to download the invoice
+        /// Quantity of the product or service
         /// </summary>
         [JsonPropertyName("quantity")]
-        public string Quantity { get; set; }
+        public decimal Quantity { get; set; }
 
         /// <summary>
-        /// Url to download the invoice
+        /// VAT rate of the product or service
         /// </summary>
         [JsonPropertyName("vat_rate")]
-        public string VatRate { get; set; }
+        public decimal VatRate { get; set; }
 
         /// <summary>
-        /// Url to download the invoice
+        /// Unit price of the product or service, representing the cost for one unit regardless of the given quantity
         /// </summary>
         [JsonPropertyName("amount")]
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
 
         /// <summary>
-        /// Url to download the invoice
+        /// Article number of the product or service
         /// </summary>
         [JsonPropertyName("article_number")]
         public string? ArticleNumber { get; set; }

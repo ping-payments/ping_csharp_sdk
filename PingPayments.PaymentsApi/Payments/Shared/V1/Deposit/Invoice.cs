@@ -8,13 +8,13 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1.Deposit
     public record Invoice
     {
         /// <summary>
-        /// Url to display the invoice
+        /// Locale of the invoice.
         /// </summary>
         [JsonPropertyName("locale")]
         public string Locale { get; set; }
 
         /// <summary>
-        /// Url to download the invoice
+        /// Invoice text fields
         /// </summary>
         [JsonPropertyName("text_fields")]
         public TextFields TextFields { get; set; }
@@ -26,13 +26,13 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1.Deposit
         public Supplier? Supplier { get; set; }
 
         /// <summary>
-        /// Url to download the invoice
+        /// Customer information
         /// </summary>
         [JsonPropertyName("customer")]
         public Customer Customer { get; set; }
 
         /// <summary>
-        /// Url to download the invoice
+        /// Invoice rows
         /// </summary>
         [JsonPropertyName("rows")]
         public Row[] Rows { get; set; }
