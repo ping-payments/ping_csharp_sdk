@@ -516,7 +516,6 @@ namespace PingPayments.PaymentsApi.Tests.V1
                         VatRate = SwedishVat.Vat25
                     }
                 }
-
             };
 
             var paymentRequest = CreatePayment.PingDeposit.Invoice.Ocr
@@ -533,7 +532,6 @@ namespace PingPayments.PaymentsApi.Tests.V1
 
             AssertHttpOK(response);
         }
-
 
         public async Task<(Guid orderId, PingDepositResponseBody depositResponse)> PreparePaymentOrderWithDepositPayment(int price, bool completeWhenFunded = true)
         {
@@ -558,6 +556,5 @@ namespace PingPayments.PaymentsApi.Tests.V1
             return (orderId, depositResponse);
         }
 #pragma warning restore CS8600 // Dereference of a possibly null reference
-
     }
 }
