@@ -8,10 +8,10 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
     public record PingDepositParameters
     (
         ReferenceTypeEnum ReferenceType,
-        Invoice? Invoice,
         string? Reference,
         bool? CompleteWhenFunded,
-        string? DesiredDateOfPayment
+        string? DesiredDateOfPayment,
+        Invoice? Invoice = null
     ) : ProviderMethodParameters
     {
         public override Dictionary<string, dynamic> ToDictionary() => new()
@@ -20,8 +20,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             { "complete_when_funded", CompleteWhenFunded ?? true },
             { "reference_type", ReferenceType },
             { "reference", Reference },
-            { "invoice", Invoice },
-            { "desired_date_of_payment", DesiredDateOfPayment }
+            { "desired_date_of_payment", DesiredDateOfPayment },
+            { "invoice", Invoice }
         };
     }
 }

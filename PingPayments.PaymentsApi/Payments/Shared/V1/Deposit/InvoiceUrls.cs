@@ -11,14 +11,12 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1.Deposit
         /// Url to display the invoice
         /// </summary>
         [JsonPropertyName("display_url")]
-        public string DisplayUrl { get; set; } = "";
+        public string DisplayUrl { get; set; }
 
         /// <summary>
         /// Url to download the invoice
         /// </summary>
         [JsonPropertyName("download_url")]
-        public string DownloadUrl { get; set; } = "";
-
-
+        public string DownloadUrl { get; set; }
     }
 }
