@@ -1,7 +1,9 @@
 ﻿using PingPayments.Mimic.Deposit.Create.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.PaymentsApi.Payments.Get.V1;
+using PingPayments.PaymentsApi.Payments.Initiate.V1.Request;
 using PingPayments.PaymentsApi.Payments.Shared.V1;
+using PingPayments.PaymentsApi.Payments.Shared.V1.Deposit;
 using PingPayments.PaymentsApi.Payments.Update.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
@@ -492,6 +494,44 @@ namespace PingPayments.PaymentsApi.Tests.V1
             }
         }
 
+        [Fact]
+        public async Task Create_invoice_deposit_payment()
+        {
+            var invoice = new Payments.Shared.V1.Deposit.Invoice
+            {
+                Customer = new Customer { City = "Örebro", Name = "Ludvig", PostalCode = "70341", StreetAddress = "Rostagatan 14" },
+                Locale = SupportedLocales.sv_SE,
+                TextFields = new TextFields
+                {
+                    Headline = "Kenguru",
+                    SubText = new Dictionary<string, string>() { { "Animal", "that can jump" } }
+                },
+                Supplier = new Supplier { },
+                Rows = new Row[] {
+                    new Row {
+                        Amount = 5.ToMinorCurrencyUnit(),
+                        ArticleNumber = "12345678",
+                        Quantity = 2,
+                        Description = "Karins Lassange",
+                        VatRate = SwedishVat.Vat25
+                    }
+                }
+            };
+
+            var paymentRequest = CreatePayment.PingDeposit.Invoice.Ocr
+            (
+                CurrencyEnum.SEK,
+                orderItems: new OrderItem[]
+                {
+                    new OrderItem(10.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+                },
+                invoice: invoice,
+                desiredDateOfPayment: DateTime.Today.AddDays(1)
+            );
+            var response = await _api.Payments.V1.Initiate(TestData.OrderId, paymentRequest);
+
+            AssertHttpOK(response);
+        }
 
         public async Task<(Guid orderId, PingDepositResponseBody depositResponse)> PreparePaymentOrderWithDepositPayment(int price, bool completeWhenFunded = true)
         {
@@ -516,6 +556,5 @@ namespace PingPayments.PaymentsApi.Tests.V1
             return (orderId, depositResponse);
         }
 #pragma warning restore CS8600 // Dereference of a possibly null reference
-
     }
 }

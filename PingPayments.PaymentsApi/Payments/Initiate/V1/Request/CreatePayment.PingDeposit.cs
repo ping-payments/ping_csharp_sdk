@@ -15,6 +15,8 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                 IEnumerable<OrderItem> orderItems,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
+                Shared.V1.Deposit.Invoice? invoice = null,
+                string? desiredDateOfPayment = null,
                 string? reference = null,
                 bool? completeWhenFunded = null,
                 Payer? payer = null
@@ -25,16 +27,43 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.OCR, reference, completeWhenFunded),
+                    new PingDepositParameters(ReferenceTypeEnum.OCR, reference, completeWhenFunded, desiredDateOfPayment, invoice),
                     statusCallbackUrl,
                     metadata,
                     payer
-            );
+                );
 
             public static InitiatePaymentRequest Kid
             (
                 CurrencyEnum currency,
                 IEnumerable<OrderItem> orderItems,
+                Uri? statusCallbackUrl = null,
+                IDictionary<string, dynamic>? metadata = null,
+                string? desiredDateOfPayment = null,
+                string? reference = null,
+                bool? completeWhenFunded = null,
+                Payer? payer = null
+            ) => new
+                (
+                    currency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
+                    orderItems,
+                    ProviderEnum.ping,
+                    MethodEnum.deposit,
+                    new PingDepositParameters(ReferenceTypeEnum.KID, reference, completeWhenFunded, desiredDateOfPayment),
+                    statusCallbackUrl,
+                    metadata,
+                    payer
+                );
+
+            public static class Invoice
+            {
+                public static InitiatePaymentRequest Ocr
+            (
+                CurrencyEnum currency,
+                IEnumerable<OrderItem> orderItems,
+                DateTime desiredDateOfPayment,
+                Shared.V1.Deposit.Invoice invoice,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
                 string? reference = null,
@@ -47,11 +76,18 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.ping,
                     MethodEnum.deposit,
-                    new PingDepositParameters(ReferenceTypeEnum.KID, reference, completeWhenFunded),
+                    new PingDepositParameters(
+                        ReferenceTypeEnum.OCR,
+                        reference,
+                        completeWhenFunded,
+                        desiredDateOfPayment.ToString("yyyy-MM-dd"),
+                        invoice
+                        ),
                     statusCallbackUrl,
                     metadata,
                     payer
                 );
+            }
         }
     }
 }

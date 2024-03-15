@@ -1,4 +1,6 @@
-﻿using PingPayments.Shared.Enums;
+﻿using PingPayments.PaymentsApi.Payments.Shared.V1.Deposit;
+using PingPayments.Shared.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
@@ -7,7 +9,9 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
     (
         ReferenceTypeEnum ReferenceType,
         string? Reference,
-        bool? CompleteWhenFunded
+        bool? CompleteWhenFunded,
+        string? DesiredDateOfPayment,
+        Invoice? Invoice = null
     ) : ProviderMethodParameters
     {
         public override Dictionary<string, dynamic> ToDictionary() => new()
@@ -15,7 +19,9 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 
             { "complete_when_funded", CompleteWhenFunded ?? true },
             { "reference_type", ReferenceType },
-            { "reference", Reference }
+            { "reference", Reference },
+            { "desired_date_of_payment", DesiredDateOfPayment },
+            { "invoice", Invoice }
         };
     }
 }
