@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.17.0 (2024-03-15)
+- When initiating a payments, you can now set the receiver of funds to a liquidity account instead of a merchant:
+	- Added field `LiquidityAccountId` to `OrderItem`, used when initiating a payment.
+
 ## 3.16.0 (2024-02-27)
 - When initiating a payments, you can now set the receiver of funds to a liquidity account instead of a merchant:
 	- Added field `LiquidityAccountId` to `OrderItem`, used when initiating a payment.
