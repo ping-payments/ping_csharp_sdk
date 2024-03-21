@@ -537,6 +537,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Refund_payment_200()
         {
+
+            //1. Create Payment
             var requestObject = CreatePayment.Dummy.New
             (
                 CurrencyEnum.SEK,
@@ -547,12 +549,12 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 desiredPaymentStatus: PaymentStatusEnum.COMPLETED
             );
             var initiateResponse = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
-
             AssertHttpOK(initiateResponse);
 
             var paymentID = initiateResponse.Body.SuccessfulResponseBody.Id;
-            var getResponse = await _api.Payments.V1.Get(TestData.OrderId, paymentID);
 
+            //2. await status completed
+            var getResponse = await _api.Payments.V1.Get(TestData.OrderId, paymentID);
             AssertHttpOK(getResponse);
 
             var paymentStatus = getResponse.Body.SuccessfulResponseBody.Status;
@@ -560,7 +562,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var isCompletd = await AwaitDesiredPaymentStatus(paymentStatus, PaymentStatusEnum.COMPLETED);
             Assert.True(isCompletd);
 
-
+            //3. Initiate refund
             var refundRequest = new RefundRequest(
                 5.ToMinorCurrencyUnit(),
                 CurrencyEnum.SEK,
@@ -568,7 +570,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 "old lady got bamboozled"
             );
 
-            var refundResponse = await _api.Payments.V1.Refund(TestData.OrderId, TestData.PaymentId, refundRequest);
+            var refundResponse = await _api.Payments.V1.Refund(TestData.OrderId, paymentID, refundRequest);
 
 
             AssertHttpOK(refundResponse);
@@ -584,6 +586,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
         {
             var tries = 0;
             var maxRetries = 3;
+            var timeout = 1000;
 
             while (paymentStatus != desiredPaymentStatus || tries <= maxRetries)
             {
@@ -591,6 +594,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 paymentStatus = getResponse.Body.SuccessfulResponseBody.Status;
 
                 tries++;
+                await Task.Delay(timeout);
             }
             return paymentStatus == desiredPaymentStatus ? true : false;
         }

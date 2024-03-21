@@ -30,6 +30,7 @@ namespace PingPayments.PaymentsApi.Payments
             _updateOperation = updateOperation;
             _reconcileOperation = reconcileOperation;
             _stopOperation = stopOperation;
+            _refundOperation = refundOperation;
         }
 
         private readonly Lazy<InitiateOperation> _initiateOperation;
@@ -51,7 +52,7 @@ namespace PingPayments.PaymentsApi.Payments
             await _reconcileOperation.Value.ExecuteRequest((paymentOrderId, paymentId, orderItems));
 
         public async Task<RefundResponse> Refund(Guid paymentOrderId, Guid paymentId, RefundRequest refundRequest) =>
-        await _refundOperation.Value.ExecuteRequest((paymentOrderId, paymentId, refundRequest));
+            await _refundOperation.Value.ExecuteRequest((paymentOrderId, paymentId, refundRequest));
 
         public async Task<EmptyResponse> Stop(Guid orderId, Guid paymentId) =>
             await _stopOperation.Value.ExecuteRequest((orderId, paymentId));
