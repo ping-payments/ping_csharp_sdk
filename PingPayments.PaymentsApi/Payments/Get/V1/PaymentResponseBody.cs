@@ -29,6 +29,6 @@ namespace PingPayments.PaymentsApi.Payments.Get.V1
         /// Shows refund information if not null
         /// </summary>
         [JsonPropertyName("refund")]
-        public Refund? Refund { get; set; }
+        public Shared.V1.Refund? Refund { get; set; }
     }
 }
