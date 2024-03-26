@@ -2,6 +2,7 @@
 using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1.Request;
+using PingPayments.PaymentsApi.Payments.Refund.V1;
 using PingPayments.PaymentsApi.Payments.Shared.V1;
 using PingPayments.PaymentsApi.Payments.Shared.V1.Deposit;
 using PingPayments.PaymentsApi.Payments.Update.V1;
@@ -531,6 +532,71 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, paymentRequest);
 
             AssertHttpOK(response);
+        }
+
+        [Fact]
+        public async Task Refund_payment_200()
+        {
+
+            //1. Create Payment
+            var requestObject = CreatePayment.Dummy.New
+            (
+                CurrencyEnum.SEK,
+                new OrderItem[]
+                {
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId, null),
+                },
+                desiredPaymentStatus: PaymentStatusEnum.COMPLETED
+            );
+            var initiateResponse = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
+            AssertHttpOK(initiateResponse);
+
+            var paymentID = initiateResponse.Body.SuccessfulResponseBody.Id;
+
+            //2. await status completed
+            var getResponse = await _api.Payments.V1.Get(TestData.OrderId, paymentID);
+            AssertHttpOK(getResponse);
+
+            var paymentStatus = getResponse.Body.SuccessfulResponseBody.Status;
+
+            var isCompletd = await AwaitDesiredPaymentStatus(paymentStatus, PaymentStatusEnum.COMPLETED);
+            Assert.True(isCompletd);
+
+            //3. Initiate refund
+            var refundRequest = new RefundRequest(
+                5.ToMinorCurrencyUnit(),
+                CurrencyEnum.SEK,
+                RefundReasonEnum.fraudulent,
+                "old lady got bamboozled"
+            );
+
+            var refundResponse = await _api.Payments.V1.Refund(TestData.OrderId, paymentID, refundRequest);
+
+
+            AssertHttpOK(refundResponse);
+            Assert.NotNull(refundResponse?.Body?.SuccessfulResponseBody);
+            RefundResponseBody? body = refundResponse.Body.SuccessfulResponseBody;
+            Assert.NotNull(body);
+            Assert.Equal(body.Amount, 5.ToMinorCurrencyUnit());
+            Assert.NotNull(body.Status);
+            Assert.NotEmpty(body.Status);
+        }
+
+        public async Task<bool> AwaitDesiredPaymentStatus(PaymentStatusEnum paymentStatus, PaymentStatusEnum desiredPaymentStatus)
+        {
+            var tries = 0;
+            var maxRetries = 3;
+            var timeout = 1000;
+
+            while (paymentStatus != desiredPaymentStatus || tries <= maxRetries)
+            {
+                var getResponse = await _api.Payments.V1.Get(TestData.OrderId, TestData.PaymentId);
+                paymentStatus = getResponse.Body.SuccessfulResponseBody.Status;
+
+                tries++;
+                await Task.Delay(timeout);
+            }
+            return paymentStatus == desiredPaymentStatus ? true : false;
         }
 
         public async Task<(Guid orderId, PingDepositResponseBody depositResponse)> PreparePaymentOrderWithDepositPayment(int price, bool completeWhenFunded = true)

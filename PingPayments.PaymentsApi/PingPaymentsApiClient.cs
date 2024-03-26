@@ -24,6 +24,7 @@ using PingPayments.PaymentsApi.Payments;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1;
 using PingPayments.PaymentsApi.Payments.Reconcile.V1;
+using PingPayments.PaymentsApi.Payments.Refund.V1;
 using PingPayments.PaymentsApi.Payments.Stop.V1;
 using PingPayments.PaymentsApi.Payments.Update.V1;
 using PingPayments.PaymentsApi.Payouts;
@@ -74,6 +75,7 @@ namespace PingPayments.PaymentsApi
                 new Lazy<GetOperation>(() => new GetOperation(httpClient)),
                 new Lazy<UpdateOperation>(() => new UpdateOperation(httpClient)),
                 new Lazy<ReconcileOperation>(() => new ReconcileOperation(httpClient)),
+                new Lazy<RefundOperation>(() => new RefundOperation(httpClient)),
                 new Lazy<StopOperation>(() => new StopOperation(httpClient))
             );
             _payments = new Lazy<IPaymentResource>(() => new PaymentResource(paymentsV1));
