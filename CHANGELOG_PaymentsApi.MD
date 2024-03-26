@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.18.0 (2024-03-26)
+- Added refund endpoint to refund payments
+	- Refund endpont requires a `PaymentOrderId`, `PaymentId` and a `RefundRequest`.
+
 ## 3.17.0 (2024-03-15)
 - When initiating a payments, you can now set the receiver of funds to a liquidity account instead of a merchant:
 	- Added field `LiquidityAccountId` to `OrderItem`, used when initiating a payment.
