@@ -1,3 +1,7 @@
+using PingPayments.PaymentsApi.BankTransfer.List.V1;
+using PingPayments.PaymentsApi.DepositBankAccount;
+using PingPayments.PaymentsApi.DepositBankAccount.BankTransfer.Connect.V1;
+using PingPayments.PaymentsApi.DepositBankAccount.List.V1;
 using PingPayments.PaymentsApi.Disbursements;
 using PingPayments.PaymentsApi.Disbursements.Get.V1;
 using PingPayments.PaymentsApi.Disbursements.List.V1;
@@ -60,6 +64,15 @@ namespace PingPayments.PaymentsApi
             );
 
             _disbursementV1 = new Lazy<IDisbursementResource>(() => new DisbursementResource(disbursementV1));
+
+            var depositBankAccountV1 = new DepositBankAccountV1
+            (
+                new Lazy<ConnectOperation>(() => new ConnectOperation(httpClient)),
+                new Lazy<ListBankTransfersOperation>(() => new ListBankTransfersOperation(httpClient)),
+                new Lazy<ListBankAccountsOperation>(() => new ListBankAccountsOperation(httpClient))
+            );
+
+            _depositBankAccountV1 = new Lazy<IDepositBankAccountResource>(() => new DepositBankAccountResource(depositBankAccountV1));
 
             var accountBerificationSessionV1 = new AccountVerificationSessionV1
            (
@@ -140,6 +153,9 @@ namespace PingPayments.PaymentsApi
 
         private readonly Lazy<IDisbursementResource> _disbursementV1;
         public IDisbursementResource Disbursements => _disbursementV1.Value;
+
+        private readonly Lazy<IDepositBankAccountResource> _depositBankAccountV1;
+        public IDepositBankAccountResource DepositBankAccount => _depositBankAccountV1.Value;
 
 
         private readonly Lazy<IAccountVerificationSessionResource> _accountVerificationSessionResource;

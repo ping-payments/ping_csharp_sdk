@@ -11,27 +11,27 @@ using System;
 
 namespace PingPayments.PaymentsApi.BankTransfer.List.V1
 {
-    public class ListBankTransfersOperation : OperationBase<(Guid depositBankAccountId, ListBankTransfersRequest? listRequest), ListBankTransferasResponse>
+    public class ListBankTransfersOperation : OperationBase<(Guid depositBankAccountId, ListBankTransfersRequest? listRequest), ListBankTransfersResponse>
     {
         public ListBankTransfersOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override async Task<ListBankTransferasResponse> ExecuteRequest((Guid depositBankAccountId, ListBankTransfersRequest? listRequest) request) =>
+        public override async Task<ListBankTransfersResponse> ExecuteRequest((Guid depositBankAccountId, ListBankTransfersRequest? listRequest) request) =>
             await BaseExecute(GET, $"api/v1/deposit_bank_accounts/{request.depositBankAccountId}/transfers{request.listRequest.ToFilterUrl()}", request);
 
-        protected override async Task<ListBankTransferasResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid depositBankAccountId, ListBankTransfersRequest? listRequest) _)
+        protected override async Task<ListBankTransfersResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid depositBankAccountId, ListBankTransfersRequest? listRequest) _)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
                 OK => await GetSuccessful(),
-                _ => ListBankTransferasResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
+                _ => ListBankTransfersResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
 
-            async Task<ListBankTransferasResponse> GetSuccessful()
+            async Task<ListBankTransfersResponse> GetSuccessful()
             {
                 var bankTransfers = await Deserialize<DepositBankAccount.ListBankTransfer.Response.V1.BankTransfer?>(responseBody);
-                var response = ListBankTransferasResponse.Successful(hrm.StatusCode, bankTransfers, responseBody);
+                var response = ListBankTransfersResponse.Successful(hrm.StatusCode, bankTransfers, responseBody);
                 return response;
             }
         }
