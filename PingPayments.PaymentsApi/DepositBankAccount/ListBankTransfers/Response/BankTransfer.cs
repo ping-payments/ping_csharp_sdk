@@ -7,7 +7,7 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.ListBankTransfer.Response.
     public record BankTransfer
     {
         [JsonPropertyName("data")]
-        public BankTransferData[] Data { get; set; } = Array.Empty<DepositBankAccountData>();
+        public BankTransferData[] Data { get; set; } = Array.Empty<BankTransferData>();
     }
 
 }
