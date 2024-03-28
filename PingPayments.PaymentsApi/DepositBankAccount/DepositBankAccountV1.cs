@@ -32,7 +32,7 @@ namespace PingPayments.PaymentsApi.DepositBankAccount
         public async Task<EmptyResponse> ConnectBankTransfer(Guid depositBandAccountId, Guid transferId, ConnectBankTransferRequest connectBankTransferRequest) =>
             await _connectBankTransferOperation.Value.ExecuteRequest((depositBandAccountId, transferId, connectBankTransferRequest));
 
-        public async Task<ListBankTransfersResponse> ListBankTransfers(Guid depositBandAccountId, ListBankTransfersRequest listBankAccountsRequest) =>
+        public async Task<ListBankTransfersResponse> ListBankTransfers(Guid depositBandAccountId, ListBankTransfersRequest? listBankAccountsRequest) =>
             await _listBankTransfersOperation.Value.ExecuteRequest((depositBandAccountId, listBankAccountsRequest));
 
         public async Task<ListBankAccountsResponse> List() =>

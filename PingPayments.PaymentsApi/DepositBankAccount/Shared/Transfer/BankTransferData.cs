@@ -15,7 +15,7 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.Shared.Transfer
         public string BookingDate { get; set; }
 
         [JsonPropertyName("connections")]
-        public Connection[]? Connections { get; set; } = Array.Empty<Connection>();
+        public Connection[] Connections { get; set; } = Array.Empty<Connection>();
 
         [JsonPropertyName("currency")]
         public string Currency { get; set; }

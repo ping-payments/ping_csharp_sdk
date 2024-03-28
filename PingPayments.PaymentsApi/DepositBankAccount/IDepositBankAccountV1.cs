@@ -11,7 +11,7 @@ namespace PingPayments.PaymentsApi.DepositBankAccount
     public interface IDepositBankAccountV1
     {
         Task<EmptyResponse> ConnectBankTransfer(Guid depositBandAccountId, Guid transferId, ConnectBankTransferRequest connectRequest);
-        Task<ListBankTransfersResponse> ListBankTransfers(Guid depositBandAccountId, ListBankTransfersRequest ListBankAccountsRequest);
+        Task<ListBankTransfersResponse> ListBankTransfers(Guid depositBandAccountId, ListBankTransfersRequest? ListBankAccountsRequest);
         Task<ListBankAccountsResponse> List();
     }
 }

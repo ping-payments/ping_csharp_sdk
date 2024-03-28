@@ -29,7 +29,7 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.BankTransfer.Connect.V1
                 await ToJson(request.connectRequest)
             );
 
-        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid, Guid, ConnectBankTransferRequest) _) =>
+        protected override async Task<EmptyResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid depositBandAccountId, Guid transferId, ConnectBankTransferRequest connectRequest) _) =>
 
             hrm.StatusCode switch
             {
