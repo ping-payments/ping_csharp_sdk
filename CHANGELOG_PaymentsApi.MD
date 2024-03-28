@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.19.0 (2024-03-28)
+- Added Endpoints regarding DepositBankAccounts
+	- `List`, gets all deposit bank accounts connected to that tenant.
+	- `ListBankTransfers`, gets all bank transfers for a specified deposit bank account.
+	- `ConnectBankTransfer` Connects a precific bank transfer to a `PingDepositPayment`.
+
 ## 3.18.0 (2024-03-26)
 - Added refund endpoint to refund payments
 	- Refund endpont requires a `PaymentOrderId`, `PaymentId` and a `RefundRequest`.
