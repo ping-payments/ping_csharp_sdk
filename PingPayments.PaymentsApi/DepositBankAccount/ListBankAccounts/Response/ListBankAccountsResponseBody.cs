@@ -1,8 +1,5 @@
-
-
 using PingPayments.Shared;
 using PingPayments.Shared.Enums;
-using System;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.DepositBankAccount.List.Response.V1

@@ -19,5 +19,4 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.Shared.Transfer
         [JsonPropertyName("street_address")]
         public string? StreetAddress { get; set; }
     }
-
 }

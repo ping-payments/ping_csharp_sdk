@@ -1,5 +1,3 @@
-
-
 using PingPayments.Shared;
 using System;
 using System.Text.Json.Serialization;

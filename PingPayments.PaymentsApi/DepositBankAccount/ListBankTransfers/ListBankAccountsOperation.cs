@@ -1,4 +1,3 @@
-using PingPayments.PaymentsApi.DepositBankAccount.Shared;
 using PingPayments.PaymentsApi.DepositBankAccount.ListBankTransfer.Response.V1;
 using PingPayments.PaymentsApi.DepositBankAccount.ListBankTransfer.Request.V1;
 using PingPayments.Shared;

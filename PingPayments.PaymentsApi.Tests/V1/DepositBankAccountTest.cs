@@ -1,14 +1,11 @@
-using PingPayments.Mimic.Deposit.Create.V1;
 using PingPayments.PaymentsApi.DepositBankAccount.BankTransfer.Connect.Request.V1;
 using PingPayments.PaymentsApi.DepositBankAccount.ListBankTransfer.Request.V1;
-using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Shared.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using PingPayments.Shared;
 using PingPayments.Shared.Enums;
 using PingPayments.Tests;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 

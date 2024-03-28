@@ -1,4 +1,3 @@
-
 using PingPayments.Shared;
 using System.Net;
 

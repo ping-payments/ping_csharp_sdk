@@ -16,5 +16,4 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.Shared.Transfer
         [JsonPropertyName("payment_id")]
         public string PaymentId { get; set; }
     }
-
 }

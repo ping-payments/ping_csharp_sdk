@@ -16,5 +16,4 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.Shared.Transfer
         [JsonPropertyName("previous")]
         public PaginationLinkHref Previous { get; set; }
     }
-
 }

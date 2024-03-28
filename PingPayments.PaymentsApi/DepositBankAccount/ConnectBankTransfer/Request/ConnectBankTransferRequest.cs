@@ -1,8 +1,4 @@
-using PingPayments.PaymentsApi.KYC.AccountVerificationSession.Shared;
-using PingPayments.Shared;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.DepositBankAccount.BankTransfer.Connect.Request.V1
@@ -13,7 +9,7 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.BankTransfer.Connect.Reque
         /// Who performed the operation
         /// </summary>
         [JsonPropertyName("connected_by")]
-        public string? ConnectedBy { get; set; }
+        public string ConnectedBy { get; set; }
 
         /// <summary>
         /// ID of the Payment you wish to connect to the Transfer

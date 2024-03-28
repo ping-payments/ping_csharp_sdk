@@ -13,5 +13,4 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.Shared.Transfer
         [JsonPropertyName("reference")]
         public string Reference { get; set; }
     }
-
 }
