@@ -29,10 +29,10 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.ListBankTransfer.Request.V
             }
             if (filterUrl.Length > 1)
             {
+                //Removes the last "&"
                 filterUrl.Length--;
                 return filterUrl.ToString();
             }
-            // In case it's null or empty values, returns an empty string to be added to the url instead.
             return "";
         }
 

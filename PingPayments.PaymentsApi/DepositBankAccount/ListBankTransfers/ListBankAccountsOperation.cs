@@ -16,7 +16,13 @@ namespace PingPayments.PaymentsApi.BankTransfer.List.V1
         public ListBankTransfersOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<ListBankTransfersResponse> ExecuteRequest((Guid depositBankAccountId, ListBankTransfersRequest? listRequest) request) =>
-            await BaseExecute(GET, $"api/v1/deposit_bank_accounts/{request.depositBankAccountId}/transfers{request.listRequest.ToFilterUrl()}", request);
+
+            await BaseExecute(GET,
+            request.listRequest != null ?
+                $"api/v1/deposit_bank_accounts/{request.depositBankAccountId}/transfers{request.listRequest.ToFilterUrl()}"
+            :
+                $"api/v1/deposit_bank_accounts/{request.depositBankAccountId}/transfers",
+            request);
 
         protected override async Task<ListBankTransfersResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid depositBankAccountId, ListBankTransfersRequest? listRequest) _)
         {
