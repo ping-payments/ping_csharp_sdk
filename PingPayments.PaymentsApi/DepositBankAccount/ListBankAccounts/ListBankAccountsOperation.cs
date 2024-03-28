@@ -11,9 +11,9 @@ using System;
 
 namespace PingPayments.PaymentsApi.DepositBankAccount.List.V1
 {
-    public class ListBankTransfersOperation : OperationBase<(Guid depositBankAccountId, ListBankAccountsRequest? listRequest), ListBankAccountsResponse>
+    public class ListBankAccountsOperation : OperationBase<(Guid depositBankAccountId, ListBankAccountsRequest? listRequest), ListBankAccountsResponse>
     {
-        public ListBankTransfersOperation(HttpClient httpClient) : base(httpClient) { }
+        public ListBankAccountsOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<ListBankAccountsResponse> ExecuteRequest((Guid depositBankAccountId, ListBankAccountsRequest? listRequest) request) =>
             await BaseExecute(GET, $"api/v1/deposit_bank_accounts/{request.depositBankAccountId}/transfers{request.listRequest.ToFilterUrl()}", request);

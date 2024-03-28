@@ -14,20 +14,20 @@ namespace PingPayments.PaymentsApi.DepositBankAccount
         public DepositBankAccountV1
         (
             Lazy<ConnectOperation> connectBankTransferOperation,
-            Lazy<ListBankTransfersOperation> listBankTransfersOperation
+            Lazy<ListBankAccountsOperation> listBankAccountsOperation
         )
         {
             _connectBankTransferOperation = connectBankTransferOperation;
-            _listBankTransfersOperation = listBankTransfersOperation;
+            _listBankAccountsOperation = listBankAccountsOperation;
         }
 
         private readonly Lazy<ConnectOperation> _connectBankTransferOperation;
-        private readonly Lazy<ListBankTransfersOperation> _listBankTransfersOperation;
+        private readonly Lazy<ListBankAccountsOperation> _listBankAccountsOperation;
 
         public async Task<EmptyResponse> ConnectBankTransfer(Guid depositBandAccountId, Guid transferId, ConnectBankTransferRequest connectBankTransferRequest) =>
             await _connectBankTransferOperation.Value.ExecuteRequest((depositBandAccountId, transferId, connectBankTransferRequest));
 
         public async Task<ListBankAccountsResponse> ListBankAccounts(Guid depositBandAccountId, ListBankAccountsRequest listBankAccountsRequest) =>
-            await _listBankTransfersOperation.Value.ExecuteRequest((depositBandAccountId, listBankAccountsRequest));
+            await _listBankAccountsOperation.Value.ExecuteRequest((depositBandAccountId, listBankAccountsRequest));
     }
 }
