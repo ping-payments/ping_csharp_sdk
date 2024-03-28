@@ -1,14 +1,11 @@
-using PingPayments.PaymentsApi.KYC.AccountVerificationSession.Shared;
-using PingPayments.Shared;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-using System.Text.Json.Serialization;
 
-namespace PingPayments.PaymentsApi.DepositBankAccount.List.Request.V1
+namespace PingPayments.PaymentsApi.DepositBankAccount.ListBankTransfer.Request.V1
 {
-    public record ListBankAccountsRequest(
+    public record ListBankTransfersRequest(
         string? reference,
         PaymentChannelEnum? paymentChannel,
         bool? isConnected,

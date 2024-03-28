@@ -4,9 +4,9 @@ using PingPayments.Shared;
 using System;
 using System.Text.Json.Serialization;
 
-namespace PingPayments.PaymentsApi.DepositBankAccount.Shared
+namespace PingPayments.PaymentsApi.DepositBankAccount.Shared.Transfer
 {
-    public record DepositBankAccountData : GuidResponseBody
+    public record BankTransferData : GuidResponseBody
     {
         [JsonPropertyName("amount")]
         public int Amount { get; set; }

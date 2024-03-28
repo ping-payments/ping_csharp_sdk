@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace PingPayments.PaymentsApi.DepositBankAccount.Shared
+namespace PingPayments.PaymentsApi.DepositBankAccount.Shared.Transfer
 {
     public record RemittanceInformation
     {
