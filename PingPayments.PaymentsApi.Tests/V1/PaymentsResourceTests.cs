@@ -50,7 +50,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                         SourceOfFundsEnum.royalties,
                         SourceOfFundsEnum.sale_of_assets
                     }
-                    )
+                )
             );
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
 
