@@ -15,18 +15,18 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
         /// URL to redirect to after BankID authentication when using 'same_device' method 
         /// </summary>
         [JsonPropertyName("redirect_url")]
-        public string RedirectUrl { get; set; }
+        public string? RedirectUrl { get; set; } = "";
 
         /// <summary>
         /// URL to send QR code to. Applicable when using the 'other_device' method
         /// </summary>
         [JsonPropertyName("qr_code_callback_url")]
-        public string QrCodeCallbackUrl { get; set; }
+        public string? QrCodeCallbackUrl { get; set; } = "null";
 
         /// <summary>
         /// Size of QR code in pixels. Default is 300
         /// </summary>
         [JsonPropertyName("qr_code_size")]
-        public string QrCodeSize { get; set; }
+        public int? QrCodeSize { get; set; } = 300;
     }
 }
