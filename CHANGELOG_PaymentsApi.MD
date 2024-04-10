@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.20.0 (2024-04-10)
+- Added BankId funcrtionality to Fortus Invoice
+	- `CreatePayment.Fortus.Invoice` now contains a BankId object.
+	- `FortusProviderMethodParameters` now contains a BankId object.
+	- Added a response object containing BankId information.
+
 ## 3.19.0 (2024-03-28)
 - Added Endpoints regarding DepositBankAccounts
 	- `List`, gets all deposit bank accounts connected to that tenant.
