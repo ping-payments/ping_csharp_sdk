@@ -1,6 +1,4 @@
-﻿using PingPayments.KYC.Agreement.V1.Create.Oneflow;
-using PingPayments.Mimic.Deposit.Create.V1;
-using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1.Request;
 using PingPayments.PaymentsApi.Payments.Refund.V1;
@@ -111,7 +109,6 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.NotEqual(Guid.Empty, body?.Id);
         }
 
-
         [Fact]
         public async Task Initiate_payment_422_when_order_items_and_total_amount_does_not_match()
         {
@@ -132,7 +129,6 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
             AssertHttpUnprocessableEntity(response);
         }
-
 
         [Fact]
         public async Task Initiate_payment_404_when_order_id_does_not_exist()
