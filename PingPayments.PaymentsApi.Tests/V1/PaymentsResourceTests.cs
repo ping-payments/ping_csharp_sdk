@@ -1,5 +1,4 @@
-﻿using PingPayments.Mimic.Deposit.Create.V1;
-using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+﻿using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1.Request;
 using PingPayments.PaymentsApi.Payments.Refund.V1;
@@ -15,6 +14,7 @@ using PingPayments.Tests;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BankId = PingPayments.PaymentsApi.Payments.V1.Initiate.Request.BankId;
 
 
 namespace PingPayments.PaymentsApi.Tests.V1
@@ -50,7 +50,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                         SourceOfFundsEnum.royalties,
                         SourceOfFundsEnum.sale_of_assets
                     }
-                    )
+                )
             );
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
 
@@ -61,6 +61,53 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.NotEqual(Guid.Empty, body?.Id);
         }
 
+        [Fact(Skip = "Reliant on fortus speciefic")]
+        public async Task Initiate_fortus_payment_200()
+        {
+            var requestObject = CreatePayment.Fortus.Invoice
+            (
+                new OrderItem[]
+                {
+                    new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId, null, new Dictionary<string, object> { { "Key", "Data" } }),
+                    new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, null, TestData.LiquidityAccountId, tags: new string[] {"typ1"})
+                },
+                InvoiceTypeEnum.days14,
+                "195309261732",
+                "SE",
+                "213.115.225.102",
+                "test@gmail.com",
+                "12312312",
+                new Address { City = "Örebro", FirstName = "Knut", LastName = "Knutesson", StreetAddress = "Örebrogatan 20", Zip = "70225" },
+                payer: new Payer(
+                    sourceOfFunds: new SourceOfFundsEnum[]
+                    {
+                        SourceOfFundsEnum.rental_income,
+                        SourceOfFundsEnum.loan_or_credit,
+                        SourceOfFundsEnum.business_profits,
+                        SourceOfFundsEnum.salary_or_employment_income,
+                        SourceOfFundsEnum.legal_settlements,
+                        SourceOfFundsEnum.gifts_and_donations,
+                        SourceOfFundsEnum.dividends_and_investment_income,
+                        SourceOfFundsEnum.foreign_remittances,
+                        SourceOfFundsEnum.inheritance,
+                        SourceOfFundsEnum.insurance_payouts,
+                        SourceOfFundsEnum.lottery_or_gambling_winnings,
+                        SourceOfFundsEnum.retirement_funds,
+                        SourceOfFundsEnum.royalties,
+                        SourceOfFundsEnum.sale_of_assets
+                    }
+                ),
+                bankId: new BankId { Method = BankIdMethodEnum.other_device, QrCodeCallbackUrl = "https://www.pingpayments.com", QrCodeSize = null, RedirectUrl = null }
+
+            );
+            var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
+
+            AssertHttpOK(response);
+            Assert.NotNull(response?.Body?.SuccessfulResponseBody);
+            FortusResponseBody? body = response;
+            Assert.NotNull(body);
+            Assert.NotEqual(Guid.Empty, body?.Id);
+        }
 
         [Fact]
         public async Task Initiate_payment_422_when_order_items_and_total_amount_does_not_match()
@@ -82,7 +129,6 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
             AssertHttpUnprocessableEntity(response);
         }
-
 
         [Fact]
         public async Task Initiate_payment_404_when_order_id_does_not_exist()
