@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+﻿using PingPayments.Mimic.Deposit.Create.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1.Request;
 using PingPayments.PaymentsApi.Payments.Refund.V1;

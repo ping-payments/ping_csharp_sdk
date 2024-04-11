@@ -33,7 +33,7 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.ListBankTransfer.Request.V
             {
                 //Removes the last "&"
                 filterUrl.Length--;
-                var filter = filterUrl.ToString();
+                var filter = filterUrl.ToString().ToLower();
                 return filter;
             }
             return "";

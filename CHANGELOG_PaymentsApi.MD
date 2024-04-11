@@ -1,5 +1,8 @@
 # Change Log
 
+## 3.20.1 (2024-04-11)
+- Fixed a bug with the filtering for `ListBankTransfers`
+
 ## 3.20.0 (2024-04-10)
 - Added BankId funcrtionality to Fortus Invoice
 	- `CreatePayment.Fortus.Invoice` now contains a BankId object.
