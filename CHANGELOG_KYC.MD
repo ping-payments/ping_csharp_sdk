@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.0.0 (2024-04-12)
+
+Updated `SignMethodEnum` when creating an Oneflow Agreement to:
+-   swedish_bankid,
+-   standard_esign,
+-   sms,
+-   norwegian_bankid,
+-   danish_mitid,
+-   finnish_bankid
+
 ## 4.4.0 (2024-01-16)
 
 Removed unused Session-functionality that has been moved to `PingPayments.Payments`

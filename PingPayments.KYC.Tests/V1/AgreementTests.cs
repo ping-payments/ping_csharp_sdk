@@ -23,7 +23,7 @@ namespace PingPayments.KYC.Tests.V1
 
             var templateId = agreementResponse.Body.SuccessfulResponseBody.First().Id;
 
-            var createAgreementRequest = new Agreement.V1.Create.CreateRequestBody
+            var createAgreementRequest = new CreateRequestBody
             {
                 TemplateId = templateId,
                 MerchantId = TestData.MerchantId,
@@ -131,7 +131,7 @@ namespace PingPayments.KYC.Tests.V1
                         Identity = "199201154953",
                         Name = "Johannes Norrbacka",
                         Email = "johannes@monetax.se",
-                        Country = CountryEnum.SE,
+                        Country = CountryEnum.NO,
                         Editor = true,
                         PhoneNumber = "46701234567",
                         Signatory = true,
