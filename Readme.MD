@@ -8,6 +8,10 @@
 
 Use this C# nuget library to manage Ping Payments resources regarding payments and payment links, KYC and to simulate bank operations (Mimic).
 
+## Project Status: **Deprecated**
+
+**Please note that this SDK is no longer actively developed or maintained.** While the code provided here is still available for use, it may contain bugs, be missing certain features, or become incompatible with future updates to the Ping Payments API. Users are encouraged to consider alternative solutions or directly integrate with the Ping Payments API without this SDK.
+
 ## Table of contents
 
 * [Requirements](#requirements)
