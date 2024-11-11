@@ -62,6 +62,7 @@ namespace PingPayments.Shared
                 POST => await _httpClient.PostAsync(url, content),
                 PUT => await _httpClient.PutAsync(url, content),
                 GET => await _httpClient.GetAsync(url),
+                DELETE => await _httpClient.DeleteAsync(url, content),
                 _ => throw new NotImplementedException()
             };
             return await ParseHttpResponse(response, request);

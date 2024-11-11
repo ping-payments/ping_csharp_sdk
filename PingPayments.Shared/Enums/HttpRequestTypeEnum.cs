@@ -4,6 +4,7 @@
     {
         POST,
         PUT,
-        GET        
+        GET,
+        DELETE
     }
 }

@@ -29,5 +29,19 @@ namespace PingPayments.Shared
 
         public static HttpClient ConfigurePingPaymentsClient(this HttpClient httpClient, string uri, Guid? tenantId = null) =>
             ConfigurePingPaymentsClient(httpClient, new Uri(EnsureCorrectUrl(uri)), tenantId);
+
+        public static async Task<HttpResponseMessage> DeleteAsync(this HttpClient httpClient, string requestUri, HttpContent? content = null)
+        {
+            if (content == null)
+                return await httpClient.DeleteAsync(requestUri);
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(httpClient.BaseAddress, requestUri),
+                Content = content
+            };
+            return await httpClient.SendAsync(request);
+        }
     }
 }
