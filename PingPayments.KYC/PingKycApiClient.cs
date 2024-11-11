@@ -5,6 +5,7 @@ using PingPayments.KYC.Agreement.V1.Get;
 using PingPayments.KYC.Agreement.V1.GetAgreementTemplates;
 using PingPayments.KYC.Agreement.V1.Publish;
 using PingPayments.KYC.Agreement.V1.Update;
+using PingPayments.KYC.Agreement.V1.Delete;
 using PingPayments.KYC.Merchant;
 using PingPayments.KYC.Merchant.V1.AIS;
 using PingPayments.KYC.Merchant.V1.Get;
@@ -33,7 +34,8 @@ namespace PingPayments.KYC
                     new Lazy<ListTemplatesOperation>(() => new ListTemplatesOperation(httpClient)),
                     new Lazy<Agreement.V1.CreateAccessLink.CreateAccessLinkOperation>(() => new Agreement.V1.CreateAccessLink.CreateAccessLinkOperation(httpClient)),
                     new Lazy<PublishOperation>(() => new PublishOperation(httpClient)),
-                    new Lazy<UpdateOperation>(() => new UpdateOperation(httpClient))
+                    new Lazy<UpdateOperation>(() => new UpdateOperation(httpClient)),
+                    new Lazy<DeleteOperation>(() => new DeleteOperation(httpClient))
                 );
             _agreement = new Lazy<IAgreementResource>(() => new AgreementResource(agreementV1));
         }

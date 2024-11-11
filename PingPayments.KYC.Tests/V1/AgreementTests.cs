@@ -2,6 +2,7 @@
 using PingPayments.KYC.Agreement.V1.Create.Oneflow;
 using PingPayments.KYC.Agreement.V1.CreateAccessLink;
 using PingPayments.KYC.Agreement.V1.CreateAccessLink.Oneflow;
+using PingPayments.KYC.Agreement.V1.Delete;
 using PingPayments.KYC.Agreement.V1.Get;
 using PingPayments.KYC.Agreement.V1.Get.Oneflow;
 using PingPayments.KYC.Agreement.V1.Publish;
@@ -107,6 +108,18 @@ namespace PingPayments.KYC.Tests.V1
             };
             var createAccessLinkResponse = await _api.Agreement.V1.CreateAccessLink(accessLinkPayload);
             AssertHttpOK(createAccessLinkResponse);
+
+            var deletePayload = new DeleteRequest
+            {
+                AgreementId = agreementId,
+                DeletedBy = "The Manager",
+                Reason = "Customer wanted the larger packet"
+            };
+            var deleteAgreementResponse = await _api.Agreement.V1.Delete(deletePayload);
+            AssertHttpNoContent(deleteAgreementResponse);
+
+            getAgreementResponse = await _api.Agreement.V1.Get(agreementId);
+            AssertBadRequest(getAgreementResponse);
         }
 
 
@@ -191,6 +204,18 @@ namespace PingPayments.KYC.Tests.V1
             };
             var createAccessLinkResponse = await _api.Agreement.V1.CreateAccessLink(accessLinkPayload);
             AssertHttpOK(createAccessLinkResponse);
+
+            var deletePayload = new DeleteRequest
+            {
+                AgreementId = agreementId,
+                DeletedBy = "The Manager",
+                Reason = "Customer wanted the larger packet"
+            };
+            var deleteAgreementResponse = await _api.Agreement.V1.Delete(deletePayload);
+            AssertHttpNoContent(deleteAgreementResponse);
+
+            getAgreementResponse = await _api.Agreement.V1.Get(agreementId);
+            AssertBadRequest(getAgreementResponse);
         }
 
     }

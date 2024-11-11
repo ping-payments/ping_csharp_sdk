@@ -4,6 +4,7 @@ using PingPayments.KYC.Agreement.V1.Get;
 using PingPayments.KYC.Agreement.V1.GetAgreementTemplates;
 using PingPayments.KYC.Agreement.V1.Publish;
 using PingPayments.KYC.Agreement.V1.Update;
+using PingPayments.KYC.Agreement.V1.Delete;
 using PingPayments.Shared;
 using System;
 using System.Threading.Tasks;
@@ -18,5 +19,6 @@ namespace PingPayments.KYC.Agreement
         Task<CreateAccessLinkResponse> CreateAccessLink(V1.CreateAccessLink.CreateAccessLinkRequestBody request);
         Task<EmptyResponse> Publish(PublishRequest request);
         Task<EmptyResponse> Update(UpdateRequest request);
+        Task<EmptyResponse> Delete(DeleteRequest request);
     }
 }

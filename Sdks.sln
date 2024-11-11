@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.Mimic", "PingP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.Mimic.Tests", "PingPayments.Mimic.Tests\PingPayments.Mimic.Tests.csproj", "{19599AD5-7405-44B1-88FF-D91D49CE2222}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingPayments.Tests", "PingPayments.Tests\PingPayments.Tests.csproj", "{9617F6FE-9BFC-402F-993D-6343E3574103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingPayments.Tests", "PingPayments.Tests\PingPayments.Tests.csproj", "{9617F6FE-9BFC-402F-993D-6343E3574103}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
