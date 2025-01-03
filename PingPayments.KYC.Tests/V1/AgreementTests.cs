@@ -27,6 +27,7 @@ namespace PingPayments.KYC.Tests.V1
             var createAgreementRequest = new CreateRequestBody
             {
                 TemplateId = templateId,
+                EventCallbackUrl = new Uri("http://www.hokuS-pokuS-boguS.com/event"),
                 MerchantId = TestData.MerchantId,
                 Name = "Test",
                 Provider = AgreementTypeEnum.oneflow,

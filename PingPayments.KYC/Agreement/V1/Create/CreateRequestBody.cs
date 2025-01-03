@@ -14,6 +14,14 @@ namespace PingPayments.KYC.Agreement.V1.Create
         public Guid? TemplateId { get; set; }
 
         /// <summary>
+        /// The url that agreement events will be sent to,
+        /// only use this if you are interested in every change that happens to the agreement.
+        /// How the callback looks will be dependent on the provider
+        /// </summary>
+        [JsonPropertyName("event_callback_url")]
+        public Uri? EventCallbackUrl { get; set; }
+
+        /// <summary>
         /// The merchant for which the agreement is created for
         /// </summary>
         [JsonPropertyName("merchant_id")]
@@ -58,6 +66,7 @@ namespace PingPayments.KYC.Agreement.V1.Create
             var sb = new StringBuilder();
             sb.Append("class CreateAgreementRequestBody {\n");
             sb.Append("  AgreementTemplateId: ").Append(TemplateId).Append("\n");
+            sb.Append("  EventCallbackUrl: ").Append(EventCallbackUrl).Append("\n");
             sb.Append("  MerchantId: ").Append(MerchantId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Provider: ").Append(Provider).Append("\n");
