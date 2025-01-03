@@ -1,5 +1,9 @@
 # Change Log
 
+## 5.1.0 (2024-01-03)
+Updated Create Agreement request body:
+- Added an EventCallbackUrl that continuously sends agreement updates
+
 ## 5.0.0 (2024-04-12)
 
 Updated `SignMethodEnum` when creating an Oneflow Agreement to:
