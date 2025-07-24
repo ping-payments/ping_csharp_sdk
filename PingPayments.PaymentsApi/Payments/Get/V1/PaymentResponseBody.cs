@@ -30,5 +30,8 @@ namespace PingPayments.PaymentsApi.Payments.Get.V1
         /// </summary>
         [JsonPropertyName("refund")]
         public Shared.V1.Refund? Refund { get; set; }
+
+        [JsonPropertyName("refunds")]
+        public Shared.V1.Refund[]? Refunds { get; set; }
     }
 }

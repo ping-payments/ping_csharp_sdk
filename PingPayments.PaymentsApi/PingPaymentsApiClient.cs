@@ -74,18 +74,18 @@ namespace PingPayments.PaymentsApi
 
             _depositBankAccountV1 = new Lazy<IDepositBankAccountResource>(() => new DepositBankAccountResource(depositBankAccountV1));
 
-            var accountBerificationSessionV1 = new AccountVerificationSessionV1
+            var accountVerificationSessionV1 = new AccountVerificationSessionV1
            (
                new Lazy<GetSessionOperation>(() => new GetSessionOperation(httpClient)),
                new Lazy<CreateSessionOperation>(() => new CreateSessionOperation(httpClient))
            );
-
-            _accountVerificationSessionResource = new Lazy<IAccountVerificationSessionResource>(() => new AccountVerificationSessionResource(accountBerificationSessionV1));
+            _accountVerificationSessionResource = new Lazy<IAccountVerificationSessionResource>(() => new AccountVerificationSessionResource(accountVerificationSessionV1));
 
             var paymentsV1 = new PaymentsV1
             (
                 new Lazy<InitiateOperation>(() => new InitiateOperation(httpClient)),
                 new Lazy<GetOperation>(() => new GetOperation(httpClient)),
+                new Lazy<ListOperation>(() => new ListOperation(httpClient)),
                 new Lazy<UpdateOperation>(() => new UpdateOperation(httpClient)),
                 new Lazy<ReconcileOperation>(() => new ReconcileOperation(httpClient)),
                 new Lazy<RefundOperation>(() => new RefundOperation(httpClient)),

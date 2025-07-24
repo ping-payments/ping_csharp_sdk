@@ -1,5 +1,6 @@
 ﻿using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1;
+using PingPayments.PaymentsApi.Payments.List.V1;
 using PingPayments.PaymentsApi.Payments.Reconcile.V1;
 using PingPayments.PaymentsApi.Payments.Refund.V1;
 using PingPayments.PaymentsApi.Payments.Shared.V1;
@@ -8,6 +9,7 @@ using PingPayments.PaymentsApi.Payments.Update.V1;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Request;
 using PingPayments.PaymentsApi.Payments.V1.Initiate.Response;
 using PingPayments.Shared;
+using PingPayments.Shared.Enums;
 using System;
 using System.Threading.Tasks;
 
@@ -19,6 +21,7 @@ namespace PingPayments.PaymentsApi.Payments
         (
             Lazy<InitiateOperation> initiateOperation,
             Lazy<GetOperation> getOperation,
+            Lazy<ListOperation> listOperation,
             Lazy<UpdateOperation> updateOperation,
             Lazy<ReconcileOperation> reconcileOperation,
             Lazy<RefundOperation> refundOperation,
@@ -27,6 +30,7 @@ namespace PingPayments.PaymentsApi.Payments
         {
             _initiateOperation = initiateOperation;
             _getOperation = getOperation;
+            _listOperation = listOperation;
             _updateOperation = updateOperation;
             _reconcileOperation = reconcileOperation;
             _stopOperation = stopOperation;
@@ -35,6 +39,7 @@ namespace PingPayments.PaymentsApi.Payments
 
         private readonly Lazy<InitiateOperation> _initiateOperation;
         private readonly Lazy<GetOperation> _getOperation;
+        private readonly Lazy<ListOperation> _listOperation;
         private readonly Lazy<UpdateOperation> _updateOperation;
         private readonly Lazy<StopOperation> _stopOperation;
         private readonly Lazy<ReconcileOperation> _reconcileOperation;
@@ -56,5 +61,23 @@ namespace PingPayments.PaymentsApi.Payments
 
         public async Task<EmptyResponse> Stop(Guid orderId, Guid paymentId) =>
             await _stopOperation.Value.ExecuteRequest((orderId, paymentId));
+
+        public async Task<PaymentsResponse> List(Guid paymentOrderId) =>
+            await _listOperation.Value.ExecuteRequest((null, null, null, null, null, paymentOrderId, null, null));
+
+        public async Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, PaymentStatusEnum status) =>
+            await _listOperation.Value.ExecuteRequest((from, to, status, null, null, null, null, null));
+        public async Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, MethodEnum method) =>
+            await _listOperation.Value.ExecuteRequest((from, to, null, method, null, null, null, null));
+
+        public async Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, ProviderEnum provider) =>
+            await _listOperation.Value.ExecuteRequest((from, to, null, null, provider, null, null, null));
+
+        public async Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, bool refundRequested) =>
+            await _listOperation.Value.ExecuteRequest((from, to, null, null, null, null, refundRequested, null));
+
+        public async Task<PaymentsResponse> List((DateTimeOffset? from, DateTimeOffset? to, PaymentStatusEnum? status, MethodEnum? method, ProviderEnum? provider, Guid? paymentOrderId, bool? refundRequested, int? limit)? filter = null) =>
+            await _listOperation.Value.ExecuteRequest(filter);
     }
+
 }

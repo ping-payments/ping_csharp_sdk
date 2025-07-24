@@ -24,7 +24,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public IEnumerable<OrderItem> OrderItems { get; set; }
 
         /// <summary>
-        /// Total amount in minor currency unit, i ex Swedish Ören
+        /// Total amount in minor currency unit, i ex Swedish Öre
         /// Must be the same as the total sum of <see cref="OrderItem.Amount"/>
         /// </summary>
         [JsonPropertyName("total_amount")]
