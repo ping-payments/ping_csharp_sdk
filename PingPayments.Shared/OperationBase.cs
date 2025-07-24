@@ -20,6 +20,7 @@ namespace PingPayments.Shared
             {
                 _httpClient.DefaultRequestHeaders.Accept.Add(json);
             }
+            _httpClient.DefaultRequestHeaders.Add("x-api-version", "2025-03-06");
         }
 
         protected virtual JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };

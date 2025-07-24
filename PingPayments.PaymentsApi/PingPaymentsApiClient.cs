@@ -1,3 +1,5 @@
+using PingPayments.PaymentsApi.Allocations;
+using PingPayments.PaymentsApi.Allocations.List.V1;
 using PingPayments.PaymentsApi.BankTransfer.List.V1;
 using PingPayments.PaymentsApi.DepositBankAccount;
 using PingPayments.PaymentsApi.DepositBankAccount.BankTransfer.Connect.V1;
@@ -27,6 +29,7 @@ using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
 using PingPayments.PaymentsApi.Payments;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1;
+using PingPayments.PaymentsApi.Payments.List.V1;
 using PingPayments.PaymentsApi.Payments.Reconcile.V1;
 using PingPayments.PaymentsApi.Payments.Refund.V1;
 using PingPayments.PaymentsApi.Payments.Stop.V1;
@@ -57,12 +60,17 @@ namespace PingPayments.PaymentsApi
     {
         public PingPaymentsApiClient(HttpClient httpClient)
         {
+            var allocationV1 = new AllocationV1
+            (
+                new Lazy<ListAllocationsOperation>(() => new ListAllocationsOperation(httpClient))
+            );
+            _allocationsV1 = new Lazy<IAllocationResource>(() => new AllocationResource(allocationV1));
+
             var disbursementV1 = new DisbursementV1
             (
-                new Lazy<GetDisbursementOperation>(() => new GetDisbursementOperation(httpClient)),
+                new Lazy<GetDisbursementOperation>(() => new GetDisbursementOperation(httpClient)),         // Obsolete, to be removed in future versions
                 new Lazy<ListDisbursementsOperation>(() => new ListDisbursementsOperation(httpClient))
             );
-
             _disbursementV1 = new Lazy<IDisbursementResource>(() => new DisbursementResource(disbursementV1));
 
             var depositBankAccountV1 = new DepositBankAccountV1
@@ -71,7 +79,6 @@ namespace PingPayments.PaymentsApi
                 new Lazy<ListBankTransfersOperation>(() => new ListBankTransfersOperation(httpClient)),
                 new Lazy<ListBankAccountsOperation>(() => new ListBankAccountsOperation(httpClient))
             );
-
             _depositBankAccountV1 = new Lazy<IDepositBankAccountResource>(() => new DepositBankAccountResource(depositBankAccountV1));
 
             var accountVerificationSessionV1 = new AccountVerificationSessionV1
@@ -151,8 +158,14 @@ namespace PingPayments.PaymentsApi
             _signingResource = new Lazy<ISigningKeyResource>(() => new SigningKeyResource(signingKeyV1));
         }
 
+
+        private readonly Lazy<IAllocationResource> _allocationsV1;
+        public IAllocationResource Allocation => _allocationsV1.Value;
+
+
         private readonly Lazy<IDisbursementResource> _disbursementV1;
         public IDisbursementResource Disbursements => _disbursementV1.Value;
+
 
         private readonly Lazy<IDepositBankAccountResource> _depositBankAccountV1;
         public IDepositBankAccountResource DepositBankAccount => _depositBankAccountV1.Value;

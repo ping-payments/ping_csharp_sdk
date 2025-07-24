@@ -1,3 +1,4 @@
+using PingPayments.PaymentsApi.Allocations;
 using PingPayments.PaymentsApi.DepositBankAccount;
 using PingPayments.PaymentsApi.Disbursements;
 using PingPayments.PaymentsApi.KYC.AccountVerificationSession;
@@ -15,6 +16,7 @@ namespace PingPayments.PaymentsApi
 {
     public interface IPingPaymentsApiClient
     {
+        IAllocationResource Allocation { get; }
         IDisbursementResource Disbursements { get; }
         IDepositBankAccountResource DepositBankAccount { get; }
         IAccountVerificationSessionResource AccountVerification { get; }
