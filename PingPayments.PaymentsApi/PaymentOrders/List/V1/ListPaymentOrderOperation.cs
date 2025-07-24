@@ -13,7 +13,7 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
 {
-    public class ListPaymentOrderOperation : OperationBase<(DateTimeOffset from, DateTimeOffset to)?, PaymentOrdersResponse>
+    public class ListPaymentOrderOperation : OperationBase<(DateTimeOffset? from, DateTimeOffset? to, PaymentOrderStatusEnum? status, int? limit)?, PaymentOrdersResponse>
     {
         public ListPaymentOrderOperation(HttpClient httpClient) : base(httpClient) { }
 
@@ -26,20 +26,30 @@ namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
             }
         };
 
-        public override async Task<PaymentOrdersResponse> ExecuteRequest((DateTimeOffset from, DateTimeOffset to)? df) =>
+        public override async Task<PaymentOrdersResponse> ExecuteRequest((DateTimeOffset? from, DateTimeOffset? to, PaymentOrderStatusEnum? status, int? limit)? filter) =>
             await BaseExecute
             (
                 GET,
-                df.HasValue ?
-                    ($"api/v1/payment_orders?" +
-                        $"from={WebUtility.UrlEncode(df.Value.from.ToString("o"))}&" +
-                        $"to={WebUtility.UrlEncode(df.Value.to.ToString("o"))}")
+                filter.HasValue ?
+                    ($"api/v1/payment_orders?"
+                    + (filter.Value.from.HasValue ? $"created_at_from={WebUtility.UrlEncode(filter.Value.from.Value.ToString("o"))}&" : string.Empty)
+                    + (filter.Value.to.HasValue ? $"created_at_to={WebUtility.UrlEncode(filter.Value.to.Value.ToString("o"))}&" : string.Empty)
+                    + (filter.Value.status.HasValue ? $"status={filter.Value.status.Value}&" : string.Empty)
+                    + (filter.Value.limit.HasValue ? $"limit={filter.Value.limit.Value}" : string.Empty))
                 :
                     $"api/v1/payment_orders",
-                df
+                filter
             );
 
-        protected override async Task<PaymentOrdersResponse> ParseHttpResponse(HttpResponseMessage hrm, (DateTimeOffset from, DateTimeOffset to)? _)
+        public async Task<PaymentOrdersResponse> ExecuteRequest(PaginationLinkHref href, (DateTimeOffset? from, DateTimeOffset? to, PaymentOrderStatusEnum? status, int? limit)? filter) =>
+            await BaseExecute
+            (
+                GET,
+                href.Href,
+                filter
+            );
+
+        protected override async Task<PaymentOrdersResponse> ParseHttpResponse(HttpResponseMessage hrm, (DateTimeOffset? from, DateTimeOffset? to, PaymentOrderStatusEnum? status, int? limit)? filter)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
@@ -51,10 +61,25 @@ namespace PingPayments.PaymentsApi.PaymentOrders.List.V1
 
             async Task<PaymentOrdersResponse> GetSuccessful()
             {
-                var paymentOrders = await Deserialize<PaymentOrder[]?>(responseBody);
-                var response = PaymentOrdersResponse.Successful(hrm.StatusCode, paymentOrders, responseBody);
-                return response;
+                var genericResponseObject = await Deserialize<GenericTransfer<PaymentOrder>>(responseBody);
+                PaymentOrder[] objectArray = genericResponseObject?.Data ?? Array.Empty<PaymentOrder>();
+                if (genericResponseObject?.PaginationLinks.Next?.Href != null)
+                {
+                    var recursiveResponse = await ExecuteRequest(genericResponseObject!.PaginationLinks.Next!, filter);
+                    if (recursiveResponse.IsSuccessful)
+                    {
+                        int oldLen = objectArray.Length;
+                        Array.Resize<PaymentOrder>(ref objectArray, oldLen + (recursiveResponse.Body?.SuccessfulResponseBody?.Length ?? 0));
+                        Array.Copy(recursiveResponse.Body?.SuccessfulResponseBody ?? Array.Empty<PaymentOrder>(), 0, objectArray, oldLen, recursiveResponse.Body?.SuccessfulResponseBody?.Length ?? 0);
+                    }
+                    else
+                    {
+                        return PaymentOrdersResponse.Failure(recursiveResponse.StatusCode, recursiveResponse.Body?.ErrorResponseBody, responseBody);
+                    }
+                }
+                return PaymentOrdersResponse.Successful(hrm.StatusCode, objectArray, responseBody);
             }
         }
     }
+
 }

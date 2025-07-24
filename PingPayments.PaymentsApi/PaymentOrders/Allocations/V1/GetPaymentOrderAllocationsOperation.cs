@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
+﻿using PingPayments.PaymentsApi.Allocations.Shared;
+using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
 using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using System;

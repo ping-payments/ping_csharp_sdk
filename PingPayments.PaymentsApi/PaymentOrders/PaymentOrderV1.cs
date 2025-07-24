@@ -4,6 +4,7 @@ using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Get.V1;
 using PingPayments.PaymentsApi.PaymentOrders.List.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Settle.V1;
+using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Split.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Update.V1;
 using PingPayments.Shared;
@@ -44,8 +45,12 @@ namespace PingPayments.PaymentsApi.PaymentOrders
 
         public async Task<PaymentOrderResponse> Get(Guid orderId) =>
             await _getPaymentOrderOperation.Value.ExecuteRequest(orderId);
-        public async Task<PaymentOrdersResponse> List((DateTimeOffset from, DateTimeOffset to)? dateFilter = null) =>
-            await _listPaymentOrderOperation.Value.ExecuteRequest(dateFilter);
+        public async Task<PaymentOrdersResponse> List((DateTimeOffset from, DateTimeOffset to) dateFilter) =>
+            await _listPaymentOrderOperation.Value.ExecuteRequest((dateFilter.from, dateFilter.to, null, null));
+        public async Task<PaymentOrdersResponse> List((DateTimeOffset from, DateTimeOffset to, PaymentOrderStatusEnum status) filter) =>
+            await _listPaymentOrderOperation.Value.ExecuteRequest((filter.from, filter.to, filter.status, null));
+        public async Task<PaymentOrdersResponse> List((DateTimeOffset? from, DateTimeOffset? to, PaymentOrderStatusEnum? status, int? limit)? filter = null) =>
+            await _listPaymentOrderOperation.Value.ExecuteRequest(filter);
         public async Task<GuidResponse> Create(CreatePaymentOrderRequest createPaymentOrderRequest) =>
             await _createPaymentOrderOperation.Value.ExecuteRequest(createPaymentOrderRequest);
         public async Task<EmptyResponse> Update(Guid orderId, UpdatePaymentOrderRequest updatePaymentOrderRequest) =>

@@ -102,7 +102,7 @@ namespace PingPayments.PaymentsApi
                  new Lazy<SplitPaymentOrderOperation>(() => new SplitPaymentOrderOperation(httpClient)),
                  new Lazy<ClosePaymentOrderOperation>(() => new ClosePaymentOrderOperation(httpClient)),
                  new Lazy<SettlePaymentOrderOperation>(() => new SettlePaymentOrderOperation(httpClient)),
-                 new Lazy<GetPaymentOrderAllocationsOperation>(() => new GetPaymentOrderAllocationsOperation(httpClient))
+                 new Lazy<GetPaymentOrderAllocationsOperation>(() => new GetPaymentOrderAllocationsOperation(httpClient))   // Obsolete, to be removed in future versions
             );
             _paymentOrderResource = new Lazy<IPaymentOrderResource>(() => new PaymentOrderResource(paymentOrderV1));
 
