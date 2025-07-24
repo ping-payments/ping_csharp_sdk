@@ -1,6 +1,7 @@
 using System;
 using System.Text.Json.Serialization;
 using PingPayments.PaymentsApi.DepositBankAccount.Shared.Transfer;
+using PingPayments.Shared;
 
 namespace PingPayments.PaymentsApi.DepositBankAccount.ListBankTransfer.Response.V1
 {

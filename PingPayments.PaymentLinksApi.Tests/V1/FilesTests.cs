@@ -91,12 +91,12 @@ public class FilesTests : PaymentLinksApiTestClient
         Guid paymentOrderId = paymentOrderResponse.Body.SuccessfulResponseBody.Id;
 
         // Create a PaymentLink
-        var customer = new Customer("FrstName", "LastName");
+        var customer = new Customer("FirstName", "LastName");
         var items = new Item[]
         {
                 new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
         };
-        var suppler = new Supplier("Supllier name");
+        var suppler = new Supplier("Supplier name");
         var invoiceAdress = new Adress("Örebro", "Signalgatan 7", "70216");
         var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
         var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
