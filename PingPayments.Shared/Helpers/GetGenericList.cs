@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace PingPayments.Shared.Helpers
 {
@@ -18,23 +14,43 @@ namespace PingPayments.Shared.Helpers
             _httpClient = httpClient;
         }
 
-        public async Task<List<T>> GetTListAsync(string baseUrl)
+        /// <summary>
+        /// Iterates through paginated results and returns a custom result using the provided factory.
+        /// </summary>
+        /// <typeparam name="TResult">The result type to return.</typeparam>
+        /// <param name="baseUrl">The initial URL to request.</param>
+        /// <param name="resultFactory">
+        /// A function that takes (isSuccess, statusCode, data, rawBody, error) and returns TResult.
+        /// </param>
+        public async Task<TResult> GetTListAsync<TResult>(
+            string baseUrl,
+            Func<bool, HttpStatusCode, List<T>, string, ErrorResponseBody?, TResult> resultFactory)
         {
-            List<T> result = new List<T>();
-            var response = await _httpClient.GetAsync(baseUrl);
-            if (!response.IsSuccessStatusCode || response.Content.Headers.ContentLength == 0)
-                return new List<T>();
+            var result = new List<T>();
+            string? nextUrl = baseUrl?.TrimEnd('&');
+            HttpStatusCode lastStatusCode = HttpStatusCode.OK;
+            string lastRawBody = string.Empty;
 
-            var resultObj = JsonSerializer.Deserialize<GenericTransfer<T>>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
-            while (resultObj != null && resultObj.Data != null && resultObj.Data.Any())
+            while (!string.IsNullOrEmpty(nextUrl))
             {
-                result.AddRange(resultObj.Data);
-                if (resultObj.PaginationLinks.Next?.Href == null)
-                    break;
-                response = await _httpClient.GetAsync(resultObj.PaginationLinks.Next.Href);
-                resultObj = JsonSerializer.Deserialize<GenericTransfer<T>>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
+                using var response = await _httpClient.GetAsync(nextUrl);
+                lastStatusCode = response.StatusCode;
+                lastRawBody = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    ErrorResponseBody? error = JsonSerializer.Deserialize<ErrorResponseBody>(lastRawBody, JsonSerializerOptions);
+                    return resultFactory(false, lastStatusCode, result, lastRawBody, error);
+                }
+
+                var resultObj = JsonSerializer.Deserialize<GenericTransfer<T>>(lastRawBody, JsonSerializerOptions);
+                if (resultObj?.Data != null)
+                    result.AddRange(resultObj.Data);
+
+                nextUrl = resultObj?.PaginationLinks.Next?.Href;
             }
-            return result;
+
+            return resultFactory(true, lastStatusCode, result, lastRawBody, null);
         }
     }
 }

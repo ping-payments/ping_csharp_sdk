@@ -5,6 +5,8 @@ using PingPayments.PaymentsApi.PaymentOrders.Shared.V1;
 using PingPayments.Shared;
 using PingPayments.Shared.Helpers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -18,11 +20,11 @@ namespace PingPayments.PaymentsApi.Allocations.List.V1
         public ListAllocationsDataOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override Task<ListAllocationDataResponse> ExecuteRequest((Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId) filter) =>
-        ExecuteRequestIterative(("api/v1/allocations?" +
-                    (filter.paymentId.HasValue ? $"payment_id={filter.paymentId}&" : string.Empty) +
-                    (filter.paymentOrderId.HasValue ? $"payment_order_id={filter.paymentOrderId}&" : string.Empty) +
-                    (filter.disbursementId.HasValue ? $"disbursement_id={filter.disbursementId}&" : string.Empty) +
-                    (filter.payoutId.HasValue ? $"payout_id={filter.payoutId}&" : string.Empty) +
+        ExecuteRequestGeneric(("api/v1/allocations?" +
+            (filter.paymentId.HasValue ? $"payment_id={filter.paymentId}&" : string.Empty) +
+            (filter.paymentOrderId.HasValue ? $"payment_order_id={filter.paymentOrderId}&" : string.Empty) +
+            (filter.disbursementId.HasValue ? $"disbursement_id={filter.disbursementId}&" : string.Empty) +
+            (filter.payoutId.HasValue ? $"payout_id={filter.payoutId}&" : string.Empty) +
             (filter.merchantId.HasValue ? $"merchant_id={filter.merchantId}" : string.Empty)));
 
         public async Task<ListAllocationDataResponse> ExecuteRequest(PaginationLinkHref href, (Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId) request) =>
@@ -64,7 +66,19 @@ namespace PingPayments.PaymentsApi.Allocations.List.V1
                 return ListAllocationDataResponse.Successful(hrm.StatusCode, objectArray, responseBody);
             }
         }
-    }
+
+        public async Task<ListAllocationDataResponse> ExecuteRequestGeneric(string nextUrl)
+        {
+            var genericList = new GenericList<Allocation>(_httpClient);
+            var response = await genericList.GetTListAsync(
+                nextUrl,
+                (isSuccess, statusCode, data, rawBody, error) =>
+                    isSuccess
+                        ? ListAllocationDataResponse.Successful(statusCode, data.ToArray(), rawBody)
+                        : ListAllocationDataResponse.Failure(statusCode, error, rawBody)
+            );
+            return response;
+        } 
 
         public async Task<ListAllocationDataResponse> ExecuteRequestIterative(string? nextUrl)
         {
@@ -94,4 +108,7 @@ namespace PingPayments.PaymentsApi.Allocations.List.V1
 
             return ListAllocationDataResponse.Successful(lastStatusCode, allAllocations.ToArray(), lastRawBody);
         }
+
+    }
+
 }
