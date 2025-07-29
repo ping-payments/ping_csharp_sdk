@@ -62,7 +62,8 @@ namespace PingPayments.PaymentsApi
         {
             var allocationV1 = new AllocationV1
             (
-                new Lazy<ListAllocationsOperation>(() => new ListAllocationsOperation(httpClient))
+                new Lazy<ListAllocationsDataOperation>(() => new ListAllocationsDataOperation(httpClient)),
+                new Lazy<ListAllocationsPageOperation>(() => new ListAllocationsPageOperation(httpClient))
             );
             _allocationsV1 = new Lazy<IAllocationResource>(() => new AllocationResource(allocationV1));
 

@@ -20,7 +20,7 @@ namespace PingPayments.PaymentsApi.Allocations.Shared
         public CurrencyEnum Currency { get; set; }
 
         [JsonPropertyName("disbursed_at")]
-        public DateTimeOffset DisbursedAt { get; set; }
+        public DateTimeOffset? DisbursedAt { get; set; }
 
         [JsonPropertyName("disbursement_id")]
         public Guid? DisbursementId { get; set; }
@@ -31,9 +31,7 @@ namespace PingPayments.PaymentsApi.Allocations.Shared
         [JsonPropertyName("merchant_id")]
         public Guid? MerchantId { get; set; }
 
-        /// <summary>
-        /// Custom metadata
-        /// </summary>
+        /// <summary>Custom metadata</summary>
         [JsonPropertyName("metadata")]
         public IDictionary<string, dynamic> Metadata { get; set; }
 

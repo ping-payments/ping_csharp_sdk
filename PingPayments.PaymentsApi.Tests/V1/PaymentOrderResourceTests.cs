@@ -248,7 +248,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             AssertHttpNoContent(await _api.PaymentOrder.V1.Split(orderId));
 
             //var allocationsResponse = await _api.PaymentOrder.V1.Allocations(orderId);
-            var allocationsResponse = await _api.Allocation.V1.ListPaymentOrder(orderId);
+            var allocationsResponse = await _api.Allocation.V1.ListData(paymentOrderId: orderId);
 
             AssertHttpOK(allocationsResponse);
         }
@@ -268,7 +268,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             //4. Split
 
             //var allocationsResponse = await _api.PaymentOrder.V1.Allocations(orderId);
-            var allocationsResponse = await _api.Allocation.V1.ListPaymentOrder(orderId);
+            var allocationsResponse = await _api.Allocation.V1.ListData(paymentOrderId: orderId);
 
             AssertHttpApiError(allocationsResponse);
 

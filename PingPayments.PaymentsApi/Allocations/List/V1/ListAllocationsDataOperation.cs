@@ -13,26 +13,24 @@ using static System.Net.HttpStatusCode;
 
 namespace PingPayments.PaymentsApi.Allocations.List.V1
 {
-    public class ListAllocationsOperation : OperationBase<(Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId)?, ListAllocationResponse>
+    public class ListAllocationsDataOperation : OperationBase<(Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId), ListAllocationDataResponse>
     {
-        public ListAllocationsOperation(HttpClient httpClient) : base(httpClient) { }
+        public ListAllocationsDataOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override Task<ListAllocationResponse> ExecuteRequest((Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId)? filter) =>
+        public override Task<ListAllocationDataResponse> ExecuteRequest((Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId) filter) =>
             BaseExecute
             (
                 GET,
-                filter.HasValue
-                    ? ("api/v1/allocations?" +
-                        (filter.Value.paymentId.HasValue ? $"payment_id={filter.Value.paymentId}&" : string.Empty) +
-                        (filter.Value.paymentOrderId.HasValue ? $"payment_order_id={filter.Value.paymentOrderId}&" : string.Empty) +
-                        (filter.Value.disbursementId.HasValue ? $"disbursement_id={filter.Value.disbursementId}&" : string.Empty) +
-                        (filter.Value.payoutId.HasValue ? $"payout_id={filter.Value.payoutId}&" : string.Empty) +
-                        (filter.Value.merchantId.HasValue ? $"merchant_id={filter.Value.merchantId}" : string.Empty))
-                    : "api/v1/allocations",
+                ("api/v1/allocations?" +
+                    (filter.paymentId.HasValue ? $"payment_id={filter.paymentId}&" : string.Empty) +
+                    (filter.paymentOrderId.HasValue ? $"payment_order_id={filter.paymentOrderId}&" : string.Empty) +
+                    (filter.disbursementId.HasValue ? $"disbursement_id={filter.disbursementId}&" : string.Empty) +
+                    (filter.payoutId.HasValue ? $"payout_id={filter.payoutId}&" : string.Empty) +
+                    (filter.merchantId.HasValue ? $"merchant_id={filter.merchantId}" : string.Empty)),
                 filter
             );
 
-        public async Task<ListAllocationResponse> ExecuteRequest(PaginationLinkHref href, (Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId)? request) =>
+        public async Task<ListAllocationDataResponse> ExecuteRequest(PaginationLinkHref href, (Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId) request) =>
             await BaseExecute
             (
                 GET,
@@ -40,17 +38,17 @@ namespace PingPayments.PaymentsApi.Allocations.List.V1
                 request
             );
 
-        protected override async Task<ListAllocationResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId)? request)
+        protected override async Task<ListAllocationDataResponse> ParseHttpResponse(HttpResponseMessage hrm, (Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId) request)
         {
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
                 OK => await GetSuccessful(),
-                _ => ListAllocationResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
+                _ => ListAllocationDataResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;
 
-            async Task<ListAllocationResponse> GetSuccessful()
+            async Task<ListAllocationDataResponse> GetSuccessful()
             {
                 var genericResponseObject = await Deserialize<GenericTransfer<Allocation>>(responseBody);
                 Allocation[] objectArray = genericResponseObject?.Data ?? Array.Empty<Allocation>();
@@ -65,10 +63,10 @@ namespace PingPayments.PaymentsApi.Allocations.List.V1
                     }
                     else
                     {
-                        return ListAllocationResponse.Failure(recursiveResponse.StatusCode, recursiveResponse.Body?.ErrorResponseBody, responseBody);
+                        return ListAllocationDataResponse.Failure(recursiveResponse.StatusCode, recursiveResponse.Body?.ErrorResponseBody, responseBody);
                     }
                 }
-                return ListAllocationResponse.Successful(hrm.StatusCode, objectArray, responseBody);
+                return ListAllocationDataResponse.Successful(hrm.StatusCode, objectArray, responseBody);
             }
         }
     }
