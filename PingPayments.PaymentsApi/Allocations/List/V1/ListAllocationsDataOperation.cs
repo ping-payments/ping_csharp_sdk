@@ -69,44 +69,13 @@ namespace PingPayments.PaymentsApi.Allocations.List.V1
 
         public async Task<ListAllocationDataResponse> ExecuteRequestGeneric(string nextUrl)
         {
-            var genericList = new GenericList<Allocation>(_httpClient);
-            var response = await genericList.GetTListAsync(
+            return await GetPaginatedListAsync<Allocation, ListAllocationDataResponse>(
                 nextUrl,
                 (isSuccess, statusCode, data, rawBody, error) =>
                     isSuccess
                         ? ListAllocationDataResponse.Successful(statusCode, data.ToArray(), rawBody)
                         : ListAllocationDataResponse.Failure(statusCode, error, rawBody)
             );
-            return response;
-        } 
-
-        public async Task<ListAllocationDataResponse> ExecuteRequestIterative(string? nextUrl)
-        {
-            var allAllocations = new List<Allocation>();
-
-            HttpStatusCode lastStatusCode = HttpStatusCode.OK;
-            string lastRawBody = string.Empty;
-
-            while (!string.IsNullOrEmpty(nextUrl))
-            {
-                using var response = await _httpClient.GetAsync(nextUrl);
-                lastStatusCode = response.StatusCode;
-                lastRawBody = await response.Content.ReadAsStringAsync();
-
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    var error = await Deserialize<ErrorResponseBody>(lastRawBody);
-                    return ListAllocationDataResponse.Failure(response.StatusCode, error, lastRawBody);
-                }
-
-                var genericResponseObject = await Deserialize<GenericTransfer<Allocation>>(lastRawBody);
-                if (genericResponseObject?.Data != null)
-                    allAllocations.AddRange(genericResponseObject.Data);
-
-                nextUrl = genericResponseObject?.PaginationLinks.Next?.Href;
-            }
-
-            return ListAllocationDataResponse.Successful(lastStatusCode, allAllocations.ToArray(), lastRawBody);
         }
 
     }
