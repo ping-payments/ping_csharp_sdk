@@ -18,17 +18,12 @@ namespace PingPayments.PaymentsApi.Allocations.List.V1
         public ListAllocationsDataOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override Task<ListAllocationDataResponse> ExecuteRequest((Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId) filter) =>
-            BaseExecute
-            (
-                GET,
-                ("api/v1/allocations?" +
+        ExecuteRequestIterative(("api/v1/allocations?" +
                     (filter.paymentId.HasValue ? $"payment_id={filter.paymentId}&" : string.Empty) +
                     (filter.paymentOrderId.HasValue ? $"payment_order_id={filter.paymentOrderId}&" : string.Empty) +
                     (filter.disbursementId.HasValue ? $"disbursement_id={filter.disbursementId}&" : string.Empty) +
                     (filter.payoutId.HasValue ? $"payout_id={filter.payoutId}&" : string.Empty) +
-                    (filter.merchantId.HasValue ? $"merchant_id={filter.merchantId}" : string.Empty)),
-                filter
-            );
+            (filter.merchantId.HasValue ? $"merchant_id={filter.merchantId}" : string.Empty)));
 
         public async Task<ListAllocationDataResponse> ExecuteRequest(PaginationLinkHref href, (Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId) request) =>
             await BaseExecute
@@ -70,4 +65,33 @@ namespace PingPayments.PaymentsApi.Allocations.List.V1
             }
         }
     }
+
+        public async Task<ListAllocationDataResponse> ExecuteRequestIterative(string? nextUrl)
+        {
+            var allAllocations = new List<Allocation>();
+
+            HttpStatusCode lastStatusCode = HttpStatusCode.OK;
+            string lastRawBody = string.Empty;
+
+            while (!string.IsNullOrEmpty(nextUrl))
+            {
+                using var response = await _httpClient.GetAsync(nextUrl);
+                lastStatusCode = response.StatusCode;
+                lastRawBody = await response.Content.ReadAsStringAsync();
+
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    var error = await Deserialize<ErrorResponseBody>(lastRawBody);
+                    return ListAllocationDataResponse.Failure(response.StatusCode, error, lastRawBody);
+                }
+
+                var genericResponseObject = await Deserialize<GenericTransfer<Allocation>>(lastRawBody);
+                if (genericResponseObject?.Data != null)
+                    allAllocations.AddRange(genericResponseObject.Data);
+
+                nextUrl = genericResponseObject?.PaginationLinks.Next?.Href;
+            }
+
+            return ListAllocationDataResponse.Successful(lastStatusCode, allAllocations.ToArray(), lastRawBody);
+        }
 }
