@@ -18,7 +18,8 @@ namespace PingPayments.PaymentsApi.PaymentOrders
         public PaymentOrderV1(Lazy<GetPaymentOrderOperation> getPaymentOrderOperation,
                               Lazy<CreatePaymentOrderOperation> createPaymentOrderOperation,
                               Lazy<UpdatePaymentOrderOperation> updatePaymentOrderOperation,
-                              Lazy<ListPaymentOrderOperation> listPaymentOrderOperation,
+                              Lazy<ListPaymentOrderDataOperation> listPaymentOrderDataOperation,
+                              Lazy<ListPaymentOrderPageOperation> listPaymentOrderPageOperation,
                               Lazy<SplitPaymentOrderOperation> splitPaymentOrderOperation,
                               Lazy<ClosePaymentOrderOperation> closePaymentOrderOperation,
                               Lazy<SettlePaymentOrderOperation> settlePaymentOrderOperation,
@@ -27,7 +28,8 @@ namespace PingPayments.PaymentsApi.PaymentOrders
             _getPaymentOrderOperation = getPaymentOrderOperation;
             _createPaymentOrderOperation = createPaymentOrderOperation;
             _updatePaymentOrderOperation = updatePaymentOrderOperation;
-            _listPaymentOrderOperation = listPaymentOrderOperation;
+            _listPaymentOrderDataOperation = listPaymentOrderDataOperation;
+            _listPaymentOrderPageOperation = listPaymentOrderPageOperation;
             _splitPaymentOrderOperation = splitPaymentOrderOperation;
             _closePaymentOrderOperation = closePaymentOrderOperation;
             _settlePaymentOrderOperation = settlePaymentOrderOperation;
@@ -37,7 +39,8 @@ namespace PingPayments.PaymentsApi.PaymentOrders
         private readonly Lazy<GetPaymentOrderOperation> _getPaymentOrderOperation;
         private readonly Lazy<CreatePaymentOrderOperation> _createPaymentOrderOperation;
         private readonly Lazy<UpdatePaymentOrderOperation> _updatePaymentOrderOperation;
-        private readonly Lazy<ListPaymentOrderOperation> _listPaymentOrderOperation;
+        private readonly Lazy<ListPaymentOrderDataOperation> _listPaymentOrderDataOperation;
+        private readonly Lazy<ListPaymentOrderPageOperation> _listPaymentOrderPageOperation;
         private readonly Lazy<SplitPaymentOrderOperation> _splitPaymentOrderOperation;
         private readonly Lazy<ClosePaymentOrderOperation> _closePaymentOrderOperation;
         private readonly Lazy<SettlePaymentOrderOperation> _settlePaymentOrderOperation;
@@ -45,12 +48,14 @@ namespace PingPayments.PaymentsApi.PaymentOrders
 
         public async Task<PaymentOrderResponse> Get(Guid orderId) =>
             await _getPaymentOrderOperation.Value.ExecuteRequest(orderId);
-        public async Task<PaymentOrdersResponse> List((DateTimeOffset from, DateTimeOffset to) dateFilter) =>
-            await _listPaymentOrderOperation.Value.ExecuteRequest((dateFilter.from, dateFilter.to, null, null));
-        public async Task<PaymentOrdersResponse> List((DateTimeOffset from, DateTimeOffset to, PaymentOrderStatusEnum status) filter) =>
-            await _listPaymentOrderOperation.Value.ExecuteRequest((filter.from, filter.to, filter.status, null));
-        public async Task<PaymentOrdersResponse> List((DateTimeOffset? from, DateTimeOffset? to, PaymentOrderStatusEnum? status, int? limit)? filter = null) =>
-            await _listPaymentOrderOperation.Value.ExecuteRequest(filter);
+        //public async Task<PaymentOrdersDataResponse> ListData((DateTimeOffset from, DateTimeOffset to) dateFilter) =>
+        //    await _listPaymentOrderOperation.Value.ExecuteRequest((dateFilter.from, dateFilter.to, null));
+        public async Task<PaymentOrdersDataResponse> ListData(DateTimeOffset? from, DateTimeOffset? to, PaymentOrderStatusEnum? status) =>
+            await _listPaymentOrderDataOperation.Value.ExecuteRequest((from, to, status));
+        public async Task<PaymentOrdersPageResponse> ListPage(DateTimeOffset? from, DateTimeOffset? to, PaymentOrderStatusEnum? status, int? limit) =>
+            await _listPaymentOrderPageOperation.Value.ExecuteRequest((null, from, to, status, limit));
+        public async Task<PaymentOrdersPageResponse> ListPage(PaginationLinkHref href) =>
+            await _listPaymentOrderPageOperation.Value.ExecuteRequest((href, null, null,null, null));
         public async Task<GuidResponse> Create(CreatePaymentOrderRequest createPaymentOrderRequest) =>
             await _createPaymentOrderOperation.Value.ExecuteRequest(createPaymentOrderRequest);
         public async Task<EmptyResponse> Update(Guid orderId, UpdatePaymentOrderRequest updatePaymentOrderRequest) =>

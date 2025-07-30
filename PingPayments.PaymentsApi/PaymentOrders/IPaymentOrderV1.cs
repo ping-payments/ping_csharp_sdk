@@ -14,14 +14,14 @@ namespace PingPayments.PaymentsApi.PaymentOrders
     {
         Task<GuidResponse> Create(CreatePaymentOrderRequest createPaymentOrderRequest);
         Task<PaymentOrderResponse> Get(Guid orderId);
-        Task<PaymentOrdersResponse> List((DateTimeOffset from, DateTimeOffset to) dateFilter);
-        Task<PaymentOrdersResponse> List((DateTimeOffset from, DateTimeOffset to, PaymentOrderStatusEnum status) filter);
-        Task<PaymentOrdersResponse> List((DateTimeOffset? from, DateTimeOffset? to, PaymentOrderStatusEnum? status, int? limit)? filter = null);
+        Task<PaymentOrdersDataResponse> ListData(DateTimeOffset? from = null, DateTimeOffset? to = null, PaymentOrderStatusEnum? status = null);
+        Task<PaymentOrdersPageResponse> ListPage(DateTimeOffset? from = null, DateTimeOffset? to = null, PaymentOrderStatusEnum? status = null, int? limit = null);
+        Task<PaymentOrdersPageResponse> ListPage(PaginationLinkHref href);
         Task<EmptyResponse> Update(Guid OrderId, UpdatePaymentOrderRequest updatePaymentOrderRequest);
         Task<EmptyResponse> Close(Guid orderId);
         Task<EmptyResponse> Split(Guid orderId, bool fastForward = false);
         Task<EmptyResponse> Settle(Guid orderId, bool fastForward = false);
-        [Obsolete("Use Get Allocations(Guid orderId) instead.", true)]
+        [Obsolete("Use Allocations.List(Guid orderId) instead.", true)]
         Task<AllocationsResponse> Allocations(Guid orderId);
     }
 }

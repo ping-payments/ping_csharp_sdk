@@ -15,12 +15,9 @@ namespace PingPayments.PaymentsApi.Payments
     public interface IPaymentsV1
     {
         Task<PaymentResponse> Get(Guid orderId, Guid paymentId);
-        Task<PaymentsResponse> List(Guid paymentOrderId);
-        Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, PaymentStatusEnum status);
-        Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, MethodEnum method);
-        Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, ProviderEnum provider);
-        Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, bool refundRequested);
-        Task<PaymentsResponse> List((DateTimeOffset? from, DateTimeOffset? to, PaymentStatusEnum? status, MethodEnum? method, ProviderEnum? provider, Guid? paymentOrderId, bool? refundRequested, int? limit)? filter = null);
+        Task<PaymentsDataResponse> ListData(DateTimeOffset? from = null, DateTimeOffset? to = null, PaymentStatusEnum? status = null, MethodEnum? method = null, ProviderEnum? provider = null, Guid? paymentOrderId = null, bool? refundRequested = null);
+        Task<PaymentsPageResponse> ListPage(DateTimeOffset? from = null, DateTimeOffset? to = null, PaymentStatusEnum? status = null, MethodEnum? method = null, ProviderEnum? provider = null, Guid? paymentOrderId = null, bool? refundRequested = null, int? limit = null);
+        Task<PaymentsPageResponse> ListPage(PaginationLinkHref href);
         Task<InitiatePaymentResponse> Initiate(Guid orderId, InitiatePaymentRequest initiatePaymentRequest);
         Task<EmptyResponse> Update(Guid orderId, Guid paymentId, UpdatePaymentRequest UpdatePaymentRequest);
         Task<EmptyResponse> Reconcile(Guid paymentOrderId, Guid paymentId, OrderItem[]? orderItems = null);

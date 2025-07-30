@@ -17,8 +17,8 @@ namespace PingPayments.PaymentsApi.Allocations.List.V1
     {
         public ListAllocationsPageOperation(HttpClient httpClient) : base(httpClient) { }
 
-        public override Task<ListAllocationPageResponse> ExecuteRequest((PaginationLinkHref? href, Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId, int? limit)? request) =>
-            BaseExecute
+        public override async Task<ListAllocationPageResponse> ExecuteRequest((PaginationLinkHref? href, Guid? paymentId, Guid? paymentOrderId, Guid? disbursementId, Guid? payoutId, Guid? merchantId, int? limit)? request) =>
+            await BaseExecute
             (
                 GET,
                 request.HasValue && !string.IsNullOrEmpty(request.Value.href?.Href)

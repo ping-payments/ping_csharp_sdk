@@ -21,7 +21,8 @@ namespace PingPayments.PaymentsApi.Payments
         (
             Lazy<InitiateOperation> initiateOperation,
             Lazy<GetOperation> getOperation,
-            Lazy<ListOperation> listOperation,
+            Lazy<ListDataOperation> listDataOperation,
+            Lazy<ListPageOperation> listPageOperation,
             Lazy<UpdateOperation> updateOperation,
             Lazy<ReconcileOperation> reconcileOperation,
             Lazy<RefundOperation> refundOperation,
@@ -30,7 +31,8 @@ namespace PingPayments.PaymentsApi.Payments
         {
             _initiateOperation = initiateOperation;
             _getOperation = getOperation;
-            _listOperation = listOperation;
+            _listDataOperation = listDataOperation;
+            _listPageOperation = listPageOperation;
             _updateOperation = updateOperation;
             _reconcileOperation = reconcileOperation;
             _stopOperation = stopOperation;
@@ -39,7 +41,8 @@ namespace PingPayments.PaymentsApi.Payments
 
         private readonly Lazy<InitiateOperation> _initiateOperation;
         private readonly Lazy<GetOperation> _getOperation;
-        private readonly Lazy<ListOperation> _listOperation;
+        private readonly Lazy<ListDataOperation> _listDataOperation;
+        private readonly Lazy<ListPageOperation> _listPageOperation;
         private readonly Lazy<UpdateOperation> _updateOperation;
         private readonly Lazy<StopOperation> _stopOperation;
         private readonly Lazy<ReconcileOperation> _reconcileOperation;
@@ -62,22 +65,14 @@ namespace PingPayments.PaymentsApi.Payments
         public async Task<EmptyResponse> Stop(Guid orderId, Guid paymentId) =>
             await _stopOperation.Value.ExecuteRequest((orderId, paymentId));
 
-        public async Task<PaymentsResponse> List(Guid paymentOrderId) =>
-            await _listOperation.Value.ExecuteRequest((null, null, null, null, null, paymentOrderId, null, null));
+        public async Task<PaymentsDataResponse> ListData(DateTimeOffset? from, DateTimeOffset? to, PaymentStatusEnum? status, MethodEnum? method, ProviderEnum? provider, Guid? paymentOrderId, bool? refundRequested) =>
+            await _listDataOperation.Value.ExecuteRequest((from, to, status, method, provider, paymentOrderId, refundRequested));
 
-        public async Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, PaymentStatusEnum status) =>
-            await _listOperation.Value.ExecuteRequest((from, to, status, null, null, null, null, null));
-        public async Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, MethodEnum method) =>
-            await _listOperation.Value.ExecuteRequest((from, to, null, method, null, null, null, null));
+        public async Task<PaymentsPageResponse> ListPage(DateTimeOffset? from, DateTimeOffset? to, PaymentStatusEnum? status, MethodEnum? method, ProviderEnum? provider, Guid? paymentOrderId, bool? refundRequested, int? limit) =>
+            await _listPageOperation.Value.ExecuteRequest((null, from, to, status, method, provider, paymentOrderId, refundRequested, limit));
 
-        public async Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, ProviderEnum provider) =>
-            await _listOperation.Value.ExecuteRequest((from, to, null, null, provider, null, null, null));
-
-        public async Task<PaymentsResponse> List(DateTimeOffset from, DateTimeOffset to, bool refundRequested) =>
-            await _listOperation.Value.ExecuteRequest((from, to, null, null, null, null, refundRequested, null));
-
-        public async Task<PaymentsResponse> List((DateTimeOffset? from, DateTimeOffset? to, PaymentStatusEnum? status, MethodEnum? method, ProviderEnum? provider, Guid? paymentOrderId, bool? refundRequested, int? limit)? filter = null) =>
-            await _listOperation.Value.ExecuteRequest(filter);
+        public async Task<PaymentsPageResponse> ListPage(PaginationLinkHref href) =>
+            await _listPageOperation.Value.ExecuteRequest((href, null, null, null, null, null, null, null, null));
     }
 
 }

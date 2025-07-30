@@ -7,7 +7,7 @@ namespace PingPayments.PaymentsApi.Disbursements
 {
     public interface IDisbursementV1
     {
-        [Obsolete("Use Get Allocations(Guid disbursementId) instead.", true)]
+        [Obsolete("Use Allocations.List(Guid disbursementId) instead.", true)]
         Task<GetDisbursementResponse> Get(Guid disbursementId);
         Task<ListDisbursementResponse> List((DateTimeOffset from, DateTimeOffset to)? dateFilter = null);
     }

@@ -87,48 +87,51 @@ namespace PingPayments.PaymentsApi.Tests.V1
         }
 
         [Fact]
-        public async Task List_returns_200_without_filter()
+        public async Task List_Data_returns_200_without_filter()
         {
-            var response = await _api.PaymentOrder.V1.List();
+            var response = await _api.PaymentOrder.V1.ListData();
             AssertHttpOK(response);
             PaymentOrder[] orders = response;
             Assert.True(orders.Any());
         }
 
         [Fact]
-        public async Task List_returns_200_with_filter()
+        public async Task List_Data_returns_200_with_filter()
         {
             var from = new DateTimeOffset(2022, 10, 01, 0, 0, 0, TimeSpan.Zero);
             var to = from.AddDays(60);
 
-            var response = await _api.PaymentOrder.V1.List((from, to));
+            var response = await _api.PaymentOrder.V1.ListData(from, to);
             AssertHttpOK(response);
             PaymentOrder[] orders = response;
             Assert.True(orders.Any());
         }
 
         [Fact]
-        public async Task List_returns_200_with_filter_Status()
+        public async Task List_Data_returns_200_with_filter_Status()
         {
             var from = new DateTimeOffset(2022, 10, 01, 0, 0, 0, TimeSpan.Zero);
             var to = from.AddDays(60);
 
-            var response = await _api.PaymentOrder.V1.List((from, to, PaymentOrderStatusEnum.SETTLED));
+            var response = await _api.PaymentOrder.V1.ListData(from, to, PaymentOrderStatusEnum.SETTLED);
             AssertHttpOK(response);
             PaymentOrder[] orders = response;
             Assert.True(orders.Any());
         }
+        
 
         [Fact]
-        public async Task List_returns_200_with_filter_Limit()
+        public async Task List_Page_returns_200()
         {
             var from = new DateTimeOffset(2022, 10, 01, 0, 0, 0, TimeSpan.Zero);
             var to = from.AddDays(60);
 
-            var response = await _api.PaymentOrder.V1.List((from, to, PaymentOrderStatusEnum.SETTLED, 150));
+            var response = await _api.PaymentOrder.V1.ListPage(from, to, PaymentOrderStatusEnum.SETTLED);
             AssertHttpOK(response);
             PaymentOrder[] orders = response;
             Assert.True(orders.Any());
+            PaginationLinks pages = response;
+            Assert.NotEmpty(pages?.Current?.Href);
         }
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
@@ -247,7 +250,6 @@ namespace PingPayments.PaymentsApi.Tests.V1
             //4. Split
             AssertHttpNoContent(await _api.PaymentOrder.V1.Split(orderId));
 
-            //var allocationsResponse = await _api.PaymentOrder.V1.Allocations(orderId);
             var allocationsResponse = await _api.Allocation.V1.ListData(paymentOrderId: orderId);
 
             AssertHttpOK(allocationsResponse);
@@ -267,7 +269,6 @@ namespace PingPayments.PaymentsApi.Tests.V1
 
             //4. Split
 
-            //var allocationsResponse = await _api.PaymentOrder.V1.Allocations(orderId);
             var allocationsResponse = await _api.Allocation.V1.ListData(paymentOrderId: orderId);
 
             AssertHttpApiError(allocationsResponse);

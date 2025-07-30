@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using PingPayments.PaymentsApi.Merchants.Create.V1;
 using PingPayments.PaymentsApi.Merchants.Shared.V1;
+using PingPayments.Shared;
 using PingPayments.Tests;
 using System;
 using System.Linq;
@@ -26,13 +27,32 @@ namespace PingPayments.PaymentsApi.Tests.V1
         }
 
         [Fact]
-        public async Task List_returns_200()
+        public async Task List_Data_returns_200()
         {
-            var response = await _api.Merchants.V1.List();
+            var response = await _api.Merchants.V1.ListData();
             AssertHttpOK(response);
             Merchant[]? merchants = response;
             Assert.True(merchants != null && merchants.Any());
         }
+
+        [Fact]
+        public async Task List_Page_returns_200()
+        {
+            var response = await _api.Merchants.V1.ListPage();
+            AssertHttpOK(response);
+            Merchant[]? merchants = response;
+            Assert.True(merchants != null && merchants.Any());
+        }
+
+        [Fact]
+        public async Task List_Page_returns_200_has_links()
+        {
+            var response = await _api.Merchants.V1.ListPage();
+            AssertHttpOK(response);
+            PaginationLinks paginationLinks = response;
+            Assert.NotNull(paginationLinks);
+        }
+
         [Fact]
         public async Task Create_merchant_dk_organization_returns_200()
         {

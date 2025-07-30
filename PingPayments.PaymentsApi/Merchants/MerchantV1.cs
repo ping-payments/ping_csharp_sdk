@@ -14,23 +14,32 @@ namespace PingPayments.PaymentsApi.Merchants
         (
             Lazy<CreateMerchantOperation> createMerchantOperation,
             Lazy<GetMerchantOperation> getMerchantOperation,
-            Lazy<ListMerchantsOperation> listMerchantOperation
+            Lazy<ListMerchantsDataOperation> listMerchantDataOperation,
+            Lazy<ListMerchantsPageOperation> listMerchantPageOperation
         )
         {
             _createMerchantOperation = createMerchantOperation;
             _getMerchantOperation = getMerchantOperation;
-            _listMerchantOperation = listMerchantOperation;
+            _listMerchantDataOperation = listMerchantDataOperation;
+            _listMerchantPageOperation = listMerchantPageOperation;
         }
 
         private readonly Lazy<CreateMerchantOperation> _createMerchantOperation;
         private readonly Lazy<GetMerchantOperation> _getMerchantOperation;
-        private readonly Lazy<ListMerchantsOperation> _listMerchantOperation;
+        private readonly Lazy<ListMerchantsDataOperation> _listMerchantDataOperation;
+        private readonly Lazy<ListMerchantsPageOperation> _listMerchantPageOperation;
 
         public async Task<MerchantResponse> Get(Guid merchantId) =>
             await _getMerchantOperation.Value.ExecuteRequest(merchantId);
 
-        public async Task<MerchantsResponse> List() =>
-            await _listMerchantOperation.Value.ExecuteRequest(null);
+        public async Task<MerchantsDataResponse> ListData() =>
+            await _listMerchantDataOperation.Value.ExecuteRequest(null);
+
+        public async Task<MerchantsPageResponse> ListPage(int? limit) =>
+            await _listMerchantPageOperation.Value.ExecuteRequest((null, limit));
+
+        public async Task<MerchantsPageResponse> ListPage(PaginationLinkHref href) =>
+            await _listMerchantPageOperation.Value.ExecuteRequest((href, null));
 
         public async Task<GuidResponse> Create(CreateMerchantRequest createMerchantRequest) =>
             await _createMerchantOperation.Value.ExecuteRequest(createMerchantRequest);

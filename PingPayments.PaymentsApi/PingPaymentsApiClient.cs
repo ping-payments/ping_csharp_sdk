@@ -93,7 +93,8 @@ namespace PingPayments.PaymentsApi
             (
                 new Lazy<InitiateOperation>(() => new InitiateOperation(httpClient)),
                 new Lazy<GetOperation>(() => new GetOperation(httpClient)),
-                new Lazy<ListOperation>(() => new ListOperation(httpClient)),
+                new Lazy<ListDataOperation>(() => new ListDataOperation(httpClient)),
+                new Lazy<ListPageOperation>(() => new ListPageOperation(httpClient)),
                 new Lazy<UpdateOperation>(() => new UpdateOperation(httpClient)),
                 new Lazy<ReconcileOperation>(() => new ReconcileOperation(httpClient)),
                 new Lazy<RefundOperation>(() => new RefundOperation(httpClient)),
@@ -106,7 +107,8 @@ namespace PingPayments.PaymentsApi
                  new Lazy<GetPaymentOrderOperation>(() => new GetPaymentOrderOperation(httpClient)),
                  new Lazy<CreatePaymentOrderOperation>(() => new CreatePaymentOrderOperation(httpClient)),
                  new Lazy<UpdatePaymentOrderOperation>(() => new UpdatePaymentOrderOperation(httpClient)),
-                 new Lazy<ListPaymentOrderOperation>(() => new ListPaymentOrderOperation(httpClient)),
+                 new Lazy<ListPaymentOrderDataOperation>(() => new ListPaymentOrderDataOperation(httpClient)),
+                 new Lazy<ListPaymentOrderPageOperation>(() => new ListPaymentOrderPageOperation(httpClient)),
                  new Lazy<SplitPaymentOrderOperation>(() => new SplitPaymentOrderOperation(httpClient)),
                  new Lazy<ClosePaymentOrderOperation>(() => new ClosePaymentOrderOperation(httpClient)),
                  new Lazy<SettlePaymentOrderOperation>(() => new SettlePaymentOrderOperation(httpClient)),
@@ -118,7 +120,8 @@ namespace PingPayments.PaymentsApi
             (
                 new Lazy<CreateMerchantOperation>(() => new CreateMerchantOperation(httpClient)),
                 new Lazy<GetMerchantOperation>(() => new GetMerchantOperation(httpClient)),
-                new Lazy<ListMerchantsOperation>(() => new ListMerchantsOperation(httpClient))
+                new Lazy<ListMerchantsDataOperation>(() => new ListMerchantsDataOperation(httpClient)),
+                new Lazy<ListMerchantsPageOperation>(() => new ListMerchantsPageOperation(httpClient))
             );
             _merchants = new Lazy<IMerchantResource>(() => new MerchantResource(merchantV1));
 
