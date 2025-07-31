@@ -11,6 +11,8 @@ namespace PingPayments.PaymentsApi.Merchants
     {
         Task<GuidResponse> Create(CreateMerchantRequest createMerchantRequest);
         Task<MerchantResponse> Get(Guid merchantId);
-        Task<MerchantsResponse> List();
+        Task<MerchantsDataResponse> ListData();
+        Task<MerchantsPageResponse> ListPage(int? limit = null);
+        Task<MerchantsPageResponse> ListPage(PaginationLinkHref href);
     }
 }

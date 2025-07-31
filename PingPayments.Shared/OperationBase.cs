@@ -5,6 +5,9 @@ using System.Text.Json;
 using System.Net.Http.Headers;
 using System.Text.Json.Serialization;
 using static PingPayments.Shared.Enums.HttpRequestTypeEnum;
+using System.Net;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PingPayments.Shared
 {
@@ -20,6 +23,7 @@ namespace PingPayments.Shared
             {
                 _httpClient.DefaultRequestHeaders.Accept.Add(json);
             }
+            _httpClient.DefaultRequestHeaders.Add("x-api-version", "2025-03-06");
         }
 
         protected virtual JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };
@@ -75,5 +79,51 @@ namespace PingPayments.Shared
                 await Deserialize<ErrorResponseBody>(await hrm.Content.ReadAsStringAsyncMemoized()),
                 await hrm.Content.ReadAsStringAsyncMemoized()
             );
+
+        /// <summary>
+        /// Iterates through paginated results and returns a custom result using the provided factory.
+        /// </summary>
+        /// <typeparam name="T">The type of the data in the paginated response.</typeparam>
+        /// <typeparam name="TResult">The result type to return.</typeparam>
+        /// <param name="baseUrl">The initial URL to request.</param>
+        /// <param name="resultFactory">
+        /// A function that takes (isSuccess, statusCode, data, rawBody, error) and returns TResult.
+        /// </param>
+        protected async Task<TResult> GetPaginatedListAsync<T, TResult>(
+            string baseUrl,
+            Func<bool, HttpStatusCode, List<T>, string, ErrorResponseBody?, TResult> resultFactory)
+            where T : class
+        {
+            var result = new List<T>();
+            string? nextUrl = baseUrl?.TrimEnd('&');
+            HttpStatusCode lastStatusCode = HttpStatusCode.OK;
+            string lastRawBody = string.Empty;
+
+            while (!string.IsNullOrEmpty(nextUrl))
+            {
+                using var response = await _httpClient.GetAsync(nextUrl);
+                lastStatusCode = response.StatusCode;
+                lastRawBody = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    ErrorResponseBody? error = null;
+                    try
+                    {
+                        error = await Deserialize<ErrorResponseBody>(lastRawBody);
+                    }
+                    catch { }
+                    return resultFactory(false, lastStatusCode, result, lastRawBody, error);
+                }
+
+                var resultObj = await Deserialize<GenericTransfer<T>>(lastRawBody);
+                if (resultObj?.Data != null)
+                    result.AddRange(resultObj.Data);
+
+                nextUrl = resultObj?.PaginationLinks.Next?.Href;
+            }
+
+            return resultFactory(true, lastStatusCode, result, lastRawBody, null);
+        }
     }
 }

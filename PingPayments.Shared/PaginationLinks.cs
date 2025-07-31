@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace PingPayments.PaymentsApi.DepositBankAccount.Shared.Transfer
+namespace PingPayments.Shared
 {
     public record PaginationLinks
     {
@@ -11,9 +11,9 @@ namespace PingPayments.PaymentsApi.DepositBankAccount.Shared.Transfer
         public PaginationLinkHref? First { get; set; }
 
         [JsonPropertyName("next")]
-        public PaginationLinkHref Next { get; set; }
+        public PaginationLinkHref? Next { get; set; }
 
         [JsonPropertyName("previous")]
-        public PaginationLinkHref Previous { get; set; }
+        public PaginationLinkHref? Previous { get; set; }
     }
 }

@@ -37,8 +37,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Can_create_order_with_split_parameters()
         {
-            var splitParamters = new Dictionary<string, object> { { "tenant_fee", 20.ToMinorCurrencyUnit() } };
-            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, SplitParamters: splitParamters);
+            var splitParameters = new Dictionary<string, object> { { "tenant_fee", 20.ToMinorCurrencyUnit() } };
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, SplitParamters: splitParameters);
             var response = await _api.PaymentOrder.V1.Create(request);
             AssertHttpOK(response);
         }
@@ -54,8 +54,8 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Can_create_order_with_split_tree_id_and_split_paramters()
         {
-            dynamic splitParamters = new { tenant_fee = 20.ToMinorCurrencyUnit() };
-            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, splitParamters, TestData.SplitTreeId);
+            dynamic splitParameters = new { tenant_fee = 20.ToMinorCurrencyUnit() };
+            var request = new CreatePaymentOrderRequest(CurrencyEnum.SEK, splitParameters, TestData.SplitTreeId);
             var response = await _api.PaymentOrder.V1.Create(request);
             AssertHttpOK(response);
         }
@@ -71,10 +71,10 @@ namespace PingPayments.PaymentsApi.Tests.V1
         [Fact]
         public async Task Can_update_order_with_split_tree_id_and_split_parameters()
         {
-            dynamic splitParamters = new { tenant_fee = 20.ToMinorCurrencyUnit() };
+            dynamic splitParameters = new { tenant_fee = 20.ToMinorCurrencyUnit() };
             var updateRequest = new UpdatePaymentOrderRequest
             (
-                SplitParamters: splitParamters,
+                SplitParamters: splitParameters,
                 SplitTreeId: TestData.SplitTreeId
             );
 
@@ -87,21 +87,51 @@ namespace PingPayments.PaymentsApi.Tests.V1
         }
 
         [Fact]
-        public async Task List_returns_200_without_filter()
+        public async Task List_Data_returns_200_without_filter()
         {
-            var response = await _api.PaymentOrder.V1.List();
-            AssertHttpOK(response);
-        }
-
-        [Fact]
-        public async Task List_returns_200_with_filter()
-        {
-            var from = new DateTimeOffset(2022, 01, 01, 0, 0, 0, TimeSpan.Zero);
-            var to = from.AddMonths(6);
-            var response = await _api.PaymentOrder.V1.List((from, to));
+            var response = await _api.PaymentOrder.V1.ListData();
             AssertHttpOK(response);
             PaymentOrder[] orders = response;
             Assert.True(orders.Any());
+        }
+
+        [Fact]
+        public async Task List_Data_returns_200_with_filter()
+        {
+            var from = new DateTimeOffset(2022, 10, 01, 0, 0, 0, TimeSpan.Zero);
+            var to = from.AddDays(60);
+
+            var response = await _api.PaymentOrder.V1.ListData(from, to);
+            AssertHttpOK(response);
+            PaymentOrder[] orders = response;
+            Assert.True(orders.Any());
+        }
+
+        [Fact]
+        public async Task List_Data_returns_200_with_filter_Status()
+        {
+            var from = new DateTimeOffset(2022, 10, 01, 0, 0, 0, TimeSpan.Zero);
+            var to = from.AddDays(60);
+
+            var response = await _api.PaymentOrder.V1.ListData(from, to, PaymentOrderStatusEnum.SETTLED);
+            AssertHttpOK(response);
+            PaymentOrder[] orders = response;
+            Assert.True(orders.Any());
+        }
+        
+
+        [Fact]
+        public async Task List_Page_returns_200()
+        {
+            var from = new DateTimeOffset(2022, 10, 01, 0, 0, 0, TimeSpan.Zero);
+            var to = from.AddDays(60);
+
+            var response = await _api.PaymentOrder.V1.ListPage(from, to, PaymentOrderStatusEnum.SETTLED);
+            AssertHttpOK(response);
+            PaymentOrder[] orders = response;
+            Assert.True(orders.Any());
+            PaginationLinks pages = response;
+            Assert.NotEmpty(pages?.Current?.Href);
         }
 
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
@@ -220,9 +250,9 @@ namespace PingPayments.PaymentsApi.Tests.V1
             //4. Split
             AssertHttpNoContent(await _api.PaymentOrder.V1.Split(orderId));
 
-            var allocationsReponse = await _api.PaymentOrder.V1.Allocations(orderId);
+            var allocationsResponse = await _api.Allocation.V1.ListData(paymentOrderId: orderId);
 
-            AssertHttpOK(allocationsReponse);
+            AssertHttpOK(allocationsResponse);
         }
 
         [Fact]
@@ -239,9 +269,9 @@ namespace PingPayments.PaymentsApi.Tests.V1
 
             //4. Split
 
-            var allocationsReponse = await _api.PaymentOrder.V1.Allocations(orderId);
+            var allocationsResponse = await _api.Allocation.V1.ListData(paymentOrderId: orderId);
 
-            AssertHttpApiError(allocationsReponse);
+            AssertHttpApiError(allocationsResponse);
 
         }
 
@@ -261,6 +291,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Guid paymentId = paymentResponse.Body.SuccessfulResponseBody.Id;
             return (orderId, paymentId);
         }
+
         public async Task AwaitPaymentCallback(Guid orderId, Guid paymentId)
         {
             bool isStatusCompleted = false;

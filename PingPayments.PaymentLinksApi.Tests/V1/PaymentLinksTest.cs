@@ -112,7 +112,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
             var paymentOrderResponose = await _paymentsApi.PaymentOrder.V1.Create(paymentOrderRequest);
             var orderId = paymentOrderResponose.Body.SuccessfulResponseBody.Id;
 
-            var customer = new Customer("FrstName", "LastName");
+            var customer = new Customer("FirstName", "LastName");
             var tags = new string[] { "test1", "test2" };
             var items = new Item[]
             {
@@ -125,7 +125,7 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
                     metadata: new Dictionary<string, dynamic>(){ {"meta", "data"} },
                     tags: tags)
             };
-            var suppler = new Supplier("Supllier name");
+            var suppler = new Supplier("Supplier name");
 
             var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
             var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
@@ -154,13 +154,13 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task Create_paymentLink_with_wrong_currency_returns_422()
         {
-            var customer = new Customer("FrstName", "LastName");
+            var customer = new Customer("FirstName", "LastName");
             var items = new Item[]
             {
                 new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
 
-            var suppler = new Supplier("Supllier name");
+            var suppler = new Supplier("Supplier name");
 
             var swishMcommmerce = CreatePaymentProviderMethod.Swish.Mcommerce("A swish message");
             var billmate = CreatePaymentProviderMethod.Billmate.Invoice();
@@ -187,12 +187,12 @@ namespace PingPayments.PaymentLinksApi.Tests.V1
         [Fact]
         public async Task Create_paymentLink_without_paymentProvider_returns_403()
         {
-            var customer = new Customer("FrstName", "LastName");
+            var customer = new Customer("FirstName", "LastName");
             var items = new Item[]
             {
                 new Item("Hawaii Pizza", TestData.MerchantId, 70.ToMinorCurrencyUnit(), 2, SwedishVat.Vat12)
             };
-            var suppler = new Supplier("Supllier name");
+            var suppler = new Supplier("Supplier name");
 
             var paymentLinkRequest = new CreatePaymentLinkRequest
                 (
