@@ -1,8 +1,8 @@
 # Change Log
 
-## 3.20.2 (2025-07-31)
-- Breaking changes!
-	- Adopt to migration Migration 2025-03-06
+## 4.0.0 (2025-08-12)
+- Breaking changes. List is now split into ListData and ListPage.
+	ListData loops all available pages and return the complete dataset, while ListPage return one page at the time. The user can then choose which option is the most optimal for each situation.
 
 ## 3.20.1 (2024-04-11)
 - Fixed a bug with the filtering for `ListBankTransfers`
