@@ -23,7 +23,11 @@ namespace PingPayments.Shared
             {
                 _httpClient.DefaultRequestHeaders.Accept.Add(json);
             }
-            _httpClient.DefaultRequestHeaders.Add("x-api-version", "2025-03-06");
+
+            if (!_httpClient.DefaultRequestHeaders.Contains("x-api-version"))
+            {
+                _httpClient.DefaultRequestHeaders.Add("x-api-version", "2025-03-06");
+            }
         }
 
         protected virtual JsonSerializerOptions JsonSerializerOptions => new() { Converters = { new JsonStringEnumConverter() } };
@@ -41,7 +45,7 @@ namespace PingPayments.Shared
                 using var ms = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 return await JsonSerializer.DeserializeAsync<T>(ms, jsonSerializerOptions);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return default;
             }
@@ -95,7 +99,7 @@ namespace PingPayments.Shared
             where T : class
         {
             var result = new List<T>();
-            string? nextUrl = baseUrl?.TrimEnd('&');
+            string? nextUrl = baseUrl;
             HttpStatusCode lastStatusCode = HttpStatusCode.OK;
             string lastRawBody = string.Empty;
 

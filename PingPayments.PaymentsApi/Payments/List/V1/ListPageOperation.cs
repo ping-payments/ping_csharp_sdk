@@ -30,7 +30,7 @@ namespace PingPayments.PaymentsApi.Payments.List.V1
             await BaseExecute(
                 GET,
                 request.HasValue ?
-                    ($"api/v1/payment_orders?"
+                    ($"api/v1/payments?"
                     + (request.Value.from.HasValue ? $"from_initiated_date_time={WebUtility.UrlEncode(request.Value.from.Value.ToString("o"))}&" : string.Empty)
                     + (request.Value.to.HasValue ? $"to_initiated_date_time={WebUtility.UrlEncode(request.Value.to.Value.ToString("o"))}&" : string.Empty)
                     + (request.Value.status.HasValue ? $"status={request.Value.status.Value}&" : string.Empty)
@@ -40,7 +40,7 @@ namespace PingPayments.PaymentsApi.Payments.List.V1
                     + (request.Value.refundRequested.HasValue ? $"is_refund_requested={request.Value.refundRequested.Value}&" : string.Empty)
                     + (request.Value.limit.HasValue ? $"limit={request.Value.limit.Value}" : string.Empty))
                 :
-                    $"api/v1/payment_orders",
+                    $"api/v1/payments",
                 request
             );
 
@@ -49,7 +49,7 @@ namespace PingPayments.PaymentsApi.Payments.List.V1
             var responseBody = await hrm.Content.ReadAsStringAsyncMemoized();
             var response = hrm.StatusCode switch
             {
-                OK => PaymentsPageResponse.Successful(hrm.StatusCode, await Deserialize<GenericTransfer<PaymentResponseBody>>(responseBody), responseBody),
+                OK => PaymentsPageResponse.Successful(hrm.StatusCode, await Deserialize<GenericTransfer<Payment>>(responseBody), responseBody),
                 _ => PaymentsPageResponse.Failure(hrm.StatusCode, await Deserialize<ErrorResponseBody>(responseBody), responseBody)
             };
             return response;

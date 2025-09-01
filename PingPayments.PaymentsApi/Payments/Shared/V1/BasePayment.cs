@@ -1,5 +1,6 @@
 ﻿using PingPayments.Shared;
 using PingPayments.Shared.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -49,5 +50,10 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         [JsonPropertyName("payer")]
         public Payer? Payer { get; set; }
 
+        /// <summary>
+        /// Overlaying payment
+        /// </summary>
+        [JsonPropertyName("payment_order_id")]
+        public Guid PaymentOrderId { get; set; }
     }
 }

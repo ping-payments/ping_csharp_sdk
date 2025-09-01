@@ -1,5 +1,9 @@
 # Change Log
 
+## 3.20.2 (2025-07-31)
+- Breaking changes!
+	- Adopt to migration Migration 2025-03-06
+
 ## 3.20.1 (2024-04-11)
 - Fixed a bug with the filtering for `ListBankTransfers`
 

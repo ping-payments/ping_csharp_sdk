@@ -27,6 +27,15 @@ namespace PingPayments.PaymentsApi.Tests.V1
         }
 
         [Fact]
+        public async Task Get_has_payments()
+        {
+            var response = await _api.PaymentOrder.V1.Get(TestData.OrderId);
+            AssertHttpOK(response);
+            PaymentOrderExtended? paymentOrder = response;
+            Assert.NotNull(paymentOrder.Payments);
+        }
+
+        [Fact]
         public async Task Get_404_on_non_existing_order()
         {
             var response = await _api.PaymentOrder.V1.Get(Guid.NewGuid());
