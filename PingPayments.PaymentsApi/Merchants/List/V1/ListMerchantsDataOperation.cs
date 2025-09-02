@@ -12,10 +12,12 @@ namespace PingPayments.PaymentsApi.Merchants.List.V1
 {
     public class ListMerchantsDataOperation : OperationBase<EmptyRequest?, MerchantsDataResponse>
     {
+        public const int limit = 200;
+
         public ListMerchantsDataOperation(HttpClient httpClient) : base(httpClient) { }
 
         public override async Task<MerchantsDataResponse> ExecuteRequest(EmptyRequest? emptyRequest = null) =>
-            await GetPaginatedListAsync<Merchant, MerchantsDataResponse>("api/v1/merchants",
+            await GetPaginatedListAsync<Merchant, MerchantsDataResponse>("api/v1/merchants?limit=" + limit,
                 (isSuccess, statusCode, data, rawBody, error) =>
                     isSuccess
                         ? MerchantsDataResponse.Successful(statusCode, data.ToArray(), rawBody)

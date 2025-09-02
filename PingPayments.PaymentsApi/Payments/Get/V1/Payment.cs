@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.Payments.Get.V1
 {
-    public record PaymentResponseBody : BasePayment
+    public record Payment : BasePayment
     {
         /// <summary>
         /// Id of a Payment
