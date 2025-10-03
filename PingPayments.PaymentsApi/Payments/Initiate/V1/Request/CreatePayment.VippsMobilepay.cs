@@ -7,7 +7,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 {
     public static partial class CreatePayment
     {
-        public static class Vipps
+        public static class VippsMobilepay
         {
             public static InitiatePaymentRequest MobilePay
             (
