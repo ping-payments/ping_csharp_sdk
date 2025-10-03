@@ -55,6 +55,7 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
                 (ProviderEnum.ping, MethodEnum.credit) => await Deserialize<PingCreditResponseBody>(raw, jsonOpts),
                 (ProviderEnum.baase, MethodEnum.bank_loan) => await Deserialize<BaaseResponseBody>(raw, jsonOpts),
                 (ProviderEnum.bankgirot, MethodEnum.autogiro) => await Deserialize<AutogiroResponseBody>(raw, jsonOpts),
+                (ProviderEnum.vipps_mobilepay, MethodEnum.checkout) => await Deserialize<VippsMobilepayCheckoutResponseBody>(raw, jsonOpts),
                 _ => null
             };
 
