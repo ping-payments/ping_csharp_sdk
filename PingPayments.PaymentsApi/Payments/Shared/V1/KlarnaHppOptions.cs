@@ -6,10 +6,15 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
 {
     public record KlarnaHppOptions
     {
-        public KlarnaHppOptions(Uri logoUrl, IList<KlarnaBackgroundImage> backgroundImages = null, IList<string> paymentMethodCategories = null)
+        public KlarnaHppOptions(string pageTitle, Uri logoUrl, List<KlarnaPaymentMethodCategoryEnum> paymentMethodCategories, KlarnaPaymentMethodCategoryEnum paymentMethodCategory, KlarnaPurchaseTypeEnum purchaseType, List<KlarnaBackgroundImage> backgroundImages = null, KlarnaShowSubtotalDetailEnum? showSubtotalDetail = null)
         {
+            PageTitle = pageTitle;
             LogoUrl = logoUrl;
-            BackgroundImages = backgroundImages ?? new List<KlarnaBackgroundImage>();
+            PaymentMethodCategories = paymentMethodCategories;
+            PaymentMethodCategory = paymentMethodCategory;
+            PurchaseType = purchaseType;
+            BackgroundImages = backgroundImages;
+            ShowSubtotalDetail = showSubtotalDetail;
         }
 
         public KlarnaHppOptions()
@@ -21,7 +26,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// List of Images to use for the background. Best matching resolution will be used.
         /// </summary>
         [JsonPropertyName("background_images")]
-        public IList<KlarnaBackgroundImage> BackgroundImages { get; set; }
+        public List<KlarnaBackgroundImage> BackgroundImages { get; set; }
 
         /// <summary>
         /// URL of the logo to be displayed
@@ -39,7 +44,7 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// Payment Method Categories to show on the Payment Page. All available categories will be given to the customer if none is specified.
         /// </summary>
         [JsonPropertyName("payment_method_categories")]
-        public IList<KlarnaPaymentMethodCategoryEnum> PaymentMethodCategories { get; set; }
+        public List<KlarnaPaymentMethodCategoryEnum> PaymentMethodCategories { get; set; }
 
         /// <summary>
         /// Payment Method Category to show on the Payment Page. All available categories will be given to the customer if none is specified.
