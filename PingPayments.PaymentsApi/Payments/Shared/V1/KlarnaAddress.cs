@@ -53,19 +53,19 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public string? Email { get; set; }
 
         /// <summary>
-        /// First name of customer
+        /// First name of customer. Allowed special characters: -''
         /// </summary>
         [JsonPropertyName("given_name")]
         public string? FirstName { get; set; }
 
         /// <summary>
-        /// Last name of customer
+        /// Last name of customer. Allowed special characters: -''
         /// </summary>
         [JsonPropertyName("family_name")]
         public string? LastName { get; set; }
 
         /// <summary>
-        /// Phone number of customer
+        /// Organization name of customer, if applicable (B2B customers)
         /// </summary>
         [JsonPropertyName("organization_name")]
         public string? OrganizationName { get; set; }
@@ -83,7 +83,8 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public string? PostalCode { get; set; }
 
         /// <summary>
-        /// Phone number of customer
+        /// Region of customer
+        /// Mandatory for US and AU market. Validations according to ISO 3166-2 format.
         /// </summary>
         [JsonPropertyName("region")]
         public string? Region { get; set; }

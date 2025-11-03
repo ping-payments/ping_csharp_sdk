@@ -53,13 +53,13 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         public KlarnaPaymentMethodCategoryEnum PaymentMethodCategory { get; set; }
 
         /// <summary>
-        /// Payment Method Category to show on the Payment Page. All available categories will be given to the customer if none is specified.
+        /// The type of this purchase
         /// </summary>
         [JsonPropertyName("purchase_type")]
         public KlarnaPurchaseTypeEnum PurchaseType { get; set; }
 
         /// <summary>
-        /// Payment Method Category to show on the Payment Page. All available categories will be given to the customer if none is specified.
+        /// Whether to show subtotal detail
         /// </summary>
         [JsonPropertyName("show_subtotal_detail")]
         public KlarnaShowSubtotalDetailEnum? ShowSubtotalDetail { get; set; }
