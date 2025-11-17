@@ -11,12 +11,29 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         [JsonPropertyName("country")]
         public string Country { get; set; }
 
+        /// <summary>
+        /// Name of the person
+        /// </summary>
+        [JsonPropertyName("name")]
+        public string? Name { get; set; } = null;
 
         /// <summary>
         /// Swedish personal identity number. 
         /// The personal identity number is composed of your date of birth followed by a 4-digit number with the following pattern: ^\d{12}$
         /// </summary>
         [JsonPropertyName("se_personal_identity_number")]
-        public string? SePersonalIdentityNumber { get; set; }
+        public string? SePersonalIdentityNumber { get; set; } = null;
+
+        /// <summary>
+        /// Gets or sets the Danish Civil Registration Number (CPR) associated with the entity.
+        /// </summary>
+        [JsonPropertyName("dk_civil_registration_number")]
+        public string? DkCivilRegistrationNumber { get; set; } = null;
+
+        /// <summary>
+        /// Norwegian national identity number.
+        /// </summary>
+        [JsonPropertyName("no_identity_number")]
+        public string? NoIdentityNumber { get; set; } = null;
     }
 }
