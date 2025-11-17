@@ -14,7 +14,7 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         /// Name of the organization
         /// </summary>
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
+        public string? Name { get; set; } = null;
 
         /// <summary>
         /// KYC information
@@ -29,7 +29,7 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         public string? NoOrganizationNumber { get; set; } = null;
 
         /// <summary>
-        /// Norwegian organization number
+        /// Danish organization number
         /// </summary>
         [JsonPropertyName("dk_organization_number")]
         public string? DkOrganizationNumber { get; set; } = null;

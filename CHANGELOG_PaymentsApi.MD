@@ -1,5 +1,8 @@
 # Change Log
 
+## 4.0.4 (2025-11-17)
+- Updated models for merchant KYC information
+
 ## 4.0.2 (2025-10-03)
 - Added support for Vipps MobilePay
 

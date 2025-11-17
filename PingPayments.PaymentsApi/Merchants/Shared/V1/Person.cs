@@ -25,7 +25,7 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         public string? SePersonalIdentityNumber { get; set; } = null;
 
         /// <summary>
-        /// Gets or sets the Danish Civil Registration Number (CPR) associated with the entity.
+        /// Danish Civil Registration Number (CPR) associated with the entity.
         /// </summary>
         [JsonPropertyName("dk_civil_registration_number")]
         public string? DkCivilRegistrationNumber { get; set; } = null;
