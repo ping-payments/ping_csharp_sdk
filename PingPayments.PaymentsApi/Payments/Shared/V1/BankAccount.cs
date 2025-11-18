@@ -27,5 +27,23 @@ namespace PingPayments.PaymentsApi.Payments.Shared.V1
         /// </summary>
         [JsonPropertyName("bankgiro_number")]
         public string BankgiroNumber { get; set; }
+
+        /// <summary>
+        /// Currency of the bank account
+        /// </summary>
+        [JsonPropertyName("currency")]
+        public string Currency { get; set; }
+
+        /// <summary>
+        /// Clearing number of the bank account
+        /// </summary>
+        [JsonPropertyName("clearing_number")]
+        public string ClearingNumber { get; set; }
+
+        /// <summary>
+        /// Account number of the bank account
+        /// </summary>
+        [JsonPropertyName("account_number")]
+        public string AccountNumber { get; set; }
     }
 }
