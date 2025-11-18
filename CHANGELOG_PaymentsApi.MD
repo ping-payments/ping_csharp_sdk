@@ -1,5 +1,8 @@
 # Change Log
 
+## 4.0.3 (2025-10-07)
+- Added support for Klarna
+
 ## 4.0.2 (2025-10-03)
 - Added support for Vipps MobilePay
 
