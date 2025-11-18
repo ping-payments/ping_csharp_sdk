@@ -2,11 +2,14 @@
 {
     public enum SignMethodEnum
     {
-        swedish_bankid,
         standard_esign,
         sms,
+        handwritten_signature,
+        swedish_bankid,
         norwegian_bankid,
         danish_mitid,
-        finnish_bankid
+        finnish_bankid,
+        eid_sign,
+        unknown
     }
 }
