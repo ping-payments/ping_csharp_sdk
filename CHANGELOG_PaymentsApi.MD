@@ -1,5 +1,8 @@
 # Change Log
 
+## 4.0.5 (2025-11-18)
+- Updated models for BankAccount
+
 ## 4.0.4 (2025-11-17)
 - Updated models for merchant KYC information
 
