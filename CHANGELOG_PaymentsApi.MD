@@ -1,5 +1,8 @@
 # Change Log
 
+## 4.0.6 (2025-03-05)
+- Updated models for Allocation
+
 ## 4.0.5 (2025-11-18)
 - Updated models for BankAccount
 
