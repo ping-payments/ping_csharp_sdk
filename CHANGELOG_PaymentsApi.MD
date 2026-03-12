@@ -1,5 +1,17 @@
 # Change Log
 
+## 4.0.5 (2025-11-18)
+- Updated models for BankAccount
+
+## 4.0.4 (2025-11-17)
+- Updated models for merchant KYC information
+
+## 4.0.3 (2025-10-07)
+- Added support for Klarna
+
+## 4.0.2 (2025-10-03)
+- Added support for Vipps MobilePay
+
 ## 4.0.0 (2025-08-12)
 - Breaking changes. List is now split into ListData and ListPage.
 	ListData loops all available pages and return the complete dataset, while ListPage return one page at the time. The user can then choose which option is the most optimal for each situation.

@@ -147,6 +147,32 @@ namespace PingPayments.PaymentsApi.Tests.V1
                   new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() } }
               ) is AutogiroResponseBody
           );
+        
+        [Fact]
+        public async Task Can_parse_VippsMobilePay_checkout() =>
+          Assert.True
+          (
+              await InitiateOperation.GetResponseBody
+              (
+                  ProviderEnum.vipps_mobilepay,
+                  MethodEnum.checkout,
+                  "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"checkout_url\":\"https://vipps.no\"}}",
+                  new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() } }
+              ) is VippsMobilePayResponseBody
+          );
+        
+        [Fact]
+        public async Task Can_parse_Klarna_Hpp() =>
+          Assert.True
+          (
+              await InitiateOperation.GetResponseBody
+              (
+                  ProviderEnum.klarna,
+                  MethodEnum.hpp,
+                  "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"redirect_url\":\"https://klarna.com\"}}",
+                  new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() } }
+              ) is KlarnaHppResponseBody
+          );
 
     }
 }

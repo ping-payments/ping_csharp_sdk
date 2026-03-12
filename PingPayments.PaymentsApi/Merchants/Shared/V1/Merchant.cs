@@ -1,5 +1,6 @@
 ﻿using PingPayments.Shared;
 using PingPayments.Shared.Enums;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace PingPayments.PaymentsApi.Merchants.Shared.V1
@@ -35,6 +36,12 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         /// </summary>
         [JsonPropertyName("organization")]
         public Organization? Organization { get; set; }
+
+        /// <summary>
+        /// List of enabled providers and methods
+        /// </summary>
+        [JsonPropertyName("payment_provider_methods")]
+        public List<ProviderMethodBase>? PaymentProviderMethods { get; set; }
 
         /// <summary>
         /// The merchants underlying Person
