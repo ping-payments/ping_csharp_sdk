@@ -2,21 +2,22 @@ using PingPayments.PaymentsApi.Payments.Shared.V1;
 using PingPayments.Shared.Enums;
 using System;
 using System.Collections.Generic;
-using PingPayments.PaymentsApi.Payments.Shared.V1.VippsMobilepayCheckout;
 
 namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 {
     public static partial class CreatePayment
     {
-        public static class VippsMobilepay
+        public static class QuickPay
         {
-            public static InitiatePaymentRequest Checkout
+            public static InitiatePaymentRequest Vipps
             (
                 CurrencyEnum currency,
                 IEnumerable<OrderItem> orderItems,
-                string paymentDescription,
-                Uri returnUrl,
-                PrefillCustomer prefillCustomer,
+                string redirectUrl,
+                string? paymentText = null,
+                bool framed = false,
+                string? language = null,
+                string? designatedMerchantId = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
                 Payer? payer = null
@@ -25,13 +26,15 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     currency,
                     orderItems.TotalAmountMinorCurrencyUnit(),
                     orderItems,
-                    ProviderEnum.vipps_mobilepay,
-                    MethodEnum.checkout,
-                    new VippsMobilepayCheckoutParameters
+                    ProviderEnum.quickpay,
+                    MethodEnum.vipps,
+                    new QuickPayVippsParameters
                     (
-                        paymentDescription,
-                        returnUrl,
-                        prefillCustomer
+                        redirectUrl,
+                        paymentText,
+                        framed,
+                        language,
+                        designatedMerchantId
                     ),
                     statusCallbackUrl,
                     metadata,

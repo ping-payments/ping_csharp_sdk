@@ -1,25 +1,35 @@
-using System.Collections.Generic;
-using PingPayments.PaymentsApi.Payments.Shared.V1.VippsMobilepayCheckout;
 using System;
-
+using System.Collections.Generic;
 
 namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 {
-    public record VippsMobilepayCheckoutParameters
+    public record QuickPayVippsParameters
     (
-        string PaymentDescription,
-        Uri ReturnUrl,
-        PrefillCustomer PrefillCustomer
+        string RedirectUrl,
+        string? PaymentText = null,
+        bool Framed = false,
+        string? Language = null,
+        string? DesignatedMerchantId = null
     ) : ProviderMethodParameters
     {
         public override Dictionary<string, dynamic> ToDictionary()
         {
-            return new Dictionary<string, dynamic>
+            var dict = new Dictionary<string, dynamic>
             {
-                { "payment_description", PaymentDescription ?? "" },
-                { "phone_number", ReturnUrl },
-                { "prefill_customer", PrefillCustomer },
+                { "redirect_url", RedirectUrl },
+                { "framed", Framed },
             };
+
+            if (PaymentText is not null)
+                dict["payment_text"] = PaymentText;
+
+            if (Language is not null)
+                dict["language"] = Language;
+
+            if (DesignatedMerchantId is not null)
+                dict["designated_merchant_id"] = DesignatedMerchantId;
+
+            return dict;
         }
     }
 }
