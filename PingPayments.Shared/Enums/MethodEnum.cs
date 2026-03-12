@@ -1,4 +1,4 @@
-﻿namespace PingPayments.Shared.Enums
+namespace PingPayments.Shared.Enums
 {
     public enum MethodEnum
     {
@@ -17,7 +17,7 @@
         checkout,
         hpp,
 
-        //recurring, 
+        //recurring,
         //card_deposit,
     }
 }

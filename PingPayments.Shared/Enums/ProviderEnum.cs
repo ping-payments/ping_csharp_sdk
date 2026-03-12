@@ -1,4 +1,4 @@
-﻿namespace PingPayments.Shared.Enums
+namespace PingPayments.Shared.Enums
 {
     public enum ProviderEnum
     {
@@ -6,15 +6,16 @@
         open_payments,
         verifone,
         billmate,
-        bankgirot, 
-        payment_iq, 
-        ping, 
-        dummy, 
-        baase, 
+        bankgirot,
+        payment_iq,
+        ping,
+        dummy,
+        baase,
         fortus,
 
         vipps_mobilepay,
         klarna,
+        quickpay,
 
         //neonomics,
         //svea,

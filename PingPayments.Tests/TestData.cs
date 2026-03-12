@@ -23,6 +23,7 @@ namespace PingPayments.Tests
                 {"TenantId",  GetGuidValue("TENANTID")},
                 {"MerchantId",  GetGuidValue("MERCHANTID")},
                 {"OrderId",  GetGuidValue("ORDERID")},
+                {"NokOrderId",  GetGuidValue("NOKORDERID")},
                 {"SplitTreeId",  GetGuidValue("SPLITTREEID")},
                 {"PaymentId",  GetGuidValue("PAYMENTID")},
                 {"PayoutId",  GetGuidValue("PAYOUTID")},
@@ -35,6 +36,7 @@ namespace PingPayments.Tests
         public static Guid TenantId => GetSettings()["TenantId"];
         public static Guid MerchantId => GetSettings()["MerchantId"];
         public static Guid OrderId => GetSettings()["OrderId"];
+        public static Guid NokOrderId => GetSettings()["NOKOrderId"];
         public static Guid SplitTreeId => GetSettings()["SplitTreeId"];
         public static Guid PaymentId => GetSettings()["PaymentId"];
         public static Guid PayoutId => GetSettings()["PayoutId"];
