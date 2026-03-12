@@ -55,6 +55,9 @@ namespace PingPayments.PaymentsApi.Allocations.Shared
 
         [JsonPropertyName("settled_at")]
         public DateTimeOffset? SettledAt { get; set; }
+
+        [JsonPropertyName("order_item_merchant_id")]
+        public Guid? OrderItemMerchantId { get; set; }
     }
 
 }

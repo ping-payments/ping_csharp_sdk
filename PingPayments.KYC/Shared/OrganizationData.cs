@@ -10,5 +10,7 @@ namespace PingPayments.KYC.Shared
         [JsonPropertyName("identity")]
         public string Identity { get; set; }
 
+        [JsonPropertyName("kyc_status")]
+        public KycStatus KycStatus { get; set; }
     }
 }
