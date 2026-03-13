@@ -111,6 +111,32 @@ namespace PingPayments.PaymentsApi.Tests.V1
         }
 
         [Fact]
+        public async Task Initiate_quickpay_vipps_payment_200()
+        {
+            var requestObject = CreatePayment.QuickPay.Vipps
+            (
+                CurrencyEnum.NOK,
+                new OrderItem[]
+                {
+                    new OrderItem(100.ToMinorCurrencyUnit(), "Test item", SwedishVat.Vat25, TestData.MerchantId)
+                },
+                redirectUrl: "https://example.com/redirect",
+                paymentText: "Test payment",
+                framed: false,
+                language: "no",
+                designatedMerchantId: "your_merchant_id"
+            );
+            var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
+
+            AssertHttpOK(response);
+            Assert.NotNull(response?.Body?.SuccessfulResponseBody);
+            QuickPayVippsResponseBody? body = response;
+            Assert.NotNull(body);
+            Assert.NotEqual(Guid.Empty, body?.Id);
+            Assert.NotNull(body?.ProviderMethodResponse?.RedirectUrl);
+        }
+
+        [Fact]
         public async Task Initiate_payment_422_when_order_items_and_total_amount_does_not_match()
         {
             var requestObject = new InitiatePaymentRequest
