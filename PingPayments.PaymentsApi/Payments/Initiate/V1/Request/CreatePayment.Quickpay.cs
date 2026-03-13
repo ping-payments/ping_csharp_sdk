@@ -13,11 +13,11 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             (
                 CurrencyEnum currency,
                 IEnumerable<OrderItem> orderItems,
-                string redirectUrl,
+                Uri redirectUrl,
+                Guid designatedMerchantId,
                 string? paymentText = null,
                 bool framed = false,
                 string? language = null,
-                string? designatedMerchantId = null,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
                 Payer? payer = null
@@ -31,10 +31,10 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     new QuickPayVippsParameters
                     (
                         redirectUrl,
+                        designatedMerchantId,
                         paymentText,
                         framed,
-                        language,
-                        designatedMerchantId
+                        language
                     ),
                     statusCallbackUrl,
                     metadata,
