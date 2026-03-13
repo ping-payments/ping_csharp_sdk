@@ -182,10 +182,10 @@ namespace PingPayments.PaymentsApi.Tests.V1
               (
                   ProviderEnum.quickpay,
                   MethodEnum.vipps,
-                  "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"redirect_url\":\"https://quickpay.net/redirect\"}}",
+                  "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{\"payment_link_url\":\"https://quickpay.net/redirect\"}}",
                   new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() } }
               ) is QuickPayVippsResponseBody x &&
-              !string.IsNullOrWhiteSpace(x.ProviderMethodResponse.RedirectUrl)
+              !string.IsNullOrWhiteSpace(x.ProviderMethodResponse.PaymentLinkUrl)
           );
     }
 }
