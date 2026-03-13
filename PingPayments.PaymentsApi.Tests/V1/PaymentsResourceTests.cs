@@ -124,7 +124,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 paymentText: "Test payment",
                 framed: false,
                 language: "no",
-                designatedMerchantId: "your_merchant_id"
+                designatedMerchantId: TestData.MerchantId
             );
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
 

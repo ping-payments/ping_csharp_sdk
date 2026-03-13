@@ -5,11 +5,11 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
 {
     public record QuickPayVippsParameters
     (
-        string RedirectUrl,
+        Uri RedirectUrl,
+        Guid DesignatedMerchantId,
         string? PaymentText = null,
         bool Framed = false,
-        string? Language = null,
-        string? DesignatedMerchantId = null
+        string? Language = null
     ) : ProviderMethodParameters
     {
         public override Dictionary<string, dynamic> ToDictionary()
@@ -26,8 +26,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             if (Language is not null)
                 dict["language"] = Language;
 
-            if (DesignatedMerchantId is not null)
-                dict["designated_merchant_id"] = DesignatedMerchantId;
+            dict["designated_merchant_id"] = DesignatedMerchantId;
 
             return dict;
         }
