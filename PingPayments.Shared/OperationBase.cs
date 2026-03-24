@@ -26,7 +26,7 @@ namespace PingPayments.Shared
 
             if (!_httpClient.DefaultRequestHeaders.Contains("x-api-version"))
             {
-                _httpClient.DefaultRequestHeaders.Add("x-api-version", "2025-03-06");
+                _httpClient.DefaultRequestHeaders.Add("x-api-version", "2025-12-09");
             }
         }
 
