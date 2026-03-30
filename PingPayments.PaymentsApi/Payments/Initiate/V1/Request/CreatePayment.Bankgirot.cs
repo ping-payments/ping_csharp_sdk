@@ -12,7 +12,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
             public static InitiatePaymentRequest Autogiro
             (
                 IEnumerable<OrderItem> orderItems,
-                string mandateId,
+                string consentId,
                 Uri? statusCallbackUrl = null,
                 IDictionary<string, dynamic>? metadata = null,
                 Payer? payer = null
@@ -23,7 +23,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     orderItems,
                     ProviderEnum.bankgirot,
                     MethodEnum.autogiro,
-                    new BankgirotProviderMethodParameters(mandateId),
+                    new BankgirotProviderMethodParameters(consentId),
                     statusCallbackUrl,
                     metadata,
                     payer

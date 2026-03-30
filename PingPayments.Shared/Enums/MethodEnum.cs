@@ -13,11 +13,10 @@ namespace PingPayments.Shared.Enums
         credit,
         dummy,
         bank_loan,
-
         checkout,
         hpp,
+        recurring,
 
-        //recurring,
         //card_deposit,
     }
 }

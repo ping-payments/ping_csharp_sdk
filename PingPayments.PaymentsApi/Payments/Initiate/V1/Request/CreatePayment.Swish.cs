@@ -58,6 +58,31 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     metadata,
                     payer
                 );
+
+            /// <summary>
+            /// Recurring payments with swish. The payer needs to have given consent for recurring payments in the swish app, 
+            /// and the consentId is used to link the payment to the consent. 
+            /// </summary>
+            public static InitiatePaymentRequest Recurring
+            (
+                IEnumerable<OrderItem> orderItems,
+                string consentId,
+                string message,
+                Uri? statusCallbackUrl = null,
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
+            ) => new
+                (
+                    CurrencyEnum.SEK,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
+                    orderItems,
+                    ProviderEnum.swish,
+                    MethodEnum.recurring,
+                    new SwishRecurringParameters(consentId, message),
+                    statusCallbackUrl,
+                    metadata,
+                    payer
+                );
         }
     }
 }
