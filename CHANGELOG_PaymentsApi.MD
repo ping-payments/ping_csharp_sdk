@@ -1,6 +1,12 @@
 # Change Log
 
-## 4.0.6 (2025-03-05)
+## 4.0.11 (2026-03-30)
+- Updated models and actions for Bankgirot.Autogiro and Swish.Recurring according to the API release 2025-11-19
+
+## 4.0.7 -- 4.0.10 (2026-03)
+- Internal build updates
+
+## 4.0.6 (2026-03-05)
 - Updated models for Allocation
 
 ## 4.0.5 (2025-11-18)
