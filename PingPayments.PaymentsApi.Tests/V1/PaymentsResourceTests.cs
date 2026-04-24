@@ -120,7 +120,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
                 {
                     new OrderItem(100.ToMinorCurrencyUnit(), "Test item", SwedishVat.Vat25, TestData.MerchantId)
                 },
-                redirectUrl: "https://example.com/redirect",
+                redirectUrl: new Uri("https://example.com/redirect"),
                 paymentText: "Test payment",
                 framed: false,
                 language: "no",
@@ -133,7 +133,7 @@ namespace PingPayments.PaymentsApi.Tests.V1
             QuickPayVippsResponseBody? body = response;
             Assert.NotNull(body);
             Assert.NotEqual(Guid.Empty, body?.Id);
-            Assert.NotNull(body?.ProviderMethodResponse?.RedirectUrl);
+            Assert.NotNull(body?.ProviderMethodResponse?.PaymentLinkUrl);
         }
 
         [Fact]
@@ -269,6 +269,33 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var response = await _api.Payments.V1.Initiate(TestData.OrderId, request);
             AssertHttpOK(response);
         }
+
+        //[Fact]
+        //public async Task Initiate_recurring_swish_payment_200()
+        //{
+        //    var paymentOrderRequest = new CreatePaymentOrderRequest(CurrencyEnum.SEK);
+        //    var paymentorderResponse = await _api.PaymentOrder.V1.Create(paymentOrderRequest);
+        //    Guid orderId = paymentorderResponse.Body.SuccessfulResponseBody.Id;
+
+        //    var request = CreatePayment.Swish.Recurring(
+        //        new OrderItem[]
+        //        {
+        //            new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId),
+        //            new OrderItem(5.ToMinorCurrencyUnit(), "B", SwedishVat.Vat12, TestData.MerchantId),
+        //        },
+        //        Guid.NewGuid().ToString(),  // ConsentId
+        //        "message",
+        //        TestData.FakeCallback,
+        //        new Dictionary<string, object> { });
+
+
+        //    var response = await _api.Payments.V1.Initiate(orderId, request);
+
+        //    AssertHttpOK(response);
+
+        //    var recurringResponse = response?.Body?.SuccessfulResponseBody as SwishRecurringResponseBody;
+        //    Assert.NotNull(recurringResponse);
+        //}
 
         [Fact]
         public async Task Update_payment_204()

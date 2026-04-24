@@ -5,6 +5,12 @@ namespace PingPayments.PaymentsApi.KYC.AccountVerificationSession.Shared
     public record SessionOptions
     {
         /// <summary>
+        /// The date from which transactions should be fetched. Format: YYYY-MM-DD
+        /// </summary>
+        [JsonPropertyName("account_transaction_history_from_date")]
+        public string AccountTransactionHistoryFromDate { get; set; }
+
+        /// <summary>
         /// The URL that the user will be redirected to if the use cancels the session
         /// </summary>
         [JsonPropertyName("cancel_url")]
@@ -29,6 +35,12 @@ namespace PingPayments.PaymentsApi.KYC.AccountVerificationSession.Shared
         public string? TimeoutUrl { get; set; }
 
         /// <summary>
+        /// The URL that the user will be redirected to if they try and go back to the session after it has terminated
+        /// </summary>
+        [JsonPropertyName("session_down_url")]
+        public string? SessionDownUrl { get; set; }
+
+        /// <summary>
         /// Whether the session UI will be iframed
         /// </summary>
         [JsonPropertyName("iframed")]
@@ -36,6 +48,7 @@ namespace PingPayments.PaymentsApi.KYC.AccountVerificationSession.Shared
 
         /// <summary>
         /// Locale to use for localizing the session UI
+        /// Pattern: [a-z]{2}-[A-Z]{2} (e.g. en-US, sv-SE). Default: sv-SE
         /// </summary>
         [JsonPropertyName("locale")]
         public string Locale { get; set; }
