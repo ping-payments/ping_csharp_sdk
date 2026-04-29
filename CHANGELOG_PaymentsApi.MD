@@ -1,5 +1,8 @@
 # Change Log
 
+## 4.0.12 (2026-04-24)
+- Updated models for KYC
+
 ## 4.0.11 (2026-03-30)
 - Updated models and actions for Bankgirot.Autogiro and Swish.Recurring according to the API release 2025-11-19
 

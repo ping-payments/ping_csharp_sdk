@@ -15,12 +15,16 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         [JsonPropertyName("kyc_renewal_ongoing")]
         public bool KycRenewalOngoing { get; set; }
 
-
         /// <summary>
         /// When the latest KYC was done for this organization
         /// </summary> 
         [JsonPropertyName("latest_kyc_gathered_at")]
         public DateTimeOffset? LatestKycGatheredAt { get; set; } = default;
 
+        /// <summary>
+        /// KYC status
+        /// </summary>
+        [JsonPropertyName("status")]
+        public KycStatusEnum Status { get; set; }
     }
 }

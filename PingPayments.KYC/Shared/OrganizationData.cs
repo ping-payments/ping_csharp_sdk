@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using PingPayments.Shared.Enums;
+using System.Text.Json.Serialization;
 
 namespace PingPayments.KYC.Shared
 {
@@ -11,6 +12,6 @@ namespace PingPayments.KYC.Shared
         public string Identity { get; set; }
 
         [JsonPropertyName("kyc_status")]
-        public KycStatus KycStatus { get; set; }
+        public KycStatusEnum KycStatus { get; set; }
     }
 }
