@@ -2,6 +2,7 @@
 using PingPayments.Mimic.Deposit;
 using PingPayments.Mimic.Disbursements;
 using PingPayments.Mimic.Merchants;
+using PingPayments.Mimic.PaymentConsent;
 
 namespace PingPayments.Mimic
 {
@@ -11,5 +12,6 @@ namespace PingPayments.Mimic
         IMerchantResource Merchant { get; }
         IDisbursementResource Disbursement { get; }
         IAutogiroResource Autogiro { get; }
+        IPaymentConsentResource PaymentConsent { get; }
     }
 }

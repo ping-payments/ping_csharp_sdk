@@ -1,4 +1,6 @@
 ﻿using Bogus;
+using PingPayments.PaymentsApi.Merchants.ActivatePaymentMethod.V1.Request;
+using PingPayments.PaymentsApi.Merchants.ActivatePaymentMethod.V1.Response;
 using PingPayments.PaymentsApi.Merchants.Create.V1;
 using PingPayments.PaymentsApi.Merchants.Shared.V1;
 using PingPayments.Shared;
@@ -118,6 +120,62 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var response = await _api.Merchants.V1.Create(fakeMerchant);
             AssertHttpOK(response);
             Assert.NotEqual(Guid.Empty, response);
+        }
+
+        [Fact(Skip = "Sandbox/provider dependent PayPal activation flow may return 403 in current test environment")]
+        public async Task Activate_paypal_ppcp_and_verify_status_flow()
+        {
+            var fakeOrganizationGenerator = new Faker<Organization>()
+                .RuleFor(x => x.Country, "SE")
+                .RuleFor(x => x.SeOrganizationNumber, new Randomizer().Replace("##########"));
+            var fakeMerchantGenerator = new Faker<CreateMerchantRequest>()
+                .RuleFor(x => x.Name, f => f.Company.CompanyName())
+                .RuleFor(x => x.Organization, fakeOrganizationGenerator.Generate());
+
+            var createdMerchantResponse = await _api.Merchants.V1.Create(fakeMerchantGenerator.Generate());
+            AssertHttpOK(createdMerchantResponse);
+            var merchantId = (Guid)createdMerchantResponse;
+            Assert.NotEqual(Guid.Empty, merchantId);
+
+            var missingActivationStatusResponse = await _api.Merchants.V1.GetPaymentProviderMethodActivation(merchantId, Guid.NewGuid());
+            AssertHttpNotFound(missingActivationStatusResponse);
+
+            var activateRequest = new ActivatePayPalPPCPRequest
+            (
+                new ActivatePayPalPPCPParameters
+                (
+                    email: "test@example.com",
+                    redirectUrl: new Uri("https://example.com/redirect")
+                )
+            );
+
+            var activateResponse = await _api.Merchants.V1.ActivatePayPalPPCP(merchantId, activateRequest);
+
+            AssertHttpOK(activateResponse);
+            ActivatePayPalPPCPResponseBody? activateBody = activateResponse;
+            Assert.NotNull(activateBody);
+            Assert.NotEqual(Guid.Empty, activateBody?.Id);
+
+            var activationId = activateBody!.Id;
+            var getStatusResponse = await _api.Merchants.V1.GetPaymentProviderMethodActivation(merchantId, activationId);
+            AssertHttpOK(getStatusResponse);
+            MerchantPaymentProviderMethodActivation? statusBody = getStatusResponse;
+            Assert.NotNull(statusBody);
+            Assert.Equal(activationId, statusBody?.Id);
+
+            var tries = 0;
+            const int maxRetries = 10;
+            while (statusBody?.Status != MerchantPaymentProviderMethodActivationStatusEnum.COMPLETED && tries < maxRetries)
+            {
+                await Task.Delay(1000);
+                getStatusResponse = await _api.Merchants.V1.GetPaymentProviderMethodActivation(merchantId, activationId);
+                AssertHttpOK(getStatusResponse);
+                statusBody = getStatusResponse;
+                tries++;
+            }
+
+            Assert.NotNull(statusBody);
+            Assert.Equal(MerchantPaymentProviderMethodActivationStatusEnum.COMPLETED, statusBody?.Status);
         }
     }
 }

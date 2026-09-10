@@ -16,6 +16,7 @@ namespace PingPayments.Shared.Enums
         checkout,
         hpp,
         recurring,
+        ppcp,
 
         //card_deposit,
     }

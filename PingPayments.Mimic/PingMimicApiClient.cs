@@ -7,6 +7,8 @@ using PingPayments.Mimic.Disbursements;
 using PingPayments.Mimic.Disbursements.Trigger.V1;
 using PingPayments.Mimic.Merchants;
 using PingPayments.Mimic.Merchants.Update.V1;
+using PingPayments.Mimic.PaymentConsent;
+using PingPayments.Mimic.PaymentConsent.Update.V1;
 using System;
 using System.Net.Http;
 
@@ -31,6 +33,9 @@ namespace PingPayments.Mimic
                 new Lazy<UpdatePaymentOperation>(() => new UpdatePaymentOperation(httpClient))
             );
             _autogiro = new Lazy<IAutogiroResource>(() => new AutogiroResource(autogirotV1));
+
+            var paymentConsentV1 = new PaymentConsentV1(new Lazy<UpdatePaymentConsentOperation>(() => new UpdatePaymentConsentOperation(httpClient)));
+            _paymentConsent = new Lazy<IPaymentConsentResource>(() => new PaymentConsentResource(paymentConsentV1));
         }
 
         private readonly Lazy<IDepositResource> _deposit;
@@ -47,5 +52,9 @@ namespace PingPayments.Mimic
 
         private readonly Lazy<IDisbursementResource> _disbursement;
         public IDisbursementResource Disbursement => _disbursement.Value;
+
+
+        private readonly Lazy<IPaymentConsentResource> _paymentConsent;
+        public IPaymentConsentResource PaymentConsent => _paymentConsent.Value;
     }
 }

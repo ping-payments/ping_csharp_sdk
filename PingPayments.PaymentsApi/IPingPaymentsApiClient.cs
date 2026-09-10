@@ -4,6 +4,7 @@ using PingPayments.PaymentsApi.Disbursements;
 using PingPayments.PaymentsApi.KYC.AccountVerificationSession;
 using PingPayments.PaymentsApi.LiquidityAccounts;
 using PingPayments.PaymentsApi.Merchants;
+using PingPayments.PaymentsApi.PaymentConsents;
 using PingPayments.PaymentsApi.PaymentOrders;
 using PingPayments.PaymentsApi.Payments;
 using PingPayments.PaymentsApi.Payouts;
@@ -22,6 +23,7 @@ namespace PingPayments.PaymentsApi
         IAccountVerificationSessionResource AccountVerification { get; }
         IMerchantResource Merchants { get; }
         ILiquidityAccountResource LiquidityAccounts { get; }
+        IPaymentConsentResource PaymentConsent { get; }
         IPaymentOrderResource PaymentOrder { get; }
         IPaymentResource Payments { get; }
         IPingResource Ping { get; }

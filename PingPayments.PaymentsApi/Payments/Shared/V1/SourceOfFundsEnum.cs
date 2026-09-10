@@ -15,6 +15,7 @@
         rental_income,
         royalties,
         lottery_or_gambling_winnings,
-        foreign_remittances
+        foreign_remittances,
+        savings
     }
 }

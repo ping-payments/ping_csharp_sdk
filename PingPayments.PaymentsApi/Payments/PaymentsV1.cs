@@ -1,4 +1,5 @@
-﻿using PingPayments.PaymentsApi.Payments.Get.V1;
+﻿using PingPayments.PaymentsApi.Payments.Batch.V1;
+using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1;
 using PingPayments.PaymentsApi.Payments.List.V1;
 using PingPayments.PaymentsApi.Payments.Reconcile.V1;
@@ -26,7 +27,8 @@ namespace PingPayments.PaymentsApi.Payments
             Lazy<UpdateOperation> updateOperation,
             Lazy<ReconcileOperation> reconcileOperation,
             Lazy<RefundOperation> refundOperation,
-            Lazy<StopOperation> stopOperation
+            Lazy<StopOperation> stopOperation,
+            Lazy<InitiatePaymentBatchOperation> initiatePaymentBatchOperation
         )
         {
             _initiateOperation = initiateOperation;
@@ -37,6 +39,7 @@ namespace PingPayments.PaymentsApi.Payments
             _reconcileOperation = reconcileOperation;
             _stopOperation = stopOperation;
             _refundOperation = refundOperation;
+            _initiatePaymentBatchOperation = initiatePaymentBatchOperation;
         }
 
         private readonly Lazy<InitiateOperation> _initiateOperation;
@@ -47,9 +50,13 @@ namespace PingPayments.PaymentsApi.Payments
         private readonly Lazy<StopOperation> _stopOperation;
         private readonly Lazy<ReconcileOperation> _reconcileOperation;
         private readonly Lazy<RefundOperation> _refundOperation;
+        private readonly Lazy<InitiatePaymentBatchOperation> _initiatePaymentBatchOperation;
 
         public async Task<InitiatePaymentResponse> Initiate(Guid orderId, InitiatePaymentRequest initiatePaymentRequest) =>
             await _initiateOperation.Value.ExecuteRequest((orderId, initiatePaymentRequest));
+
+        public async Task<InitiatePaymentBatchResponse> InitiateBatch(InitiatePaymentBatchRequest initiatePaymentBatchRequest) =>
+            await _initiatePaymentBatchOperation.Value.ExecuteRequest(initiatePaymentBatchRequest);
 
         public async Task<PaymentResponse> Get(Guid orderId, Guid paymentId) =>
             await _getOperation.Value.ExecuteRequest((orderId, paymentId));

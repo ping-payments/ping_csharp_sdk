@@ -4,8 +4,13 @@
     {
         SE,
         NO,
-        DE,
         FI,
-        DK
+        DK,
+        DE,
+        BG,
+        CZ,
+        EE,
+        LU,
+        FR
     }
 }

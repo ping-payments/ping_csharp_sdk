@@ -1,5 +1,6 @@
 ﻿using PingPayments.Mimic.Deposit.Create.V1;
 using PingPayments.PaymentsApi.PaymentOrders.Create.V1;
+using PingPayments.PaymentsApi.Payments.Batch.V1;
 using PingPayments.PaymentsApi.Payments.Get.V1;
 using PingPayments.PaymentsApi.Payments.Initiate.V1.Request;
 using PingPayments.PaymentsApi.Payments.Refund.V1;
@@ -134,6 +135,45 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.NotNull(body);
             Assert.NotEqual(Guid.Empty, body?.Id);
             Assert.NotNull(body?.ProviderMethodResponse?.PaymentLinkUrl);
+        }
+
+        [Fact(Skip = "Sandbox/provider dependent PayPal flow may return 403 in current test environment")]
+        public async Task Initiate_paypal_ppcp_payment_calls_endpoint()
+        {
+            var requestObject = CreatePayment.PayPal.Ppcp
+            (
+                CurrencyEnum.SEK,
+                new OrderItem[]
+                {
+                    new OrderItem(100.ToMinorCurrencyUnit(), "Test item", SwedishVat.Vat25, TestData.MerchantId)
+                },
+                description: "Test PayPal payment",
+                designatedMerchantId: TestData.MerchantId,
+                itemCategory: PayPalItemCategoryEnum.DIGITAL_GOODS,
+                locale: "sv-SE",
+                redirectUrl: new Uri("https://example.com/redirect"),
+                shipping: new PayPalShipping
+                {
+                    Preference = PayPalShippingPreferenceEnum.NO_SHIPPING
+                }
+            );
+            var response = await _api.Payments.V1.Initiate(TestData.OrderId, requestObject);
+
+            Assert.True
+            (
+                response.StatusCode == System.Net.HttpStatusCode.OK ||
+                response.StatusCode == System.Net.HttpStatusCode.Forbidden,
+                $"Expected OK or Forbidden, but got {(int)response.StatusCode} ({response.StatusCode})"
+            );
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                Assert.NotNull(response?.Body?.SuccessfulResponseBody);
+                PayPalPPCPPaymentResponseBody? body = response;
+                Assert.NotNull(body);
+                Assert.NotEqual(Guid.Empty, body?.Id);
+                Assert.NotNull(body?.ProviderMethodResponse?.Url);
+            }
         }
 
         [Fact]
@@ -680,6 +720,49 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.Equal(body.Amount, 5.ToMinorCurrencyUnit());
             Assert.NotNull(body.Status);
             Assert.NotEmpty(body.Status);
+        }
+
+        [Fact]
+        public async Task Initiate_payment_batch_200()
+        {
+            var batchRequest = new InitiatePaymentBatchRequest
+            (
+                new PaymentBatchEntry[]
+                {
+                    new PaymentBatchEntry
+                    (
+                        new CreatePaymentOrderRequest(CurrencyEnum.SEK),
+                        CreatePayment.Dummy.New
+                        (
+                            CurrencyEnum.SEK,
+                            new OrderItem[]
+                            {
+                                new OrderItem(5.ToMinorCurrencyUnit(), "A", SwedishVat.Vat25, TestData.MerchantId, null)
+                            }
+                        )
+                    )
+                }
+            );
+
+            var response = await _api.Payments.V1.InitiateBatch(batchRequest);
+
+            AssertHttpOK(response);
+            Assert.NotNull(response?.Body?.SuccessfulResponseBody);
+            var body = response.Body.SuccessfulResponseBody;
+            Assert.NotNull(body);
+            Assert.NotEqual(Guid.Empty, body.Id);
+        }
+
+        [Fact]
+        public async Task Initiate_payment_batch_with_empty_batch_200()
+        {
+            var batchRequest = new InitiatePaymentBatchRequest(Array.Empty<PaymentBatchEntry>());
+
+            var response = await _api.Payments.V1.InitiateBatch(batchRequest);
+
+            AssertHttpOK(response);
+            Assert.NotNull(response?.Body?.SuccessfulResponseBody);
+            Assert.NotEqual(Guid.Empty, response.Body.SuccessfulResponseBody.Id);
         }
 
         public async Task<bool> AwaitDesiredPaymentStatus(PaymentStatusEnum paymentStatus, PaymentStatusEnum desiredPaymentStatus)

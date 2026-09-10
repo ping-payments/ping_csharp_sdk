@@ -16,6 +16,7 @@ namespace PingPayments.Shared.Enums
         vipps_mobilepay,
         klarna,
         quickpay,
+        paypal,
 
         //neonomics,
         //svea,
