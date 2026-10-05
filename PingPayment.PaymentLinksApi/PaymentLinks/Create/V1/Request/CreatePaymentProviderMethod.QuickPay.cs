@@ -12,6 +12,13 @@ namespace PingPayments.PaymentLinksApi.PaymentLinks.Create.V1.Request
                         MethodEnum.vipps,
                         ProviderEnum.quickpay
                     );
+
+            public static PaymentProviderMethod Card
+                () => new
+                    (
+                        MethodEnum.card,
+                        ProviderEnum.quickpay
+                    );
         }
     }
 }

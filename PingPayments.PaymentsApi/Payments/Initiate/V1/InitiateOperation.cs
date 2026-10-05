@@ -58,6 +58,7 @@ namespace PingPayments.PaymentsApi.Payments.Initiate.V1
                 (ProviderEnum.bankgirot, MethodEnum.autogiro) => await Deserialize<AutogiroResponseBody>(raw, jsonOpts),
                 (ProviderEnum.vipps_mobilepay, MethodEnum.checkout) => await Deserialize<VippsMobilePayResponseBody>(raw, jsonOpts),
                 (ProviderEnum.quickpay, MethodEnum.vipps) => await Deserialize<QuickPayVippsResponseBody>(raw, jsonOpts),
+                (ProviderEnum.quickpay, MethodEnum.card) => await Deserialize<QuickPayCardResponseBody>(raw, jsonOpts),
                 (ProviderEnum.klarna, MethodEnum.hpp) => await Deserialize<KlarnaHppResponseBody>(raw, jsonOpts),
                 (ProviderEnum.paypal, MethodEnum.ppcp) => await Deserialize<PayPalPPCPPaymentResponseBody>(raw, jsonOpts),
                 _ => null

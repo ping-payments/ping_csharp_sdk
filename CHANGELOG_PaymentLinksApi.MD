@@ -1,5 +1,8 @@
 # Change Log
 
+## 2.2.2 (2026-10-05)
+- Add QuickPay card as a payment provider method
+
 ## 2.2.0 (2023-05-23)
 - Metadata can now be put on an Item when creating a payment link.
 

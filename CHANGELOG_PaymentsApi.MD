@@ -1,5 +1,8 @@
 # Change Log
 
+## 4.0.14 (2026-10-05)
+- Add support for QuickPay card payments
+
 ## 4.0.13 (2026-08-20)
 - Created methods and models for Recurring payments at Bankgirot and Swish.
 - Add support for PayPal Commerce Platform (PPCP)
