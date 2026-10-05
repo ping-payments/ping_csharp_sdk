@@ -40,6 +40,38 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     metadata,
                     payer
                 );
+
+            public static InitiatePaymentRequest Card
+            (
+                CurrencyEnum currency,
+                IEnumerable<OrderItem> orderItems,
+                Uri redirectUrl,
+                Guid designatedMerchantId,
+                QuickPayBrandingEnum branding = QuickPayBrandingEnum.standard,
+                bool framed = false,
+                string? language = null,
+                Uri? statusCallbackUrl = null,
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
+            ) => new
+                (
+                    currency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
+                    orderItems,
+                    ProviderEnum.quickpay,
+                    MethodEnum.card,
+                    new QuickPayCardParameters
+                    (
+                        redirectUrl,
+                        designatedMerchantId,
+                        branding,
+                        framed,
+                        language
+                    ),
+                    statusCallbackUrl,
+                    metadata,
+                    payer
+                );
         }
     }
 }

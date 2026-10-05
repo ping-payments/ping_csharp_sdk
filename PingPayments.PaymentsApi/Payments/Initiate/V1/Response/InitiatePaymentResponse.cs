@@ -22,6 +22,7 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Response
         public static implicit operator VippsMobilePayResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccessfulResponseBody as VippsMobilePayResponseBody;
         public static implicit operator KlarnaHppResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccessfulResponseBody as KlarnaHppResponseBody;
         public static implicit operator QuickPayVippsResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccessfulResponseBody as QuickPayVippsResponseBody;
+        public static implicit operator QuickPayCardResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccessfulResponseBody as QuickPayCardResponseBody;
         public static implicit operator PayPalPPCPPaymentResponseBody?(InitiatePaymentResponse ipr) => ipr?.Body?.SuccessfulResponseBody as PayPalPPCPPaymentResponseBody;
     }
 }
