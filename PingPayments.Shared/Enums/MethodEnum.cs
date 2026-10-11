@@ -17,6 +17,8 @@ namespace PingPayments.Shared.Enums
         hpp,
         recurring,
         ppcp,
+        apple_pay,
+        google_pay,
 
         //card_deposit,
     }

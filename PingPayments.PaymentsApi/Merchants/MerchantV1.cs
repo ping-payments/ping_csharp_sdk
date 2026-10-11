@@ -20,6 +20,9 @@ namespace PingPayments.PaymentsApi.Merchants
             Lazy<ListMerchantsDataOperation> listMerchantDataOperation,
             Lazy<ListMerchantsPageOperation> listMerchantPageOperation,
             Lazy<ActivatePayPalPPCPOperation> activatePayPalPPCPOperation,
+            Lazy<ActivateKlarnaHPPOperation> activateKlarnaHPPOperation,
+            Lazy<ActivateQuickpayOperation> activateQuickpayOperation,
+            Lazy<ActivateQuickpayVippsOperation> activateQuickpayVippsOperation,
             Lazy<GetMerchantPaymentProviderMethodActivationOperation> getMerchantPaymentProviderMethodActivationOperation
         )
         {
@@ -28,6 +31,9 @@ namespace PingPayments.PaymentsApi.Merchants
             _listMerchantDataOperation = listMerchantDataOperation;
             _listMerchantPageOperation = listMerchantPageOperation;
             _activatePayPalPPCPOperation = activatePayPalPPCPOperation;
+            _activateKlarnaHPPOperation = activateKlarnaHPPOperation;
+            _activateQuickpayOperation = activateQuickpayOperation;
+            _activateQuickpayVippsOperation = activateQuickpayVippsOperation;
             _getMerchantPaymentProviderMethodActivationOperation = getMerchantPaymentProviderMethodActivationOperation;
         }
 
@@ -36,6 +42,9 @@ namespace PingPayments.PaymentsApi.Merchants
         private readonly Lazy<ListMerchantsDataOperation> _listMerchantDataOperation;
         private readonly Lazy<ListMerchantsPageOperation> _listMerchantPageOperation;
         private readonly Lazy<ActivatePayPalPPCPOperation> _activatePayPalPPCPOperation;
+        private readonly Lazy<ActivateKlarnaHPPOperation> _activateKlarnaHPPOperation;
+        private readonly Lazy<ActivateQuickpayOperation> _activateQuickpayOperation;
+        private readonly Lazy<ActivateQuickpayVippsOperation> _activateQuickpayVippsOperation;
         private readonly Lazy<GetMerchantPaymentProviderMethodActivationOperation> _getMerchantPaymentProviderMethodActivationOperation;
 
         public async Task<MerchantResponse> Get(Guid merchantId) =>
@@ -55,6 +64,15 @@ namespace PingPayments.PaymentsApi.Merchants
 
         public async Task<ActivatePayPalPPCPResponse> ActivatePayPalPPCP(Guid merchantId, ActivatePayPalPPCPRequest request) =>
             await _activatePayPalPPCPOperation.Value.ExecuteRequest((merchantId, request));
+
+        public async Task<ActivateKlarnaHPPResponse> ActivateKlarnaHPP(Guid merchantId, ActivateKlarnaHPPRequest request) =>
+            await _activateKlarnaHPPOperation.Value.ExecuteRequest((merchantId, request));
+
+        public async Task<ActivateQuickpayResponse> ActivateQuickpay(Guid merchantId, ActivateQuickpayRequest request) =>
+            await _activateQuickpayOperation.Value.ExecuteRequest((merchantId, request));
+
+        public async Task<ActivateQuickpayResponse> ActivateQuickpayVipps(Guid merchantId, ActivateQuickpayVippsRequest request) =>
+            await _activateQuickpayVippsOperation.Value.ExecuteRequest((merchantId, request));
 
         public async Task<MerchantPaymentProviderMethodActivationResponse> GetPaymentProviderMethodActivation(Guid merchantId, Guid activationId) =>
             await _getMerchantPaymentProviderMethodActivationOperation.Value.ExecuteRequest((merchantId, activationId));

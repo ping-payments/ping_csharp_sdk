@@ -136,6 +136,9 @@ namespace PingPayments.PaymentsApi
                 new Lazy<ListMerchantsDataOperation>(() => new ListMerchantsDataOperation(httpClient)),
                 new Lazy<ListMerchantsPageOperation>(() => new ListMerchantsPageOperation(httpClient)),
                 new Lazy<ActivatePayPalPPCPOperation>(() => new ActivatePayPalPPCPOperation(httpClient)),
+                new Lazy<ActivateKlarnaHPPOperation>(() => new ActivateKlarnaHPPOperation(httpClient)),
+                new Lazy<ActivateQuickpayOperation>(() => new ActivateQuickpayOperation(httpClient)),
+                new Lazy<ActivateQuickpayVippsOperation>(() => new ActivateQuickpayVippsOperation(httpClient)),
                 new Lazy<GetMerchantPaymentProviderMethodActivationOperation>(() => new GetMerchantPaymentProviderMethodActivationOperation(httpClient))
             );
             _merchants = new Lazy<IMerchantResource>(() => new MerchantResource(merchantV1));

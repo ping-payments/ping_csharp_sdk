@@ -17,6 +17,9 @@ namespace PingPayments.PaymentsApi.Merchants
         Task<MerchantsPageResponse> ListPage(int? limit = null);
         Task<MerchantsPageResponse> ListPage(PaginationLinkHref href);
         Task<ActivatePayPalPPCPResponse> ActivatePayPalPPCP(Guid merchantId, ActivatePayPalPPCPRequest request);
+        Task<ActivateKlarnaHPPResponse> ActivateKlarnaHPP(Guid merchantId, ActivateKlarnaHPPRequest request);
+        Task<ActivateQuickpayResponse> ActivateQuickpay(Guid merchantId, ActivateQuickpayRequest request);
+        Task<ActivateQuickpayResponse> ActivateQuickpayVipps(Guid merchantId, ActivateQuickpayVippsRequest request);
         Task<MerchantPaymentProviderMethodActivationResponse> GetPaymentProviderMethodActivation(Guid merchantId, Guid activationId);
     }
 }

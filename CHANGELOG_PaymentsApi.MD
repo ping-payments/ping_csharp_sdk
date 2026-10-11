@@ -1,5 +1,8 @@
 # Change Log
 
+## 4.0.15 (2026-10-12)
+- Add support for activating merchant payment methods for PayPal PPCP, Klarna HPP, and Quickpay
+
 ## 4.0.14 (2026-10-05)
 - Add support for QuickPay card payments
 

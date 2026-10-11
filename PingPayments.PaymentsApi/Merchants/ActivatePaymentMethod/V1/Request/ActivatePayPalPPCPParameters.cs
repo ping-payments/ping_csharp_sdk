@@ -12,9 +12,9 @@ namespace PingPayments.PaymentsApi.Merchants.ActivatePaymentMethod.V1.Request
         }
 
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string Email { get; }
 
         [JsonPropertyName("redirect_url")]
-        public Uri RedirectUrl { get; set; }
+        public Uri RedirectUrl { get; }
     }
 }

@@ -12,6 +12,6 @@ namespace PingPayments.PaymentsApi.Merchants.ActivatePaymentMethod.V1.Response
         public MerchantPaymentProviderMethodActivationStatusEnum Status { get; set; }
 
         [JsonPropertyName("provider_method_response")]
-        public ActivatePayPalPPCPProviderMethodResponse ProviderMethodResponse { get; set; }
+        public ActivatePayPalPPCPProviderMethodResponse? ProviderMethodResponse { get; set; }
     }
 }
