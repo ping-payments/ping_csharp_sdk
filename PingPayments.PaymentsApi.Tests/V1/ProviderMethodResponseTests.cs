@@ -175,6 +175,32 @@ namespace PingPayments.PaymentsApi.Tests.V1
           );
 
         [Fact]
+        public async Task Can_parse_quickpay_apple_pay() =>
+          Assert.True
+          (
+              await InitiateOperation.GetResponseBody
+              (
+                  ProviderEnum.quickpay,
+                  MethodEnum.apple_pay,
+                  "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{}}",
+                  new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() } }
+              ) is QuickPayApplePayResponseBody
+          );
+
+        [Fact]
+        public async Task Can_parse_quickpay_google_pay() =>
+          Assert.True
+          (
+              await InitiateOperation.GetResponseBody
+              (
+                  ProviderEnum.quickpay,
+                  MethodEnum.google_pay,
+                  "{\"id\":\"15c44587-7ebb-43a3-b437-8d00e5f8df7a\",\"provider_method_response\":{}}",
+                  new() { Converters = { new MethodEnumJsonConvert(), new JsonStringEnumConverter(), new ProviderMethodParametersJsonConvert() } }
+              ) is QuickPayGooglePayResponseBody
+          );
+
+        [Fact]
         public async Task Can_parse_quickpay_vipps() =>
           Assert.True
           (

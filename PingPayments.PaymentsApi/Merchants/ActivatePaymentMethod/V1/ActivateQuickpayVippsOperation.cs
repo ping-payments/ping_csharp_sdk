@@ -73,7 +73,7 @@ namespace PingPayments.PaymentsApi.Merchants.ActivatePaymentMethod.V1
 
         private static void AddOptional(MultipartFormDataContent form, string name, string? value)
         {
-            if (!string.IsNullOrWhiteSpace(value))
+            if (value != null)
                 form.Add(new StringContent(value), name);
         }
     }
