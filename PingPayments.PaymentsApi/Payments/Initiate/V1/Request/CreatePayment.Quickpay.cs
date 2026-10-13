@@ -72,6 +72,58 @@ namespace PingPayments.PaymentsApi.Payments.V1.Initiate.Request
                     metadata,
                     payer
                 );
+
+            public static InitiatePaymentRequest ApplePay
+            (
+                CurrencyEnum currency,
+                IEnumerable<OrderItem> orderItems,
+                Guid designatedMerchantId,
+                IDictionary<string, dynamic> applePayToken,
+                Uri? statusCallbackUrl = null,
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
+            ) => new
+                (
+                    currency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
+                    orderItems,
+                    ProviderEnum.quickpay,
+                    MethodEnum.apple_pay,
+                    new QuickPayApplePayParameters
+                    (
+                        designatedMerchantId,
+                        applePayToken
+                    ),
+                    statusCallbackUrl,
+                    metadata,
+                    payer
+                );
+
+            public static InitiatePaymentRequest GooglePay
+            (
+                CurrencyEnum currency,
+                IEnumerable<OrderItem> orderItems,
+                Guid designatedMerchantId,
+                string googlePayToken,
+                Uri? statusCallbackUrl = null,
+                IDictionary<string, dynamic>? metadata = null,
+                Payer? payer = null
+            ) => new
+                (
+                    currency,
+                    orderItems.TotalAmountMinorCurrencyUnit(),
+                    orderItems,
+                    ProviderEnum.quickpay,
+                    MethodEnum.google_pay,
+                    new QuickPayGooglePayParameters
+                    (
+                        designatedMerchantId,
+                        googlePayToken
+                    ),
+                    statusCallbackUrl,
+                    metadata,
+                    payer
+                );
         }
     }
 }

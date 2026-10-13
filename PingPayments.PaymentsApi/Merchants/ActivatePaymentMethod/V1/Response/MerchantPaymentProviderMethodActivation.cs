@@ -13,7 +13,7 @@ namespace PingPayments.PaymentsApi.Merchants.ActivatePaymentMethod.V1.Response
         public Guid Id { get; set; }
 
         [JsonPropertyName("merchant")]
-        public Merchant Merchant { get; set; }
+        public Merchant? Merchant { get; set; }
 
         [JsonPropertyName("status")]
         public MerchantPaymentProviderMethodActivationStatusEnum Status { get; set; }
