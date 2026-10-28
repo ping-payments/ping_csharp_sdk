@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.1.0 (2026-10-28)
+- Breaking changes
+	- `Merchant.Email` and `Merchant.PhoneNumber` are now nullable.
+- Updated merchant models for `Organization` and `Person`.
+- Added support for creating a merchant from a Swedish bankgiro number using.
+- Fixed a bug where `ListMerchantsPageOperation` threw an exception when called without a request.
+
 ## 4.0.15 (2026-10-12)
 - Add support for activating merchant payment methods for PayPal PPCP, Klarna HPP, and Quickpay
 

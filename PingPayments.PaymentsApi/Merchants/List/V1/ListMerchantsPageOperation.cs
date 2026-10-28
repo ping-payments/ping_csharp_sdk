@@ -21,8 +21,8 @@ namespace PingPayments.PaymentsApi.Merchants.List.V1
                 GET,
                 request.HasValue && !string.IsNullOrEmpty(request.Value.href?.Href)
                     ? request.Value.href!.Href
-                    : request!.Value.limit.HasValue
-                        ? $"api/v1/merchants?limit={request!.Value.limit.Value}"
+                    : request.HasValue && request.Value.limit.HasValue
+                        ? $"api/v1/merchants?limit={request.Value.limit.Value}"
                         : "api/v1/merchants",
                 request
             );

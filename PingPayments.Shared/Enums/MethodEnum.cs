@@ -19,7 +19,7 @@ namespace PingPayments.Shared.Enums
         ppcp,
         apple_pay,
         google_pay,
-
-        //card_deposit,
+        card_deposit,
+        fritidskortet,
     }
 }

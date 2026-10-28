@@ -17,9 +17,10 @@ namespace PingPayments.Shared.Enums
         klarna,
         quickpay,
         paypal,
-
-        //neonomics,
-        //svea,
-        //worldline,
+        avarda,
+        neonomics,
+        svea,
+        worldline,
+        swedish_ehealth_agency,
     }
 }

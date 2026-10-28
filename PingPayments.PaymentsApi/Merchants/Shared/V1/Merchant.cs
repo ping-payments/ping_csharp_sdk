@@ -1,5 +1,6 @@
 ﻿using PingPayments.Shared;
 using PingPayments.Shared.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -17,13 +18,13 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         /// Email to the merchant
         /// </summary>
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         /// <summary>
         /// Phone number to the merchant
         /// </summary>
         [JsonPropertyName("phone_number")]
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
 
         /// <summary>
         /// Status of the merchant
@@ -48,5 +49,23 @@ namespace PingPayments.PaymentsApi.Merchants.Shared.V1
         /// </summary>
         [JsonPropertyName("person")]
         public Person? Person { get; set; }
+
+        /// <summary>
+        /// Point in time when the merchant was created
+        /// </summary>
+        [JsonPropertyName("created_at")]
+        public DateTimeOffset CreatedAt { get; set; }
+
+        /// <summary>
+        /// If the merchant has been archived, this will show when it was archived
+        /// </summary>
+        [JsonPropertyName("archived_at")]
+        public DateTimeOffset? ArchivedAt { get; set; } = default;
+
+        /// <summary>
+        /// Quickpay merchant connected to the merchant
+        /// </summary>
+        [JsonPropertyName("quickpay_merchant")]
+        public QuickpayMerchant? QuickpayMerchant { get; set; }
     }
 }
