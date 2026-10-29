@@ -55,43 +55,15 @@ namespace PingPayments.PaymentsApi.Tests.V1
             Assert.NotNull(paginationLinks);
         }
 
-        [Fact]
-        public async Task Create_merchant_dk_organization_returns_200()
-        {
-
-            var createMerchantRequest = new CreateMerchantRequest
-            {
-                Name = "Danske Bolag",
-                Organization = new Organization
-                {
-                    Country = "DK",
-                    DkOrganizationNumber = "12345678"
-                }
-            };
-            var response = await _api.Merchants.V1.Create(createMerchantRequest);
-            AssertHttpOK(response);
-            Assert.NotEqual(Guid.Empty, response);
-        }
-
         [Theory]
-        [InlineData("SE")]
-        [InlineData("NO")]
-        public async Task Create_merchant_organization_returns_200(string country)
+        [InlineData("SE", "##########")]
+        [InlineData("NO", "#########")]
+        [InlineData("DK", "########")]
+        public async Task Create_merchant_organization_returns_200(string country, string identifierPattern)
         {
             var fakeOrganizationGenerator = new Faker<Organization>()
                 .RuleFor(x => x.Country, country)
-                .RuleFor(x => x.SeOrganizationNumber, (f, o) =>
-                   country == "SE" ?
-                        new Randomizer().Replace("##########") :
-                        null)
-                .RuleFor(x => x.NoOrganizationNumber, (f, o) =>
-                    country == "NO" ?
-                        new Randomizer().Replace("#########") :
-                        null)
-                .RuleFor(x => x.DkOrganizationNumber, (f, o) =>
-                    country == "DK" ?
-                        new Randomizer().Replace("#########") :
-                        null);
+                .RuleFor(x => x.Identifier, f => new Randomizer().Replace(identifierPattern));
             var fakeMercantGenerator = new Faker<CreateMerchantRequest>()
                 .RuleFor(x => x.Name, f => f.Company.CompanyName())
                 .RuleFor(x => x.Organization, fakeOrganizationGenerator.Generate());
@@ -103,15 +75,13 @@ namespace PingPayments.PaymentsApi.Tests.V1
         }
 
         [Theory]
-        [InlineData("SE")]
-        [InlineData("DE")]
-        public async Task Create_merchant_person_returns_200(string country)
+        [InlineData("SE", "199311219639")]
+        [InlineData("DE", null)]
+        public async Task Create_merchant_person_returns_200(string country, string? identifier)
         {
             var fakePersonGenerator = new Faker<Merchants.Shared.V1.Person>()
                 .RuleFor(x => x.Country, country)
-                .RuleFor(x => x.SePersonalIdentityNumber, (f, p) =>
-                   country == "SE" ? new Randomizer().Replace("############") : null);
-
+                .RuleFor(x => x.Identifier, identifier);
             var fakeMercantGenerator = new Faker<CreateMerchantRequest>()
                 .RuleFor(x => x.Name, f => f.Person.FullName)
                 .RuleFor(x => x.Person, fakePersonGenerator.Generate());
@@ -120,6 +90,16 @@ namespace PingPayments.PaymentsApi.Tests.V1
             var response = await _api.Merchants.V1.Create(fakeMerchant);
             AssertHttpOK(response);
             Assert.NotEqual(Guid.Empty, response);
+        }
+
+        [Fact]
+        public async Task Get_returns_200_has_created_at()
+        {
+            var response = await _api.Merchants.V1.Get(TestData.MerchantId);
+            AssertHttpOK(response);
+            Merchant? merchant = response;
+            Assert.NotNull(merchant);
+            Assert.NotEqual(default, merchant!.CreatedAt);
         }
 
         [Fact(Skip = "Sandbox/provider dependent PayPal activation flow may return 403 in current test environment")]

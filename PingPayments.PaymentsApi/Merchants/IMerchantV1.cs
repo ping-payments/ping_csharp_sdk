@@ -12,6 +12,7 @@ namespace PingPayments.PaymentsApi.Merchants
     public interface IMerchantV1
     {
         Task<GuidResponse> Create(CreateMerchantRequest createMerchantRequest);
+        Task<GuidResponse> Create(CreateMerchantFromBankgiroRequest createMerchantFromBankgiroRequest);
         Task<MerchantResponse> Get(Guid merchantId);
         Task<MerchantsDataResponse> ListData();
         Task<MerchantsPageResponse> ListPage(int? limit = null);

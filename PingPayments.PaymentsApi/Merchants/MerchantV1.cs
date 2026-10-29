@@ -16,6 +16,7 @@ namespace PingPayments.PaymentsApi.Merchants
         public MerchantV1
         (
             Lazy<CreateMerchantOperation> createMerchantOperation,
+            Lazy<CreateMerchantFromBankgiroOperation> createMerchantFromBankgiroOperation,
             Lazy<GetMerchantOperation> getMerchantOperation,
             Lazy<ListMerchantsDataOperation> listMerchantDataOperation,
             Lazy<ListMerchantsPageOperation> listMerchantPageOperation,
@@ -27,6 +28,7 @@ namespace PingPayments.PaymentsApi.Merchants
         )
         {
             _createMerchantOperation = createMerchantOperation;
+            _createMerchantFromBankgiroOperation = createMerchantFromBankgiroOperation;
             _getMerchantOperation = getMerchantOperation;
             _listMerchantDataOperation = listMerchantDataOperation;
             _listMerchantPageOperation = listMerchantPageOperation;
@@ -38,6 +40,7 @@ namespace PingPayments.PaymentsApi.Merchants
         }
 
         private readonly Lazy<CreateMerchantOperation> _createMerchantOperation;
+        private readonly Lazy<CreateMerchantFromBankgiroOperation> _createMerchantFromBankgiroOperation;
         private readonly Lazy<GetMerchantOperation> _getMerchantOperation;
         private readonly Lazy<ListMerchantsDataOperation> _listMerchantDataOperation;
         private readonly Lazy<ListMerchantsPageOperation> _listMerchantPageOperation;
@@ -61,6 +64,9 @@ namespace PingPayments.PaymentsApi.Merchants
 
         public async Task<GuidResponse> Create(CreateMerchantRequest createMerchantRequest) =>
             await _createMerchantOperation.Value.ExecuteRequest(createMerchantRequest);
+
+        public async Task<GuidResponse> Create(CreateMerchantFromBankgiroRequest createMerchantFromBankgiroRequest) =>
+            await _createMerchantFromBankgiroOperation.Value.ExecuteRequest(createMerchantFromBankgiroRequest);
 
         public async Task<ActivatePayPalPPCPResponse> ActivatePayPalPPCP(Guid merchantId, ActivatePayPalPPCPRequest request) =>
             await _activatePayPalPPCPOperation.Value.ExecuteRequest((merchantId, request));

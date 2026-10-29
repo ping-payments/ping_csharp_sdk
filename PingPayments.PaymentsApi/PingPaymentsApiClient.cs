@@ -132,6 +132,7 @@ namespace PingPayments.PaymentsApi
             var merchantV1 = new MerchantV1
             (
                 new Lazy<CreateMerchantOperation>(() => new CreateMerchantOperation(httpClient)),
+                new Lazy<CreateMerchantFromBankgiroOperation>(() => new CreateMerchantFromBankgiroOperation(httpClient)),
                 new Lazy<GetMerchantOperation>(() => new GetMerchantOperation(httpClient)),
                 new Lazy<ListMerchantsDataOperation>(() => new ListMerchantsDataOperation(httpClient)),
                 new Lazy<ListMerchantsPageOperation>(() => new ListMerchantsPageOperation(httpClient)),
